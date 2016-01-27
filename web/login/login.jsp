@@ -15,7 +15,7 @@
         <script src="javascript/login.js"></script>
         <script type="text/javascript" src="jquery-1.8.3.js"></script>
 
-        <link href="../css/login.css" rel="stylesheet" type="text/css"/>
+        <link href="css/login.css" rel="stylesheet" type="text/css"/>
 
     </head>
 
@@ -24,7 +24,7 @@
 
 
         <div id="mainButton">
-            <script src="Login/login.js"></script>
+            <script src="javascript/login.js"></script>
 
             <div class="btn-text" onclick="openForm()">
                 Sign In</div>
