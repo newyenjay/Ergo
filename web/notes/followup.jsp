@@ -53,6 +53,9 @@
             textarea {
                 resize: both;
             }
+            body {
+                background-color:
+            }
 
         </script>
     </head>
