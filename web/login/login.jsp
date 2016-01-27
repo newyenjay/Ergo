@@ -11,11 +11,11 @@
 
     <head>
         <link href='https://fonts.googleapis.com/css?family=Raleway:400,500,300' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="Login/login.css">
-        <script src="Login/login.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/login.css">
+        <script src="javascript/login.js"></script>
         <script type="text/javascript" src="jquery-1.8.3.js"></script>
 
-
+        <link href="../css/login.css" rel="stylesheet" type="text/css"/>
 
     </head>
 
