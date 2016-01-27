@@ -6,24 +6,44 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<link href='https://fonts.googleapis.com/css?family=Raleway:400,500,300' rel='stylesheet' type='text/css'>
-<link href="login.css" rel="stylesheet" type="text/css">
 
-<div id="mainButton">
-	<div class="btn-text" onclick="openForm()">Sign In</div>
-	<div class="modal">
-		<div class="close-button" onclick="closeForm()">x</div>
-		<div class="form-title">Sign In</div>
-		<div class="input-group">
-			<input type="text" id="name" onblur="checkInput(this)" />
-			<label for="name">Username</label>
-		</div>
-		<div class="input-group">
-			<input type="password" id="password" onblur="checkInput(this)" />
-			<label for="password">Password</label>
-		</div>
-		<div class="form-button" onclick="closeForm()">Go</div>
-		<div class="codepen-by">CodePen by Cole Waldrip</div>
-	</div>
-</div>
-<div class="codepen-by">CodePen by Cole Waldrip</div>
+<html>
+
+    <head>
+        <link href='https://fonts.googleapis.com/css?family=Raleway:400,500,300' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="Login/login.css">
+        <script src="Login/login.js"></script>
+        <script type="text/javascript" src="jquery-1.8.3.js"></script>
+
+
+
+    </head>
+
+    <body>
+
+
+
+        <div id="mainButton">
+            <script src="Login/login.js"></script>
+
+            <div class="btn-text" onclick="openForm()">
+                Sign In</div>
+            <div class="modal">
+                <div class="close-button" onclick="closeForm()">x</div>
+                <div class="form-title">Sign In</div>
+                <div class="input-group">
+                    <input type="text" id="name" onblur="checkInput(this)" />
+                    <label for="name">Username</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" onblur="checkInput(this)" />
+                    <label for="password">Password</label>
+                </div>
+                <div class="form-button" onclick="closeForm()">Go</div>
+            </div>
+        </div>
+
+    </body>
+
+
+</html>
