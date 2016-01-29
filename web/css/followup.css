@@ -8,14 +8,7 @@ label.control-label span { cursor: pointer;
 textarea {
     resize: both;
 }
-body {
-    background-color: blue;
-}
 
 h1 {
     background-color: #00ff00;
-}
-
-p {
-    background-color: rgb(255,0,255);
 }
