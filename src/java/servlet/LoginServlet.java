@@ -50,9 +50,14 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username").trim();
         String password = request.getParameter("password").trim();
         
+        
         if(username.isEmpty() || username == null || password.isEmpty() || password == null){
             //Return to the login page with an error message~ Gonna have to figure this one out because I don't know what to do here. 
             //How will you display the page? 
+        }
+        
+        if(username.equals("admin") || password.equals("password")){
+            response.sendRedirect("users");
         }
         
         //Continue on by making the objects and such. 
