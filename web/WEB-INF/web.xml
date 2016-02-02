@@ -20,6 +20,6 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
-        <welcome-file> notes/followup.jsp</welcome-file>
+        <welcome-file> login/login.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
