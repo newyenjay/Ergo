@@ -72,6 +72,8 @@ public class LoginServlet extends HttpServlet {
         }
         
         if(username.equals("admin") || password.equals("password")){
+            request.setAttribute("message", "testing.");
+
             response.sendRedirect("users");
         }
         

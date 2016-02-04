@@ -22,7 +22,7 @@
         <div id="mainButton">
             <script src="javascript/login.js"></script>
 
-            <form method="get" action="login">
+            <form method="post" action="login">
                 <input type="hidden" name="action" value="login">
                 <div class="btn-text" onclick="openForm()">
                     Sign In</div>
@@ -38,7 +38,7 @@
                         <label for="password">Password</label>
                     </div>
 
-                    <div class="form-button" input type="submit" value="Submit">Go</div>
+                    <div class="form-button"  input type="submit" value="Submit">Go</div>
                     <br> <small><a href="">Forgot password </a></small>
                     ${message}
 
