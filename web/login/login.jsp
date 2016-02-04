@@ -37,10 +37,15 @@
                         <input type="password" name="password" onblur="checkInput(this)" />
                         <label for="password">Password</label>
                     </div>
-                    <div class="form-button" onclick="closeForm()" value="Submit">Go</div>
+
+                    <div class="form-button" input type="submit" value="Submit">Go</div>
+                    <br> <small><a href="">Forgot password </a></small>
+                    ${message}
+
+
                 </div>
+
             </form>
-            ${message}
         </div>
 
     </body>
