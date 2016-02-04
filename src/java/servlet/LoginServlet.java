@@ -45,7 +45,22 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(); 
+        getServletContext().getRequestDispatcher("/login/login.jsp").forward(request, response); //Forwards the browser to the login jsp
+        
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession(); //Creates a HttpSession
         
         String username = request.getParameter("username").trim();
         String password = request.getParameter("password").trim();
@@ -61,20 +76,6 @@ public class LoginServlet extends HttpServlet {
         }
         
         //Continue on by making the objects and such. 
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
     }
 
     /**
