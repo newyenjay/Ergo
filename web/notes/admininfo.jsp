@@ -53,7 +53,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Date</label>
-                                <input class="form-control" type="text">
+                                <input class="form-control" type="date" />
                             </div>
                         </form>
                     </div>
@@ -214,12 +214,13 @@
 
                 </div>
             </div>
-         
 
-        </div>            <!-- end panel 2 -->
+
+        </div>    
+                            <!-- end panel 2 -->
         <div class="jumbotron">
-  <button type="submit" class="btn btn-default">Submit</button>
-            
+            <button type="submit" position="offset" class="btn btn-defaul">Submit</button>
+
         </div>
     </div>
 

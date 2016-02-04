@@ -12,35 +12,35 @@
     <head>
         <link href='https://fonts.googleapis.com/css?family=Raleway:400,500,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" type="text/css" href="css/login.css">
-        <script src="javascript/login.js"></script>
         <script type="text/javascript" src="jquery-1.8.3.js"></script>
-
         <link href="css/login.css" rel="stylesheet" type="text/css"/>
 
     </head>
 
     <body>
 
-
-
         <div id="mainButton">
             <script src="javascript/login.js"></script>
 
-            <div class="btn-text" onclick="openForm()">
-                Sign In</div>
-            <div class="modal">
-                <div class="close-button" onclick="closeForm()">x</div>
-                <div class="form-title">Sign In</div>
-                <div class="input-group">
-                    <input type="text" id="name" onblur="checkInput(this)" />
-                    <label for="name">Username</label>
+            <form method="get" action="login">
+                <input type="hidden" name="action" value="login">
+                <div class="btn-text" onclick="openForm()">
+                    Sign In</div>
+                <div class="modal">
+                    <div class="close-button" onclick="closeForm()">x</div>
+                    <div class="form-title">Sign In</div>
+                    <div class="input-group">
+                        <input type="text" name="username" onblur="checkInput(this)" />
+                        <label for="name">Username</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" name="password" onblur="checkInput(this)" />
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="form-button" onclick="closeForm()" value="Submit">Go</div>
                 </div>
-                <div class="input-group">
-                    <input type="password" id="password" onblur="checkInput(this)" />
-                    <label for="password">Password</label>
-                </div>
-                <div class="form-button" onclick="closeForm()">Go</div>
-            </div>
+            </form>
+            ${message}
         </div>
 
     </body>
