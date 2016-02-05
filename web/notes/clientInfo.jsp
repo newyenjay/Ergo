@@ -1,8 +1,4 @@
-<%-- 
-    Document   : followup
-    Created on : 20-Jan-2016, 7:02:07 PM
-    Author     : 680420
---%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -24,91 +20,85 @@
 
     </head>
     <body>
-        <!-- JSP part to send to servlet --> 
+
+    <body>
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <a href="#" class="navbar-brand">ErgoRisk</a>
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#client">Client</a>
+                    </li>
+                    <li>
+                        <a href="#location">Location</a>
+                    </li>
+                    <li>
+                        <a href="#name">Name</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#">Welcome $user.firstname</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- JSP part to send to servlet -->
         <form method="get" action="admintab">
             <input type="hidden" name="action" value="login">
             <h1></h1>
             <div class="container">
-                <nav role="navigation" class="navbar navbar-default navbar-static-top">
-
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a href="#" class="navbar-brand">ErgoRisk</a>
-                    </div>
-                    <!-- Collection of nav links and other content for toggling -->
-                    <div id="navbarCollapse" class="collapse navbar-collapse">
-
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#">Profile</a></li>
-                            <li><a href="#">Messages</a></li>
-
-                        </ul>
-
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">Welcome $user.firstname</a></li>
-                        </ul>
-                    </div>
-
-
-                </nav>
-
-
-                <!--------- END NAV --------------> 
-
+                <!--------- END NAV -------------->
                 <div class="inner-panel">
-
-                    <!----- TABS ----> 
+                    <!----- TABS ---->
                     <ul class="nav nav-tabs" id="myTab">
-                        <li class="active"><a href="#admin">Admin Info</a></li>
-                        <li><a href="#discomfort">Discomfort</a></li>
-                        <li><a href="#workstation">Work Station Layout</a></li>
-                        <li><a href="#risk">Risk Metrics</a></li>
-                        <li><a href="#rr">Risks/Recommendations</a></li>
-                        <li><a href="#fup">Follow Up</a></li>
-                        <li><a href="#ws">Work Safe</a></li>
+                        <li class="active">
+                            <a href="#admin">Admin</a>
+                        </li>
+                        <li>
+                            <a href="#pmb">Prepare/Maintain Body</a>
+                        </li>
+                        <li>
+                            <a href="#spm">Safe Postures &amp; Movements</a>
+                        </li>
+                        <li>
+                            <a href="#pwa">Prepare Work Area and Equipment</a>
+                        </li>
+                        <li>
+                            <a href="#d">Discomfort</a>
+                        </li>
+                        <li>
+                            <a href="#fup">Follow Up</a>
+                        </li>
                     </ul>
                 </div>
-
-                <!--------- TAB INFO --------------> 
+                <!--------- TAB INFO -------------->
                 <div class="tab-content">
-
                     <!---------- ADMIN tab ----------->
                     <div id="admin" class="tab-pane fade">
                         <h1></h1>
-
-                        <!-- call admininfo.jsp file --> 
-
-                        <c:import url="admininfo.jsp" />
-
-                        <!-- END ADMIN TAB -->
+                        <!-- call admininfo.jsp file -->
+                        <c:import url="admininfo.jsp">
+                            <!-- END ADMIN TAB -->
+                        </c:import>
                     </div>
-
                     <!-------- DISCOMFORT TAB ----------->
                     <div id="discomfort" class="tab-pane fade">
-                        <h1> Am i needed on this page or did they 
-                            get rid of me?? </h1>
-                        <img src="http://wanna-joke.com/wp-content/uploads/2013/10/funny-gif-dog-smile.gif" alt="Computer man" style="width:100%;height:100%;">
-
+                        <h1>Am i needed on this page or did they get rid of me??</h1>
+                        <img src="http://wanna-joke.com/wp-content/uploads/2013/10/funny-gif-dog-smile.gif"
+                             alt="Computer man" style="width:100%;height:100%;">
                     </div>
                     <!-------- END DISCOMFORT TAB ----------->
-
-                    <!-------- FOLLOW UP TAB -------> 
+                    <!-------- FOLLOW UP TAB ------->
                     <div id="fup" class="tab-pane fade">
-                        <h1>I am the follow up tab. Am i needed? </h1>
-                        <img src="http://img.memecdn.com/funny-meme-battery-low_o_390464.jpg" alt="Computer man" style="width:100%;height:100%;">
-
-
+                        <h1>I am the follow up tab. Am i needed?</h1>
+                        <img src="http://img.memecdn.com/funny-meme-battery-low_o_390464.jpg"
+                             alt="Computer man" style="width:100%;height:100%;">
                     </div>
-                    <!-------- END FOLLOW UP TAB -------> 
+                    <!-------- END FOLLOW UP TAB ------->
                 </div>
             </div>
         </form>
     </body>
+
 </html>

@@ -1,5 +1,6 @@
 @import url('//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css');
 
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
 .date-form { margin: 10px; }
 label.control-label span { cursor: pointer;
@@ -9,6 +10,8 @@ textarea {
     resize: both;
 }
 
-h1 {
-    background-color: #00ff00;
+body {
+    background: #76b852;
+    font-family: "Roboto", sans-serif;
+
 }
