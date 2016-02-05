@@ -1,8 +1,7 @@
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
 
 <html>
     <head
@@ -78,9 +77,8 @@
                     <div id="admin" class="tab-pane fade">
                         <h1></h1>
                         <!-- call admininfo.jsp file -->
-                        <c:import url="admininfo.jsp">
-                            <!-- END ADMIN TAB -->
-                        </c:import>
+                        <c:import url="admininfo.jsp"></c:import>
+                        
                     </div>
                     <!-------- DISCOMFORT TAB ----------->
                     <div id="discomfort" class="tab-pane fade">
