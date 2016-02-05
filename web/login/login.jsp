@@ -23,32 +23,29 @@
             <script src="javascript/login.js"></script>
 
             <form method="post" action="login">
-                <input type="hidden" name="action" value="login">
-                <div class="btn-text" onclick="openForm()">
-                    Sign In</div>
-                <div class="modal">
-                    <div class="close-button" onclick="closeForm()">x</div>
-                    <div class="form-title">Sign In</div>
-                    <div class="input-group">
-                        <input type="text" name="username" onblur="checkInput(this)" />
-                        <label for="name">Username</label>
+
+                <div class="login-page">
+                    <div class="form">
+                       <img src="images/ergorisk.PNG" alt="" width="100%" height="50%" style="-webkit-filter: drop-shadow(5px 5px 5px #222); filter: drop-shadow(5px 5px 5px #222);">
+                       <p></p>
+                        <form class="login-form">
+                            <input type="text" name="username" placeholder="username"/>
+                            <input type="password" name="password" placeholder="password"/>
+                            <button input type="submit" value="Submit">login</button>
+                            <p class="message">Forgot your password? <a href="#">Reset it here</a></p>
+                                            ${message}
+
+                        </form>
                     </div>
-                    <div class="input-group">
-                        <input type="password" name="password" onblur="checkInput(this)" />
-                        <label for="password">Password</label>
-                    </div>
-
-                    <div class="form-button"  input type="submit" value="Submit">Go</div>
-                    <br> <small><a href="">Forgot password </a></small>
-                    ${message}
-
-
                 </div>
 
-            </form>
+
         </div>
 
-    </body>
+    </form>
+</div>
+
+</body>
 
 
 </html>

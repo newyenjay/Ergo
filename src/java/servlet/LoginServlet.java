@@ -69,14 +69,17 @@ public class LoginServlet extends HttpServlet {
         if(username.isEmpty() || username == null || password.isEmpty() || password == null){
             //Return to the login page with an error message~ Gonna have to figure this one out because I don't know what to do here. 
             //How will you display the page? 
+            
+            request.setAttribute("message", "IM FUCKING EMPTY.");
         }
         
         if(username.equals("admin") || password.equals("password")){
             request.setAttribute("message", "testing.");
 
-            response.sendRedirect("users");
+            //response.sendRedirect("users");
         }
-        
+                getServletContext().getRequestDispatcher("/login/login.jsp").forward(request, response);
+
         //Continue on by making the objects and such. 
     }
 
