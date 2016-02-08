@@ -17,7 +17,7 @@ import javax.persistence.EntityManager;
     public Object getUser(String userName)  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            Object user = em.find(Object.class, userName);
+            Object user = em.find(Object.class, userName); //this will need to be fixed because the variable type might not be exactly the same. 3
             return user;
         } finally {
             em.close();    
