@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+  -webkit-border-radius: 0;
+-moz-border-radius: 0;
+border-radius: 0;
+}
+
+.left ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 8%;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    background-color: #333; /* full nav bar color */ 
+    color: white;
+}
+
+
+body.open-nav .left {
+  width: 250px;
+}
+
+.left ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.left a {
+  color: #ffffff;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color ease .35s, border-bottom-color ease .35s;
+
+}
+.left a:hover {
+  color: green;
+  border-bottom-color: green;
+}
+.left a.open {
+  font-size: 1.75rem;
+  font-weight: 700;
+  border: 0;
+}
+
+li a {
+    display: block;
+    color: #ffffff;
+    padding: 0px 0 0px 0px;
+    text-decoration: none;
+}
+
+/* Left sidebar */
+li a.active {
+    background-color: #71c175;
+    color: white;
+}
+
+li a:hover:not(.active) {
+    background-color: #1f4721;
+}
+
+.nav {
+-webkit-border-radius: 0;
+-moz-border-radius: 0;
+border-radius: 0;
+
+}
+.right {
+  position: relative;
+  margin-left: 11%;
+  margin-top: 2.5%;
+  transition: margin-left ease .5s;
+}
+body.open-nav .right {
+  margin-left: 275px;
+}
+
+/*************TOP NAV BAR ********************/
+.top ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.top li {
+    float: left;
+}
+
+.top li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.top li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.top .active {
+    background-color: #4CAF50;
+}
