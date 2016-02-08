@@ -1,4 +1,4 @@
-package servlet;
+package ergo.servlet;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -70,15 +70,15 @@ public class LoginServlet extends HttpServlet {
             //Return to the login page with an error message~ Gonna have to figure this one out because I don't know what to do here. 
             //How will you display the page? 
             
-            request.setAttribute("message", "IM FUCKING EMPTY.");
+            request.setAttribute("message", "Please enter a valid login.");
+            getServletContext().getRequestDispatcher("/login/login.jsp").forward(request, response);
         }
         
         if(username.equals("admin") || password.equals("password")){
-            request.setAttribute("message", "testing.");
-
-            //response.sendRedirect("users");
+            response.sendRedirect("main");
+            
         }
-                getServletContext().getRequestDispatcher("/login/login.jsp").forward(request, response);
+        
 
         //Continue on by making the objects and such. 
     }
@@ -90,7 +90,7 @@ public class LoginServlet extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Handles the login for the login page. ";
     }// </editor-fold>
 
 }
