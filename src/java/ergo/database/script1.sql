@@ -1,4 +1,3 @@
-
 -- ---
 -- Globals
 -- ---
@@ -14,7 +13,7 @@
 DROP TABLE IF EXISTS `COMPANY`;
 		
 CREATE TABLE `COMPANY` (
-  `companyId` INTEGER NULL AUTO_INCREMENT,
+  `companyId` INTEGER NOT NULL AUTO_INCREMENT,
   `name` INTEGER NULL,
   PRIMARY KEY (`companyId`)
 );
@@ -27,8 +26,8 @@ CREATE TABLE `COMPANY` (
 DROP TABLE IF EXISTS `CLIENTCOMPANY`;
 		
 CREATE TABLE `CLIENTCOMPANY` (
-  `companyId` INTEGER NULL,
-  `clientId` INTEGER NULL AUTO_INCREMENT,
+  `companyId` INTEGER NOT NULL AUTO_INCREMENT,
+  `clientId` INTEGER NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`clientId`, `companyId`)
 );
 
@@ -40,7 +39,7 @@ CREATE TABLE `CLIENTCOMPANY` (
 DROP TABLE IF EXISTS `LOCATION`;
 		
 CREATE TABLE `LOCATION` (
-  `locationId` INTEGER NULL AUTO_INCREMENT,
+  `locationId` INTEGER NOT NULL AUTO_INCREMENT,
   `companyId` INTEGER NOT NULL,
   `address` VARCHAR NOT NULL,
   PRIMARY KEY (`locationId`)
@@ -54,9 +53,11 @@ CREATE TABLE `LOCATION` (
 DROP TABLE IF EXISTS `CLIENT`;
 		
 CREATE TABLE `CLIENT` (
-  `clientId` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `clientId` INTEGER NOT NULL AUTO_INCREMENT,
   `firstName` VARCHAR(30) NOT NULL,
-  `lastName` VARCHAR(30) NOT NULL DEFAULT 'NULL',
+  `lastName` VARCHAR(30) NOT NULL,
+  `email` VARCHAR(50) NOT NULL,
+  `phoneNumber` INTEGER(20) NULL DEFAULT NULL,
   PRIMARY KEY (`clientId`)
 );
 
@@ -76,7 +77,7 @@ CREATE TABLE `EMPLOYEE` (
   `password` VARCHAR NOT NULL,
   `email` VARCHAR NOT NULL,
   `phoneNumber` INTEGER NULL,
-  `birthdate` DATE NULL,
+  `birthdate` DATE NOT NULL,
   PRIMARY KEY (`employeeId`)
 );
 
@@ -88,7 +89,7 @@ CREATE TABLE `EMPLOYEE` (
 DROP TABLE IF EXISTS `PRIVILEGE`;
 		
 CREATE TABLE `PRIVILEGE` (
-  `privilegeId` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `privilegeId` INTEGER NOT NULL AUTO_INCREMENT,
   `privilege` INTEGER NOT NULL,
   `description` INTEGER NOT NULL,
   PRIMARY KEY (`privilegeId`)
@@ -102,8 +103,8 @@ CREATE TABLE `PRIVILEGE` (
 DROP TABLE IF EXISTS `CLIENTEMPLOYEE`;
 		
 CREATE TABLE `CLIENTEMPLOYEE` (
-  `clientId` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `employeeId` INTEGER NULL DEFAULT NULL,
+  `clientId` INTEGER NOT NULL AUTO_INCREMENT,
+  `employeeId` INTEGER NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`clientId`, `employeeId`)
 );
 
@@ -140,8 +141,8 @@ ALTER TABLE `EMPLOYEE` ADD FOREIGN KEY (privilegeId) REFERENCES `PRIVILEGE` (`pr
 -- ('','');
 -- INSERT INTO `LOCATION` (`locationId`,`companyId`,`address`) VALUES
 -- ('','','');
--- INSERT INTO `CLIENT` (`clientId`,`firstName`,`lastName`) VALUES
--- ('','','');
+-- INSERT INTO `CLIENT` (`clientId`,`firstName`,`lastName`,`email`,`phoneNumber`) VALUES
+-- ('','','','','');
 -- INSERT INTO `EMPLOYEE` (`employeeId`,`privilegeId`,`firstName`,`lastName`,`username`,`password`,`email`,`phoneNumber`,`birthdate`) VALUES
 -- ('','','','','','','','','');
 -- INSERT INTO `PRIVILEGE` (`privilegeId`,`privilege`,`description`) VALUES
