@@ -12,6 +12,14 @@
         <servlet-name>ForgotPasswordServlet</servlet-name>
         <servlet-class>ergo.servlet.ForgotPasswordServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminPageServlet</servlet-name>
+        <servlet-class>ergo.servlet.AdminPageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AssessmentsPageServlet</servlet-name>
+        <servlet-class>ergo.servlet.AssessmentsPageServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>ForgotPasswordServlet</servlet-name>
         <url-pattern>/forgot</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminPageServlet</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AssessmentsPageServlet</servlet-name>
+        <url-pattern>/assessments</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
