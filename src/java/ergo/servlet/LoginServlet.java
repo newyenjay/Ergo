@@ -69,14 +69,14 @@ public class LoginServlet extends HttpServlet {
         if(username.isEmpty() || username == null || password.isEmpty() || password == null){
             //Return to the login page with an error message~ Gonna have to figure this one out because I don't know what to do here. 
             //How will you display the page? 
-            
-            request.setAttribute("message", "Please enter a valid login.");
+            request.setAttribute("message", "Please enter valid credentials in both fields."); //Changed the field to make it more fitting. 
             getServletContext().getRequestDispatcher("/login/login.jsp").forward(request, response);
         }
         
         if(username.equals("admin") || password.equals("password")){
             response.sendRedirect("main");
-            
+            //Slapstick attempt at validation. Here we go, Until we have a version of the database up that is actually working and running, there isn't much I can do here....
+            //I'm hopging the database objects that I have to work with will be easy.
         }
         
 

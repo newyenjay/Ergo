@@ -32,7 +32,7 @@
                             <input type="text" name="username" placeholder="username"/>
                             <input type="password" name="password" placeholder="password"/>
                             <button input type="submit" value="Submit">login</button>
-                            <p class="message">Forgot your password? <a href="forgot">Reset it here</a></p>
+                            <h3 class="message">Forgot your password? <a href="forgot">Reset it here</a></h3>
                                             ${message}
 
                         </form>
