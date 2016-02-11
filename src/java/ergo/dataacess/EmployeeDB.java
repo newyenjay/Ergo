@@ -7,30 +7,29 @@ package ergo.dataacess;
 
 import java.util.List;
 import javax.persistence.EntityManager;
-import ergo.domainmodel.Client;
+import ergo.domainmodel.Employee;
 /**
  *
  * @author Kimberly Oshiro
  */
-public class ClientDB {
-    
-    //getUser
-    public Object getUser(String userName)  {
+public class EmployeeDB {
+      //getUser
+    public Employee getUser(String userName)  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            Object user = em.find(Object.class, userName); //this will need to be fixed because the variable type might not be exactly the same. 3
-            return user;
+            Employee employee = em.find(Employee.class, userName); //this will need to be fixed because the variable type might not be exactly the same. 3
+            return employee;
         } finally {
             em.close();    
         }
     }
     
     //update
-    public int update(Client client) {
+    public int update(Employee employee) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             em.getTransaction().begin();
-            em.merge(client);
+            em.merge(employee);
             em.getTransaction().commit();
             return 1;
         } finally {
@@ -39,23 +38,23 @@ public class ClientDB {
     }
     
     //getAll
-    public List<Client> getAll()  {
+    public List<Employee> getAll()  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            List<Client> clients = em.createNamedQuery("Client.findAll", Client.class).
+            List<Employee> employee = em.createNamedQuery("Employee.findAll", Employee.class).
                     getResultList();
-            return clients;
+            return employee;
         } finally {
             em.close();    
         }
     }
     
     //delete
-    public int delete(Client client)  {
+    public int delete(Employee employee)  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             em.getTransaction().begin();
-            em.remove(em.merge(client));
+            em.remove(em.merge(employee));
             em.getTransaction().commit();
             return 1;
         } finally {
@@ -64,11 +63,11 @@ public class ClientDB {
    }
     
     //insert 
-    public int insert(Client client)  {
+    public int insert(Employee employee)  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             em.getTransaction().begin();
-            em.persist(client);
+            em.persist(employee);
             em.getTransaction().commit();
             return 1;
         } finally {
@@ -81,8 +80,8 @@ public class ClientDB {
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            Client client = em.createNamedQuery("Client.findByEmail", Client.class).setParameter("email", email).getSingleResult();
-            return client;
+            Employee employee = em.createNamedQuery("Employee.findByEmail", Employee.class).setParameter("email", email).getSingleResult();
+            return employee;
         } finally {
             em.close();    
         } 
