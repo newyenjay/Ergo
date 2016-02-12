@@ -91,7 +91,7 @@ DROP TABLE IF EXISTS `PRIVILEGE`;
 CREATE TABLE `PRIVILEGE` (
   `privilegeId` INTEGER NOT NULL AUTO_INCREMENT,
   `privilege` INTEGER NOT NULL,
-  `description` INTEGER NOT NULL,
+  `description` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`privilegeId`)
 );
 
@@ -149,3 +149,15 @@ ALTER TABLE `CLIENTEMPLOYEE` ADD FOREIGN KEY (employeeId) REFERENCES `EMPLOYEE` 
 -- ('','','');
 -- INSERT INTO `CLIENTEMPLOYEE` (`clientId`,`employeeId`) VALUES
 -- ('','');
+
+
+
+--DUMMY ACCOUNT FOR LOGIN
+INSERT INTO `PRIVILEGE` (`privilegeId`,`privilege`,`description`) VALUES
+(1,1,'Admin Privilege');
+INSERT INTO `PRIVILEGE` (`privilegeId`,`privilege`,`description`) VALUES
+(2,2,'Employee Privilege');
+INSERT INTO `EMPLOYEE` (`employeeId`,`privilegeId`,`firstName`,`lastName`,`username`,`password`,`email`,`birthdate`) VALUES
+(0,1,'adam','adam','adam','password','adam@gmail.com','2012-01-01');
+INSERT INTO `EMPLOYEE` (`employeeId`,`privilegeId`,`firstName`,`lastName`,`username`,`password`,`email`,`birthdate`) VALUES
+(1,2,'betty','betty','betty','password','betty@gmail.com','2012-05-01');
