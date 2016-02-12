@@ -14,10 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Kimberly Oshiro 
- * This page is also known as HomePageServlet 
+ * @author Kimberly Oshiro
  */
-public class MainPageServlet extends HttpServlet {
+public class FollowUpServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,8 +41,7 @@ public class MainPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/test/test.html").forward(request, response);
-
+       
     }
 
     /**
@@ -57,8 +55,7 @@ public class MainPageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       //Bro this servlet is gonna be massive please have mercy on my soul I don't know what to do oh my god.
-        //the code here is gonna be 30 miles long sweet jesus how are we gonna do this. 
+       
     }
 
     /**

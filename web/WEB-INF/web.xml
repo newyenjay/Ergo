@@ -20,6 +20,26 @@
         <servlet-name>AssessmentsPageServlet</servlet-name>
         <servlet-class>ergo.servlet.AssessmentsPageServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DiscomfortServlet</servlet-name>
+        <servlet-class>ergo.servlet.DiscomfortServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FollowUpServlet</servlet-name>
+        <servlet-class>ergo.servlet.FollowUpServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WorkAreaServlet</servlet-name>
+        <servlet-class>ergo.servlet.WorkAreaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MaintainServlet</servlet-name>
+        <servlet-class>ergo.servlet.MaintainServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PosturesAndMovementsServlet</servlet-name>
+        <servlet-class>ergo.servlet.PosturesAndMovementsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -39,6 +59,26 @@
     <servlet-mapping>
         <servlet-name>AssessmentsPageServlet</servlet-name>
         <url-pattern>/assessments</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DiscomfortServlet</servlet-name>
+        <url-pattern>/discomfort</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FollowUpServlet</servlet-name>
+        <url-pattern>/followup</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WorkAreaServlet</servlet-name>
+        <url-pattern>/workarea</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MaintainServlet</servlet-name>
+        <url-pattern>/maintain</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PosturesAndMovementsServlet</servlet-name>
+        <url-pattern>/posandmove</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

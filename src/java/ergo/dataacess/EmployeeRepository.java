@@ -11,8 +11,10 @@ import ergo.domainmodel.Employee;
 /**
  *
  * @author Kimberly Oshiro
+ * 
+ * @version 1.0 - Changed the name from EmployeeDB to EmployeeRepository. Was decided that it was better for the operation for this to be named this way. 
  */
-public class EmployeeDB {
+public class EmployeeRepository {
       //getUser
     public Employee getUser(String userName)  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
