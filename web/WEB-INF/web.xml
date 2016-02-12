@@ -46,6 +46,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>login</welcome-file>
+        <welcome-file>notes/report/index.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

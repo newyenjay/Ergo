@@ -21,7 +21,7 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         
-        <link href="../css/testing.css" rel="stylesheet" type="text/css"/>
+        <link href="css/testing.css" rel="stylesheet" type="text/css"/>
         <script src="javascript/admintab.js" type="text/javascript"></script>
 
     </head>
@@ -44,7 +44,7 @@
 
         <div class="left">
             <ul class="nav nav-tabs nav-stacked ">
-                <li><a class="active" href="#admin">Admin</a></li>
+                <li class="active"><a href="#admin">Admin</a></li>
                 <li><a href="#">Prepare/Maintain Body</a></li>
                 <li><a href="#">Safe Postures & Movements</a></li>
                 <li><a href="#">Prepare Work Area & Equipment</a></li>
@@ -54,7 +54,7 @@
         </div>
 
 
-        <form method="get" action="admintab">
+        <form method="post" action="admintab">
             <div class="right">
                <div id="admin" class="tab-pane fade in active">
                         <h1></h1>

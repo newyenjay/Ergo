@@ -81,17 +81,17 @@
                         
                     </div>
                     <!-------- DISCOMFORT TAB ----------->
-                    <div id="discomfort" class="tab-pane fade">
-                        <h1>Am i needed on this page or did they get rid of me??</h1>
-                        <img src="http://wanna-joke.com/wp-content/uploads/2013/10/funny-gif-dog-smile.gif"
-                             alt="Computer man" style="width:100%;height:100%;">
+                    <div id="d" class="tab-pane fade">
+                        <h3>Discomfort</h3>
+                                                <c:import url="discomfort.jsp"></c:import>
+
+                       
                     </div>
                     <!-------- END DISCOMFORT TAB ----------->
                     <!-------- FOLLOW UP TAB ------->
                     <div id="fup" class="tab-pane fade">
-                        <h1>I am the follow up tab. Am i needed?</h1>
-                        <img src="http://img.memecdn.com/funny-meme-battery-low_o_390464.jpg"
-                             alt="Computer man" style="width:100%;height:100%;">
+                        <h3>Follow-Up </h3>
+                        followupfollowupfollowupfollowupfollowup
                     </div>
                     <!-------- END FOLLOW UP TAB ------->
                 </div>
