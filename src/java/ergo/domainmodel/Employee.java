@@ -6,8 +6,8 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -89,7 +89,7 @@ public class Employee implements Serializable {
     @ManyToOne(optional = false)
     private Privilege privilegeId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
-    private List<ClientEmployee> clientEmployeeList;
+    private Collection<ClientEmployee> clientEmployeeCollection;
 
     public Employee() {
     }
@@ -181,12 +181,12 @@ public class Employee implements Serializable {
     }
 
     @XmlTransient
-    public List<ClientEmployee> getClientEmployeeList() {
-        return clientEmployeeList;
+    public Collection<ClientEmployee> getClientEmployeeCollection() {
+        return clientEmployeeCollection;
     }
 
-    public void setClientEmployeeList(List<ClientEmployee> clientEmployeeList) {
-        this.clientEmployeeList = clientEmployeeList;
+    public void setClientEmployeeCollection(Collection<ClientEmployee> clientEmployeeCollection) {
+        this.clientEmployeeCollection = clientEmployeeCollection;
     }
 
     @Override

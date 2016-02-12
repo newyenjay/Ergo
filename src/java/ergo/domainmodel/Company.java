@@ -6,7 +6,7 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -42,9 +42,9 @@ public class Company implements Serializable {
     @Column(name = "name")
     private Integer name;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
-    private List<ClientCompany> clientCompanyList;
+    private Collection<ClientCompany> clientCompanyCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
-    private List<Location> locationList;
+    private Collection<Location> locationCollection;
 
     public Company() {
     }
@@ -70,21 +70,21 @@ public class Company implements Serializable {
     }
 
     @XmlTransient
-    public List<ClientCompany> getClientCompanyList() {
-        return clientCompanyList;
+    public Collection<ClientCompany> getClientCompanyCollection() {
+        return clientCompanyCollection;
     }
 
-    public void setClientCompanyList(List<ClientCompany> clientCompanyList) {
-        this.clientCompanyList = clientCompanyList;
+    public void setClientCompanyCollection(Collection<ClientCompany> clientCompanyCollection) {
+        this.clientCompanyCollection = clientCompanyCollection;
     }
 
     @XmlTransient
-    public List<Location> getLocationList() {
-        return locationList;
+    public Collection<Location> getLocationCollection() {
+        return locationCollection;
     }
 
-    public void setLocationList(List<Location> locationList) {
-        this.locationList = locationList;
+    public void setLocationCollection(Collection<Location> locationCollection) {
+        this.locationCollection = locationCollection;
     }
 
     @Override
