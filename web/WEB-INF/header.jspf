@@ -8,33 +8,16 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="nav.css" rel="stylesheet" type="text/css"/>
-        
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/less" href="css/nav.less" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		
+       
 	
-        <script type="text/javascript">
-		$(document).ready(function(){
-			$('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-        var activeTab = $(e.target).text(); // Get the name of active tab
-        var previousTab = $(e.relatedTarget).text(); // Get the name of previous tab
-        $(".active-tab span").html(activeTab);
-        $(".previous-tab span").html(previousTab);
-    });
-		});
-	</script>
-	<style type="text/css">
-		.bs-example{
-			margin: 20px;
-		}
-	</style>
+        
     </head>
     <body>
-        <div class="navbar navbar-default navbar-static-top">
+        <div class="navbar navbar-default navbar-static-top" >
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
@@ -47,8 +30,8 @@
                         <span>Ergorisk</span></a>
                 </div>
                 <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active">
+                    <ul class="nav navbar-nav" >
+                        <li>
                             <a href="#">Client</a>
                         </li>
                         <li>
@@ -76,5 +59,3 @@
                 </div>
             </div>
         </div>
-
-

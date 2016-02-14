@@ -86,6 +86,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>notes/report/index.jsp</welcome-file>
+        <welcome-file>/WEB-INF/notes/template.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

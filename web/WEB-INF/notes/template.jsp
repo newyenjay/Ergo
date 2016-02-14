@@ -1,5 +1,5 @@
 
-<%@include file="/WEB-INF/nav/header.jspf" %>
+<%@include file="/WEB-INF/header.jspf" %>
             <div class="content">
                 <div class="container"> 
                     <br>
