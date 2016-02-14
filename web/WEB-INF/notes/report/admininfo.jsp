@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <div class="panel panel-primary">
+                <div class="panel panel-success">
                     <div class="panel-heading">
                         <h3 class="panel-title">Reason for assessment</h3>
                     </div>
@@ -204,24 +204,22 @@
                                 <br>Minor to moderate hazard controls to minimize the risk of musculoskletal
                                 disorders and discomforts
                             </li>
-                            
-                             <hr>
+
+                            <hr>
                             <form class="form-horizontal" role="form">
-                              <div class="form-group">
-                                <div class="col-sm-2">
-                                  <label for="inputEmail3" class="control-label">Score</label>
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <label for="inputEmail3" class="control-label">Score</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="inputEmail3" placeholder="Score">
+                                    </div>
                                 </div>
-                                <div class="col-sm-10">
-                                  <input type="email" class="form-control" id="inputEmail3" placeholder="Score">
-                                </div>
-                              </div>
                             </form>
-                             
+
                         </div>
                         <div class="col-md-6">
-
-                            <c:import url="table.html" />
-
+                            <c:import url="/WEB-INF/notes/report/table.html" />
 
                         </div>
                     </div>
@@ -231,7 +229,7 @@
 
 
         </div>    
-                            <!-- end panel 2 -->
+        <!-- end panel 2 -->
         <div class="jumbotron">
             <button type="submit" position="offset" class="btn btn-defaul">Submit</button>
 
