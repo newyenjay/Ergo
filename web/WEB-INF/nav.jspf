@@ -11,7 +11,9 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
+        <link href="../css/nav.css" rel="stylesheet" type="text/css"/>
+        
+        <script type="text/javascript">
 		$(document).ready(function(){
 			$('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
         var activeTab = $(e.target).text(); // Get the name of active tab
