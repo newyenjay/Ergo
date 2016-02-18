@@ -99,7 +99,7 @@
                         </div>
                         <div id="pwae" class="tab-pane fade">
                             <h3>Prepare Work Area & Equipment</h3>
-                            <p>Donec vel placerat quam, ut euismod risus. Sed a mi suscipit, elementum sem a, hendrerit velit. Donec at erat magna. Sed dignissim orci nec eleifend egestas. Donec eget mi consequat massa vestibulum laoreet. Mauris et ultrices nulla, malesuada volutpat ante. Fusce ut orci lorem. Donec molestie libero in tempus imperdiet. Cum sociis natoque penatibus et magnis dis parturient.</p>
+                            <c:import url="workstation.jsp"></c:import>
                         </div>
                         <div id="discomfort" class="tab-pane fade">
 
