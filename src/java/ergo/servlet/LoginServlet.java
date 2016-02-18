@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(); //Creates a HttpSession
-        
+     
         String username = request.getParameter("username").trim();
         String password = request.getParameter("password").trim();
         
@@ -70,7 +70,7 @@ public class LoginServlet extends HttpServlet {
             //Return to the login page with an error message~ Gonna have to figure this one out because I don't know what to do here. 
             //How will you display the page? 
             request.setAttribute("message", "Please enter valid credentials in both fields."); //Changed the field to make it more fitting. 
-            getServletContext().getRequestDispatcher("/login/login.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response);
         }
         
         if(username.equals("admin") || password.equals("password")){

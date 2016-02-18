@@ -42,7 +42,7 @@ public class MainPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/test/test.html").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/searchAdd.jsp").forward(request, response);
 
     }
 
