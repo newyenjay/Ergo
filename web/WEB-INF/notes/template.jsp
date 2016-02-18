@@ -33,7 +33,7 @@
                         </div>
                         <div id="pwae" class="tab-pane fade">
                             <h3 class="page-header">Prepare Work Area & Equipment</h3>
-                            <H1>TO BE CONTINUED</H1>
+                           <c:import url="workstation.jsp"></c:import>
                         </div>
                         <div id="discomfort" class="tab-pane fade">
                             <h3 class="page-header">Discomfort</h3>
