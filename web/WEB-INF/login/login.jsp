@@ -20,14 +20,14 @@
     <body>
 
         <div id="mainButton">
-            <script src="javascript/login.js"></script>
 
             <form method="post" action="login">
 
                 <div class="login-page">
                     <div class="form">
-                       <img src="images/ergorisk.PNG" alt="" width="100%" height="50%" style="-webkit-filter: drop-shadow(3px 3px 3px #222); filter: drop-shadow(5px 5px 5px #222);">
+                       <img src="images/ergorisk.PNG" alt="ergorisk" width="100%" height="50%" style="-webkit-filter: drop-shadow(3px 3px 3px #222); filter: drop-shadow(5px 5px 5px #222);"/>
                        <p></p>
+                       
                         <form class="login-form">
                             <input type="text" name="username" placeholder="username"/>
                             <input type="password" name="password" placeholder="password"/>

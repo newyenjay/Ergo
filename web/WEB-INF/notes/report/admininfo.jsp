@@ -9,12 +9,12 @@
                         <h3 class="panel-title">Reason for assessment</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" id="proactive">
                             <div class="form-group">
                                 <label class="control-label">Proactive</label>
                                 <select class="form-control">
                                     <option></option>
-                                    <option>New hire/job</option>
+                                    <option id="proNew">New hire/job</option>
                                     <option>New Workstation</option>
                                     <option>Workstation concern</option>
                                     <option>Spot check follow up</option>
@@ -242,7 +242,10 @@
                     </form>
                   </div>
                   <div class="col-md-6">
+<!-- table goes here --> 
                     <c:import url="/WEB-INF/notes/report/table.html"></c:import>
+
+
                   </div>
                 </div>
               </div>
@@ -258,3 +261,5 @@
     </div>
 
 </div>
+                  
+                  <script src="../../../js/datepicker.js" type="text/javascript"></script>

@@ -1,4 +1,4 @@
-<%@include file="/WEB-INF/header.jspf" %>
+<%@include file="/WEB-INF/jspf/header.jspf" %>
 
       <div class="section">
       <div class="container">
