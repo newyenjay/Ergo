@@ -27,7 +27,7 @@ public class ClientRepository {
      * @param clientId - the value that's given to the method that will search through the database that will search for the client based n the ID. 
      * @return a Client Object that is created from the database query that is searching for a client based on the clientID. 
      */
-    public Client getUser(int clientId)  {
+    public Client getUserId(int clientId)  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             Client client = em.find(Client.class, clientId); //this will need to be fixed because the variable type might not be exactly the same. 3
