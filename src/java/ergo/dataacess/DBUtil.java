@@ -15,7 +15,7 @@ import javax.persistence.Persistence;
 
 public class DBUtil {
     private final static EntityManagerFactory emf =
-            Persistence.createEntityManagerFactory(""); // This will have to be changed later. remember. 
+            Persistence.createEntityManagerFactory("ErgoPU"); // This will have to be changed later. remember. 
     //The DBUtil isn't going to work when we first set up the database unless you set it up here. Remember. 
     
     public static EntityManagerFactory getEmFactory() {

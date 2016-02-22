@@ -6,6 +6,7 @@ package ergo.servlet;
  * and open the template in the editor.
  */
 
+import ergo.businesslogic.EmployeeService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -45,7 +46,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/login/login.jsp").forward(request, response); //Forwards the browser to the login jsp
+        getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response); //Forwards the browser to the login jsp
         
     }
 
@@ -64,6 +65,7 @@ public class LoginServlet extends HttpServlet {
      
         String username = request.getParameter("username").trim();
         String password = request.getParameter("password").trim();
+        EmployeeService es = new EmployeeService(); 
         
         
         if(username.isEmpty() || username == null || password.isEmpty() || password == null){
@@ -71,14 +73,16 @@ public class LoginServlet extends HttpServlet {
             //How will you display the page? 
             request.setAttribute("message", "Please enter valid credentials in both fields."); //Changed the field to make it more fitting. 
             getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response);
+        } else if (es.login(request, username, password)) {
+            int isAdmin = (int) session.getAttribute("isAdmin"); 
+            if(isAdmin == 1) {
+                response.sendRedirect("admin");
+            } else {
+                response.sendRedirect("main");
+            }
         }
         
-        if(username.equals("admin") || password.equals("password")){
-            response.sendRedirect("main");
-            //Slapstick attempt at validation. Here we go, Until we have a version of the database up that is actually working and running, there isn't much I can do here....
-            //I'm hopging the database objects that I have to work with will be easy.
-        }
-        
+       
 
         //Continue on by making the objects and such. 
     }

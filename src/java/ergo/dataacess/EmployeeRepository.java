@@ -34,6 +34,7 @@ public class EmployeeRepository {
         }
     }
     
+    
     /**
      * Updates the row in the database with the selected employee. If the update is a success then it returns a 1, otherwise it returns nothing. 
      * 
@@ -47,6 +48,16 @@ public class EmployeeRepository {
             em.merge(employee);
             em.getTransaction().commit();
             return 1;
+        } finally {
+            em.close();
+        }
+    }
+    
+    public Employee getEmployee(String userName) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            Employee user = em.find(Employee.class, userName);
+            return user;
         } finally {
             em.close();
         }

@@ -21,7 +21,6 @@
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Password</th>
-                            <th>Notes</th>
                             <th>Delete</th>
                             <th>Edit</th>
                         </tr>
@@ -34,15 +33,7 @@
                                 <td>${item.email}</td>
                                 <td>${item.userPassword}</td>
 
-                                <td>
-                                    <ul>
-                                        <c:forEach var="note" items="${item.noteList}">
-                                            <li>${note.contents}</li>
-
-                                        </c:forEach>
-                                    </ul>
-
-                                </td>
+                           
 
                                 <c:if test="${currentUser.userName != item.userName}">
 

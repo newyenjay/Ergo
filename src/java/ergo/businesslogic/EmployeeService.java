@@ -7,7 +7,10 @@ package ergo.businesslogic;
 
 import ergo.dataacess.EmployeeRepository;
 import ergo.domainmodel.Employee;
+import ergo.domainmodel.Privilege;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author Kimberly Oshiro
@@ -58,10 +61,42 @@ public class EmployeeService {
      * @param username - The Java.Lang.String object that will contain the username that the Database will use to search for the row. 
      * @return the Employee object if the Database finds the employee containing that Username, otherwise the method will return null if the database finds nothing. 
      */
-    public Employee getEmployeeUsername(String username){
-        er = new EmployeeRepository();
-        return er.getUserUsername(username);
+    public boolean login(HttpServletRequest request, String username, String password) {
+        HttpSession session = request.getSession();
+        
+
+        if (username == null || password == null) {
+            session.invalidate();
+            return false;
+        }
+
+        EmployeeRepository er = new EmployeeRepository();
+        Employee employee = er.getEmployee(username);
+        
+        if (employee == null) {
+            session.invalidate();
+            return false;
+        } 
+        
+        if (!employee.getPassword().equals(password)) {
+            session.invalidate();
+            return false;
+        }
+        
+        Privilege empList = employee.getPrivilegeId();
+        if(empList.getPrivilegeId() == 1) {
+            session.setAttribute("isAdmin", 1);
+        } else {
+            session.setAttribute("isAdmin", 0);
+        }
+        
+        session.setAttribute("currentUser", employee);
+        
+        
+        return true; 
     }
+    
+    
     
     /**
      * Returns an Employee object from the database based on the Employee's email, if the email is in the database then the Row containing that Employee will be returned. 
@@ -71,6 +106,11 @@ public class EmployeeService {
     public Employee getEmployeeEmail(String email){
         er = new EmployeeRepository();
         return er.getUserEmail(email);
+    }
+    
+    public void logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.invalidate();
     }
     
     
