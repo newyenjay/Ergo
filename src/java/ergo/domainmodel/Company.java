@@ -6,7 +6,7 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,10 +14,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -39,18 +44,29 @@ public class Company implements Serializable {
     @Basic(optional = false)
     @Column(name = "companyId")
     private Integer companyId;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
     @Column(name = "name")
-    private Integer name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company")
-    private Collection<ClientCompany> clientCompanyCollection;
+    private String name;
+    @JoinTable(name = "clientcompany", joinColumns = {
+        @JoinColumn(name = "companyId", referencedColumnName = "companyId")}, inverseJoinColumns = {
+        @JoinColumn(name = "clientId", referencedColumnName = "clientId")})
+    @ManyToMany
+    private List<Client> clientList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
-    private Collection<Location> locationCollection;
+    private List<Location> locationList;
 
     public Company() {
     }
 
     public Company(Integer companyId) {
         this.companyId = companyId;
+    }
+
+    public Company(Integer companyId, String name) {
+        this.companyId = companyId;
+        this.name = name;
     }
 
     public Integer getCompanyId() {
@@ -61,30 +77,30 @@ public class Company implements Serializable {
         this.companyId = companyId;
     }
 
-    public Integer getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Integer name) {
+    public void setName(String name) {
         this.name = name;
     }
 
     @XmlTransient
-    public Collection<ClientCompany> getClientCompanyCollection() {
-        return clientCompanyCollection;
+    public List<Client> getClientList() {
+        return clientList;
     }
 
-    public void setClientCompanyCollection(Collection<ClientCompany> clientCompanyCollection) {
-        this.clientCompanyCollection = clientCompanyCollection;
+    public void setClientList(List<Client> clientList) {
+        this.clientList = clientList;
     }
 
     @XmlTransient
-    public Collection<Location> getLocationCollection() {
-        return locationCollection;
+    public List<Location> getLocationList() {
+        return locationList;
     }
 
-    public void setLocationCollection(Collection<Location> locationCollection) {
-        this.locationCollection = locationCollection;
+    public void setLocationList(List<Location> locationList) {
+        this.locationList = locationList;
     }
 
     @Override

@@ -6,20 +6,19 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -85,11 +84,11 @@ public class Employee implements Serializable {
     @Column(name = "birthdate")
     @Temporal(TemporalType.DATE)
     private Date birthdate;
+    @ManyToMany(mappedBy = "employeeList")
+    private List<Client> clientList;
     @JoinColumn(name = "privilegeId", referencedColumnName = "privilegeId")
     @ManyToOne(optional = false)
     private Privilege privilegeId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee")
-    private Collection<ClientEmployee> clientEmployeeCollection;
 
     public Employee() {
     }
@@ -172,21 +171,21 @@ public class Employee implements Serializable {
         this.birthdate = birthdate;
     }
 
+    @XmlTransient
+    public List<Client> getClientList() {
+        return clientList;
+    }
+
+    public void setClientList(List<Client> clientList) {
+        this.clientList = clientList;
+    }
+
     public Privilege getPrivilegeId() {
         return privilegeId;
     }
 
     public void setPrivilegeId(Privilege privilegeId) {
         this.privilegeId = privilegeId;
-    }
-
-    @XmlTransient
-    public Collection<ClientEmployee> getClientEmployeeCollection() {
-        return clientEmployeeCollection;
-    }
-
-    public void setClientEmployeeCollection(Collection<ClientEmployee> clientEmployeeCollection) {
-        this.clientEmployeeCollection = clientEmployeeCollection;
     }
 
     @Override

@@ -6,6 +6,7 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,13 +14,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -60,12 +64,15 @@ public class Client implements Serializable {
     private String email;
     @Column(name = "phoneNumber")
     private Integer phoneNumber;
-    @JoinColumn(name = "clientId", referencedColumnName = "clientId", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private ClientCompany clientCompany;
-    @JoinColumn(name = "clientId", referencedColumnName = "clientId", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private ClientEmployee clientEmployee;
+    @ManyToMany(mappedBy = "clientList")
+    private List<Company> companyList;
+    @JoinTable(name = "clientemployee", joinColumns = {
+        @JoinColumn(name = "clientId", referencedColumnName = "clientId")}, inverseJoinColumns = {
+        @JoinColumn(name = "employeeId", referencedColumnName = "employeeId")})
+    @ManyToMany
+    private List<Employee> employeeList;
+    @OneToMany(mappedBy = "clientId")
+    private List<Assessment> assessmentList;
 
     public Client() {
     }
@@ -121,20 +128,31 @@ public class Client implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public ClientCompany getClientCompany() {
-        return clientCompany;
+    @XmlTransient
+    public List<Company> getCompanyList() {
+        return companyList;
     }
 
-    public void setClientCompany(ClientCompany clientCompany) {
-        this.clientCompany = clientCompany;
+    public void setCompanyList(List<Company> companyList) {
+        this.companyList = companyList;
     }
 
-    public ClientEmployee getClientEmployee() {
-        return clientEmployee;
+    @XmlTransient
+    public List<Employee> getEmployeeList() {
+        return employeeList;
     }
 
-    public void setClientEmployee(ClientEmployee clientEmployee) {
-        this.clientEmployee = clientEmployee;
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
+    }
+
+    @XmlTransient
+    public List<Assessment> getAssessmentList() {
+        return assessmentList;
+    }
+
+    public void setAssessmentList(List<Assessment> assessmentList) {
+        this.assessmentList = assessmentList;
     }
 
     @Override
