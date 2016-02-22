@@ -112,7 +112,7 @@ public class EmployeeRepository {
      * 
      * @param email - must be a valid email, but this email will make the database return a Employee object. 
      * @return the employee object if it exists in the database. 
-     */
+     */ 
     public Employee getUserEmail(String email)
     {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -125,5 +125,5 @@ public class EmployeeRepository {
     }
     //First name
     //Last Name
-    //Phone Number 
+    //Phone Number
 }
