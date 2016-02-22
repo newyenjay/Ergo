@@ -99,6 +99,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>/WEB-INF/login/login.jsp</welcome-file>
+        <welcome-file>/WEB-INF/notes/template.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

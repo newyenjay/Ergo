@@ -25,7 +25,7 @@
 
                 <div class="login-page">
                     <div class="form">
-                       <img src="images/ergorisk.PNG" alt="ergorisk" width="100%" height="50%" style="-webkit-filter: drop-shadow(3px 3px 3px #222); filter: drop-shadow(5px 5px 5px #222);"/>
+                       <img src="images/ergorisk.PNG" alt="ergorisk" id="ergoImage"/>
                        <p></p>
                        
                         <form class="login-form">
@@ -33,7 +33,7 @@
                             <input type="password" name="password" placeholder="password"/>
                             <button input type="submit" value="Submit">login</button>
                             <h3 class="message">Forgot your password? <a href="forgot">Reset it here</a></h3>
-                                            ${message}
+                            ${message}
 
                         </form>
                     </div>

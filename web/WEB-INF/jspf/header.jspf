@@ -27,19 +27,19 @@
                     <a class="navbar-brand" href="#" >
                         <span>Ergorisk</span></a>
                 </div>
-                <div class="collapse navbar-collapse" >
-                    <ul class="nav navbar-nav" style="color:whitesmoke" >
+                <div class="collapse navbar-collapse" style="color: white" >
+                    <ul class="nav navbar-nav">
                         <li>
-                            <a href="#">Client</a>
+                            <a href="client">Client</a>
                         </li>
                         <li>
-                            <a href="#">Company</a>
+                            <a href="company">Company</a>
                         </li>
                         <li>
-                            <a href="#" >Location</a>
+                            <a href="location" >Location</a>
                         </li>
                         <li>
-                            <a href="report/template.jsp">Assessement</a>
+                            <a href="assessments">Assessement</a>
                         </li>
                         <li>
                             <a href="#">Generate</a>
@@ -47,6 +47,11 @@
                     </ul>
                     <div class="collapse navbar-collapse" id="navbar-ex-collapse">
                         <ul class="nav navbar-nav navbar-right">
+                            <li>
+                        <c:if test="${isAdmin==1}"> 
+                            <a href="admin"> Manage Users </a> 
+                        </c:if> 
+                    </li>
                             <li>
                                 <a href="#">Log off</a>
                             </li>

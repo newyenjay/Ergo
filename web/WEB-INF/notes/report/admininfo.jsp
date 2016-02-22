@@ -135,120 +135,120 @@
                 </div>
 
                 <div class="panel panel-primary">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Notes and comments</h3>
-                </div>
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="col-xs-3">
-                        <div class="form-group">
-                          <label>Discomfort present?</label>
-                          <select class="form-control" name="dpresent">
-                            <option value=""></option>
-                            <option value="no">Yes</option>
-                            <option value="yes">No</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-xs-3">
-                        <div class="form-group">
-                          <label>Discomfort reported?</label>
-                          <select class="form-control" name="dreported">
-                            <option value=""></option>
-                            <option value="no">Yes</option>
-                            <option value="yes">No</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-xs-3">
-                        <div class="form-group">
-                          <label>Treatement sought?</label>
-                          <select class="form-control" name="tsought">
-                            <option value=""></option>
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-xs-3">
-                        <div class="form-group">
-                          <label>Maximum discomfort</label>
-                          <select class="form-control" name="maxdiscomfort">
-                            <option></option>
-                            <option value="">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                          </select>
-                        </div>
-                      </div>
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Notes and comments</h3>
                     </div>
-                    <div class="col-md-4">
-                      <form role="form">
-                        <div class="form-group">
-                          <label class="control-label">Identified Risks
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="col-xs-3">
+                                    <div class="form-group">
+                                        <label>Discomfort present?</label>
+                                        <select class="form-control" name="dpresent">
+                                            <option value=""></option>
+                                            <option value="no">Yes</option>
+                                            <option value="yes">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-3">
+                                    <div class="form-group">
+                                        <label>Discomfort reported?</label>
+                                        <select class="form-control" name="dreported">
+                                            <option value=""></option>
+                                            <option value="no">Yes</option>
+                                            <option value="yes">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-3">
+                                    <div class="form-group">
+                                        <label>Treatement sought?</label>
+                                        <select class="form-control" name="tsought">
+                                            <option value=""></option>
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-3">
+                                    <div class="form-group">
+                                        <label>Maximum discomfort</label>
+                                        <select class="form-control" name="maxdiscomfort">
+                                            <option></option>
+                                            <option value="">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label class="control-label">Identified Risks
+                                            <br>
+                                        </label>
+                                        <textarea class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Equipment Recommendations</label>
+                                        <textarea class="form-control"></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="control-label">General Notes</label>
+                                <textarea class="form-control" rows="10" cols="45" placeholder="Enter notes"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <p></p>
                             <br>
-                          </label>
-                          <textarea class="form-control"></textarea>
+                            <li>
+                                <b>High Risk &gt;11</b>
+                                <br>Immediate corretive action</li>
+                            <li>
+                                <b>Moderate Risk 9-11</b>
+                                <br>Discomfort present and/or moderate to significant risk factors present</li>
+                            <li>
+                                <b>Low Risk &lt;9</b>
+                                <br>Minor to moderate hazard controls to minimize the risk of musculoskletal
+                                disorders and discomforts</li>
+                            <hr>
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <label for="inputEmail3" class="control-label">Score</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="inputEmail3" placeholder="Score">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">Follow up needed</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <form class="radio">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="followup" value="yesFollow">Yes</label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="followup" value="noFollow">No</label>
+                                        </form>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="form-group">
-                          <label class="control-label">Equipment Recommendations</label>
-                          <textarea class="form-control"></textarea>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="col-md-4">
-                      <label class="control-label">General Notes</label>
-                      <textarea class="form-control" rows="10" cols="45" placeholder="Enter notes"></textarea>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <p></p>
-                    <br>
-                    <li>
-                      <b>High Risk &gt;11</b>
-                      <br>Immediate corretive action</li>
-                    <li>
-                      <b>Moderate Risk 9-11</b>
-                      <br>Discomfort present and/or moderate to significant risk factors present</li>
-                    <li>
-                      <b>Low Risk &lt;9</b>
-                      <br>Minor to moderate hazard controls to minimize the risk of musculoskletal
-                      disorders and discomforts</li>
-                    <hr>
-                    <form class="form-horizontal" role="form">
-                      <div class="form-group">
-                        <div class="col-sm-2">
-                          <label for="inputEmail3" class="control-label">Score</label>
-                        </div>
-                        <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputEmail3" placeholder="Score">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-sm-2">
-                          <label class="control-label">Follow up needed</label>
-                        </div>
-                        <div class="col-sm-10">
-                          <form class="radio">
-                            <label class="radio-inline">
-                              <input type="radio" name="followup" value="yesFollow">Yes</label>
-                            <label class="radio-inline">
-                              <input type="radio" name="followup" value="noFollow">No</label>
-                          </form>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="col-md-6">
-<!-- table goes here --> 
-                    <c:import url="/WEB-INF/notes/report/table.html"></c:import>
+                        <div class="col-md-6">
+                            <!-- table goes here --> 
+                            <c:import url="/WEB-INF/notes/report/table.html"></c:import>
 
 
-                  </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
 
 
@@ -261,5 +261,5 @@
     </div>
 
 </div>
-                  
-                  <script src="../../../js/datepicker.js" type="text/javascript"></script>
+
+<script src="../../../js/datepicker.js" type="text/javascript"></script>

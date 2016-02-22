@@ -14,23 +14,24 @@
             <li><a data-toggle="tab" href="#discomfort">Discomfort</a></li>
             <li><a data-toggle="tab" href="#fup">Follow-Up</a></li>
         </ul>
+        
         <div class="tab-content" id="myTabContent" style="position: relative;">
             <div id="admin" class="tab-pane fade in active">
                 <h3 class="page-header">Administration Page</h3>
                 <!-- call admininfo.jsp file -->
                 <c:import url="report/admininfo.jsp"></c:import>
                 </div>
+                
                 <div id="pmb" class="tab-pane fade">
                     <h3 class="page-header">Prepare/Maintain Body</h3>
-
                 <c:import url="report/maintainBody.jsp"></c:import>
                 </div>
+                
                 <div id="spm" class="tab-pane fade">
-                    <h3 class="page-header">Safe Postures & Movements</h3>
+                   <h3 class="page-header">Safe Postures & Movements</h3>
                 <c:import url="report/safePosture.jsp"></c:import>
-
-
                 </div>
+                
                 <div id="pwae" class="tab-pane fade">
                     <h3 class="page-header">Prepare Work Area & Equipment</h3>
                 <c:import url="report/workstation.jsp"></c:import>

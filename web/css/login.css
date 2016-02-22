@@ -108,11 +108,19 @@
 body {
   background: #3D9970;
   /* fallback for old browsers */
-  background: -webkit-linear-gradient(right, #76b852, #8DC26F);
-  background: -moz-linear-gradient(right, #76b852, #8DC26F);
-  background: -o-linear-gradient(right, #76b852, #8DC26F);
-  background: linear-gradient(to left, #76b852, #8DC26F);
+  background: -webkit-linear-gradient(right, #3D9970, #8DC26F);
+  background: -moz-linear-gradient(right, #3D9970, #8DC26F);
+  background: -o-linear-gradient(right, #3D9970, #8DC26F);
+  background: linear-gradient(to left, #3D9970, #8DC26F);
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    webkit-filter: drop-shadow(3px 3px 3px #222); 
+    filter: drop-shadow(5px 5px 5px #222);
+    width: 100%;
+    height: 50%;  
+    
 }
