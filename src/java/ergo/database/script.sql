@@ -309,3 +309,5 @@ INSERT INTO `EMPLOYEE` (`privilegeId`,`firstName`,`lastName`,`username`,`passwor
 (1,'adam','adam','adam','password','adam@gmail.com');
 INSERT INTO `EMPLOYEE` (`privilegeId`,`firstName`,`lastName`,`username`,`password`,`email`) VALUES
 (0,'betty','betty','betty','password','betty@gmail.com');
+INSERT INTO `EMPLOYEE` (`privilegeId`,`firstName`,`lastName`,`username`,`password`,`email`) VALUES
+(0,'ray','masiclat','ray','password','ray@gmail.com');

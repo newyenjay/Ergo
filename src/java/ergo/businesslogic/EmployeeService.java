@@ -48,9 +48,10 @@ public class EmployeeService {
      * @param employee - the Employee variable type that references the row that will be deleted from the database. 
      * @return - a 1 if the deletion from the database is a success, an exception if there is an error. 
      */
-    public int delete(Employee employee)throws Exception{
+    public int delete(String username)throws Exception{
         er = new EmployeeRepository();
-        return er.delete(employee);
+        Employee emp = er.getEmployee(username);
+        return er.delete(emp);
     }
     
     /**

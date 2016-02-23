@@ -60,7 +60,7 @@
 
                                 <c:if test="${currentUser.username == item.username}"> 
                                     <th colspan="2" > Cannot delete yourself </th>
-                                    </c:if>
+                                </c:if>
 
                                 
 
@@ -125,29 +125,29 @@
 
                         <c:if test="${selectedUser != null}">
                             <div id="formBox" class="leftSideBox">
-                                <h2>Edit ${selectedUser.userName}</h2>
+                                <h2>Edit ${selectedUser.username}</h2>
                                 <form method="post" action="admin">
-                                    <div class="fieldset">
+                                    <div class="form-group">
                                         <label for="username">Username:</label>
-                                        <input type="text" name="username" id="username" value="${selectedUser.userName}" readonly="readonly"/>
+                                        <input type="text" name="username" id="username" value="${selectedUser.username}" readonly="readonly"/>
                                     </div>
-                                    <div class="fieldset">
+                                    <div class="form-group">
                                         <label for="username">First Name:</label>
                                         <input type="text" name="firstname" id="firstname" value="${selectedUser.firstName}" />
                                     </div>
-                                    <div class="fieldset">
+                                    <div class="form-group">
                                         <label for="username">Last Name:</label>
                                         <input type="text" name="lastname" id="lastname" value="${selectedUser.lastName}" />
                                     </div>
-                                    <div class="fieldset">
-                                        <label for="password">Password:</label>
-                                        <input type="password" name="password" id="password" value="${selectedUser.password}" />
-                                    </div>
-                                    <div class="fieldset">
+                                    <div class="form-group">
                                         <label for="access">Email:</label>
                                         <input type="text" name="email" id="email" value="${selectedUser.email}" />
                                     </div>
-                                    <div class="fieldset">
+                                    <div class="form-group">
+                                        <label for="password">Password:</label>
+                                        <input type="password" name="password" id="password" value="${selectedUser.password}" />
+                                    </div>
+                                    <div class="form-group">
                                         <input type="hidden" name="action" value="edit">
                                         <input type="submit" value="Save"/>
                                     </div>
