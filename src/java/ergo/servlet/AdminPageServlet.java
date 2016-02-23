@@ -107,12 +107,12 @@ public class AdminPageServlet extends HttpServlet {
 
         switch (action) {
             case "view":
-                /* try {
-                 Employee selectedUser = es.get(username);
+                try {
+                 Employee selectedUser = es.getEmployee(username);
                  request.setAttribute("selectedUser", selectedUser);
                  } catch (Exception ex) {
                  //why isnt there anything here i dont remember
-                 }   */
+                 }
                 break;
 
             case "add":
@@ -125,12 +125,12 @@ public class AdminPageServlet extends HttpServlet {
                 break;
 
             case "delete":
-                /*try {
-                 es.delete(username);
-                 request.setAttribute("message", "User deleted.");
-                 } catch (Exception ex) {
-                 request.setAttribute("message", "Error: User could not be deleted!");
-                 }  */
+                try {
+                    es.delete(username);
+                    request.setAttribute("message", "User deleted.");
+                } catch (Exception ex) {
+                request.setAttribute("message", "Error: User could not be deleted!");
+                }
                 break;
 
             case "edit":
@@ -145,6 +145,13 @@ public class AdminPageServlet extends HttpServlet {
 
             default:
                 break;
+        }
+        
+        try {
+            List<Employee> employees = es.getAll();
+            request.setAttribute("users", employees);
+        } catch (Exception ex) {
+            
         }
 
         getServletContext().getRequestDispatcher("/WEB-INF/admin/manageUsers.jsp").forward(request, response); //Forwards the browser to the login jsp
