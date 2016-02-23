@@ -12,7 +12,7 @@
                         <form role="form" id="proactive">
                             <div class="form-group">
                                 <label class="control-label">Proactive</label>
-                                <select class="form-control">
+                                <select class="form-control" name="proactive">
                                     <option></option>
                                     <option id="proNew">New hire/job</option>
                                     <option>New Workstation</option>
@@ -22,7 +22,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Reactive</label>
-                                <select class="form-control">
+                                <select class="form-control" name="reactive">
                                     <option></option>
                                     <option>New hire/job</option>
                                     <option>New Workstation</option>
@@ -43,7 +43,7 @@
                         <form role="form">
                             <div class="form-group">
                                 <label class="control-label">Assessment</label>
-                                <select class="form-control">
+                                <select class="form-control" name="assessment">
                                     <option></option>
                                     <option>Tennille Walker</option>
                                     <option>Mandy Gallant</option>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Date</label>
-                                <input class="form-control" type="date" />
+                                <input class="form-control" type="date" name="accessorDate" />
                             </div>
                         </form>
                     </div>
@@ -70,19 +70,19 @@
                         <div class="form-group">
                             <div class="col-xs-3">
                                 <label for="ex1">Manager</label>
-                                <input class="form-control" id="ex1" type="text">
+                                <input class="form-control" id="ex1" type="text" name="manager">
                             </div>
                             <div class="col-xs-3">
                                 <label for="ex2">Business Unit</label>
-                                <input class="form-control" id="ex2" type="text">
+                                <input class="form-control" id="ex2" type="text" name="business">
                             </div>
                             <div class="col-xs-4">
                                 <label for="ex3">Workspace</label>
-                                <input class="form-control" id="ex3" type="text">
+                                <input class="form-control" id="ex3" type="text" name="workspace">
                             </div>
                             <div class="col-xs-2">
                                 <label for="ex3">Job title</label>
-                                <input class="form-control" id="ex3" type="text">
+                                <input class="form-control" id="ex3" type="text" name="jobTitle">
                             </div>
                         </div>
                         <div class="form-group">
@@ -96,11 +96,11 @@
                             </div>
                             <div class="col-xs-3">
                                 <label>Height:</label>
-                                <input class="form-control" id="ex3" type="text" placeholder="ft">
+                                <input class="form-control" id="ex3" type="text" placeholder="ft" name="heightFeet">
                             </div>
                             <div class="col-xs-4">
                                 <label></label>
-                                <input class="form-control" id="ex3" type="text" placeholder="in">
+                                <input class="form-control" id="ex3" type="text" placeholder="in" name="heightInches">
                             </div>
                             <div class="col-xs-2">
                                 <label>Handedness</label>

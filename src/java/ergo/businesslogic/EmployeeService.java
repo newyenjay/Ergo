@@ -110,10 +110,24 @@ public class EmployeeService {
         return er.getUserEmail(email);
     }
     
+    /**
+     * 
+     * @param request 
+     */
     public void logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.invalidate();
     }
     
+    /**
+     * 
+     * @param employee
+     * @return
+     * @throws Exception 
+     */
+    public int update(Employee employee) throws Exception{
+        er = new EmployeeRepository();
+        return er.update(employee);
+    } 
     
 }
