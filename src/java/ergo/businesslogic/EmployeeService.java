@@ -9,6 +9,7 @@ import ergo.dataacess.EmployeeRepository;
 import ergo.domainmodel.Employee;
 import ergo.domainmodel.Privilege;
 import java.util.List;
+import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 /**
@@ -56,12 +57,12 @@ public class EmployeeService {
     } 
     
     /**
-     * Returns an Employee object from the database based on the Employee's username, if the username is in the database then the Row containing that employee will be returned. 
+     * Logs in a user based on the information such as the password and the username. 
      * 
      * @param username - The Java.Lang.String object that will contain the username that the Database will use to search for the row. 
      * @return the Employee object if the Database finds the employee containing that Username, otherwise the method will return null if the database finds nothing. 
      */
-    public boolean login(HttpServletRequest request, String username, String password) throws Exception { //Exception Must be thrown here. 
+    public boolean login(HttpServletRequest request, String username, String password) { //Exception Must be thrown here. 
         HttpSession session = request.getSession();
        
         
