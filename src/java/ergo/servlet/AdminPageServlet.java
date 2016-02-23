@@ -93,8 +93,67 @@ public class AdminPageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();    
         
+              String action = request.getParameter("action");
+              String username = request.getParameter("username");
+              String firstname = request.getParameter("firstname");
+              String lastname = request.getParameter("lastname");
+              String email = request.getParameter("email");
+              String password = request.getParameter("password");
+              
+              EmployeeService es = new EmployeeService();
+              
+              if(action == null){
+               	action = ""; 
+              }
+              
+             	switch (action) {
+                	case "view":
+                    	try {
+                        	Employee selectedUser = es.getEmployee(username);
+                        	request.setAttribute("selectedUser", selectedUser);
+                      } catch (Exception ex) {
+                        //why isnt there anything here i dont remember
+                    	}   
+                			break;
+                
+                case "add":
+                	try {
+                    es.insert(username, firstname, lastname, password, email);
+                    request.setAttribute("message", "User added.");
+                    
+                  } catch (Exception ex) {
+                    request.setAttribute("message", "Error: User could not be added!");
+                  }
+                   finally
+                   {
+                      getServletContext().getRequestDispatcher("/WEB-INF/admin/manageUsers.jsp").forward(request, response);
+                   }
+                break;
+                
+                
+                case "delete":
+                	try {
+                    es.delete(username);
+                    request.setAttribute("message", "User deleted.");
+                  } catch (Exception ex) {
+                    request.setAttribute("message", "Error: User could not be deleted!");
+                  }  
+                	break;
+                
+                case "edit":
+                    try {
+                        es.update(username, firstname, lastname, email, password);
+                        request.setAttribute("message", "User updated.");
+                    } catch (Exception ex) {
+                        request.setAttribute("message", "Error: User could not be updated!");
+                		}   
+                break;
+                
+                default:
+                    break;
+            }
+  
 
     }
 

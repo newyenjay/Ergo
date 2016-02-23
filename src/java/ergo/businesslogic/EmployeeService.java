@@ -32,10 +32,11 @@ public class EmployeeService {
      * must be made beforehand to check this out in order to do this. 
      * @return - a 1 if the insertion to the database is a success. 
      */
-    public int insert(String username, String firstName, String lastName, String password, String email, Date birthdate)throws Exception{
+    public int insert(String username, String firstName, String lastName, String password, String email)throws Exception{
         er = new EmployeeRepository();
-        Employee employee = new Employee(username, firstName, lastName, password, email, birthdate);
-        Privilege privilege = new Privilege(0, "Employee Privilege");
+        PrivilegeService ps = new PrivilegeService();
+        Employee employee = new Employee(username, firstName, lastName, password, email);
+        Privilege privilege = ps.getUserId(0);
         employee.setPrivilegeId(privilege);
         return er.insert(employee);
     }

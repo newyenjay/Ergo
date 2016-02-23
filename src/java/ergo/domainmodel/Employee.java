@@ -6,7 +6,6 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -18,8 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -27,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 671402
+ * @author Kimberly Oshiro
  */
 @Entity
 @Table(name = "employee")
@@ -39,8 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Employee.findByLastName", query = "SELECT e FROM Employee e WHERE e.lastName = :lastName"),
     @NamedQuery(name = "Employee.findByPassword", query = "SELECT e FROM Employee e WHERE e.password = :password"),
     @NamedQuery(name = "Employee.findByEmail", query = "SELECT e FROM Employee e WHERE e.email = :email"),
-    @NamedQuery(name = "Employee.findByPhoneNumber", query = "SELECT e FROM Employee e WHERE e.phoneNumber = :phoneNumber"),
-    @NamedQuery(name = "Employee.findByBirthdate", query = "SELECT e FROM Employee e WHERE e.birthdate = :birthdate")})
+    @NamedQuery(name = "Employee.findByPhoneNumber", query = "SELECT e FROM Employee e WHERE e.phoneNumber = :phoneNumber")})
 public class Employee implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -72,11 +68,6 @@ public class Employee implements Serializable {
     private String email;
     @Column(name = "phoneNumber")
     private Integer phoneNumber;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "birthdate")
-    @Temporal(TemporalType.DATE)
-    private Date birthdate;
     @ManyToMany(mappedBy = "employeeList")
     private List<Client> clientList;
     @JoinColumn(name = "privilegeId", referencedColumnName = "privilegeId")
@@ -90,13 +81,12 @@ public class Employee implements Serializable {
         this.username = username;
     }
 
-    public Employee(String username, String firstName, String lastName, String password, String email, Date birthdate) {
+    public Employee(String username, String firstName, String lastName, String password, String email) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.email = email;
-        this.birthdate = birthdate;
     }
 
     public String getUsername() {
@@ -145,14 +135,6 @@ public class Employee implements Serializable {
 
     public void setPhoneNumber(Integer phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public Date getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
     }
 
     @XmlTransient
