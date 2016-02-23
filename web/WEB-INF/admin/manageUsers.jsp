@@ -84,9 +84,7 @@
 
                 <c:if test="${selectedUser == null}">
                     <div>
-                        <div class="container-fluid" style="background-color:#1E88E5;color:#fff;height:200px;"
-                             <center><h1>Add User </h1></center>
-                        </div>
+                       
                         <form method="post" action="admin" form class="form-horizontal" role="form">
 
                             <div class="container">
@@ -107,7 +105,7 @@
 
                                     <div class="form-group">
                                         <label for="pwd">Password:</label>
-                                        <input type="password" name="userPassword"  class="form-control" placeholder="Enter password" />
+                                        <input type="password" name="password"  class="form-control" placeholder="Enter password" />
                                     </div>
 
                                     <div class="form-group">
@@ -143,7 +141,7 @@
                                     </div>
                                     <div class="fieldset">
                                         <label for="password">Password:</label>
-                                        <input type="password" name="userPassword" id="password" value="${selectedUser.userPassword}" />
+                                        <input type="password" name="password" id="password" value="${selectedUser.password}" />
                                     </div>
                                     <div class="fieldset">
                                         <label for="access">Email:</label>

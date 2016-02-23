@@ -51,13 +51,12 @@ public class AdminPageServlet extends HttpServlet {
         String action = request.getParameter("action");
         List<Employee> empList = null;
         EmployeeService es = new EmployeeService();
-	int role = (int)session.getAttribute("isAdmin");
-	
-        if(role != 1){
+        int role = (int) session.getAttribute("isAdmin");
+
+        if (role != 1) {
             response.sendRedirect("main");
         }
-        
-        
+
         if (action == null) {
             Employee e = (Employee) session.getAttribute("currentUser");
 
@@ -68,9 +67,9 @@ public class AdminPageServlet extends HttpServlet {
                     empList = es.getAll();
                     request.setAttribute("users", empList);
                 } catch (Exception ex) {
-                      Logger.getLogger(AdminPageServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AdminPageServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
                 getServletContext().getRequestDispatcher("/WEB-INF/admin/manageUsers.jsp").forward(request, response); //Forwards the browser to the login jsp
             }
 
@@ -93,67 +92,62 @@ public class AdminPageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-              String action = request.getParameter("action");
-              String username = request.getParameter("username");
-              String firstname = request.getParameter("firstname");
-              String lastname = request.getParameter("lastname");
-              String email = request.getParameter("email");
-              String password = request.getParameter("password");
-              
-              EmployeeService es = new EmployeeService();
-              
-              if(action == null){
-               	action = ""; 
-              }
-              
-             	switch (action) {
-                	case "view":
-                    	try {
-                        	Employee selectedUser = es.getEmployee(username);
-                        	request.setAttribute("selectedUser", selectedUser);
-                      } catch (Exception ex) {
-                        //why isnt there anything here i dont remember
-                    	}   
-                			break;
-                
-                case "add":
-                	try {
+        String action = request.getParameter("action");
+        String username = request.getParameter("username");
+        String firstname = request.getParameter("firstname");
+        String lastname = request.getParameter("lastname");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        EmployeeService es = new EmployeeService();
+
+        if (action == null) {
+            action = "";
+        }
+
+        switch (action) {
+            case "view":
+                /* try {
+                 Employee selectedUser = es.get(username);
+                 request.setAttribute("selectedUser", selectedUser);
+                 } catch (Exception ex) {
+                 //why isnt there anything here i dont remember
+                 }   */
+                break;
+
+            case "add":
+                try {
                     es.insert(username, firstname, lastname, password, email);
                     request.setAttribute("message", "User added.");
-                    
-                  } catch (Exception ex) {
-                    request.setAttribute("message", "Error: User could not be added!");
-                  }
-                   finally
-                   {
-                      getServletContext().getRequestDispatcher("/WEB-INF/admin/manageUsers.jsp").forward(request, response);
-                   }
+                } catch (Exception ex) {
+                    request.setAttribute("message", ex.toString());
+                }
                 break;
-                
-                
-                case "delete":
-                	try {
-                    es.delete(username);
-                    request.setAttribute("message", "User deleted.");
-                  } catch (Exception ex) {
-                    request.setAttribute("message", "Error: User could not be deleted!");
-                  }  
-                	break;
-                
-                case "edit":
-                    try {
-                        es.update(username, firstname, lastname, email, password);
-                        request.setAttribute("message", "User updated.");
-                    } catch (Exception ex) {
-                        request.setAttribute("message", "Error: User could not be updated!");
-                		}   
+
+            case "delete":
+                /*try {
+                 es.delete(username);
+                 request.setAttribute("message", "User deleted.");
+                 } catch (Exception ex) {
+                 request.setAttribute("message", "Error: User could not be deleted!");
+                 }  */
                 break;
-                
-                default:
-                    break;
-            }
-  
+
+            case "edit":
+                /*try {
+                        
+                 es.update(username, firstname, lastname, email, password);
+                 request.setAttribute("message", "User updated.");
+                 } catch (Exception ex) {
+                 request.setAttribute("message", "Error: User could not be updated!");
+                 }   */
+                break;
+
+            default:
+                break;
+        }
+
+        getServletContext().getRequestDispatcher("/WEB-INF/admin/manageUsers.jsp").forward(request, response); //Forwards the browser to the login jsp
 
     }
 
