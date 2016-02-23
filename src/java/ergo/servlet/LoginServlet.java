@@ -9,6 +9,8 @@ package ergo.servlet;
 import ergo.businesslogic.EmployeeService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -67,21 +69,24 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password").trim();
         EmployeeService es = new EmployeeService(); 
         
-        
-        if(username.isEmpty() || username == null || password.isEmpty() || password == null){
-            //Return to the login page with an error message~ Gonna have to figure this one out because I don't know what to do here. 
-            //How will you display the page? 
-            request.setAttribute("message", "Please enter valid credentials in both fields."); //Changed the field to make it more fitting. 
-            getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response);
-        } else if (es.login(request, username, password)) {
-            int isAdmin = (int) session.getAttribute("isAdmin"); 
+        try{ 
+            if(username.isEmpty() || username == null || password.isEmpty() || password == null){
+                //Return to the login page with an error message~ Gonna have to figure this one out because I don't know what to do here. 
+                //How will you display the page? 
+                request.setAttribute("message", "Please enter valid credentials in both fields."); //Changed the field to make it more fitting. 
+                getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response);
+           
+            }else if (es.login(request, username, password)){
+                int isAdmin = (int) session.getAttribute("isAdmin"); 
             if(isAdmin == 1) {
                 response.sendRedirect("admin");
             } else {
                 response.sendRedirect("main");
             }
         }
-        
+        } catch (Exception ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
 
         //Continue on by making the objects and such. 

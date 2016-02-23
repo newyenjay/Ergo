@@ -61,10 +61,10 @@ public class EmployeeService {
      * @param username - The Java.Lang.String object that will contain the username that the Database will use to search for the row. 
      * @return the Employee object if the Database finds the employee containing that Username, otherwise the method will return null if the database finds nothing. 
      */
-    public boolean login(HttpServletRequest request, String username, String password) {
+    public boolean login(HttpServletRequest request, String username, String password) throws Exception { //Exception Must be thrown here. 
         HttpSession session = request.getSession();
+       
         
-
         if (username == null || password == null) {
             session.invalidate();
             return false;
