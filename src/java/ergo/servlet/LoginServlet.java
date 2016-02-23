@@ -49,7 +49,18 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String action = request.getParameter("action");
+        EmployeeService es = new EmployeeService();
+        
+        if(action == null){
         getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response); //Forwards the browser to the login jsp
+        }
+        else if (action.equals("logout")){
+                 es.logout(request);
+            request.setAttribute("message", "Logged Out");
+            getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response);
+                }
         
     }
 
