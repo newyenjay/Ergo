@@ -8,6 +8,7 @@ package ergo.businesslogic;
 import ergo.dataacess.EmployeeRepository;
 import ergo.domainmodel.Employee;
 import ergo.domainmodel.Privilege;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpSession;
  * 
  * @version 1.0 - Create the base workings of the class. Most likely will need to create some more methods later on to compensate for new methods and such that will come up
  * later on in the process. Will add more after the completion of the code. 
+ * @version 2.0 - Changed the insertion method, it now takes 
  */
 public class EmployeeService {
     private EmployeeRepository er;
@@ -30,8 +32,9 @@ public class EmployeeService {
      * must be made beforehand to check this out in order to do this. 
      * @return - a 1 if the insertion to the database is a success. 
      */
-    public int insert(Employee employee)throws Exception{
+    public int insert(String username, String firstName, String lastName, String password, String email, Date birthdate)throws Exception{
         er = new EmployeeRepository();
+        Employee employee = new Employee(username, firstName, lastName, password, email, birthdate);
         return er.insert(employee);
     }
     
