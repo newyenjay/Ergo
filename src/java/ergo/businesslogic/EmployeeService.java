@@ -35,6 +35,8 @@ public class EmployeeService {
     public int insert(String username, String firstName, String lastName, String password, String email, Date birthdate)throws Exception{
         er = new EmployeeRepository();
         Employee employee = new Employee(username, firstName, lastName, password, email, birthdate);
+        Privilege privilege = new Privilege(0, "Employee Privilege");
+        employee.setPrivilegeId(privilege);
         return er.insert(employee);
     }
     
