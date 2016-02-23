@@ -19,9 +19,17 @@ DROP TABLE IF EXISTS `ASSESSMENT`;
 DROP TABLE IF EXISTS `ACCESSORY`;
 DROP TABLE IF EXISTS `CLIENT`;
 -- ---
+-- Globals
+-- ---
+
+-- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+-- SET FOREIGN_KEY_CHECKS=0;
+
+-- ---
 -- Table 'COMPANY'
 -- 
 -- ---
+
 		
 CREATE TABLE `COMPANY` (
   `companyId` INTEGER NOT NULL AUTO_INCREMENT,
@@ -33,6 +41,7 @@ CREATE TABLE `COMPANY` (
 -- Table 'CLIENTCOMPANY'
 -- 
 -- ---
+
 		
 CREATE TABLE `CLIENTCOMPANY` (
   `companyId` INTEGER NOT NULL,
@@ -43,6 +52,7 @@ CREATE TABLE `CLIENTCOMPANY` (
 -- Table 'LOCATION'
 -- 
 -- ---
+
 		
 CREATE TABLE `LOCATION` (
   `locationId` INTEGER NOT NULL AUTO_INCREMENT,
@@ -55,6 +65,7 @@ CREATE TABLE `LOCATION` (
 -- Table 'CLIENT'
 -- 
 -- ---
+
 		
 CREATE TABLE `CLIENT` (
   `clientId` INTEGER NOT NULL AUTO_INCREMENT,
@@ -69,24 +80,25 @@ CREATE TABLE `CLIENT` (
 -- Table 'EMPLOYEE'
 -- 
 -- ---
+
 		
 CREATE TABLE `EMPLOYEE` (
-  `employeeId` INTEGER NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(30) NOT NULL,
   `privilegeId` INTEGER NOT NULL,
   `firstName` VARCHAR(30) NOT NULL,
   `lastName` VARCHAR(30) NOT NULL,
-  `username` VARCHAR(30) NOT NULL,
   `password` VARCHAR(30) NOT NULL,
   `email` VARCHAR(50) NOT NULL,
   `phoneNumber` INTEGER NULL DEFAULT NULL,
   `birthdate` DATE NOT NULL,
-  PRIMARY KEY (`employeeId`)
+  PRIMARY KEY (`username`)
 );
 
 -- ---
 -- Table 'PRIVILEGE'
 -- 
 -- ---
+
 		
 CREATE TABLE `PRIVILEGE` (
   `privilegeId` INTEGER NOT NULL,
@@ -98,10 +110,11 @@ CREATE TABLE `PRIVILEGE` (
 -- Table 'CLIENTEMPLOYEE'
 -- 
 -- ---
+
 		
 CREATE TABLE `CLIENTEMPLOYEE` (
   `clientId` INTEGER NOT NULL,
-  `employeeId` INTEGER NOT NULL
+  `username` VARCHAR(30) NOT NULL
 );
 
 -- ---
@@ -111,6 +124,7 @@ CREATE TABLE `CLIENTEMPLOYEE` (
 		
 CREATE TABLE `ASSESSMENT` (
   `assessmentId` INTEGER NOT NULL AUTO_INCREMENT,
+  `assessor` VARCHAR(30) NOT NULL,
   `clientId` INTEGER NULL DEFAULT NULL,
   `date` DATE NOT NULL,
   `workerComments` VARCHAR(300) NULL,
@@ -146,8 +160,7 @@ CREATE TABLE `ASSESSMENT` (
 -- Table 'ASSESSMENTACCESSORY'
 -- 
 -- ---
-
-
+		
 CREATE TABLE `ASSESSMENTACCESSORY` (
   `assessmentId` INTEGER NOT NULL,
   `accessoryId` INTEGER NOT NULL
@@ -167,7 +180,7 @@ CREATE TABLE `ACCESSORY` (
 -- Table 'ASSESSMENTFOLLOWUP'
 -- 
 -- ---
-	
+		
 CREATE TABLE `ASSESSMENTFOLLOWUP` (
   `assessmentId` INTEGER NOT NULL,
   `followUpId` INTEGER NOT NULL
@@ -215,14 +228,6 @@ CREATE TABLE `LOG` (
   PRIMARY KEY (`clientId`)
 );
 
-DROP TABLE IF EXISTS `COMPANY`;
-		
-CREATE TABLE `COMPANY` (
-  `companyId` INTEGER NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(30) NOT NULL,
-  PRIMARY KEY (`companyId`)
-);
-
 -- ---
 -- Foreign Keys 
 -- ---
@@ -232,7 +237,7 @@ ALTER TABLE `CLIENTCOMPANY` ADD FOREIGN KEY (clientId) REFERENCES `CLIENT` (`cli
 ALTER TABLE `LOCATION` ADD FOREIGN KEY (companyId) REFERENCES `COMPANY` (`companyId`);
 ALTER TABLE `EMPLOYEE` ADD FOREIGN KEY (privilegeId) REFERENCES `PRIVILEGE` (`privilegeId`);
 ALTER TABLE `CLIENTEMPLOYEE` ADD FOREIGN KEY (clientId) REFERENCES `CLIENT` (`clientId`);
-ALTER TABLE `CLIENTEMPLOYEE` ADD FOREIGN KEY (employeeId) REFERENCES `EMPLOYEE` (`employeeId`);
+ALTER TABLE `CLIENTEMPLOYEE` ADD FOREIGN KEY (username) REFERENCES `EMPLOYEE` (`username`);
 ALTER TABLE `ASSESSMENT` ADD FOREIGN KEY (clientId) REFERENCES `CLIENT` (`clientId`);
 ALTER TABLE `ASSESSMENTACCESSORY` ADD FOREIGN KEY (assessmentId) REFERENCES `ASSESSMENT` (`assessmentId`);
 ALTER TABLE `ASSESSMENTACCESSORY` ADD FOREIGN KEY (accessoryId) REFERENCES `ACCESSORY` (`accessoryId`);
@@ -271,14 +276,14 @@ ALTER TABLE `MONITOR` ADD FOREIGN KEY (assessmentId) REFERENCES `ASSESSMENT` (`a
 -- ('','','');
 -- INSERT INTO `CLIENT` (`clientId`,`firstName`,`lastName`,`email`,`phoneNumber`) VALUES
 -- ('','','','','');
--- INSERT INTO `EMPLOYEE` (`employeeId`,`privilegeId`,`firstName`,`lastName`,`username`,`password`,`email`,`phoneNumber`,`birthdate`) VALUES
--- ('','','','','','','','','');
+-- INSERT INTO `EMPLOYEE` (`username`,`privilegeId`,`firstName`,`lastName`,`password`,`email`,`phoneNumber`,`birthdate`) VALUES
+-- ('','','','','','','','');
 -- INSERT INTO `PRIVILEGE` (`privilegeId`,`description`) VALUES
 -- ('','');
--- INSERT INTO `CLIENTEMPLOYEE` (`clientId`,`employeeId`) VALUES
+-- INSERT INTO `CLIENTEMPLOYEE` (`clientId`,`username`) VALUES
 -- ('','');
--- INSERT INTO `ASSESSMENT` (`assessmentId`,`clientId`,`date`,`workerComments`,`risks`,`recommendations`,`boolFollowUp`,`boolStretchBreak`,`boolMicro`,`boolSitStand`,`prepNotes`,`boolStableBase`,`stableBaseNotes`,`boolShoulderPos`,`shoulderPosNotes`,`boolArmPos`,`armPosNotes`,`generalNotes`,`boolChair`,`chairNotes`,`boolMonitor`,`monitorNotes`,`boolDevices`,`devicesNotes`,`boolDesk`,`deskNotes`,`boolAccessories`,`accessoriesNotes`,`confidentialNotes`) VALUES
--- ('','','','','','','','','','','','','','','','','','','','','','','','','','','','','');
+-- INSERT INTO `ASSESSMENT` (`assessmentId`,`assessor`,`clientId`,`date`,`workerComments`,`risks`,`recommendations`,`boolFollowUp`,`boolStretchBreak`,`boolMicro`,`boolSitStand`,`prepNotes`,`boolStableBase`,`stableBaseNotes`,`boolShoulderPos`,`shoulderPosNotes`,`boolArmPos`,`armPosNotes`,`generalNotes`,`boolChair`,`chairNotes`,`boolMonitor`,`monitorNotes`,`boolDevices`,`devicesNotes`,`boolDesk`,`deskNotes`,`boolAccessories`,`accessoriesNotes`,`confidentialNotes`) VALUES
+-- ('','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');
 -- INSERT INTO `ASSESSMENTACCESSORY` (`assessmentId`,`accessoryId`) VALUES
 -- ('','');
 -- INSERT INTO `ACCESSORY` (`accessoryId`) VALUES
