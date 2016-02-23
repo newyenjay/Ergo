@@ -56,8 +56,24 @@ public class AssessmentsPageServlet extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
         
+        //Adding the functionality of post buttons to the servlet. 
         switch (action){
             case "adminInfo":
+                response.sendRedirect("main");
+                break;
+            case "maintainBody":
+                response.sendRedirect("main");
+                break;
+            case "safePosture":
+                response.sendRedirect("main");
+                break;
+            case "workstation":
+                response.sendRedirect("main");
+                break;
+            case "discomfort":
+                response.sendRedirect("main");
+                break;
+            case "followUp":
                 response.sendRedirect("main");
                 break;
             default:

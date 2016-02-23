@@ -236,8 +236,10 @@
           </div>
             <div class="row">
             <div class="col-md-6">
-                                                      <br><button type="button" class="btn btn-primary">Save</button>
-
+                <form method="post" action="assesment">
+                    <br><button type="button" class="btn btn-primary">Save</button>
+                    <input type="hidden" name="action" value="workstation"/>
+                </form>
             </div>
         </div>
         </div>

@@ -43,8 +43,10 @@
                         <br>
                       </div>
                     </div>
-                        <br><button type="button" class="btn btn-primary">Save</button>
-
+                      <form method="post" action="assessments">
+                            <br><button type="button" class="btn btn-primary">Save</button>
+                            <input type="hidden" name="action" value="maintainBody"/>
+                      </form>
                   </div>
                 </div>
               </div>

@@ -102,6 +102,7 @@ public class EmployeeService {
     }
     
     /**
+     *This will return an employee object from the database using the username as a reference to search the database. 
      * 
      * @param username
      * @return

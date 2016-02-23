@@ -10,7 +10,11 @@
                 <div class="form-group">
                     <div class="col-sm-12">
                         <textarea class="form-control" placeholder="Notes and comments"></textarea>
-                        <br><button type="button" class="btn btn-primary">Save</button>
+                        
+                        <form method="post" action="assessment">
+                            <br><button type="button" class="btn btn-primary">Save</button>
+                            <input type="hidden" name="action" value="discomfort"/>
+                        </form>
 
                     </div>
                 </div>

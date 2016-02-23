@@ -83,8 +83,11 @@
                             <br>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary">Save</button>
-
+                    
+                    <form method="post" action="assessment">
+                        <button type="button" class="btn btn-primary">Save</button>
+                        <input type="hidden" name="action" value="safePosture"/>
+                    </form>
                 </div>
             </div>
         </div>
