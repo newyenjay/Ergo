@@ -72,9 +72,8 @@ public class EmployeeRepository {
     public List<Employee> getAll()  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            List<Employee> employee = em.createNamedQuery("Employee.findAll", Employee.class).
-                    getResultList();
-            return employee;
+            List<Employee> employees = em.createNamedQuery("Employee.findAll", Employee.class).getResultList();
+            return employees;
         } finally {
             em.close();    
         }
