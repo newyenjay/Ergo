@@ -1,23 +1,12 @@
 -- ---
 -- Globals
 -- ---
+DROP DATABASE IF EXISTS ErgoDB;
+CREATE DATABASE ErgoDB;
+USE ErgoDB;
 
 -- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- SET FOREIGN_KEY_CHECKS=0;
-DROP TABLE IF EXISTS `ASSESSMENTACCESSORY`;
-DROP TABLE IF EXISTS `ASSESSMENTFOLLOWUP`;
-DROP TABLE IF EXISTS `CLIENTCOMPANY`;
-DROP TABLE IF EXISTS `CLIENTEMPLOYEE`;
-DROP TABLE IF EXISTS `EMPLOYEE`;
-DROP TABLE IF EXISTS `LOCATION`;
-DROP TABLE IF EXISTS `LOG`;
-DROP TABLE IF EXISTS `MONITOR`;
-DROP TABLE IF EXISTS `PRIVILEGE`;
-DROP TABLE IF EXISTS `FOLLOWUP`;
-DROP TABLE IF EXISTS `COMPANY`;
-DROP TABLE IF EXISTS `ASSESSMENT`;
-DROP TABLE IF EXISTS `ACCESSORY`;
-DROP TABLE IF EXISTS `CLIENT`;
 -- ---
 -- Globals
 -- ---
@@ -82,7 +71,6 @@ CREATE TABLE `CLIENT` (
 		
 CREATE TABLE `EMPLOYEE` (
   `username` VARCHAR(30) NOT NULL,
-  `privilegeId` INTEGER NOT NULL,
   `firstName` VARCHAR(30) NOT NULL,
   `lastName` VARCHAR(30) NOT NULL,
   `password` VARCHAR(30) NOT NULL,
@@ -103,6 +91,15 @@ CREATE TABLE `PRIVILEGE` (
   PRIMARY KEY (`privilegeId`)
 );
 
+
+CREATE TABLE `EMPLOYEEPRIVILAGE`(
+`privilegeId` INTEGER NOT NULL,
+`username` VARCHAR(30) NOT NULL,
+PRIMARY KEY (`privilegeId`,`username`),
+ CONSTRAINT `EMPLOYEEPRIVILAGE_PRIVILAGE` FOREIGN KEY (`privilegeId`) REFERENCES `PRIVILEGE` (`privilegeId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `EMPLOYEEPRIVILAGE_EMPLOYEE` FOREIGN KEY (`username`) REFERENCES `EMPLOYEE` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION
+
+);
 -- ---
 -- Table 'CLIENTEMPLOYEE'
 -- 
@@ -238,7 +235,6 @@ CREATE TABLE `LOG` (
 ALTER TABLE `CLIENTCOMPANY` ADD FOREIGN KEY (companyId) REFERENCES `COMPANY` (`companyId`);
 ALTER TABLE `CLIENTCOMPANY` ADD FOREIGN KEY (clientId) REFERENCES `CLIENT` (`clientId`);
 ALTER TABLE `LOCATION` ADD FOREIGN KEY (companyId) REFERENCES `COMPANY` (`companyId`);
-ALTER TABLE `EMPLOYEE` ADD FOREIGN KEY (privilegeId) REFERENCES `PRIVILEGE` (`privilegeId`);
 ALTER TABLE `CLIENTEMPLOYEE` ADD FOREIGN KEY (clientId) REFERENCES `CLIENT` (`clientId`);
 ALTER TABLE `CLIENTEMPLOYEE` ADD FOREIGN KEY (username) REFERENCES `EMPLOYEE` (`username`);
 ALTER TABLE `ASSESSMENT` ADD FOREIGN KEY (clientId) REFERENCES `CLIENT` (`clientId`);
@@ -305,9 +301,11 @@ INSERT INTO `PRIVILEGE` (`privilegeId`,`description`) VALUES
 (1,'Admin Privilege');
 INSERT INTO `PRIVILEGE` (`privilegeId`,`description`) VALUES
 (0,'Employee Privilege');
-INSERT INTO `EMPLOYEE` (`privilegeId`,`firstName`,`lastName`,`username`,`password`,`email`) VALUES
-(1,'adam','adam','adam','password','adam@gmail.com');
-INSERT INTO `EMPLOYEE` (`privilegeId`,`firstName`,`lastName`,`username`,`password`,`email`) VALUES
-(0,'betty','betty','betty','password','betty@gmail.com');
-INSERT INTO `EMPLOYEE` (`privilegeId`,`firstName`,`lastName`,`username`,`password`,`email`) VALUES
-(0,'ray','masiclat','ray','password','ray@gmail.com');
+INSERT INTO `EMPLOYEE` (`firstName`,`lastName`,`username`,`password`,`email`) VALUES
+('adam','adam','adam','password','adam@gmail.com');
+INSERT INTO `EMPLOYEE` (`firstName`,`lastName`,`username`,`password`,`email`) VALUES
+('betty','betty','betty','password','betty@gmail.com');
+INSERT INTO `EMPLOYEEPRIVILAGE` (`privilegeId`,`username`)VALUES
+(1, 'adam');
+INSERT INTO `EMPLOYEEPRIVILAGE` (`privilegeId`,`username`)VALUES
+(0, 'betty');

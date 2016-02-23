@@ -37,7 +37,7 @@ public class EmployeeService {
         PrivilegeService ps = new PrivilegeService();
         Employee employee = new Employee(username, firstName, lastName, password, email);
         Privilege privilege = ps.getUserId(0);
-        employee.setPrivilegeId(privilege);
+        //employee.setPrivilegeId(privilege);
         return er.insert(employee);
     }
     
@@ -92,8 +92,12 @@ public class EmployeeService {
             return false;
         }
         
-        Privilege empList = employee.getPrivilegeId();
-        if(empList.getPrivilegeId() == 1) {
+        List<Privilege> privilegeList = employee.getPrivilegeList();
+        int id = 0 ;
+        for(Privilege pv :privilegeList){
+             id =pv.getPrivilegeId();
+        }
+        if(id == 1) {
             session.setAttribute("isAdmin", 1);
         } else {
             session.setAttribute("isAdmin", 0);

@@ -12,8 +12,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 671402
+ * @author wayne
  */
 @Entity
 @Table(name = "employee")
@@ -70,9 +70,11 @@ public class Employee implements Serializable {
     private Integer phoneNumber;
     @ManyToMany(mappedBy = "employeeList")
     private List<Client> clientList;
-    @JoinColumn(name = "privilegeId", referencedColumnName = "privilegeId")
-    @ManyToOne(optional = false)
-    private Privilege privilegeId;
+    @JoinTable(name = "employeeprivilage", joinColumns = {
+        @JoinColumn(name = "username", referencedColumnName = "username")}, inverseJoinColumns = {
+        @JoinColumn(name = "privilegeId", referencedColumnName = "privilegeId")})
+    @ManyToMany
+    private List<Privilege> privilegeList;
 
     public Employee() {
     }
@@ -146,12 +148,13 @@ public class Employee implements Serializable {
         this.clientList = clientList;
     }
 
-    public Privilege getPrivilegeId() {
-        return privilegeId;
+    @XmlTransient
+    public List<Privilege> getPrivilegeList() {
+        return privilegeList;
     }
 
-    public void setPrivilegeId(Privilege privilegeId) {
-        this.privilegeId = privilegeId;
+    public void setPrivilegeList(List<Privilege> privilegeList) {
+        this.privilegeList = privilegeList;
     }
 
     @Override
