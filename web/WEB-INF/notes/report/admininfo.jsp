@@ -255,8 +255,10 @@
         </div>    
         <!-- end panel 2 -->
         <div class="jumbotron">
-            <button type="submit" position="offset" class="btn btn-default">Submit</button>
-
+            <form method="post" action="assessments">
+                <button type="submit" position="offset" class="btn btn-default">Submit</button>
+                <input type="hidden" value="adminInfo" name="action">
+            <form/>
         </div>
     </div>
 

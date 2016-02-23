@@ -101,7 +101,16 @@ public class EmployeeService {
         return true; 
     }
     
-    
+    /**
+     * 
+     * @param username
+     * @return
+     * @throws Exception 
+     */
+    public Employee getEmployee(String username)throws Exception{
+        er = new EmployeeRepository();
+        return er.getEmployee(username);
+    }
     
     /**
      * Returns an Employee object from the database based on the Employee's email, if the email is in the database then the Row containing that Employee will be returned. 
@@ -112,6 +121,9 @@ public class EmployeeService {
         er = new EmployeeRepository();
         return er.getUserEmail(email);
     }
+    
+    
+    
     
     /**
      * 

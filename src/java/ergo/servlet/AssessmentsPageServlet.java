@@ -54,6 +54,16 @@ public class AssessmentsPageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String action = request.getParameter("action");
+        
+        switch (action){
+            case "adminInfo":
+                response.sendRedirect("main");
+                break;
+            default:
+                break; 
+                
+        }
 
     }
 
