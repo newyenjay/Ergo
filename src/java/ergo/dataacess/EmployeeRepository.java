@@ -56,8 +56,8 @@ public class EmployeeRepository {
     public Employee getEmployee(String username) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            Employee emp = em.createNamedQuery("Employee.findByUsername", Employee.class).setParameter("username", username).getSingleResult();
-            //Employee emp = em.find(Employee.class,username);
+            //Employee emp = em.createNamedQuery("Employee.findByUsername", Employee.class).setParameter("username", username).getSingleResult();
+            Employee emp = em.find(Employee.class,username);
             return emp;
         } finally {
             em.close();

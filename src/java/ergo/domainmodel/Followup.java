@@ -6,7 +6,7 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -50,8 +50,8 @@ public class Followup implements Serializable {
     @Size(max = 300)
     @Column(name = "recommendations")
     private String recommendations;
-    @ManyToMany(mappedBy = "followupCollection")
-    private Collection<Assessment> assessmentCollection;
+    @ManyToMany(mappedBy = "followupList")
+    private List<Assessment> assessmentList;
 
     public Followup() {
     }
@@ -93,12 +93,12 @@ public class Followup implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Assessment> getAssessmentCollection() {
-        return assessmentCollection;
+    public List<Assessment> getAssessmentList() {
+        return assessmentList;
     }
 
-    public void setAssessmentCollection(Collection<Assessment> assessmentCollection) {
-        this.assessmentCollection = assessmentCollection;
+    public void setAssessmentList(List<Assessment> assessmentList) {
+        this.assessmentList = assessmentList;
     }
 
     @Override

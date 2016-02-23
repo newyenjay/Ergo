@@ -53,7 +53,7 @@
                         </c:if> 
                     </li>
                             <li>
-                                <a href="#">Log off</a>
+                                <a href="login?action=logout">Log off</a>
                             </li>
                         </ul>
                     </div>
