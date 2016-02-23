@@ -11,6 +11,8 @@ import ergo.domainmodel.Employee;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -44,13 +46,18 @@ public class AdminPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/admin/manageUsers.jsp").forward(request, response); 
 
         HttpSession session = request.getSession();
         String action = request.getParameter("action");
-        List empList = null;
+        List<Employee> empList = null;
         EmployeeService es = new EmployeeService();
-
+	int role = (int)session.getAttribute("isAdmin");
+	
+        if(role != 1){
+            response.sendRedirect("main");
+        }
+        
+        
         if (action == null) {
             Employee e = (Employee) session.getAttribute("currentUser");
 
@@ -59,10 +66,12 @@ public class AdminPageServlet extends HttpServlet {
             } else {
                 try {
                     empList = es.getAll();
-                    getServletContext().getRequestDispatcher("/WEB-INF/admin/manageUsers.jsp").forward(request, response); //Forwards the browser to the login jsp
+                    request.setAttribute("users", empList);
                 } catch (Exception ex) {
-
+                      Logger.getLogger(AdminPageServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
+                getServletContext().getRequestDispatcher("/WEB-INF/admin/manageUsers.jsp").forward(request, response); //Forwards the browser to the login jsp
             }
 
         } else {

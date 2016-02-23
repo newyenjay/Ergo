@@ -27,19 +27,19 @@
 
                         <c:forEach var="item" items="${users}">
                             <tr>
-                                <td><c:out value="${item.userName}" /></td>
+                                <td><c:out value="${item.username}" /></td>
                                 <td>${item.firstName}</td>
                                 <td>${item.lastName}</td>
                                 <td>${item.email}</td>
-                                <td>${item.userPassword}</td>
+                                <td>${item.password}</td>
 
                            
 
-                                <c:if test="${currentUser.userName != item.userName}">
+                                <c:if test="${currentUser.username != item.username}">
 
                                     <td>
                                         <form action="admin" method="post">
-                                            <input type="hidden" name="username" value="${item.userName}">
+                                            <input type="hidden" name="username" value="${item.username}">
                                             <input type="hidden" name="action" value="delete">
                                             <input type="submit" value="Delete"class="btn btn-danger">
                                         </form>
@@ -49,7 +49,7 @@
                                     <td>
 
                                         <form action="admin" method="post">
-                                            <input type="hidden" name="username" value="${item.userName}">
+                                            <input type="hidden" name="username" value="${item.username}">
                                             <input type="hidden" name="action" value="view">
                                             <input type="submit" value="Edit" class="btn btn-info">
 
@@ -58,7 +58,7 @@
                                 </c:if> 
 
 
-                                <c:if test="${currentUser.userName == item.userName}"> 
+                                <c:if test="${currentUser.username == item.username}"> 
                                     <th colspan="2" > Cannot delete yourself </th>
                                     </c:if>
 
