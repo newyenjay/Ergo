@@ -11,8 +11,6 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -29,17 +27,16 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 680420
+ * @author 671402
  */
 @Entity
 @Table(name = "employee")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Employee.findAll", query = "SELECT e FROM Employee e"),
-    @NamedQuery(name = "Employee.findByEmployeeId", query = "SELECT e FROM Employee e WHERE e.employeeId = :employeeId"),
+    @NamedQuery(name = "Employee.findByUsername", query = "SELECT e FROM Employee e WHERE e.username = :username"),
     @NamedQuery(name = "Employee.findByFirstName", query = "SELECT e FROM Employee e WHERE e.firstName = :firstName"),
     @NamedQuery(name = "Employee.findByLastName", query = "SELECT e FROM Employee e WHERE e.lastName = :lastName"),
-    @NamedQuery(name = "Employee.findByUsername", query = "SELECT e FROM Employee e WHERE e.username = :username"),
     @NamedQuery(name = "Employee.findByPassword", query = "SELECT e FROM Employee e WHERE e.password = :password"),
     @NamedQuery(name = "Employee.findByEmail", query = "SELECT e FROM Employee e WHERE e.email = :email"),
     @NamedQuery(name = "Employee.findByPhoneNumber", query = "SELECT e FROM Employee e WHERE e.phoneNumber = :phoneNumber"),
@@ -47,10 +44,11 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Employee implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "employeeId")
-    private Integer employeeId;
+    @NotNull
+    @Size(min = 1, max = 30)
+    @Column(name = "username")
+    private String username;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
@@ -61,11 +59,6 @@ public class Employee implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "lastName")
     private String lastName;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "username")
-    private String username;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
@@ -93,26 +86,25 @@ public class Employee implements Serializable {
     public Employee() {
     }
 
-    public Employee(Integer employeeId) {
-        this.employeeId = employeeId;
+    public Employee(String username) {
+        this.username = username;
     }
 
-    public Employee(Integer employeeId, String firstName, String lastName, String username, String password, String email, Date birthdate) {
-        this.employeeId = employeeId;
+    public Employee(String username, String firstName, String lastName, String password, String email, Date birthdate) {
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.username = username;
         this.password = password;
         this.email = email;
         this.birthdate = birthdate;
     }
 
-    public Integer getEmployeeId() {
-        return employeeId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmployeeId(Integer employeeId) {
-        this.employeeId = employeeId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getFirstName() {
@@ -129,14 +121,6 @@ public class Employee implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
@@ -191,7 +175,7 @@ public class Employee implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (employeeId != null ? employeeId.hashCode() : 0);
+        hash += (username != null ? username.hashCode() : 0);
         return hash;
     }
 
@@ -202,7 +186,7 @@ public class Employee implements Serializable {
             return false;
         }
         Employee other = (Employee) object;
-        if ((this.employeeId == null && other.employeeId != null) || (this.employeeId != null && !this.employeeId.equals(other.employeeId))) {
+        if ((this.username == null && other.username != null) || (this.username != null && !this.username.equals(other.username))) {
             return false;
         }
         return true;
@@ -210,7 +194,7 @@ public class Employee implements Serializable {
 
     @Override
     public String toString() {
-        return "ergo.domainmodel.Employee[ employeeId=" + employeeId + " ]";
+        return "ergo.domainmodel.Employee[ username=" + username + " ]";
     }
     
 }

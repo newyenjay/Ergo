@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 680420
+ * @author 671402
  */
 @Entity
 @Table(name = "client")
@@ -68,7 +68,7 @@ public class Client implements Serializable {
     private List<Company> companyList;
     @JoinTable(name = "clientemployee", joinColumns = {
         @JoinColumn(name = "clientId", referencedColumnName = "clientId")}, inverseJoinColumns = {
-        @JoinColumn(name = "employeeId", referencedColumnName = "employeeId")})
+        @JoinColumn(name = "username", referencedColumnName = "username")})
     @ManyToMany
     private List<Employee> employeeList;
     @OneToMany(mappedBy = "clientId")

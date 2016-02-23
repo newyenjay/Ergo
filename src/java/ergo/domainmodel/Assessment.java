@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 680420
+ * @author 671402
  */
 @Entity
 @Table(name = "assessment")
@@ -40,6 +40,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Assessment.findAll", query = "SELECT a FROM Assessment a"),
     @NamedQuery(name = "Assessment.findByAssessmentId", query = "SELECT a FROM Assessment a WHERE a.assessmentId = :assessmentId"),
+    @NamedQuery(name = "Assessment.findByAssessor", query = "SELECT a FROM Assessment a WHERE a.assessor = :assessor"),
     @NamedQuery(name = "Assessment.findByDate", query = "SELECT a FROM Assessment a WHERE a.date = :date"),
     @NamedQuery(name = "Assessment.findByWorkerComments", query = "SELECT a FROM Assessment a WHERE a.workerComments = :workerComments"),
     @NamedQuery(name = "Assessment.findByRisks", query = "SELECT a FROM Assessment a WHERE a.risks = :risks"),
@@ -74,6 +75,11 @@ public class Assessment implements Serializable {
     @Basic(optional = false)
     @Column(name = "assessmentId")
     private Integer assessmentId;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 30)
+    @Column(name = "assessor")
+    private String assessor;
     @Basic(optional = false)
     @NotNull
     @Column(name = "date")
@@ -170,8 +176,9 @@ public class Assessment implements Serializable {
         this.assessmentId = assessmentId;
     }
 
-    public Assessment(Integer assessmentId, Date date, String prepNotes) {
+    public Assessment(Integer assessmentId, String assessor, Date date, String prepNotes) {
         this.assessmentId = assessmentId;
+        this.assessor = assessor;
         this.date = date;
         this.prepNotes = prepNotes;
     }
@@ -182,6 +189,14 @@ public class Assessment implements Serializable {
 
     public void setAssessmentId(Integer assessmentId) {
         this.assessmentId = assessmentId;
+    }
+
+    public String getAssessor() {
+        return assessor;
+    }
+
+    public void setAssessor(String assessor) {
+        this.assessor = assessor;
     }
 
     public Date getDate() {
