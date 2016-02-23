@@ -6,7 +6,7 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 671402
+ * @author 680420
  */
 @Entity
 @Table(name = "company")
@@ -53,9 +53,9 @@ public class Company implements Serializable {
         @JoinColumn(name = "companyId", referencedColumnName = "companyId")}, inverseJoinColumns = {
         @JoinColumn(name = "clientId", referencedColumnName = "clientId")})
     @ManyToMany
-    private List<Client> clientList;
+    private Collection<Client> clientCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
-    private List<Location> locationList;
+    private Collection<Location> locationCollection;
 
     public Company() {
     }
@@ -86,21 +86,21 @@ public class Company implements Serializable {
     }
 
     @XmlTransient
-    public List<Client> getClientList() {
-        return clientList;
+    public Collection<Client> getClientCollection() {
+        return clientCollection;
     }
 
-    public void setClientList(List<Client> clientList) {
-        this.clientList = clientList;
+    public void setClientCollection(Collection<Client> clientCollection) {
+        this.clientCollection = clientCollection;
     }
 
     @XmlTransient
-    public List<Location> getLocationList() {
-        return locationList;
+    public Collection<Location> getLocationCollection() {
+        return locationCollection;
     }
 
-    public void setLocationList(List<Location> locationList) {
-        this.locationList = locationList;
+    public void setLocationCollection(Collection<Location> locationCollection) {
+        this.locationCollection = locationCollection;
     }
 
     @Override

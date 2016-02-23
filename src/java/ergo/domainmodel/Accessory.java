@@ -6,7 +6,7 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 671402
+ * @author 680420
  */
 @Entity
 @Table(name = "accessory")
@@ -37,8 +37,8 @@ public class Accessory implements Serializable {
     @Basic(optional = false)
     @Column(name = "accessoryId")
     private Integer accessoryId;
-    @ManyToMany(mappedBy = "accessoryList")
-    private List<Assessment> assessmentList;
+    @ManyToMany(mappedBy = "accessoryCollection")
+    private Collection<Assessment> assessmentCollection;
 
     public Accessory() {
     }
@@ -56,12 +56,12 @@ public class Accessory implements Serializable {
     }
 
     @XmlTransient
-    public List<Assessment> getAssessmentList() {
-        return assessmentList;
+    public Collection<Assessment> getAssessmentCollection() {
+        return assessmentCollection;
     }
 
-    public void setAssessmentList(List<Assessment> assessmentList) {
-        this.assessmentList = assessmentList;
+    public void setAssessmentCollection(Collection<Assessment> assessmentCollection) {
+        this.assessmentCollection = assessmentCollection;
     }
 
     @Override

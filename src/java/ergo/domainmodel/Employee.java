@@ -6,8 +6,8 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 671402
+ * @author 680420
  */
 @Entity
 @Table(name = "employee")
@@ -77,8 +77,8 @@ public class Employee implements Serializable {
     @Column(name = "birthdate")
     @Temporal(TemporalType.DATE)
     private Date birthdate;
-    @ManyToMany(mappedBy = "employeeList")
-    private List<Client> clientList;
+    @ManyToMany(mappedBy = "employeeCollection")
+    private Collection<Client> clientCollection;
     @JoinColumn(name = "privilegeId", referencedColumnName = "privilegeId")
     @ManyToOne(optional = false)
     private Privilege privilegeId;
@@ -156,12 +156,12 @@ public class Employee implements Serializable {
     }
 
     @XmlTransient
-    public List<Client> getClientList() {
-        return clientList;
+    public Collection<Client> getClientCollection() {
+        return clientCollection;
     }
 
-    public void setClientList(List<Client> clientList) {
-        this.clientList = clientList;
+    public void setClientCollection(Collection<Client> clientCollection) {
+        this.clientCollection = clientCollection;
     }
 
     public Privilege getPrivilegeId() {

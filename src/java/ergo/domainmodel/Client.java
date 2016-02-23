@@ -6,7 +6,7 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 671402
+ * @author 680420
  */
 @Entity
 @Table(name = "client")
@@ -64,15 +64,15 @@ public class Client implements Serializable {
     private String email;
     @Column(name = "phoneNumber")
     private Integer phoneNumber;
-    @ManyToMany(mappedBy = "clientList")
-    private List<Company> companyList;
+    @ManyToMany(mappedBy = "clientCollection")
+    private Collection<Company> companyCollection;
     @JoinTable(name = "clientemployee", joinColumns = {
         @JoinColumn(name = "clientId", referencedColumnName = "clientId")}, inverseJoinColumns = {
         @JoinColumn(name = "username", referencedColumnName = "username")})
     @ManyToMany
-    private List<Employee> employeeList;
+    private Collection<Employee> employeeCollection;
     @OneToMany(mappedBy = "clientId")
-    private List<Assessment> assessmentList;
+    private Collection<Assessment> assessmentCollection;
 
     public Client() {
     }
@@ -129,30 +129,30 @@ public class Client implements Serializable {
     }
 
     @XmlTransient
-    public List<Company> getCompanyList() {
-        return companyList;
+    public Collection<Company> getCompanyCollection() {
+        return companyCollection;
     }
 
-    public void setCompanyList(List<Company> companyList) {
-        this.companyList = companyList;
-    }
-
-    @XmlTransient
-    public List<Employee> getEmployeeList() {
-        return employeeList;
-    }
-
-    public void setEmployeeList(List<Employee> employeeList) {
-        this.employeeList = employeeList;
+    public void setCompanyCollection(Collection<Company> companyCollection) {
+        this.companyCollection = companyCollection;
     }
 
     @XmlTransient
-    public List<Assessment> getAssessmentList() {
-        return assessmentList;
+    public Collection<Employee> getEmployeeCollection() {
+        return employeeCollection;
     }
 
-    public void setAssessmentList(List<Assessment> assessmentList) {
-        this.assessmentList = assessmentList;
+    public void setEmployeeCollection(Collection<Employee> employeeCollection) {
+        this.employeeCollection = employeeCollection;
+    }
+
+    @XmlTransient
+    public Collection<Assessment> getAssessmentCollection() {
+        return assessmentCollection;
+    }
+
+    public void setAssessmentCollection(Collection<Assessment> assessmentCollection) {
+        this.assessmentCollection = assessmentCollection;
     }
 
     @Override

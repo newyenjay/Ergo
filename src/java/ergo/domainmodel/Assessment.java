@@ -6,8 +6,8 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 671402
+ * @author 680420
  */
 @Entity
 @Table(name = "assessment")
@@ -157,17 +157,17 @@ public class Assessment implements Serializable {
         @JoinColumn(name = "assessmentId", referencedColumnName = "assessmentId")}, inverseJoinColumns = {
         @JoinColumn(name = "accessoryId", referencedColumnName = "accessoryId")})
     @ManyToMany
-    private List<Accessory> accessoryList;
+    private Collection<Accessory> accessoryCollection;
     @JoinTable(name = "assessmentfollowup", joinColumns = {
         @JoinColumn(name = "assessmentId", referencedColumnName = "assessmentId")}, inverseJoinColumns = {
         @JoinColumn(name = "followUpId", referencedColumnName = "followUpId")})
     @ManyToMany
-    private List<Followup> followupList;
+    private Collection<Followup> followupCollection;
     @JoinColumn(name = "clientId", referencedColumnName = "clientId")
     @ManyToOne
     private Client clientId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "assessmentId")
-    private List<Monitor> monitorList;
+    private Collection<Monitor> monitorCollection;
 
     public Assessment() {
     }
@@ -416,21 +416,21 @@ public class Assessment implements Serializable {
     }
 
     @XmlTransient
-    public List<Accessory> getAccessoryList() {
-        return accessoryList;
+    public Collection<Accessory> getAccessoryCollection() {
+        return accessoryCollection;
     }
 
-    public void setAccessoryList(List<Accessory> accessoryList) {
-        this.accessoryList = accessoryList;
+    public void setAccessoryCollection(Collection<Accessory> accessoryCollection) {
+        this.accessoryCollection = accessoryCollection;
     }
 
     @XmlTransient
-    public List<Followup> getFollowupList() {
-        return followupList;
+    public Collection<Followup> getFollowupCollection() {
+        return followupCollection;
     }
 
-    public void setFollowupList(List<Followup> followupList) {
-        this.followupList = followupList;
+    public void setFollowupCollection(Collection<Followup> followupCollection) {
+        this.followupCollection = followupCollection;
     }
 
     public Client getClientId() {
@@ -442,12 +442,12 @@ public class Assessment implements Serializable {
     }
 
     @XmlTransient
-    public List<Monitor> getMonitorList() {
-        return monitorList;
+    public Collection<Monitor> getMonitorCollection() {
+        return monitorCollection;
     }
 
-    public void setMonitorList(List<Monitor> monitorList) {
-        this.monitorList = monitorList;
+    public void setMonitorCollection(Collection<Monitor> monitorCollection) {
+        this.monitorCollection = monitorCollection;
     }
 
     @Override
