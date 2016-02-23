@@ -29,7 +29,6 @@ DROP TABLE IF EXISTS `CLIENT`;
 -- Table 'COMPANY'
 -- 
 -- ---
-
 		
 CREATE TABLE `COMPANY` (
   `companyId` INTEGER NOT NULL AUTO_INCREMENT,
@@ -52,7 +51,6 @@ CREATE TABLE `CLIENTCOMPANY` (
 -- Table 'LOCATION'
 -- 
 -- ---
-
 		
 CREATE TABLE `LOCATION` (
   `locationId` INTEGER NOT NULL AUTO_INCREMENT,
@@ -90,7 +88,6 @@ CREATE TABLE `EMPLOYEE` (
   `password` VARCHAR(30) NOT NULL,
   `email` VARCHAR(50) NOT NULL,
   `phoneNumber` INTEGER NULL DEFAULT NULL,
-  `birthdate` DATE NOT NULL,
   PRIMARY KEY (`username`)
 );
 
@@ -121,6 +118,7 @@ CREATE TABLE `CLIENTEMPLOYEE` (
 -- Table 'ASSESSMENT'
 -- 
 -- ---
+
 		
 CREATE TABLE `ASSESSMENT` (
   `assessmentId` INTEGER NOT NULL AUTO_INCREMENT,
@@ -160,6 +158,7 @@ CREATE TABLE `ASSESSMENT` (
 -- Table 'ASSESSMENTACCESSORY'
 -- 
 -- ---
+
 		
 CREATE TABLE `ASSESSMENTACCESSORY` (
   `assessmentId` INTEGER NOT NULL,
@@ -170,6 +169,7 @@ CREATE TABLE `ASSESSMENTACCESSORY` (
 -- Table 'ACCESSORY'
 -- 
 -- ---
+
 		
 CREATE TABLE `ACCESSORY` (
   `accessoryId` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
@@ -180,6 +180,7 @@ CREATE TABLE `ACCESSORY` (
 -- Table 'ASSESSMENTFOLLOWUP'
 -- 
 -- ---
+
 		
 CREATE TABLE `ASSESSMENTFOLLOWUP` (
   `assessmentId` INTEGER NOT NULL,
@@ -203,6 +204,7 @@ CREATE TABLE `FOLLOWUP` (
 -- Table 'MONITOR'
 -- 
 -- ---
+
 		
 CREATE TABLE `MONITOR` (
   `monitorId` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
@@ -220,6 +222,7 @@ CREATE TABLE `MONITOR` (
 -- Table 'LOG'
 -- 
 -- ---
+
 		
 CREATE TABLE `LOG` (
   `clientId` INTEGER NOT NULL,
@@ -276,8 +279,8 @@ ALTER TABLE `MONITOR` ADD FOREIGN KEY (assessmentId) REFERENCES `ASSESSMENT` (`a
 -- ('','','');
 -- INSERT INTO `CLIENT` (`clientId`,`firstName`,`lastName`,`email`,`phoneNumber`) VALUES
 -- ('','','','','');
--- INSERT INTO `EMPLOYEE` (`username`,`privilegeId`,`firstName`,`lastName`,`password`,`email`,`phoneNumber`,`birthdate`) VALUES
--- ('','','','','','','','');
+-- INSERT INTO `EMPLOYEE` (`username`,`privilegeId`,`firstName`,`lastName`,`password`,`email`,`phoneNumber`) VALUES
+-- ('','','','','','','');
 -- INSERT INTO `PRIVILEGE` (`privilegeId`,`description`) VALUES
 -- ('','');
 -- INSERT INTO `CLIENTEMPLOYEE` (`clientId`,`username`) VALUES
@@ -302,7 +305,7 @@ INSERT INTO `PRIVILEGE` (`privilegeId`,`description`) VALUES
 (1,'Admin Privilege');
 INSERT INTO `PRIVILEGE` (`privilegeId`,`description`) VALUES
 (0,'Employee Privilege');
-INSERT INTO `EMPLOYEE` (`privilegeId`,`firstName`,`lastName`,`username`,`password`,`email`,`birthdate`) VALUES
-(1,'adam','adam','adam','password','adam@gmail.com','2012-01-01');
-INSERT INTO `EMPLOYEE` (`privilegeId`,`firstName`,`lastName`,`username`,`password`,`email`,`birthdate`) VALUES
-(0,'betty','betty','betty','password','betty@gmail.com','2012-05-01');
+INSERT INTO `EMPLOYEE` (`privilegeId`,`firstName`,`lastName`,`username`,`password`,`email`) VALUES
+(1,'adam','adam','adam','password','adam@gmail.com');
+INSERT INTO `EMPLOYEE` (`privilegeId`,`firstName`,`lastName`,`username`,`password`,`email`) VALUES
+(0,'betty','betty','betty','password','betty@gmail.com');
