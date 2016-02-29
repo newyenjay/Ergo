@@ -25,7 +25,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#" >
-                        <span>Ergorisk</span></a>
+                        <span>ErgoRisk</span></a>
                 </div>
                 <div class="collapse navbar-collapse" style="color: white" >
                     <ul class="nav navbar-nav">
@@ -39,7 +39,7 @@
                             <a href="location" >Location</a>
                         </li>
                         <li>
-                            <a href="assessments">Assessement</a>
+                            <a href="assessments">Assessment</a>
                         </li>
                         <li>
                             <a href="#">Generate</a>
