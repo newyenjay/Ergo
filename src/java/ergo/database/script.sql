@@ -92,7 +92,7 @@ CREATE TABLE `PRIVILEGE` (
 );
 
 
-CREATE TABLE `EMPLOYEEPRIVILAGE`(
+CREATE TABLE `EMPLOYEEPRIVILEGE`(
 `privilegeId` INTEGER NOT NULL,
 `username` VARCHAR(30) NOT NULL,
 PRIMARY KEY (`privilegeId`,`username`),
@@ -305,7 +305,7 @@ INSERT INTO `EMPLOYEE` (`firstName`,`lastName`,`username`,`password`,`email`) VA
 ('adam','adam','adam','password','adam@gmail.com');
 INSERT INTO `EMPLOYEE` (`firstName`,`lastName`,`username`,`password`,`email`) VALUES
 ('betty','betty','betty','password','betty@gmail.com');
-INSERT INTO `EMPLOYEEPRIVILAGE` (`privilegeId`,`username`)VALUES
+INSERT INTO `EMPLOYEEPRIVILEGE` (`privilegeId`,`username`)VALUES
 (1, 'adam');
-INSERT INTO `EMPLOYEEPRIVILAGE` (`privilegeId`,`username`)VALUES
+INSERT INTO `EMPLOYEEPRIVILEGE` (`privilegeId`,`username`)VALUES
 (0, 'betty');

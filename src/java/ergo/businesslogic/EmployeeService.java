@@ -149,9 +149,13 @@ public class EmployeeService {
      * @return
      * @throws Exception 
      */
-    public int update(Employee employee) throws Exception{
+    public int update(String username, String firstName, String lastName, String password, String email)throws Exception{
         er = new EmployeeRepository();
+        Employee employee = er.getEmployee(username);
+        employee.setFirstName(firstName);
+        employee.setLastName(lastName);
+        employee.setPassword(password);
+        employee.setEmail(email);
         return er.update(employee);
-    } 
-    
+    }
 }

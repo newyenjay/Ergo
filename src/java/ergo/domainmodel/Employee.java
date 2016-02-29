@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author wayne
+ * @author 671402
  */
 @Entity
 @Table(name = "employee")
@@ -68,13 +68,13 @@ public class Employee implements Serializable {
     private String email;
     @Column(name = "phoneNumber")
     private Integer phoneNumber;
-    @ManyToMany(mappedBy = "employeeList")
-    private List<Client> clientList;
-    @JoinTable(name = "employeeprivilage", joinColumns = {
+    @JoinTable(name = "employeeprivilege", joinColumns = {
         @JoinColumn(name = "username", referencedColumnName = "username")}, inverseJoinColumns = {
         @JoinColumn(name = "privilegeId", referencedColumnName = "privilegeId")})
     @ManyToMany
     private List<Privilege> privilegeList;
+    @ManyToMany(mappedBy = "employeeList")
+    private List<Client> clientList;
 
     public Employee() {
     }
@@ -140,21 +140,21 @@ public class Employee implements Serializable {
     }
 
     @XmlTransient
-    public List<Client> getClientList() {
-        return clientList;
-    }
-
-    public void setClientList(List<Client> clientList) {
-        this.clientList = clientList;
-    }
-
-    @XmlTransient
     public List<Privilege> getPrivilegeList() {
         return privilegeList;
     }
 
     public void setPrivilegeList(List<Privilege> privilegeList) {
         this.privilegeList = privilegeList;
+    }
+
+    @XmlTransient
+    public List<Client> getClientList() {
+        return clientList;
+    }
+
+    public void setClientList(List<Client> clientList) {
+        this.clientList = clientList;
     }
 
     @Override
