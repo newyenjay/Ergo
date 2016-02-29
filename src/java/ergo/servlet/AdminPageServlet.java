@@ -134,13 +134,12 @@ public class AdminPageServlet extends HttpServlet {
                 break;
 
             case "edit":
-                /*try {
-                        
-                 es.update(username, firstname, lastname, email, password);
-                 request.setAttribute("message", "User updated.");
+                try {
+                    es.update(username, firstname, lastname, password, email);
+                    request.setAttribute("message", "User updated.");
                  } catch (Exception ex) {
                  request.setAttribute("message", "Error: User could not be updated!");
-                 }   */
+                 }
                 break;
 
             default:
