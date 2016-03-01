@@ -4,9 +4,6 @@
 DROP DATABASE IF EXISTS ErgoDB;
 CREATE DATABASE ErgoDB;
 USE ErgoDB;
-
--- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
--- SET FOREIGN_KEY_CHECKS=0;
 -- ---
 -- Globals
 -- ---
@@ -18,6 +15,8 @@ USE ErgoDB;
 -- Table 'COMPANY'
 -- 
 -- ---
+
+DROP TABLE IF EXISTS `COMPANY`;
 		
 CREATE TABLE `COMPANY` (
   `companyId` INTEGER NOT NULL AUTO_INCREMENT,
@@ -30,6 +29,7 @@ CREATE TABLE `COMPANY` (
 -- 
 -- ---
 
+DROP TABLE IF EXISTS `CLIENTCOMPANY`;
 		
 CREATE TABLE `CLIENTCOMPANY` (
   `companyId` INTEGER NOT NULL,
@@ -40,6 +40,8 @@ CREATE TABLE `CLIENTCOMPANY` (
 -- Table 'LOCATION'
 -- 
 -- ---
+
+DROP TABLE IF EXISTS `LOCATION`;
 		
 CREATE TABLE `LOCATION` (
   `locationId` INTEGER NOT NULL AUTO_INCREMENT,
@@ -53,6 +55,7 @@ CREATE TABLE `LOCATION` (
 -- 
 -- ---
 
+DROP TABLE IF EXISTS `CLIENT`;
 		
 CREATE TABLE `CLIENT` (
   `clientId` INTEGER NOT NULL AUTO_INCREMENT,
@@ -68,6 +71,7 @@ CREATE TABLE `CLIENT` (
 -- 
 -- ---
 
+DROP TABLE IF EXISTS `EMPLOYEE`;
 		
 CREATE TABLE `EMPLOYEE` (
   `username` VARCHAR(30) NOT NULL,
@@ -80,31 +84,11 @@ CREATE TABLE `EMPLOYEE` (
 );
 
 -- ---
--- Table 'PRIVILEGE'
--- 
--- ---
-
-		
-CREATE TABLE `PRIVILEGE` (
-  `privilegeId` INTEGER NOT NULL,
-  `description` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`privilegeId`)
-);
-
-
-CREATE TABLE `EMPLOYEEPRIVILEGE`(
-`privilegeId` INTEGER NOT NULL,
-`username` VARCHAR(30) NOT NULL,
-PRIMARY KEY (`privilegeId`,`username`),
- CONSTRAINT `EMPLOYEEPRIVILAGE_PRIVILAGE` FOREIGN KEY (`privilegeId`) REFERENCES `PRIVILEGE` (`privilegeId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `EMPLOYEEPRIVILAGE_EMPLOYEE` FOREIGN KEY (`username`) REFERENCES `EMPLOYEE` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION
-
-);
--- ---
 -- Table 'CLIENTEMPLOYEE'
 -- 
 -- ---
 
+DROP TABLE IF EXISTS `CLIENTEMPLOYEE`;
 		
 CREATE TABLE `CLIENTEMPLOYEE` (
   `clientId` INTEGER NOT NULL,
@@ -116,38 +100,39 @@ CREATE TABLE `CLIENTEMPLOYEE` (
 -- 
 -- ---
 
+DROP TABLE IF EXISTS `ASSESSMENT`;
 		
 CREATE TABLE `ASSESSMENT` (
   `assessmentId` INTEGER NOT NULL AUTO_INCREMENT,
   `assessor` VARCHAR(30) NOT NULL,
   `clientId` INTEGER NULL DEFAULT NULL,
   `date` DATE NOT NULL,
-  `workerComments` VARCHAR(300) NULL,
-  `risks` VARCHAR(300) NULL,
-  `recommendations` VARCHAR(300) NULL,
+  `workerComments` VARCHAR(300) NULL DEFAULT NULL,
+  `risks` VARCHAR(300) NULL DEFAULT NULL,
+  `recommendations` VARCHAR(300) NULL DEFAULT NULL,
   `boolFollowUp` INTEGER NULL DEFAULT 0,
   `boolStretchBreak` INTEGER NULL DEFAULT 0,
   `boolMicro` INTEGER NULL DEFAULT 0,
   `boolSitStand` INTEGER NULL DEFAULT 0,
   `prepNotes` VARCHAR(300) NOT NULL,
   `boolStableBase` INTEGER NULL DEFAULT 0,
-  `stableBaseNotes` VARCHAR(300) NULL,
+  `stableBaseNotes` VARCHAR(300) NULL DEFAULT NULL,
   `boolShoulderPos` INTEGER NULL DEFAULT 0,
-  `shoulderPosNotes` VARCHAR(300) NULL,
+  `shoulderPosNotes` VARCHAR(300) NULL DEFAULT NULL,
   `boolArmPos` INTEGER NULL DEFAULT 0,
-  `armPosNotes` VARCHAR(300) NULL,
-  `generalNotes` VARCHAR(300) NULL,
+  `armPosNotes` VARCHAR(300) NULL DEFAULT NULL,
+  `generalNotes` VARCHAR(300) NULL DEFAULT NULL,
   `boolChair` INTEGER NULL DEFAULT 0,
-  `chairNotes` VARCHAR(300) NULL,
+  `chairNotes` VARCHAR(300) NULL DEFAULT NULL,
   `boolMonitor` INTEGER NULL DEFAULT 0,
-  `monitorNotes` VARCHAR(300) NULL,
+  `monitorNotes` VARCHAR(300) NULL DEFAULT NULL,
   `boolDevices` INTEGER NULL DEFAULT 0,
-  `devicesNotes` VARCHAR(300) NULL,
+  `devicesNotes` VARCHAR(300) NULL DEFAULT NULL,
   `boolDesk` INTEGER NULL DEFAULT 0,
-  `deskNotes` VARCHAR(300) NULL,
+  `deskNotes` VARCHAR(300) NULL DEFAULT NULL,
   `boolAccessories` INTEGER NULL DEFAULT 0,
-  `accessoriesNotes` VARCHAR(300) NULL,
-  `confidentialNotes` VARCHAR(300) NULL,
+  `accessoriesNotes` VARCHAR(300) NULL DEFAULT NULL,
+  `confidentialNotes` VARCHAR(300) NULL DEFAULT NULL,
   PRIMARY KEY (`assessmentId`)
 );
 
@@ -156,6 +141,7 @@ CREATE TABLE `ASSESSMENT` (
 -- 
 -- ---
 
+DROP TABLE IF EXISTS `ASSESSMENTACCESSORY`;
 		
 CREATE TABLE `ASSESSMENTACCESSORY` (
   `assessmentId` INTEGER NOT NULL,
@@ -167,6 +153,7 @@ CREATE TABLE `ASSESSMENTACCESSORY` (
 -- 
 -- ---
 
+DROP TABLE IF EXISTS `ACCESSORY`;
 		
 CREATE TABLE `ACCESSORY` (
   `accessoryId` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
@@ -178,6 +165,7 @@ CREATE TABLE `ACCESSORY` (
 -- 
 -- ---
 
+DROP TABLE IF EXISTS `ASSESSMENTFOLLOWUP`;
 		
 CREATE TABLE `ASSESSMENTFOLLOWUP` (
   `assessmentId` INTEGER NOT NULL,
@@ -188,12 +176,14 @@ CREATE TABLE `ASSESSMENTFOLLOWUP` (
 -- Table 'FOLLOWUP'
 -- 
 -- ---
+
+DROP TABLE IF EXISTS `FOLLOWUP`;
 		
 CREATE TABLE `FOLLOWUP` (
   `followUpId` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `note` VARCHAR(300) NULL,
-  `comments` VARCHAR(300) NULL,
-  `recommendations` VARCHAR(300) NULL,
+  `note` VARCHAR(300) NULL DEFAULT NULL,
+  `comments` VARCHAR(300) NULL DEFAULT NULL,
+  `recommendations` VARCHAR(300) NULL DEFAULT NULL,
   PRIMARY KEY (`followUpId`)
 );
 
@@ -202,16 +192,17 @@ CREATE TABLE `FOLLOWUP` (
 -- 
 -- ---
 
+DROP TABLE IF EXISTS `MONITOR`;
 		
 CREATE TABLE `MONITOR` (
   `monitorId` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
   `assessmentId` INTEGER NOT NULL,
   `size` INTEGER NOT NULL,
-  `pre` INTEGER NULL,
-  `post` INTEGER NULL,
-  `recommendation` VARCHAR(300) NULL,
-  `notes` VARCHAR(300) NULL,
-  `type` VARCHAR(50) NULL,
+  `pre` INTEGER NULL DEFAULT NULL,
+  `post` INTEGER NULL DEFAULT NULL,
+  `recommendation` VARCHAR(300) NULL DEFAULT NULL,
+  `notes` VARCHAR(300) NULL DEFAULT NULL,
+  `type` VARCHAR(50) NULL DEFAULT NULL,
   PRIMARY KEY (`monitorId`)
 );
 
@@ -220,12 +211,39 @@ CREATE TABLE `MONITOR` (
 -- 
 -- ---
 
+DROP TABLE IF EXISTS `LOG`;
 		
 CREATE TABLE `LOG` (
   `clientId` INTEGER NOT NULL,
   `employeeId` INTEGER NOT NULL,
   `action` VARCHAR(300) NOT NULL,
   PRIMARY KEY (`clientId`)
+);
+
+-- ---
+-- Table 'EMPLOYEEPRIVILEGE'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `EMPLOYEEPRIVILEGE`;
+		
+CREATE TABLE `EMPLOYEEPRIVILEGE` (
+  `privilegeId` INTEGER NOT NULL,
+  `username` VARCHAR(30) NOT NULL,
+  PRIMARY KEY (`username`, `privilegeId`)
+);
+
+-- ---
+-- Table 'PRIVILEGE'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `PRIVILEGE`;
+		
+CREATE TABLE `PRIVILEGE` (
+  `privilegeId` INTEGER NOT NULL,
+  `description` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`privilegeId`)
 );
 
 -- ---
@@ -243,6 +261,8 @@ ALTER TABLE `ASSESSMENTACCESSORY` ADD FOREIGN KEY (accessoryId) REFERENCES `ACCE
 ALTER TABLE `ASSESSMENTFOLLOWUP` ADD FOREIGN KEY (assessmentId) REFERENCES `ASSESSMENT` (`assessmentId`);
 ALTER TABLE `ASSESSMENTFOLLOWUP` ADD FOREIGN KEY (followUpId) REFERENCES `FOLLOWUP` (`followUpId`);
 ALTER TABLE `MONITOR` ADD FOREIGN KEY (assessmentId) REFERENCES `ASSESSMENT` (`assessmentId`);
+ALTER TABLE `EMPLOYEEPRIVILEGE` ADD FOREIGN KEY (privilegeId) REFERENCES `PRIVILEGE` (`privilegeId`);
+ALTER TABLE `EMPLOYEEPRIVILEGE` ADD FOREIGN KEY (username) REFERENCES `EMPLOYEE` (`username`);
 
 -- ---
 -- Table Properties
@@ -253,7 +273,6 @@ ALTER TABLE `MONITOR` ADD FOREIGN KEY (assessmentId) REFERENCES `ASSESSMENT` (`a
 -- ALTER TABLE `LOCATION` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `CLIENT` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `EMPLOYEE` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `PRIVILEGE` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `CLIENTEMPLOYEE` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `ASSESSMENT` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `ASSESSMENTACCESSORY` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -262,6 +281,8 @@ ALTER TABLE `MONITOR` ADD FOREIGN KEY (assessmentId) REFERENCES `ASSESSMENT` (`a
 -- ALTER TABLE `FOLLOWUP` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `MONITOR` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 -- ALTER TABLE `LOG` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `EMPLOYEEPRIVILEGE` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `PRIVILEGE` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ---
 -- Test Data
@@ -275,10 +296,8 @@ ALTER TABLE `MONITOR` ADD FOREIGN KEY (assessmentId) REFERENCES `ASSESSMENT` (`a
 -- ('','','');
 -- INSERT INTO `CLIENT` (`clientId`,`firstName`,`lastName`,`email`,`phoneNumber`) VALUES
 -- ('','','','','');
--- INSERT INTO `EMPLOYEE` (`username`,`privilegeId`,`firstName`,`lastName`,`password`,`email`,`phoneNumber`) VALUES
--- ('','','','','','','');
--- INSERT INTO `PRIVILEGE` (`privilegeId`,`description`) VALUES
--- ('','');
+-- INSERT INTO `EMPLOYEE` (`username`,`firstName`,`lastName`,`password`,`email`,`phoneNumber`) VALUES
+-- ('','','','','','');
 -- INSERT INTO `CLIENTEMPLOYEE` (`clientId`,`username`) VALUES
 -- ('','');
 -- INSERT INTO `ASSESSMENT` (`assessmentId`,`assessor`,`clientId`,`date`,`workerComments`,`risks`,`recommendations`,`boolFollowUp`,`boolStretchBreak`,`boolMicro`,`boolSitStand`,`prepNotes`,`boolStableBase`,`stableBaseNotes`,`boolShoulderPos`,`shoulderPosNotes`,`boolArmPos`,`armPosNotes`,`generalNotes`,`boolChair`,`chairNotes`,`boolMonitor`,`monitorNotes`,`boolDevices`,`devicesNotes`,`boolDesk`,`deskNotes`,`boolAccessories`,`accessoriesNotes`,`confidentialNotes`) VALUES
@@ -295,6 +314,10 @@ ALTER TABLE `MONITOR` ADD FOREIGN KEY (assessmentId) REFERENCES `ASSESSMENT` (`a
 -- ('','','','','','','','');
 -- INSERT INTO `LOG` (`clientId`,`employeeId`,`action`) VALUES
 -- ('','','');
+-- INSERT INTO `EMPLOYEEPRIVILEGE` (`privilegeId`,`username`) VALUES
+-- ('','');
+-- INSERT INTO `PRIVILEGE` (`privilegeId`,`description`) VALUES
+-- ('','');
 
 --DUMMY ACCOUNT FOR LOGIN
 INSERT INTO `PRIVILEGE` (`privilegeId`,`description`) VALUES
