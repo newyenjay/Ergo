@@ -5,10 +5,40 @@
  */
 package ergo.businesslogic;
 
+import ergo.dataacess.CompanyRepository;
+import ergo.domainmodel.Company;
+import java.util.List;
+
 /**
  *
  * @author Kimberly Oshiro
  */
 public class CompanyService {
+    CompanyRepository cr;
+    //insert
+    //update
+    //delete
+    
+    /**
+     * 
+     * @param companyId
+     * @return
+     * @throws Exception 
+     */
+    public Company getEmployee(Integer companyId)throws Exception{
+        cr = new CompanyRepository();
+        return cr.getCompany(companyId);
+    }
+    
+    /**
+     * 
+     * @return
+     * @throws Exception 
+     */
+    public List<Company> getAll()throws Exception{
+        cr = new CompanyRepository();
+        return cr.getAll();
+    } 
+    
     
 }

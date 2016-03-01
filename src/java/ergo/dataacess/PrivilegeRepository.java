@@ -10,6 +10,8 @@ import javax.persistence.EntityManager;
 
 /**
  *
+ * 
+ * 
  * @author Kimberly Oshiro
  */
 public class PrivilegeRepository {
@@ -17,7 +19,7 @@ public class PrivilegeRepository {
     public Privilege getId(int id){
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            Privilege privilege = em.find(Privilege.class, id); //this will need to be fixed because the variable type might not be exactly the same. 3
+            Privilege privilege = em.find(Privilege.class, id); 
             return privilege;
         } finally {
             em.close();    

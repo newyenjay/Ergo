@@ -6,6 +6,7 @@
 package ergo.dataacess;
 
 import ergo.domainmodel.Location;
+import java.util.List;
 import javax.persistence.EntityManager;
 
 /**
@@ -13,6 +14,7 @@ import javax.persistence.EntityManager;
  * @author Kimberly Oshiro
  * 
  * @version 1.0 - Setting up the LocationRepository before heading off. 
+ * @version 1.1 - added the getall method as it was missing, probably will be needed in the future so I just added it in. 01/03/2016
  */
 public class LocationRepository {
     
@@ -72,7 +74,7 @@ public class LocationRepository {
      * @param locationId
      * @return 
      */
-    public Location getLocation(String locationId)  {
+    public Location getLocation(int locationId)  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             Location location = em.find(Location.class, locationId); 
@@ -81,7 +83,21 @@ public class LocationRepository {
             em.close();    
         }
     }
-    //getbyemail
+    
+    /**
+     * 
+     * @return 
+     */
+    public List<Location> getAll(){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            List<Location> locations = em.createNamedQuery("Location.findAll", Location.class).getResultList();
+            return locations;
+        } finally {
+            em.close();    
+        }
+    }
+   
     
     
 }

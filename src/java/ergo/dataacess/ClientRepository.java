@@ -123,5 +123,4 @@ public class ClientRepository {
             em.close();    
         } 
     }
-    //I can't think of anything else here. 
 }

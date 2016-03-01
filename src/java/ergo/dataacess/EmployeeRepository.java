@@ -53,6 +53,11 @@ public class EmployeeRepository {
         }
     }
     
+    /**
+     * 
+     * @param username
+     * @return 
+     */
     public Employee getEmployee(String username) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -133,7 +138,4 @@ public class EmployeeRepository {
             em.close();    
         } 
     }
-    //First name
-    //Last Name
-    //Phone Number
 }
