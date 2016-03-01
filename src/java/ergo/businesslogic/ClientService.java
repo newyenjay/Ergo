@@ -7,6 +7,7 @@ package ergo.businesslogic;
 
 import ergo.dataacess.ClientRepository;
 import ergo.domainmodel.Client;
+import java.util.Date;
 import java.util.List;
 /**
  *
@@ -30,9 +31,9 @@ public class ClientService {
      *  into the database. 
      * @throws Exception 
      */
-    public int insert(Integer clientId, String firstName, String lastName, String email)throws Exception{
+    public int insert(Integer clientId, String firstName, String lastName, Date dateCreated)throws Exception{
        cr = new ClientRepository();
-       Client client = new Client(clientId, firstName, lastName, email);
+       Client client = new Client(clientId, firstName, lastName, dateCreated);
        return cr.insert(client);
     }
     
