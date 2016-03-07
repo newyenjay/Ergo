@@ -16,6 +16,8 @@ import java.util.List;
  * actually need to be implemented in the interface I don't think, but It's going to be here in the class. Just in case. You never know what could happen, you know? 
  * 
  * @version 1.0 Adding stuff, Wowie rick. I have rick and morty on in the background, and I don't know what's happening. 
+ * @version 1.5 Revamping method names - Things weren't making sense to call them users, really. Made it more streamlined to call them client, much like the java class 
+ *          hints at. It just makes more sense. 
  */
 public class ClientService {
     private static ClientRepository cr; //I figured it'd be easier just to have a variable instantiated already instead of having to create a new one every time.
@@ -46,7 +48,7 @@ public class ClientService {
      */
     public int remove(Integer clientId)throws Exception{
         cr = new ClientRepository();
-        Client client = cr.getUserId(clientId);
+        Client client = cr.getClient(clientId);
         return cr.delete(client);
     }
     
@@ -63,7 +65,7 @@ public class ClientService {
      */
     public int update(Integer clientId, String firstName, String lastName, String email) throws Exception{
         cr = new ClientRepository();
-        Client client = cr.getUserId(clientId);
+        Client client = cr.getClient(clientId);
         client.setFirstName(firstName);
         client.setLastName(lastName);
         client.setEmail(email);
@@ -79,9 +81,9 @@ public class ClientService {
      * @return - a Client object that contains the Client with this clientId if the operation is a success. 
      * @throws Exception - if any of the operations that are attempted to be done results in an error. 
      */
-    public Client getUserId(int clientId)throws Exception{
+    public Client getClient(int clientId)throws Exception{
         cr = new ClientRepository();
-        return cr.getUserId(clientId);
+        return cr.getClient(clientId);
     }
     
     /**
@@ -93,9 +95,9 @@ public class ClientService {
      * @return -  A client object if the Client exists in the database.
      * @throws Exception - An exception if the client does not exist in the database, or if there is an exception while executing the query. 
      */
-    public Client getUserEmail(String email)throws Exception{
+    public Client getClientEmail(String email)throws Exception{
         cr = new ClientRepository();
-        return cr.getUserEmail(email);
+        return cr.getClientEmail(email);
     }
     /**
      * returns a full Java.util.List of all the Clients in the database. 

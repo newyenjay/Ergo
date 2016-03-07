@@ -66,6 +66,8 @@ public class EmployeeService {
     /**
      * Logs in a user based on the information such as the password and the username. 
      * 
+     * Was not done by KO 
+     * 
      * @param username - The Java.Lang.String object that will contain the username that the Database will use to search for the row. 
      * @param password - The password variable that will be used to check whether or not the user is valid. 
      * @return the Employee object if the Database finds the employee containing that Username, otherwise the method will return null if the database finds nothing. 

@@ -27,7 +27,7 @@ public class ClientRepository {
      * @param clientId - the value that's given to the method that will search through the database that will search for the client based n the ID. 
      * @return a Client Object that is created from the database query that is searching for a client based on the clientID. 
      */
-    public Client getUserId(int clientId)  {
+    public Client getClient(int clientId)  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             Client client = em.find(Client.class, clientId); //this will need to be fixed because the variable type might not be exactly the same. 3
@@ -113,8 +113,7 @@ public class ClientRepository {
      * @param email - the string variable in which the database will be searching with. 
      * @return - the client object with the only instance variable that is filled will be the email, because the only field is required is the email. 
      */
-    public Client getUserEmail(String email)
-    {
+    public Client getClientEmail(String email) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             Client client = em.createNamedQuery("Client.findByEmail", Client.class).setParameter("email", email).getSingleResult();

@@ -64,7 +64,7 @@ public class CompanyService {
      * @return
      * @throws Exception 
      */
-    public Company getEmployee(Integer companyId)throws Exception{
+    public Company getCompany(Integer companyId)throws Exception{
         cr = new CompanyRepository();
         return cr.getCompany(companyId);
     }
