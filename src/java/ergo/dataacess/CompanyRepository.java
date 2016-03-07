@@ -35,6 +35,35 @@ public class CompanyRepository {
     
     /**
      * 
+     * @param company
+     * @return 
+     */
+    public int insert(Company company)  {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(company);
+            em.getTransaction().commit();
+            return 1;
+        } finally {
+            em.close();
+        }
+    }
+    
+    public int delete(Company company)  {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.remove(em.merge(company));
+            em.getTransaction().commit();
+            return 1;
+        } finally {
+            em.close();
+        }
+   }
+    
+    /**
+     * 
      * @param companyId
      * @return 
      */
