@@ -61,8 +61,8 @@ CREATE TABLE `CLIENT` (
   `clientId` INTEGER NOT NULL AUTO_INCREMENT,
   `firstName` VARCHAR(30) NOT NULL,
   `lastName` VARCHAR(30) NOT NULL,
-  `email` VARCHAR(50) NOT NULL,
-  `phoneNumber` INTEGER(20) NULL DEFAULT NULL,
+  `email` VARCHAR(50) NULL,
+  `dateCreated` DATE NOT NULL,
   PRIMARY KEY (`clientId`)
 );
 
@@ -294,7 +294,7 @@ ALTER TABLE `EMPLOYEEPRIVILEGE` ADD FOREIGN KEY (username) REFERENCES `EMPLOYEE`
 -- ('','');
 -- INSERT INTO `LOCATION` (`locationId`,`companyId`,`address`) VALUES
 -- ('','','');
--- INSERT INTO `CLIENT` (`clientId`,`firstName`,`lastName`,`email`,`phoneNumber`) VALUES
+-- INSERT INTO `CLIENT` (`clientId`,`firstName`,`lastName`,`email`,`dateCreated`) VALUES
 -- ('','','','','');
 -- INSERT INTO `EMPLOYEE` (`username`,`firstName`,`lastName`,`password`,`email`,`phoneNumber`) VALUES
 -- ('','','','','','');
