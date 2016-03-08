@@ -96,6 +96,7 @@ public class LoginServlet extends HttpServlet {
                     response.sendRedirect("main");
                 }
             }
+
         
         //Continue on by making the objects and such. 
     }
