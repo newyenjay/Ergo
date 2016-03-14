@@ -1,8 +1,9 @@
-
 DROP DATABASE IF EXISTS ErgoDB;
 CREATE DATABASE ErgoDB;
 USE ErgoDB;
 
+
+DROP TABLE IF EXISTS `company`;
 		
 CREATE TABLE `company` (
   `companyId` INTEGER NOT NULL AUTO_INCREMENT,
@@ -10,26 +11,35 @@ CREATE TABLE `company` (
   PRIMARY KEY (`companyId`)
 );
 
+
+DROP TABLE IF EXISTS `clientcompany`;
+		
 CREATE TABLE `clientcompany` (
   `companyId` INTEGER NOT NULL,
   `clientId` INTEGER NOT NULL
 );
-	
+
+DROP TABLE IF EXISTS `location`;
+		
 CREATE TABLE `location` (
   `locationId` INTEGER NOT NULL AUTO_INCREMENT,
   `companyId` INTEGER NOT NULL,
   `address` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`locationId`)
 );
+
+DROP TABLE IF EXISTS `client`;
 		
 CREATE TABLE `client` (
   `clientId` INTEGER NOT NULL AUTO_INCREMENT,
   `firstName` VARCHAR(30) NOT NULL,
   `lastName` VARCHAR(30) NOT NULL,
-  `email` VARCHAR(50) NULL,
+  `email` VARCHAR(50) NULL DEFAULT NULL,
   `dateCreated` DATE NOT NULL,
   PRIMARY KEY (`clientId`)
 );
+
+DROP TABLE IF EXISTS `employee`;
 		
 CREATE TABLE `employee` (
   `username` VARCHAR(30) NOT NULL,
@@ -40,11 +50,17 @@ CREATE TABLE `employee` (
   `phoneNumber` INTEGER NULL DEFAULT NULL,
   PRIMARY KEY (`username`)
 );
+
+
+DROP TABLE IF EXISTS `clientemployee`;
 		
 CREATE TABLE `clientemployee` (
   `clientId` INTEGER NOT NULL,
   `username` VARCHAR(30) NOT NULL
 );
+
+
+DROP TABLE IF EXISTS `assessment`;
 		
 CREATE TABLE `assessment` (
   `assessmentId` INTEGER NOT NULL AUTO_INCREMENT,
@@ -80,20 +96,28 @@ CREATE TABLE `assessment` (
   PRIMARY KEY (`assessmentId`)
 );
 
+DROP TABLE IF EXISTS `assessmentaccessory`;
+		
 CREATE TABLE `assessmentaccessory` (
   `assessmentId` INTEGER NOT NULL,
   `accessoryId` INTEGER NOT NULL
 );
+
+DROP TABLE IF EXISTS `accessory`;
 		
 CREATE TABLE `accessory` (
   `accessoryId` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
   PRIMARY KEY (`accessoryId`)
 );
+
+DROP TABLE IF EXISTS `assessmentfollowup`;
 		
 CREATE TABLE `assessmentfollowup` (
   `assessmentId` INTEGER NOT NULL,
   `followUpId` INTEGER NOT NULL
 );
+
+DROP TABLE IF EXISTS `followup`;
 		
 CREATE TABLE `followup` (
   `followUpId` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
@@ -102,6 +126,8 @@ CREATE TABLE `followup` (
   `recommendations` VARCHAR(300) NULL DEFAULT NULL,
   PRIMARY KEY (`followUpId`)
 );
+
+DROP TABLE IF EXISTS `monitor`;
 		
 CREATE TABLE `monitor` (
   `monitorId` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
@@ -114,6 +140,8 @@ CREATE TABLE `monitor` (
   `type` VARCHAR(50) NULL DEFAULT NULL,
   PRIMARY KEY (`monitorId`)
 );
+
+DROP TABLE IF EXISTS `log`;
 		
 CREATE TABLE `log` (
   `clientId` INTEGER NOT NULL,
@@ -121,6 +149,7 @@ CREATE TABLE `log` (
   `action` VARCHAR(300) NOT NULL,
   PRIMARY KEY (`clientId`)
 );
+
 		
 CREATE TABLE `employeeprivilege` (
   `privilegeId` INTEGER NOT NULL,
@@ -128,10 +157,40 @@ CREATE TABLE `employeeprivilege` (
   PRIMARY KEY (`username`, `privilegeId`)
 );
 
+		
 CREATE TABLE `privilege` (
   `privilegeId` INTEGER NOT NULL,
   `description` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`privilegeId`)
+);
+		
+CREATE TABLE `admin` (
+  `assessmentId` INTEGER NOT NULL AUTO_INCREMENT DEFAULT NULL,
+  `proactive` VARCHAR(20) NULL,
+  `reactive` VARCHAR(20) NULL,
+  `assessor` VARCHAR(20) NULL,
+  `manager` VARCHAR(20) NULL,
+  `businessUnit` VARCHAR(20) NULL,
+  `workspace` VARCHAR(20) NULL,
+  `jobTitle` VARCHAR(20) NULL,
+  `gender` VARCHAR(6) NULL,
+  `heightInFeet` INTEGER NULL,
+  `heightInInches` INTEGER NULL,
+  `handedness` VARCHAR(5) NULL,
+  `daysPerWeek` INTEGER NULL,
+  `hoursPerDay` INTEGER NULL,
+  `hoursVDT` INTEGER NULL,
+  `hoursOnPhone` INTEGER NULL,
+  `discomfortPresent` VARCHAR(20) NULL,
+  `discomfortReported` VARCHAR(20) NULL,
+  `treatmentSought` VARCHAR NULL,
+  `maxDiscomfort` VARCHAR(20) NULL,
+  `risks` VARCHAR(200) NULL,
+  `equipmentRecommendations` VARCHAR(200) NULL,
+  `generalNotes` VARCHAR(300) NULL DEFAULT NULL,
+  `score` INTEGER NULL,
+  `followUpNeeded` INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY (`assessmentId`)
 );
 
 ALTER TABLE `clientcompany` ADD FOREIGN KEY (companyId) REFERENCES `company` (`companyId`);
@@ -148,7 +207,7 @@ ALTER TABLE `monitor` ADD FOREIGN KEY (assessmentId) REFERENCES `assessment` (`a
 ALTER TABLE `employeeprivilege` ADD FOREIGN KEY (privilegeId) REFERENCES `privilege` (`privilegeId`);
 ALTER TABLE `employeeprivilege` ADD FOREIGN KEY (username) REFERENCES `employee` (`username`);
 
-INSERT INTO `privilege` (`privilegeId`,`description`) VALUES
+INSERT INTO `PRIVILEGE` (`privilegeId`,`description`) VALUES
 (1,'Admin Privilege');
 INSERT INTO `privilege` (`privilegeId`,`description`) VALUES
 (0,'Employee Privilege');

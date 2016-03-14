@@ -1,0 +1,692 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a8281bb1-428d-4a33-84f8-80b04b109e33">
+    <queryString language="SQL">
+		<![CDATA[SELECT
+     assessment.`assessmentId` AS assessment_assessmentId,
+     assessment.`assessor` AS assessment_assessor,
+     assessment.`clientId` AS assessment_clientId,
+     assessment.`date` AS assessment_date,
+     assessment.`workerComments` AS assessment_workerComments,
+     assessment.`risks` AS assessment_risks,
+     assessment.`recommendations` AS assessment_recommendations,
+     assessment.`boolFollowUp` AS assessment_boolFollowUp,
+     assessment.`boolStretchBreak` AS assessment_boolStretchBreak,
+     assessment.`boolMicro` AS assessment_boolMicro,
+     assessment.`boolSitStand` AS assessment_boolSitStand,
+     assessment.`prepNotes` AS assessment_prepNotes,
+     assessment.`boolStableBase` AS assessment_boolStableBase,
+     assessment.`stableBaseNotes` AS assessment_stableBaseNotes,
+     assessment.`boolShoulderPos` AS assessment_boolShoulderPos,
+     assessment.`shoulderPosNotes` AS assessment_shoulderPosNotes,
+     assessment.`boolArmPos` AS assessment_boolArmPos,
+     assessment.`armPosNotes` AS assessment_armPosNotes,
+     assessment.`generalNotes` AS assessment_generalNotes,
+     assessment.`boolChair` AS assessment_boolChair,
+     assessment.`chairNotes` AS assessment_chairNotes,
+     assessment.`boolMonitor` AS assessment_boolMonitor,
+     assessment.`monitorNotes` AS assessment_monitorNotes,
+     assessment.`boolDevices` AS assessment_boolDevices,
+     assessment.`devicesNotes` AS assessment_devicesNotes,
+     assessment.`boolDesk` AS assessment_boolDesk,
+     assessment.`deskNotes` AS assessment_deskNotes,
+     assessment.`boolAccessories` AS assessment_boolAccessories,
+     assessment.`accessoriesNotes` AS assessment_accessoriesNotes,
+     assessment.`confidentialNotes` AS assessment_confidentialNotes,
+     employee.`username` AS employee_username,
+     employee.`firstName` AS employee_firstName,
+     employee.`lastName` AS employee_lastName,
+     employee.`password` AS employee_password,
+     employee.`email` AS employee_email,
+     employee.`phoneNumber` AS employee_phoneNumber
+FROM
+     `assessment` assessment,
+     `employee` employee]]>
+    </queryString>
+    <field name="assessment_assessmentId" class="java.lang.Integer"/>
+    <field name="assessment_assessor" class="java.lang.String"/>
+    <field name="assessment_clientId" class="java.lang.Integer"/>
+    <field name="assessment_date" class="java.sql.Date"/>
+    <field name="assessment_workerComments" class="java.lang.String"/>
+    <field name="assessment_risks" class="java.lang.String"/>
+    <field name="assessment_recommendations" class="java.lang.String"/>
+    <field name="assessment_boolFollowUp" class="java.lang.Integer"/>
+    <field name="assessment_boolStretchBreak" class="java.lang.Integer"/>
+    <field name="assessment_boolMicro" class="java.lang.Integer"/>
+    <field name="assessment_boolSitStand" class="java.lang.Integer"/>
+    <field name="assessment_prepNotes" class="java.lang.String"/>
+    <field name="assessment_boolStableBase" class="java.lang.Integer"/>
+    <field name="assessment_stableBaseNotes" class="java.lang.String"/>
+    <field name="assessment_boolShoulderPos" class="java.lang.Integer"/>
+    <field name="assessment_shoulderPosNotes" class="java.lang.String"/>
+    <field name="assessment_boolArmPos" class="java.lang.Integer"/>
+    <field name="assessment_armPosNotes" class="java.lang.String"/>
+    <field name="assessment_generalNotes" class="java.lang.String"/>
+    <field name="assessment_boolChair" class="java.lang.Integer"/>
+    <field name="assessment_chairNotes" class="java.lang.String"/>
+    <field name="assessment_boolMonitor" class="java.lang.Integer"/>
+    <field name="assessment_monitorNotes" class="java.lang.String"/>
+    <field name="assessment_boolDevices" class="java.lang.Integer"/>
+    <field name="assessment_devicesNotes" class="java.lang.String"/>
+    <field name="assessment_boolDesk" class="java.lang.Integer"/>
+    <field name="assessment_deskNotes" class="java.lang.String"/>
+    <field name="assessment_boolAccessories" class="java.lang.Integer"/>
+    <field name="assessment_accessoriesNotes" class="java.lang.String"/>
+    <field name="assessment_confidentialNotes" class="java.lang.String"/>
+    <field name="employee_username" class="java.lang.String"/>
+    <field name="employee_firstName" class="java.lang.String"/>
+    <field name="employee_lastName" class="java.lang.String"/>
+    <field name="employee_password" class="java.lang.String"/>
+    <field name="employee_email" class="java.lang.String"/>
+    <field name="employee_phoneNumber" class="java.lang.Integer"/>
+    <group name="employee_username">
+        <groupExpression><![CDATA[$F{employee_username}]]></groupExpression>
+        <groupHeader>
+            <band height="33">
+                <staticText>
+                    <reportElement mode="Opaque" x="0" y="0" width="100" height="32" forecolor="#666666" backcolor="#E6E6E6" uuid="367fe6f1-847a-4693-9b60-176f15eaed06"/>
+                    <textElement>
+                        <font size="12"/>
+                    </textElement>
+                    <text><![CDATA[employee_username]]></text>
+                </staticText>
+                <textField>
+                    <reportElement mode="Opaque" x="100" y="0" width="455" height="32" forecolor="#006699" backcolor="#E6E6E6" uuid="bd2a9170-73b1-456a-8cae-bf245fd91bc8"/>
+                    <textElement>
+                        <font size="24" isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$F{employee_username}]]></textFieldExpression>
+                </textField>
+                <line>
+                    <reportElement x="-20" y="32" width="595" height="1" forecolor="#666666" uuid="8a5e1960-655d-4c42-8f93-19c65761c903"/>
+                </line>
+            </band>
+        </groupHeader>
+        <groupFooter>
+            <band/>
+        </groupFooter>
+    </group>
+    <group name="employee_firstName">
+        <groupExpression><![CDATA[$F{employee_firstName}]]></groupExpression>
+        <groupHeader>
+            <band height="32">
+                <textField>
+                    <reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="0ac5a6f0-c2fb-4e73-9a96-bc6f148b73ae"/>
+                    <textElement>
+                        <font size="22" isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$F{employee_firstName}]]></textFieldExpression>
+                </textField>
+                <staticText>
+                    <reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="1a029a16-46b4-4434-83c6-e2e459d6051b"/>
+                    <textElement>
+                        <font size="12"/>
+                    </textElement>
+                    <text><![CDATA[employee_firstName]]></text>
+                </staticText>
+            </band>
+        </groupHeader>
+        <groupFooter>
+            <band/>
+        </groupFooter>
+    </group>
+    <group name="employee_password">
+        <groupExpression><![CDATA[$F{employee_password}]]></groupExpression>
+        <groupHeader>
+            <band height="32">
+                <textField>
+                    <reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="e545c682-aa85-4615-b7ef-31d7d2f04495"/>
+                    <textElement>
+                        <font size="20" isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$F{employee_password}]]></textFieldExpression>
+                </textField>
+                <staticText>
+                    <reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="277fef73-96f6-41e0-8296-a5cbc7f91622"/>
+                    <textElement>
+                        <font size="12"/>
+                    </textElement>
+                    <text><![CDATA[employee_password]]></text>
+                </staticText>
+            </band>
+        </groupHeader>
+        <groupFooter>
+            <band/>
+        </groupFooter>
+    </group>
+    <group name="employee_email">
+        <groupExpression><![CDATA[$F{employee_email}]]></groupExpression>
+        <groupHeader>
+            <band height="32">
+                <textField>
+                    <reportElement x="100" y="0" width="455" height="32" forecolor="#006699" uuid="db9a1846-db40-4ab8-9337-30327f57ada7"/>
+                    <textElement>
+                        <font size="16" isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA[$F{employee_email}]]></textFieldExpression>
+                </textField>
+                <staticText>
+                    <reportElement x="0" y="0" width="100" height="20" forecolor="#666666" uuid="b249012d-b966-4911-ae9f-750076ada5e1"/>
+                    <textElement>
+                        <font size="12"/>
+                    </textElement>
+                    <text><![CDATA[employee_email]]></text>
+                </staticText>
+            </band>
+        </groupHeader>
+        <groupFooter>
+            <band/>
+        </groupFooter>
+    </group>
+    <background>
+        <band/>
+    </background>
+    <title>
+        <band height="72">
+            <frame>
+                <reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="1233b977-b895-4c8e-be6b-33a4894b1f4a"/>
+                <staticText>
+                    <reportElement x="20" y="20" width="234" height="43" forecolor="#FFFFFF" uuid="9453502b-4c21-4a45-9bc2-b09b59dacf72"/>
+                    <textElement>
+                        <font size="34" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[TITLE]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="dbb12036-27d2-4606-823f-77fb362866e5"/>
+                    <textElement textAlignment="Right">
+                        <font size="14" isBold="false"/>
+                    </textElement>
+                    <text><![CDATA[Add a description here]]></text>
+                </staticText>
+            </frame>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="13"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="21">
+            <line>
+                <reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="a2100502-8e24-4fd4-a292-f7e5ea540e1c"/>
+            </line>
+            <staticText>
+                <reportElement mode="Opaque" x="0" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="787812d8-c879-4938-908b-99a372be8cfa"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_assessmentId]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="17" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e105972b-05b7-4244-a93f-ba233298bd63"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_assessor]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="34" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e5540a75-1193-4cf3-873f-5c4070415e9f"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_clientId]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="51" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="494db756-c14b-42d9-80b9-d5e83ebb89ee"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_date]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="68" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a286242b-f1da-4779-a7d3-833eb3776078"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_workerComments]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="85" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f815fab4-b0ba-4265-ba56-a783c65f3e92"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_risks]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="102" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="af2f595d-7928-4611-81f9-40c545c92d08"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_recommendations]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="119" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="6accbe8b-c762-482b-b736-f1a335b419ee"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_boolFollowUp]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="136" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a5c83c4a-ceaa-4e46-a7d2-940b62052a11"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_boolStretchBreak]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="153" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="90cbf019-d751-4bfe-b03e-863348c86e70"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_boolMicro]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="170" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="76880c28-7624-4bd5-aa26-a67c2b238acd"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_boolSitStand]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="187" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="d4954365-9703-44c1-b853-ba5b26dbaee7"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_prepNotes]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="204" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="d760c85e-883e-4730-9abf-f4986563c6ea"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_boolStableBase]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="221" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="6ae5c937-e634-4bfa-ad95-1e55d16ac25d"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_stableBaseNotes]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="238" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="b2c490b6-9a7e-48a5-84d0-c1056c644fb9"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_boolShoulderPos]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="255" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="8e59f7ab-6fe0-415d-8e44-83798e196e00"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_shoulderPosNotes]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="272" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="f855a3cd-9d4f-419e-acb5-c7fd90d77250"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_boolArmPos]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="289" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="5c1b8b02-22c9-4652-a231-71bd07842ad1"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_armPosNotes]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="306" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e0b0fe47-c47c-4dfd-abc7-0d0de797f3f3"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_generalNotes]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="323" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="8de04fd8-6a9b-4273-967f-88da809ba1c1"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_boolChair]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="340" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a9a4b60f-529d-4d77-abd6-1b2b3241c160"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_chairNotes]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="357" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="de6a2df7-ec5a-442c-b009-c1934caeb7b2"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_boolMonitor]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="374" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="8ca16d83-ad4b-4d9a-88c6-cdbb2a88bcc8"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_monitorNotes]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="391" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="8b4f2218-3faa-4996-ba1e-b21c410e507f"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_boolDevices]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="408" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="33ea3ab6-e1c3-4fd2-81d0-f1604adc3372"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_devicesNotes]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="425" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="5564ab2e-da0a-4d5b-abb2-e238894e886f"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_boolDesk]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="442" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="ee525022-1732-4301-bc7f-1d7720551d0f"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_deskNotes]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="459" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="557ded25-c140-43f8-9f65-d11ba2db3812"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_boolAccessories]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="476" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="6d31bc2f-df4c-4f08-8dda-ce3de5062103"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_accessoriesNotes]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="493" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a71186d5-0b60-4c71-b3d3-abbe786e4a4a"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[assessment_confidentialNotes]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="510" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a149c832-c31e-4592-b965-b2a39b4c6259"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[employee_lastName]]></text>
+            </staticText>
+            <staticText>
+                <reportElement mode="Opaque" x="527" y="0" width="17" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="03b655ae-7950-4382-87c8-f9f34af41a19"/>
+                <textElement textAlignment="Center">
+                    <font size="14" isBold="true"/>
+                </textElement>
+                <text><![CDATA[employee_phoneNumber]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="20">
+            <line>
+                <reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="102a5089-c645-484f-b499-d131aadd9e88"/>
+            </line>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="0" y="0" width="17" height="20" uuid="64dfeda5-3e19-4c6d-9f08-691b661fda9a"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_assessmentId}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="17" y="0" width="17" height="20" uuid="585ca1b0-528e-4672-8547-2f586d4cd718"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_assessor}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="34" y="0" width="17" height="20" uuid="98ebe12f-20b1-4056-a178-04e61d476225"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_clientId}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="51" y="0" width="17" height="20" uuid="01bc673b-aa51-4729-b664-d18d4909f00d"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_date}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="68" y="0" width="17" height="20" uuid="f4357b72-1714-46b7-9fa0-932d49d8b6d5"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_workerComments}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="85" y="0" width="17" height="20" uuid="1a1e7d17-4f5d-4c76-a8c0-5b427818f8b6"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_risks}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="102" y="0" width="17" height="20" uuid="f092c10b-4a22-49f7-9438-012189c48c06"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_recommendations}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="119" y="0" width="17" height="20" uuid="7b98dbb9-81f4-4875-8f50-20e79b2e6e75"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_boolFollowUp}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="136" y="0" width="17" height="20" uuid="87809e2e-9fce-4250-90f4-b1c84207f16b"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_boolStretchBreak}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="153" y="0" width="17" height="20" uuid="e90dda14-7714-4580-8641-a230233aa327"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_boolMicro}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="170" y="0" width="17" height="20" uuid="df8def74-b7b5-40d5-8474-fd4a8064aacd"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_boolSitStand}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="187" y="0" width="17" height="20" uuid="8f900dc2-bdf5-4e2a-a883-480bd8e872da"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_prepNotes}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="204" y="0" width="17" height="20" uuid="cf54db97-36fa-4c89-a64c-65c81f88006b"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_boolStableBase}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="221" y="0" width="17" height="20" uuid="8fee01a5-93da-442f-babe-fa0f6a310132"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_stableBaseNotes}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="238" y="0" width="17" height="20" uuid="46844453-5f02-41fa-940d-583c213ece42"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_boolShoulderPos}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="255" y="0" width="17" height="20" uuid="c46d388e-ce24-4206-b083-0ef4bb197079"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_shoulderPosNotes}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="272" y="0" width="17" height="20" uuid="d5420563-5897-485f-9278-0752b9db61b0"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_boolArmPos}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="289" y="0" width="17" height="20" uuid="09e1e93b-4822-42ec-83db-aa2ba51d495d"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_armPosNotes}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="306" y="0" width="17" height="20" uuid="d1706cb0-5ee0-49fe-acfe-cb90423bc5b3"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_generalNotes}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="323" y="0" width="17" height="20" uuid="e5229bde-51ae-4f42-a361-a9ea69370e27"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_boolChair}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="340" y="0" width="17" height="20" uuid="72664a1e-f6b0-4613-9fa8-2326908eabd1"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_chairNotes}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="357" y="0" width="17" height="20" uuid="9c096419-5c17-4905-9005-ac41cf0d4ad0"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_boolMonitor}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="374" y="0" width="17" height="20" uuid="09597478-2ef0-44cd-a2f4-33892511009e"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_monitorNotes}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="391" y="0" width="17" height="20" uuid="6601f181-b546-466f-9b49-4ee75c52ed45"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_boolDevices}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="408" y="0" width="17" height="20" uuid="78535a35-53f1-49ae-8a56-5592deb6f1eb"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_devicesNotes}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="425" y="0" width="17" height="20" uuid="645c201b-a93b-4cc3-9050-d80d7797ce50"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_boolDesk}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="442" y="0" width="17" height="20" uuid="c6f7c7cf-3881-4d19-bda8-fb6d4e9e50d8"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_deskNotes}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="459" y="0" width="17" height="20" uuid="2d7a7363-cb87-4194-9be0-fbfeaf83ef1b"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_boolAccessories}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="476" y="0" width="17" height="20" uuid="2b670829-4f19-40a3-bce4-692ad945892b"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_accessoriesNotes}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="493" y="0" width="17" height="20" uuid="e6d60b36-bf33-4173-bc67-83f173267d77"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{assessment_confidentialNotes}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="510" y="0" width="17" height="20" uuid="ab041c86-a74f-4efc-a7dd-a19a65ccdef3"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{employee_lastName}]]></textFieldExpression>
+            </textField>
+            <textField isStretchWithOverflow="true">
+                <reportElement x="527" y="0" width="17" height="20" uuid="ffe97949-6c23-40b7-905c-9f5fb82f3787"/>
+                <textElement>
+                    <font size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{employee_phoneNumber}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band/>
+    </columnFooter>
+    <pageFooter>
+        <band height="17">
+            <textField>
+                <reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="4f41f5c2-97b1-4cdd-9406-c9034bf91b4f"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="a73c785c-4d2f-4897-8e7c-77d098f90d18"/>
+                <textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+            <textField pattern="EEEEE dd MMMMM yyyy">
+                <reportElement x="0" y="4" width="100" height="13" uuid="ee5c33d1-1231-4a43-8e60-7c624ffa4882"/>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+    <summary>
+        <band/>
+    </summary>
+</jasperReport>
