@@ -49,6 +49,18 @@
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>AssessAdminServlet</servlet-name>
+        <servlet-class>ergo.servlet.assessment.AssessAdminServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PrepareMaintainServlet</servlet-name>
+        <servlet-class>ergo.servlet.assessment.PrepareMaintainServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WorkAndEquiptServlet</servlet-name>
+        <servlet-class>ergo.servlet.assessment.WorkAndEquiptServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>

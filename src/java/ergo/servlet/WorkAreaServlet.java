@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 /**
  *
  * @author Kimberly Oshiro
+ * 
+ * One of the main Servlets on the page. Will take in the information from the "Prepare Work Area & Equiptment" and will input it into the database.
+ * From there, the database will be able to recall the information whenever and can put the information into a report. 
  */
 public class WorkAreaServlet extends HttpServlet {
 

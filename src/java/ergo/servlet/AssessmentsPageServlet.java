@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Kimberly Oshiro
+ * @author Kimberly Oshiro 
+ * the base assessments Servlet that will handle the forwarding for now. 
  */
 public class AssessmentsPageServlet extends HttpServlet {
 

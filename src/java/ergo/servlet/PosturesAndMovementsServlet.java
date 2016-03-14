@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  *
  * @author Kimberly Oshiro
+ * 
+ * One of the main Servlets in the program. Takes the information from "Safe Postures & Movements" and inputs it into the database. 
  */
 public class PosturesAndMovementsServlet extends HttpServlet {
 

@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  *
  * @author Kimberly Oshiro
+ * 
+ * The Servlet Assessment page is in charge of the "Discomfort" tab in the assessment tab. 
  */
 public class DiscomfortServlet extends HttpServlet {
 

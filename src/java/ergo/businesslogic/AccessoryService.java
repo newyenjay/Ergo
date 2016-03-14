@@ -10,17 +10,23 @@ import ergo.domainmodel.Accessory;
 import java.util.List;
 
 /**
- *
+ *Accessory Service. Will retrieve information from the Accessory Database. 
+ * 
+ * there is no plans to be able to insert things. 
+ * 
+ * @version 1.0 code implemented, as well as javadoc. 
+ * 
  * @author Kimberly Oshiro
  */
 public class AccessoryService {
     AccessoryRepository ar;
     
     /**
+     * Returns an Accessory object based on the accessoryId. If there is no Accessory Object in the database, then the database will throw an exception. 
      * 
-     * @param accessoryId
-     * @return
-     * @throws Exception 
+     * @param accessoryId - The id in which the Database will use to search for the object. Must be a valid integer, and must be a positive integer. 
+     * @return an Accessory object that has all its fields filled from a row in the database. 
+     * @throws Exception - If the database throws an error, the Java error will be translated to that of an exception to something that is valid in Java. 
      */
     public Accessory getLocation(int accessoryId)throws Exception{
         ar = new AccessoryRepository();
@@ -28,6 +34,7 @@ public class AccessoryService {
     }
     
     /**
+     * 
      * 
      * @return
      * @throws Exception 
