@@ -42,7 +42,7 @@
                     <div class="panel-body">
                         <form role="form">
                             <div class="form-group">
-                                <label class="control-label">Assessment</label>
+                                <label class="control-label">Accessor</label>
                                 <select class="form-control" name="assessment">
                                     <option></option>
                                     <option>Tennille Walker</option>
