@@ -5,12 +5,24 @@
  */
 package ergo.servlet;
 
+import ergo.businesslogic.ClientService;
+import ergo.businesslogic.EmployeeService;
+import ergo.domainmodel.Employee;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -57,8 +69,37 @@ public class MainPageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       //Bro this servlet is gonna be massive please have mercy on my soul I don't know what to do oh my god.
-        //the code here is gonna be 30 miles long sweet jesus how are we gonna do this. 
+        try {
+            //Bro this servlet is gonna be massive please have mercy on my soul I don't know what to do oh my god.
+            //the code here is gonna be 30 miles long sweet jesus how are we gonna do this.
+            HttpSession session = request.getSession();
+            String action = request.getParameter("action");
+            List<Employee> empList = null;
+            ClientService cs = new ClientService();
+            
+            if(action == null || action.isEmpty()){
+                action = "";
+            }
+            
+            switch(action){
+                case "addClient":
+                    String firstName = request.getParameter("firstname");
+                    String lastName = request.getParameter("lastname");
+                    String email = request.getParameter("email");
+                    String date = request.getParameter("date");
+                    DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+                    Date newDate = new Date();
+                    newDate = format.parse(date);
+                    int nice = cs.insert(firstName, lastName, newDate,email);  
+                    request.setAttribute("firstname", nice);
+                    getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/searchAdd.jsp").forward(request, response);                    //cs.insert(firstName, lastName, date,email);                default:
+                    break;
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(MainPageServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(MainPageServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -33,9 +33,13 @@ public class ClientService {
      *  into the database. 
      * @throws Exception 
      */
-    public int insert(Integer clientId, String firstName, String lastName, Date dateCreated)throws Exception{
+    public int insert(String firstName, String lastName, Date dateCreated,String email)throws Exception{
        cr = new ClientRepository();
-       Client client = new Client(clientId, firstName, lastName, dateCreated);
+       Client client = new Client();
+       client.setFirstName(firstName);
+       client.setLastName(lastName);
+       client.setDateCreated(dateCreated);
+       client.setEmail(email);
        return cr.insert(client);
     }
     
