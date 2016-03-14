@@ -1,79 +1,47 @@
--- ---
--- Globals
--- ---
 DROP DATABASE IF EXISTS ErgoDB;
 CREATE DATABASE ErgoDB;
 USE ErgoDB;
--- ---
--- Globals
--- ---
 
--- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
--- SET FOREIGN_KEY_CHECKS=0;
 
--- ---
--- Table 'COMPANY'
--- 
--- ---
-
-DROP TABLE IF EXISTS `COMPANY`;
+DROP TABLE IF EXISTS `company`;
 		
-CREATE TABLE `COMPANY` (
+CREATE TABLE `company` (
   `companyId` INTEGER NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`companyId`)
 );
 
--- ---
--- Table 'CLIENTCOMPANY'
--- 
--- ---
 
-DROP TABLE IF EXISTS `CLIENTCOMPANY`;
+DROP TABLE IF EXISTS `clientcompany`;
 		
-CREATE TABLE `CLIENTCOMPANY` (
+CREATE TABLE `clientcompany` (
   `companyId` INTEGER NOT NULL,
   `clientId` INTEGER NOT NULL
 );
 
--- ---
--- Table 'LOCATION'
--- 
--- ---
-
-DROP TABLE IF EXISTS `LOCATION`;
+DROP TABLE IF EXISTS `location`;
 		
-CREATE TABLE `LOCATION` (
+CREATE TABLE `location` (
   `locationId` INTEGER NOT NULL AUTO_INCREMENT,
   `companyId` INTEGER NOT NULL,
   `address` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`locationId`)
 );
 
--- ---
--- Table 'CLIENT'
--- 
--- ---
-
-DROP TABLE IF EXISTS `CLIENT`;
+DROP TABLE IF EXISTS `client`;
 		
-CREATE TABLE `CLIENT` (
+CREATE TABLE `client` (
   `clientId` INTEGER NOT NULL AUTO_INCREMENT,
   `firstName` VARCHAR(30) NOT NULL,
   `lastName` VARCHAR(30) NOT NULL,
-  `email` VARCHAR(50) NULL,
+  `email` VARCHAR(50) NULL DEFAULT NULL,
   `dateCreated` DATE NOT NULL,
   PRIMARY KEY (`clientId`)
 );
 
--- ---
--- Table 'EMPLOYEE'
--- 
--- ---
-
-DROP TABLE IF EXISTS `EMPLOYEE`;
+DROP TABLE IF EXISTS `employee`;
 		
-CREATE TABLE `EMPLOYEE` (
+CREATE TABLE `employee` (
   `username` VARCHAR(30) NOT NULL,
   `firstName` VARCHAR(30) NOT NULL,
   `lastName` VARCHAR(30) NOT NULL,
@@ -83,26 +51,18 @@ CREATE TABLE `EMPLOYEE` (
   PRIMARY KEY (`username`)
 );
 
--- ---
--- Table 'CLIENTEMPLOYEE'
--- 
--- ---
 
-DROP TABLE IF EXISTS `CLIENTEMPLOYEE`;
+DROP TABLE IF EXISTS `clientemployee`;
 		
-CREATE TABLE `CLIENTEMPLOYEE` (
+CREATE TABLE `clientemployee` (
   `clientId` INTEGER NOT NULL,
   `username` VARCHAR(30) NOT NULL
 );
 
--- ---
--- Table 'ASSESSMENT'
--- 
--- ---
 
-DROP TABLE IF EXISTS `ASSESSMENT`;
+DROP TABLE IF EXISTS `assessment`;
 		
-CREATE TABLE `ASSESSMENT` (
+CREATE TABLE `assessment` (
   `assessmentId` INTEGER NOT NULL AUTO_INCREMENT,
   `assessor` VARCHAR(30) NOT NULL,
   `clientId` INTEGER NULL DEFAULT NULL,
@@ -136,50 +96,30 @@ CREATE TABLE `ASSESSMENT` (
   PRIMARY KEY (`assessmentId`)
 );
 
--- ---
--- Table 'ASSESSMENTACCESSORY'
--- 
--- ---
-
-DROP TABLE IF EXISTS `ASSESSMENTACCESSORY`;
+DROP TABLE IF EXISTS `assessmentaccessory`;
 		
-CREATE TABLE `ASSESSMENTACCESSORY` (
+CREATE TABLE `assessmentaccessory` (
   `assessmentId` INTEGER NOT NULL,
   `accessoryId` INTEGER NOT NULL
 );
 
--- ---
--- Table 'ACCESSORY'
--- 
--- ---
-
-DROP TABLE IF EXISTS `ACCESSORY`;
+DROP TABLE IF EXISTS `accessory`;
 		
-CREATE TABLE `ACCESSORY` (
+CREATE TABLE `accessory` (
   `accessoryId` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
   PRIMARY KEY (`accessoryId`)
 );
 
--- ---
--- Table 'ASSESSMENTFOLLOWUP'
--- 
--- ---
-
-DROP TABLE IF EXISTS `ASSESSMENTFOLLOWUP`;
+DROP TABLE IF EXISTS `assessmentfollowup`;
 		
-CREATE TABLE `ASSESSMENTFOLLOWUP` (
+CREATE TABLE `assessmentfollowup` (
   `assessmentId` INTEGER NOT NULL,
   `followUpId` INTEGER NOT NULL
 );
 
--- ---
--- Table 'FOLLOWUP'
--- 
--- ---
-
-DROP TABLE IF EXISTS `FOLLOWUP`;
+DROP TABLE IF EXISTS `followup`;
 		
-CREATE TABLE `FOLLOWUP` (
+CREATE TABLE `followup` (
   `followUpId` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
   `note` VARCHAR(300) NULL DEFAULT NULL,
   `comments` VARCHAR(300) NULL DEFAULT NULL,
@@ -187,14 +127,9 @@ CREATE TABLE `FOLLOWUP` (
   PRIMARY KEY (`followUpId`)
 );
 
--- ---
--- Table 'MONITOR'
--- 
--- ---
-
-DROP TABLE IF EXISTS `MONITOR`;
+DROP TABLE IF EXISTS `monitor`;
 		
-CREATE TABLE `MONITOR` (
+CREATE TABLE `monitor` (
   `monitorId` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
   `assessmentId` INTEGER NOT NULL,
   `size` INTEGER NOT NULL,
@@ -206,120 +141,72 @@ CREATE TABLE `MONITOR` (
   PRIMARY KEY (`monitorId`)
 );
 
--- ---
--- Table 'LOG'
--- 
--- ---
-
-DROP TABLE IF EXISTS `LOG`;
+DROP TABLE IF EXISTS `log`;
 		
-CREATE TABLE `LOG` (
+CREATE TABLE `log` (
   `clientId` INTEGER NOT NULL,
   `employeeId` INTEGER NOT NULL,
   `action` VARCHAR(300) NOT NULL,
   PRIMARY KEY (`clientId`)
 );
 
--- ---
--- Table 'EMPLOYEEPRIVILEGE'
--- 
--- ---
-
-DROP TABLE IF EXISTS `EMPLOYEEPRIVILEGE`;
 		
-CREATE TABLE `EMPLOYEEPRIVILEGE` (
+CREATE TABLE `employeeprivilege` (
   `privilegeId` INTEGER NOT NULL,
   `username` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`username`, `privilegeId`)
 );
 
--- ---
--- Table 'PRIVILEGE'
--- 
--- ---
-
-DROP TABLE IF EXISTS `PRIVILEGE`;
 		
-CREATE TABLE `PRIVILEGE` (
+CREATE TABLE `privilege` (
   `privilegeId` INTEGER NOT NULL,
   `description` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`privilegeId`)
 );
+		
+CREATE TABLE `admin` (
+  `assessmentId` INTEGER NOT NULL AUTO_INCREMENT DEFAULT NULL,
+  `proactive` VARCHAR(20) NULL,
+  `reactive` VARCHAR(20) NULL,
+  `assessor` VARCHAR(20) NULL,
+  `manager` VARCHAR(20) NULL,
+  `businessUnit` VARCHAR(20) NULL,
+  `workspace` VARCHAR(20) NULL,
+  `jobTitle` VARCHAR(20) NULL,
+  `gender` VARCHAR(6) NULL,
+  `heightInFeet` INTEGER NULL,
+  `heightInInches` INTEGER NULL,
+  `handedness` VARCHAR(5) NULL,
+  `daysPerWeek` INTEGER NULL,
+  `hoursPerDay` INTEGER NULL,
+  `hoursVDT` INTEGER NULL,
+  `hoursOnPhone` INTEGER NULL,
+  `discomfortPresent` VARCHAR(20) NULL,
+  `discomfortReported` VARCHAR(20) NULL,
+  `treatmentSought` VARCHAR NULL,
+  `maxDiscomfort` VARCHAR(20) NULL,
+  `risks` VARCHAR(200) NULL,
+  `equipmentRecommendations` VARCHAR(200) NULL,
+  `generalNotes` VARCHAR(300) NULL DEFAULT NULL,
+  `score` INTEGER NULL,
+  `followUpNeeded` INTEGER NULL DEFAULT NULL,
+  PRIMARY KEY (`assessmentId`)
+);
 
--- ---
--- Foreign Keys 
--- ---
+ALTER TABLE `clientcompany` ADD FOREIGN KEY (companyId) REFERENCES `company` (`companyId`);
+ALTER TABLE `clientcompany` ADD FOREIGN KEY (clientId) REFERENCES `client` (`clientId`);
+ALTER TABLE `location` ADD FOREIGN KEY (companyId) REFERENCES `company` (`companyId`);
+ALTER TABLE `clientemployee` ADD FOREIGN KEY (clientId) REFERENCES `client` (`clientId`);
+ALTER TABLE `clientemployee` ADD FOREIGN KEY (username) REFERENCES `employee` (`username`);
+ALTER TABLE `assessment` ADD FOREIGN KEY (clientId) REFERENCES `client` (`clientId`);
+ALTER TABLE `assessmentaccessory` ADD FOREIGN KEY (assessmentId) REFERENCES `assessment` (`assessmentId`);
+ALTER TABLE `assessmentaccessory` ADD FOREIGN KEY (accessoryId) REFERENCES `accessory` (`accessoryId`);
+ALTER TABLE `assessmentfollowup` ADD FOREIGN KEY (assessmentId) REFERENCES `assessment` (`assessmentId`);
+ALTER TABLE `assessmentfollowup` ADD FOREIGN KEY (followUpId) REFERENCES `followup` (`followUpId`);
+ALTER TABLE `monitor` ADD FOREIGN KEY (assessmentId) REFERENCES `assessment` (`assessmentId`);
+ALTER TABLE `employeeprivilege` ADD FOREIGN KEY (privilegeId) REFERENCES `privilege` (`privilegeId`);
+ALTER TABLE `employeeprivilege` ADD FOREIGN KEY (username) REFERENCES `employee` (`username`);
 
-ALTER TABLE `CLIENTCOMPANY` ADD FOREIGN KEY (companyId) REFERENCES `COMPANY` (`companyId`);
-ALTER TABLE `CLIENTCOMPANY` ADD FOREIGN KEY (clientId) REFERENCES `CLIENT` (`clientId`);
-ALTER TABLE `LOCATION` ADD FOREIGN KEY (companyId) REFERENCES `COMPANY` (`companyId`);
-ALTER TABLE `CLIENTEMPLOYEE` ADD FOREIGN KEY (clientId) REFERENCES `CLIENT` (`clientId`);
-ALTER TABLE `CLIENTEMPLOYEE` ADD FOREIGN KEY (username) REFERENCES `EMPLOYEE` (`username`);
-ALTER TABLE `ASSESSMENT` ADD FOREIGN KEY (clientId) REFERENCES `CLIENT` (`clientId`);
-ALTER TABLE `ASSESSMENTACCESSORY` ADD FOREIGN KEY (assessmentId) REFERENCES `ASSESSMENT` (`assessmentId`);
-ALTER TABLE `ASSESSMENTACCESSORY` ADD FOREIGN KEY (accessoryId) REFERENCES `ACCESSORY` (`accessoryId`);
-ALTER TABLE `ASSESSMENTFOLLOWUP` ADD FOREIGN KEY (assessmentId) REFERENCES `ASSESSMENT` (`assessmentId`);
-ALTER TABLE `ASSESSMENTFOLLOWUP` ADD FOREIGN KEY (followUpId) REFERENCES `FOLLOWUP` (`followUpId`);
-ALTER TABLE `MONITOR` ADD FOREIGN KEY (assessmentId) REFERENCES `ASSESSMENT` (`assessmentId`);
-ALTER TABLE `EMPLOYEEPRIVILEGE` ADD FOREIGN KEY (privilegeId) REFERENCES `PRIVILEGE` (`privilegeId`);
-ALTER TABLE `EMPLOYEEPRIVILEGE` ADD FOREIGN KEY (username) REFERENCES `EMPLOYEE` (`username`);
-
--- ---
--- Table Properties
--- ---
-
--- ALTER TABLE `COMPANY` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `CLIENTCOMPANY` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `LOCATION` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `CLIENT` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `EMPLOYEE` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `CLIENTEMPLOYEE` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `ASSESSMENT` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `ASSESSMENTACCESSORY` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `ACCESSORY` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `ASSESSMENTFOLLOWUP` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `FOLLOWUP` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `MONITOR` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `LOG` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `EMPLOYEEPRIVILEGE` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `PRIVILEGE` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- ---
--- Test Data
--- ---
-
--- INSERT INTO `COMPANY` (`companyId`,`name`) VALUES
--- ('','');
--- INSERT INTO `CLIENTCOMPANY` (`companyId`,`clientId`) VALUES
--- ('','');
--- INSERT INTO `LOCATION` (`locationId`,`companyId`,`address`) VALUES
--- ('','','');
--- INSERT INTO `CLIENT` (`clientId`,`firstName`,`lastName`,`email`,`dateCreated`) VALUES
--- ('','','','','');
--- INSERT INTO `EMPLOYEE` (`username`,`firstName`,`lastName`,`password`,`email`,`phoneNumber`) VALUES
--- ('','','','','','');
--- INSERT INTO `CLIENTEMPLOYEE` (`clientId`,`username`) VALUES
--- ('','');
--- INSERT INTO `ASSESSMENT` (`assessmentId`,`assessor`,`clientId`,`date`,`workerComments`,`risks`,`recommendations`,`boolFollowUp`,`boolStretchBreak`,`boolMicro`,`boolSitStand`,`prepNotes`,`boolStableBase`,`stableBaseNotes`,`boolShoulderPos`,`shoulderPosNotes`,`boolArmPos`,`armPosNotes`,`generalNotes`,`boolChair`,`chairNotes`,`boolMonitor`,`monitorNotes`,`boolDevices`,`devicesNotes`,`boolDesk`,`deskNotes`,`boolAccessories`,`accessoriesNotes`,`confidentialNotes`) VALUES
--- ('','','','','','','','','','','','','','','','','','','','','','','','','','','','','','');
--- INSERT INTO `ASSESSMENTACCESSORY` (`assessmentId`,`accessoryId`) VALUES
--- ('','');
--- INSERT INTO `ACCESSORY` (`accessoryId`) VALUES
--- ('');
--- INSERT INTO `ASSESSMENTFOLLOWUP` (`assessmentId`,`followUpId`) VALUES
--- ('','');
--- INSERT INTO `FOLLOWUP` (`followUpId`,`note`,`comments`,`recommendations`) VALUES
--- ('','','','');
--- INSERT INTO `MONITOR` (`monitorId`,`assessmentId`,`size`,`pre`,`post`,`recommendation`,`notes`,`type`) VALUES
--- ('','','','','','','','');
--- INSERT INTO `LOG` (`clientId`,`employeeId`,`action`) VALUES
--- ('','','');
--- INSERT INTO `EMPLOYEEPRIVILEGE` (`privilegeId`,`username`) VALUES
--- ('','');
--- INSERT INTO `PRIVILEGE` (`privilegeId`,`description`) VALUES
--- ('','');
-
---DUMMY ACCOUNT FOR LOGIN
 INSERT INTO `PRIVILEGE` (`privilegeId`,`description`) VALUES
 (1,'Admin Privilege');
 INSERT INTO `PRIVILEGE` (`privilegeId`,`description`) VALUES
