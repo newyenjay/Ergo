@@ -6,7 +6,6 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -21,8 +20,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -30,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 680420
+ * @author Kimberly Oshiro
  */
 @Entity
 @Table(name = "client")
@@ -41,7 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Client.findByFirstName", query = "SELECT c FROM Client c WHERE c.firstName = :firstName"),
     @NamedQuery(name = "Client.findByLastName", query = "SELECT c FROM Client c WHERE c.lastName = :lastName"),
     @NamedQuery(name = "Client.findByEmail", query = "SELECT c FROM Client c WHERE c.email = :email"),
-    @NamedQuery(name = "Client.findByDateCreated", query = "SELECT c FROM Client c WHERE c.dateCreated = :dateCreated")})
+    @NamedQuery(name = "Client.findByPhoneNumber", query = "SELECT c FROM Client c WHERE c.phoneNumber = :phoneNumber")})
 public class Client implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -60,14 +57,13 @@ public class Client implements Serializable {
     @Column(name = "lastName")
     private String lastName;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Size(max = 50)
-    @Column(name = "email")
-    private String email;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "dateCreated")
-    @Temporal(TemporalType.DATE)
-    private Date dateCreated;
+    @Size(min = 1, max = 50)
+    @Column(name = "email")
+    private String email;
+    @Column(name = "phoneNumber")
+    private Integer phoneNumber;
     @ManyToMany(mappedBy = "clientList")
     private List<Company> companyList;
     @JoinTable(name = "clientemployee", joinColumns = {
@@ -85,11 +81,11 @@ public class Client implements Serializable {
         this.clientId = clientId;
     }
 
-    public Client(Integer clientId, String firstName, String lastName, Date dateCreated) {
+    public Client(Integer clientId, String firstName, String lastName, String email) {
         this.clientId = clientId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.dateCreated = dateCreated;
+        this.email = email;
     }
 
     public Integer getClientId() {
@@ -124,12 +120,12 @@ public class Client implements Serializable {
         this.email = email;
     }
 
-    public Date getDateCreated() {
-        return dateCreated;
+    public Integer getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
+    public void setPhoneNumber(Integer phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @XmlTransient

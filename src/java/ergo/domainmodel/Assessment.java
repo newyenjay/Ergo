@@ -9,15 +9,12 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -32,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 680420
+ * @author Kimberly Oshiro
  */
 @Entity
 @Table(name = "assessment")
@@ -153,20 +150,10 @@ public class Assessment implements Serializable {
     @Size(max = 300)
     @Column(name = "confidentialNotes")
     private String confidentialNotes;
-    @JoinTable(name = "assessmentaccessory", joinColumns = {
-        @JoinColumn(name = "assessmentId", referencedColumnName = "assessmentId")}, inverseJoinColumns = {
-        @JoinColumn(name = "accessoryId", referencedColumnName = "accessoryId")})
-    @ManyToMany
-    private List<Accessory> accessoryList;
-    @JoinTable(name = "assessmentfollowup", joinColumns = {
-        @JoinColumn(name = "assessmentId", referencedColumnName = "assessmentId")}, inverseJoinColumns = {
-        @JoinColumn(name = "followUpId", referencedColumnName = "followUpId")})
-    @ManyToMany
-    private List<Followup> followupList;
     @JoinColumn(name = "clientId", referencedColumnName = "clientId")
     @ManyToOne
     private Client clientId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "assessmentId")
+    @OneToMany(mappedBy = "assessmentId")
     private List<Monitor> monitorList;
 
     public Assessment() {
@@ -413,24 +400,6 @@ public class Assessment implements Serializable {
 
     public void setConfidentialNotes(String confidentialNotes) {
         this.confidentialNotes = confidentialNotes;
-    }
-
-    @XmlTransient
-    public List<Accessory> getAccessoryList() {
-        return accessoryList;
-    }
-
-    public void setAccessoryList(List<Accessory> accessoryList) {
-        this.accessoryList = accessoryList;
-    }
-
-    @XmlTransient
-    public List<Followup> getFollowupList() {
-        return followupList;
-    }
-
-    public void setFollowupList(List<Followup> followupList) {
-        this.followupList = followupList;
     }
 
     public Client getClientId() {
