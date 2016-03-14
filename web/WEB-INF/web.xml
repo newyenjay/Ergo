@@ -50,16 +50,8 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet>
-        <servlet-name>AssessAdminServlet</servlet-name>
-        <servlet-class>ergo.servlet.assessment.AssessAdminServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PrepareMaintainServlet</servlet-name>
-        <servlet-class>ergo.servlet.assessment.PrepareMaintainServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>WorkAndEquiptServlet</servlet-name>
-        <servlet-class>ergo.servlet.assessment.WorkAndEquiptServlet</servlet-class>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>ergo.servlet.SearchServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -104,6 +96,10 @@
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/search</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

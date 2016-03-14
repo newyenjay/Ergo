@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author 671402
+ * @author 680420
  */
 @Entity
 @Table(name = "monitor")
