@@ -53,6 +53,10 @@
         <servlet-name>SearchServlet</servlet-name>
         <servlet-class>ergo.servlet.SearchServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AssessmentsAdminServlet</servlet-name>
+        <servlet-class>ergo.servlet.AssessmentsAdminServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -101,10 +105,12 @@
         <servlet-name>SearchServlet</servlet-name>
         <url-pattern>/search</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AssessmentsAdminServlet</servlet-name>
+        <url-pattern>/adminInfo</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
     <welcome-file-list>
         <welcome-file>login</welcome-file>

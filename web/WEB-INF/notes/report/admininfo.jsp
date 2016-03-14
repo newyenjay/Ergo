@@ -27,7 +27,7 @@
                                     <option>New hire/job</option>
                                     <option>New Workstation</option>
                                     <option>Discomfort</option>
-                                    <option>Reassessement</option>
+                                    <option>Reassessment</option>
                                 </select>
                             </div>
                         </form>
@@ -105,7 +105,7 @@
                             <div class="col-xs-2">
                                 <label>Handedness</label>
                                 <div class="form-group">
-                                    <select class="form-control input-sm" name="gender">
+                                    <select class="form-control input-sm" name="handedness">
                                         <option value=""></option>
                                         <option value="s">Left</option>
                                         <option value="m">Right</option>
@@ -116,19 +116,19 @@
                         <div class="form-group">
                             <div class="col-xs-3">
                                 <label for="ex1">Days/weeks in office</label>
-                                <input class="form-control" id="ex1" type="text">
+                                <input class="form-control" id="ex1" type="text" name="daysWeeksInOffice">
                             </div>
                             <div class="col-xs-3">
                                 <label for="ex2">Hrs/day in office</label>
-                                <input class="form-control" id="ex2" type="text">
+                                <input class="form-control" id="ex2" type="text" name="hoursDayInOffice">
                             </div>
                             <div class="col-xs-4">
                                 <label for="ex3">hrs in VDT</label>
-                                <input class="form-control" id="ex3" type="text">
+                                <input class="form-control" id="ex3" type="text" name="hoursInVDT">
                             </div>
                             <div class="col-xs-2">
                                 <label for="ex3">hrs on phone</label>
-                                <input class="form-control" id="ex3" type="text">
+                                <input class="form-control" id="ex3" type="text" name="hoursOnPhone">
                             </div>
                         </div>
                     </div>
@@ -144,7 +144,7 @@
                                 <div class="col-xs-3">
                                     <div class="form-group">
                                         <label>Discomfort present?</label>
-                                        <select class="form-control" name="dpresent">
+                                        <select class="form-control" name="dPresent">
                                             <option value=""></option>
                                             <option value="no">Yes</option>
                                             <option value="yes">No</option>
@@ -154,7 +154,7 @@
                                 <div class="col-xs-3">
                                     <div class="form-group">
                                         <label>Discomfort reported?</label>
-                                        <select class="form-control" name="dreported">
+                                        <select class="form-control" name="dReported">
                                             <option value=""></option>
                                             <option value="no">Yes</option>
                                             <option value="yes">No</option>
@@ -163,8 +163,8 @@
                                 </div>
                                 <div class="col-xs-3">
                                     <div class="form-group">
-                                        <label>Treatement sought?</label>
-                                        <select class="form-control" name="tsought">
+                                        <label>Treatment sought?</label>
+                                        <select class="form-control" name="tSought">
                                             <option value=""></option>
                                             <option value="yes">Yes</option>
                                             <option value="no">No</option>
@@ -174,7 +174,7 @@
                                 <div class="col-xs-3">
                                     <div class="form-group">
                                         <label>Maximum discomfort</label>
-                                        <select class="form-control" name="maxdiscomfort">
+                                        <select class="form-control" name="maxDiscomfort">
                                             <option></option>
                                             <option value="">0</option>
                                             <option value="1">1</option>
@@ -190,7 +190,7 @@
                                         <label class="control-label">Identified Risks
                                             <br>
                                         </label>
-                                        <textarea class="form-control"></textarea>
+                                        <textarea class="form-control" name="equiptRec"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label">Equipment Recommendations</label>
@@ -200,7 +200,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label class="control-label">General Notes</label>
-                                <textarea class="form-control" rows="10" cols="45" placeholder="Enter notes"></textarea>
+                                <textarea class="form-control" rows="10" cols="45" placeholder="Enter notes" name="generalNotes"></textarea>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -208,13 +208,13 @@
                             <br>
                             <li>
                                 <b>High Risk &gt;11</b>
-                                <br>Immediate corretive action</li>
+                                <br>Immediate corrective action</li>
                             <li>
                                 <b>Moderate Risk 9-11</b>
                                 <br>Discomfort present and/or moderate to significant risk factors present</li>
                             <li>
                                 <b>Low Risk &lt;9</b>
-                                <br>Minor to moderate hazard controls to minimize the risk of musculoskletal
+                                <br>Minor to moderate hazard controls to minimize the risk of musculoskeletal
                                 disorders and discomforts</li>
                             <hr>
                             <form class="form-horizontal" role="form">
@@ -223,7 +223,7 @@
                                         <label for="inputEmail3" class="control-label">Score</label>
                                     </div>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="Score">
+                                        <input type="email" class="form-control" id="inputEmail3" placeholder="Score" name="email">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -231,7 +231,7 @@
                                         <label class="control-label">Follow up needed</label>
                                     </div>
                                     <div class="col-sm-10">
-                                        <form class="radio">
+                                        <form class="radio" name="followUpNeeded">
                                             <label class="radio-inline">
                                                 <input type="radio" name="followup" value="yesFollow">Yes</label>
                                             <label class="radio-inline">
