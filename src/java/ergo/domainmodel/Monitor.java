@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -30,11 +31,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Monitor.findAll", query = "SELECT m FROM Monitor m"),
     @NamedQuery(name = "Monitor.findByMonitorId", query = "SELECT m FROM Monitor m WHERE m.monitorId = :monitorId"),
-    @NamedQuery(name = "Monitor.findByNotes", query = "SELECT m FROM Monitor m WHERE m.notes = :notes"),
-    @NamedQuery(name = "Monitor.findByPost", query = "SELECT m FROM Monitor m WHERE m.post = :post"),
-    @NamedQuery(name = "Monitor.findByPre", query = "SELECT m FROM Monitor m WHERE m.pre = :pre"),
-    @NamedQuery(name = "Monitor.findByRecommendation", query = "SELECT m FROM Monitor m WHERE m.recommendation = :recommendation"),
     @NamedQuery(name = "Monitor.findBySize", query = "SELECT m FROM Monitor m WHERE m.size = :size"),
+    @NamedQuery(name = "Monitor.findByPre", query = "SELECT m FROM Monitor m WHERE m.pre = :pre"),
+    @NamedQuery(name = "Monitor.findByPost", query = "SELECT m FROM Monitor m WHERE m.post = :post"),
+    @NamedQuery(name = "Monitor.findByRecommendation", query = "SELECT m FROM Monitor m WHERE m.recommendation = :recommendation"),
+    @NamedQuery(name = "Monitor.findByNotes", query = "SELECT m FROM Monitor m WHERE m.notes = :notes"),
     @NamedQuery(name = "Monitor.findByType", query = "SELECT m FROM Monitor m WHERE m.type = :type")})
 public class Monitor implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -43,23 +44,25 @@ public class Monitor implements Serializable {
     @Basic(optional = false)
     @Column(name = "monitorId")
     private Integer monitorId;
-    @Size(max = 255)
-    @Column(name = "notes")
-    private String notes;
-    @Column(name = "post")
-    private Integer post;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "size")
+    private int size;
     @Column(name = "pre")
     private Integer pre;
-    @Size(max = 255)
+    @Column(name = "post")
+    private Integer post;
+    @Size(max = 300)
     @Column(name = "recommendation")
     private String recommendation;
-    @Column(name = "size")
-    private Integer size;
-    @Size(max = 255)
+    @Size(max = 300)
+    @Column(name = "notes")
+    private String notes;
+    @Size(max = 50)
     @Column(name = "type")
     private String type;
     @JoinColumn(name = "assessmentId", referencedColumnName = "assessmentId")
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Assessment assessmentId;
 
     public Monitor() {
@@ -67,6 +70,11 @@ public class Monitor implements Serializable {
 
     public Monitor(Integer monitorId) {
         this.monitorId = monitorId;
+    }
+
+    public Monitor(Integer monitorId, int size) {
+        this.monitorId = monitorId;
+        this.size = size;
     }
 
     public Integer getMonitorId() {
@@ -77,20 +85,12 @@ public class Monitor implements Serializable {
         this.monitorId = monitorId;
     }
 
-    public String getNotes() {
-        return notes;
+    public int getSize() {
+        return size;
     }
 
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public Integer getPost() {
-        return post;
-    }
-
-    public void setPost(Integer post) {
-        this.post = post;
+    public void setSize(int size) {
+        this.size = size;
     }
 
     public Integer getPre() {
@@ -101,6 +101,14 @@ public class Monitor implements Serializable {
         this.pre = pre;
     }
 
+    public Integer getPost() {
+        return post;
+    }
+
+    public void setPost(Integer post) {
+        this.post = post;
+    }
+
     public String getRecommendation() {
         return recommendation;
     }
@@ -109,12 +117,12 @@ public class Monitor implements Serializable {
         this.recommendation = recommendation;
     }
 
-    public Integer getSize() {
-        return size;
+    public String getNotes() {
+        return notes;
     }
 
-    public void setSize(Integer size) {
-        this.size = size;
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 
     public String getType() {

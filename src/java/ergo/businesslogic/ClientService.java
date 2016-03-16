@@ -38,7 +38,7 @@ public class ClientService {
        Client client = new Client();
        client.setFirstName(firstName);
        client.setLastName(lastName);
-       //client.setDateCreated(dateCreated);
+       client.setDateCreated(dateCreated);
        client.setEmail(email);
        return cr.insert(client);
     }

@@ -6,16 +6,19 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -34,6 +37,8 @@ public class Accessory implements Serializable {
     @Basic(optional = false)
     @Column(name = "accessoryId")
     private Integer accessoryId;
+    @ManyToMany(mappedBy = "accessoryList")
+    private List<Assessment> assessmentList;
 
     public Accessory() {
     }
@@ -48,6 +53,15 @@ public class Accessory implements Serializable {
 
     public void setAccessoryId(Integer accessoryId) {
         this.accessoryId = accessoryId;
+    }
+
+    @XmlTransient
+    public List<Assessment> getAssessmentList() {
+        return assessmentList;
+    }
+
+    public void setAssessmentList(List<Assessment> assessmentList) {
+        this.assessmentList = assessmentList;
     }
 
     @Override
