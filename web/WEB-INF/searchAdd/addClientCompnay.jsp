@@ -5,14 +5,14 @@
             <div class="container">
                 <div class="row">
                   <div class="col-md-12">
-                    <h1>Search</h1>
+                    <h1>Add</h1>
                   </div></div>
               	<div class="row">
                     <div class="col-md-6">
                     <!-- Search company --> 
                         <div class="jumbotron">
                             <h1>Company</h1>
-                            <form role="searchCompany" action="search" method="post">
+                            <form role="searchCompany" action="add" method="post">
                                 <div class="form-group" id="companyName">
                                     <label class="control-label" for="exampleInputEmail1">Company Name</label>
                                     <input class="form-control" id="exampleInputEmail1" placeholder="Enter company name" type="text">
@@ -21,17 +21,17 @@
                                     <label class="control-label" for="exampleInputPassword1">Location</label>
                                     <input class="form-control" id="exampleInputPassword1" placeholder="Enter location" type="text">
                                 </div>
-                                            <input type="hidden" name="action" value="searchCompany">
-                                <button type="submit" class="btn btn-default" id="searchCompany">Submit</button>
+                                            <input type="hidden" name="action" value="addCompany">
+                                <button type="submit" class="btn btn-default" id="addCompany">Submit</button>
                             </form>
                         </div>
                     </div>
                   
-                  <!-- Search client --> 
+                  <!-- Add client --> 
                     <div class="col-md-6">
                         <div class="jumbotron">
                             <h1>Client</h1>
-                            <form role="searchClient"  action="search" method="post">
+                            <form role="searchClient"  action="add" method="post">
                                 <div class="form-group" id="fName">
                                     <label class="control-label" for="exampleInputEmail1">First Name</label>
                                     <input class="form-control" id="fname" placeholder="Enter First Name" type="text">
@@ -51,8 +51,8 @@
                                         <option>2</option>
                                     </select>
                                 </div>
-                                        <input type="hidden" name="action" value="searchClient">
-                                <button type="submit" class="btn btn-default" id="searchClient">Submit</button>
+                                        <input type="hidden" name="action" value="addClient">
+                                <button type="submit" class="btn btn-default" id="addClient">Submit</button>
                             </form>
                         </div>
                     </div>
