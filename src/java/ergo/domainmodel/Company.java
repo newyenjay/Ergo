@@ -8,7 +8,6 @@ package ergo.domainmodel;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,9 +16,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -28,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 671402
+ * @author 680420
  */
 @Entity
 @Table(name = "company")
@@ -36,7 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Company.findAll", query = "SELECT c FROM Company c"),
     @NamedQuery(name = "Company.findByCompanyId", query = "SELECT c FROM Company c WHERE c.companyId = :companyId"),
-    @NamedQuery(name = "Company.findByName", query = "SELECT c FROM Company c WHERE c.name = :name")})
+    @NamedQuery(name = "Company.findByCompanyName", query = "SELECT c FROM Company c WHERE c.companyName = :companyName")})
 public class Company implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -46,16 +45,17 @@ public class Company implements Serializable {
     private Integer companyId;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "name")
-    private String name;
+    @Size(min = 1, max = 50)
+    @Column(name = "companyName")
+    private String companyName;
     @JoinTable(name = "clientcompany", joinColumns = {
         @JoinColumn(name = "companyId", referencedColumnName = "companyId")}, inverseJoinColumns = {
         @JoinColumn(name = "clientId", referencedColumnName = "clientId")})
     @ManyToMany
     private List<Client> clientList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
-    private List<Location> locationList;
+    @JoinColumn(name = "nameLocation", referencedColumnName = "nameLocation")
+    @ManyToOne(optional = false)
+    private Location nameLocation;
 
     public Company() {
     }
@@ -64,9 +64,9 @@ public class Company implements Serializable {
         this.companyId = companyId;
     }
 
-    public Company(Integer companyId, String name) {
+    public Company(Integer companyId, String companyName) {
         this.companyId = companyId;
-        this.name = name;
+        this.companyName = companyName;
     }
 
     public Integer getCompanyId() {
@@ -77,12 +77,12 @@ public class Company implements Serializable {
         this.companyId = companyId;
     }
 
-    public String getName() {
-        return name;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     @XmlTransient
@@ -94,13 +94,12 @@ public class Company implements Serializable {
         this.clientList = clientList;
     }
 
-    @XmlTransient
-    public List<Location> getLocationList() {
-        return locationList;
+    public Location getNameLocation() {
+        return nameLocation;
     }
 
-    public void setLocationList(List<Location> locationList) {
-        this.locationList = locationList;
+    public void setNameLocation(Location nameLocation) {
+        this.nameLocation = nameLocation;
     }
 
     @Override

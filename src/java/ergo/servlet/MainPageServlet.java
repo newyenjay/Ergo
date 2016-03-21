@@ -26,7 +26,6 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Kimberly Oshiro 
  * This page is also known as HomePageServlet 
  */
 public class MainPageServlet extends HttpServlet {
@@ -54,7 +53,7 @@ public class MainPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/searchAdd.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
 
     }
 

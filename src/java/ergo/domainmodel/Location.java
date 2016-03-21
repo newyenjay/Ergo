@@ -6,66 +6,66 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 671402
+ * @author 680420
  */
 @Entity
 @Table(name = "location")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Location.findAll", query = "SELECT l FROM Location l"),
-    @NamedQuery(name = "Location.findByLocationId", query = "SELECT l FROM Location l WHERE l.locationId = :locationId"),
+    @NamedQuery(name = "Location.findByNameLocation", query = "SELECT l FROM Location l WHERE l.nameLocation = :nameLocation"),
     @NamedQuery(name = "Location.findByAddress", query = "SELECT l FROM Location l WHERE l.address = :address")})
 public class Location implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "locationId")
-    private Integer locationId;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
+    @Column(name = "nameLocation")
+    private String nameLocation;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
     @Column(name = "address")
     private String address;
-    @JoinColumn(name = "companyId", referencedColumnName = "companyId")
-    @ManyToOne(optional = false)
-    private Company companyId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nameLocation")
+    private List<Company> companyList;
 
     public Location() {
     }
 
-    public Location(Integer locationId) {
-        this.locationId = locationId;
+    public Location(String nameLocation) {
+        this.nameLocation = nameLocation;
     }
 
-    public Location(Integer locationId, String address) {
-        this.locationId = locationId;
+    public Location(String nameLocation, String address) {
+        this.nameLocation = nameLocation;
         this.address = address;
     }
 
-    public Integer getLocationId() {
-        return locationId;
+    public String getNameLocation() {
+        return nameLocation;
     }
 
-    public void setLocationId(Integer locationId) {
-        this.locationId = locationId;
+    public void setNameLocation(String nameLocation) {
+        this.nameLocation = nameLocation;
     }
 
     public String getAddress() {
@@ -76,18 +76,19 @@ public class Location implements Serializable {
         this.address = address;
     }
 
-    public Company getCompanyId() {
-        return companyId;
+    @XmlTransient
+    public List<Company> getCompanyList() {
+        return companyList;
     }
 
-    public void setCompanyId(Company companyId) {
-        this.companyId = companyId;
+    public void setCompanyList(List<Company> companyList) {
+        this.companyList = companyList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (locationId != null ? locationId.hashCode() : 0);
+        hash += (nameLocation != null ? nameLocation.hashCode() : 0);
         return hash;
     }
 
@@ -98,7 +99,7 @@ public class Location implements Serializable {
             return false;
         }
         Location other = (Location) object;
-        if ((this.locationId == null && other.locationId != null) || (this.locationId != null && !this.locationId.equals(other.locationId))) {
+        if ((this.nameLocation == null && other.nameLocation != null) || (this.nameLocation != null && !this.nameLocation.equals(other.nameLocation))) {
             return false;
         }
         return true;
@@ -106,7 +107,7 @@ public class Location implements Serializable {
 
     @Override
     public String toString() {
-        return "ergo.domainmodel.Location[ locationId=" + locationId + " ]";
+        return "ergo.domainmodel.Location[ nameLocation=" + nameLocation + " ]";
     }
     
 }

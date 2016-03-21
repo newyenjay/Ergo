@@ -42,15 +42,7 @@
                                     </label>
                                     <input class="form-control" id="lname" placeholder="Enter Last Name" type="text">
                                 </div>
-                                <div class="form-group" id="locationRight">
-                                    <label class="control-label">Company - Location
-                                        <br>
-                                    </label>
-                                    <select class="form-control">
-                                        <option>Company - Location</option>
-                                        <option>2</option>
-                                    </select>
-                                </div>
+                              
                                         <input type="hidden" name="action" value="addClient">
                                 <button type="submit" class="btn btn-default" id="addClient">Submit</button>
                             </form>
