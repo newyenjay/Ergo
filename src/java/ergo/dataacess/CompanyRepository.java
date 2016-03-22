@@ -77,7 +77,15 @@ public class CompanyRepository {
         }
     }
     
-    
+    public Company getCompany(String compName) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            Company company = em.find(Company.class,compName);
+            return company;
+        } finally {
+            em.close();
+        }
+    }
     /**
      * 
      * @return 

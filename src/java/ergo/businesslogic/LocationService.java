@@ -38,11 +38,11 @@ public class LocationService {
      * @return
      * @throws Exception 
      */
-    public int insert(Integer locationId, String address)throws Exception{
-        lr = new LocationRepository();
-        Location location = new Location(locationId, address);
-        return lr.insert(location);
-    }    
+   // public int insert(Integer locationId, String address)throws Exception{
+   //     lr = new LocationRepository();
+        //Location location = new Location(locationId, address);
+   //     return lr.insert(location);
+  //  }    
     
     /**
      * 

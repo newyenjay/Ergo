@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 680420
+ * @author waynelin
  */
 @Entity
 @Table(name = "client")
@@ -43,6 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Client.findByEmail", query = "SELECT c FROM Client c WHERE c.email = :email"),
     @NamedQuery(name = "Client.findByDateCreated", query = "SELECT c FROM Client c WHERE c.dateCreated = :dateCreated")})
 public class Client implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

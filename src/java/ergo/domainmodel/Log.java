@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author 680420
+ * @author waynelin
  */
 @Entity
 @Table(name = "log")
@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Log.findByEmployeeId", query = "SELECT l FROM Log l WHERE l.employeeId = :employeeId"),
     @NamedQuery(name = "Log.findByAction", query = "SELECT l FROM Log l WHERE l.action = :action")})
 public class Log implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)

@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 680420
+ * @author waynelin
  */
 @Entity
 @Table(name = "followup")
@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Followup.findByComments", query = "SELECT f FROM Followup f WHERE f.comments = :comments"),
     @NamedQuery(name = "Followup.findByRecommendations", query = "SELECT f FROM Followup f WHERE f.recommendations = :recommendations")})
 public class Followup implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

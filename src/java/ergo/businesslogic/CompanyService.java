@@ -25,9 +25,9 @@ public class CompanyService {
      * @return
      * @throws Exception 
      */
-    public int insert(Integer companyId, String name)throws Exception{
+    public int insert(String name)throws Exception{
         cr = new CompanyRepository();
-        Company company = new Company(companyId, name);
+        Company company = new Company(name);
         return cr.insert(company);
     }
     
@@ -41,7 +41,7 @@ public class CompanyService {
     public int update(Integer companyId, String name)throws Exception{
         cr = new CompanyRepository();
         Company company = cr.getCompany(companyId);
-        company.setName(name);
+        //company.setName(name);
         return cr.update(company);
     }
     
@@ -67,6 +67,11 @@ public class CompanyService {
     public Company getCompany(Integer companyId)throws Exception{
         cr = new CompanyRepository();
         return cr.getCompany(companyId);
+    }
+    
+    public Company getCompany(String compName)throws Exception{
+        cr = new CompanyRepository();
+        return cr.getCompany(compName);
     }
     
     /**

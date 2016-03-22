@@ -106,7 +106,7 @@ CREATE TABLE `assessmentaccessory` (
 DROP TABLE IF EXISTS `accessory`;
 		
 CREATE TABLE `accessory` (
-  `accessoryId` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `accessoryId` INTEGER NOT NULL AUTO_INCREMENT ,
   PRIMARY KEY (`accessoryId`)
 );
 
@@ -120,7 +120,7 @@ CREATE TABLE `assessmentfollowup` (
 DROP TABLE IF EXISTS `followup`;
 		
 CREATE TABLE `followup` (
-  `followUpId` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `followUpId` INTEGER NOT NULL AUTO_INCREMENT ,
   `note` VARCHAR(300) NULL DEFAULT NULL,
   `comments` VARCHAR(300) NULL DEFAULT NULL,
   `recommendations` VARCHAR(300) NULL DEFAULT NULL,
@@ -130,7 +130,7 @@ CREATE TABLE `followup` (
 DROP TABLE IF EXISTS `monitor`;
 		
 CREATE TABLE `monitor` (
-  `monitorId` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `monitorId` INTEGER NOT NULL AUTO_INCREMENT ,
   `assessmentId` INTEGER NOT NULL,
   `size` INTEGER NOT NULL,
   `pre` INTEGER NULL DEFAULT NULL,
@@ -165,7 +165,7 @@ CREATE TABLE `privilege` (
 );
 		
 CREATE TABLE `admin` (
-  `assessmentId` INTEGER NOT NULL AUTO_INCREMENT DEFAULT NULL,
+  `assessmentId` INTEGER NOT NULL AUTO_INCREMENT ,
   `proactive` VARCHAR(20) NULL,
   `reactive` VARCHAR(20) NULL,
   `assessor` VARCHAR(20) NULL,
@@ -183,7 +183,7 @@ CREATE TABLE `admin` (
   `hoursOnPhone` INTEGER NULL,
   `discomfortPresent` VARCHAR(20) NULL,
   `discomfortReported` VARCHAR(20) NULL,
-  `treatmentSought` VARCHAR NULL,
+  `treatmentSought` VARCHAR(20) NULL,
   `maxDiscomfort` VARCHAR(20) NULL,
   `risks` VARCHAR(200) NULL,
   `equipmentRecommendations` VARCHAR(200) NULL,
