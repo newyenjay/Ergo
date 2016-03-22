@@ -13,6 +13,13 @@
 </div>     
 
     <div class="container">
+        <div class="row">
+            <c:forEach var="item" items="${company}">
+                ${item.companyId}${item.name}<br>
+
+                               
+                                </c:forEach>
+        </div>
         
         <div class="row">
             <div class="col-md-12">
@@ -30,8 +37,7 @@
                         </div>
                         <div class="form-group" id="locationLeft">
                             <label class="control-label" for="locName">Location</label>
-                            <input class="form-control" id="locName" name="locName" placeholder="Location Name" type="text">
-                            <input class="form-control" id="locAdd" name="locName" placeholder="Location Address" type="text">
+                            <input class="form-control" id="locAdd" name="locAdd" placeholder="Location Address" type="text">
                         </div>
                         <input type="hidden" name="action" value="addCompany">
                         <button type="submit" class="btn btn-default" id="addCompany">Submit</button>

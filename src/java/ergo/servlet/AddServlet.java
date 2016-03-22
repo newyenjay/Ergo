@@ -6,8 +6,11 @@
 package ergo.servlet;
 
 import ergo.businesslogic.CompanyService;
+import ergo.businesslogic.LocationService;
+import ergo.domainmodel.Company;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -33,6 +36,16 @@ public class AddServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try {
+            CompanyService cs = new CompanyService();
+            List<Company> comList = null;
+            comList = cs.getAll();
+            request.setAttribute("company", comList);
+            
+        } catch (Exception ex) {
+             request.setAttribute("message", ex);
+            Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
 
     }
@@ -53,17 +66,37 @@ public class AddServlet extends HttpServlet {
         String locName = request.getParameter("locName");
         String locAdd = request.getParameter("locAdd");
         CompanyService cs = new CompanyService();
+        LocationService ls = new LocationService();
+        
 
         //if(compName == null||locName == null||locAdd==null){
         //    request.setAttribute("message", "Please enter all the information");
         //}
         if (action.equals("addCompany")) {
             try {
-                cs.insert(compName);
+                int compId = cs.insert(compName);
+                
+                ls.insert(cs.getCompany(compId), locAdd);
+                 request.setAttribute("message", "Successfully Added");
+                
             } catch (Exception ex) {
                 request.setAttribute("message", ex);
                 Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+            
+        }
+        
+        
+        try {
+            cs = new CompanyService();
+            List<Company> comList = null;
+            comList = cs.getAll();
+            request.setAttribute("company", comList);
+            
+        } catch (Exception ex) {
+             request.setAttribute("message", ex);
+            Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
     }

@@ -44,7 +44,7 @@ public class CompanyRepository {
             em.getTransaction().begin();
             em.persist(company);
             em.getTransaction().commit();
-            return 1;
+            return company.getCompanyId();
         } finally {
             em.close();
         }
