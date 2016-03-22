@@ -64,10 +64,8 @@ public class AddServlet extends HttpServlet {
                 request.setAttribute("message", ex);
                 Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
         getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
-
     }
 
 }

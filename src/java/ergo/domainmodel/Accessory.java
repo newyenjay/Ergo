@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author waynelin
+ * @author 671402
  */
 @Entity
 @Table(name = "accessory")
@@ -31,7 +31,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Accessory.findAll", query = "SELECT a FROM Accessory a"),
     @NamedQuery(name = "Accessory.findByAccessoryId", query = "SELECT a FROM Accessory a WHERE a.accessoryId = :accessoryId")})
 public class Accessory implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -26,12 +26,12 @@
                     <form role="searchCompany" action="add" method="post">
                         <div class="form-group" id="companyName">
                             <label class="control-label" for="compName">Company Name</label>
-                            <input class="form-control" id="compName" placeholder="Company Name" type="text">
+                            <input class="form-control" id="compName" name="compName" placeholder="Company Name" type="text">
                         </div>
                         <div class="form-group" id="locationLeft">
                             <label class="control-label" for="locName">Location</label>
-                            <input class="form-control" id="locName" placeholder="Location Name" type="text">
-                            <input class="form-control" id="locAdd" placeholder="Location Address" type="text">
+                            <input class="form-control" id="locName" name="locName" placeholder="Location Name" type="text">
+                            <input class="form-control" id="locAdd" name="locAdd" placeholder="Location Address" type="text">
                         </div>
                         <input type="hidden" name="action" value="addCompany">
                         <button type="submit" class="btn btn-default" id="addCompany">Submit</button>

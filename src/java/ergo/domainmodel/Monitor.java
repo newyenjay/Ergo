@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author waynelin
+ * @author 671402
  */
 @Entity
 @Table(name = "monitor")
@@ -38,7 +38,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Monitor.findByNotes", query = "SELECT m FROM Monitor m WHERE m.notes = :notes"),
     @NamedQuery(name = "Monitor.findByType", query = "SELECT m FROM Monitor m WHERE m.type = :type")})
 public class Monitor implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

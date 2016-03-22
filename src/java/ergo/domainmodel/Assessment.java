@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author waynelin
+ * @author 671402
  */
 @Entity
 @Table(name = "assessment")
@@ -69,7 +69,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Assessment.findByAccessoriesNotes", query = "SELECT a FROM Assessment a WHERE a.accessoriesNotes = :accessoriesNotes"),
     @NamedQuery(name = "Assessment.findByConfidentialNotes", query = "SELECT a FROM Assessment a WHERE a.confidentialNotes = :confidentialNotes")})
 public class Assessment implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

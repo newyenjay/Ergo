@@ -20,14 +20,14 @@ public class CompanyService {
     /**
      * 
      * 
-     * @param companyId
      * @param name
      * @return
      * @throws Exception 
      */
     public int insert(String name)throws Exception{
         cr = new CompanyRepository();
-        Company company = new Company(name);
+        Company company = new Company();
+        company.setName(name);
         return cr.insert(company);
     }
     
