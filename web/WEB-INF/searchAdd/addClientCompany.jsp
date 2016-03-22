@@ -25,13 +25,13 @@
                     <h1>Company</h1>
                     <form role="searchCompany" action="add" method="post">
                         <div class="form-group" id="companyName">
-                            <label class="control-label" for="compName">Company Name</label>
+                            <label class="control-label" for="companyName">Company Name</label>
                             <input class="form-control" id="compName" name="compName" placeholder="Company Name" type="text">
                         </div>
                         <div class="form-group" id="locationLeft">
                             <label class="control-label" for="locName">Location</label>
                             <input class="form-control" id="locName" name="locName" placeholder="Location Name" type="text">
-                            <input class="form-control" id="locAdd" name="locAdd" placeholder="Location Address" type="text">
+                            <input class="form-control" id="locAdd" name="locName" placeholder="Location Address" type="text">
                         </div>
                         <input type="hidden" name="action" value="addCompany">
                         <button type="submit" class="btn btn-default" id="addCompany">Submit</button>
@@ -46,13 +46,13 @@
                     <form role="searchClient"  action="add" method="post">
                         <div class="form-group" id="fName">
                             <label class="control-label" for="fname">First Name</label>
-                            <input class="form-control" id="fname" placeholder="First Name" type="text">
+                            <input class="form-control" id="fname" name="fname" placeholder="First Name" type="text">
                         </div>
                         <div class="form-group" id="lName">
                             <label class="control-label" for="lname">Last Name
                                 <br>
                             </label>
-                            <input class="form-control" id="lname" placeholder="Last Name" type="text">
+                            <input class="form-control" id="lname" name="lname" placeholder="Last Name" type="text">
                         </div>
                         <div class="form-group" id="locationLeft">
                             <label class="control-label">Company - Location
