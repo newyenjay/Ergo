@@ -9,6 +9,10 @@ import ergo.domainmodel.Company;
 import java.util.List;
 import javax.persistence.EntityManager;
 
+/**
+ *
+ * @author Kimberly Oshiro
+ */
 public class CompanyRepository {
     
     
@@ -95,5 +99,7 @@ public class CompanyRepository {
             em.close();    
         }
     }
+    
+    
     
 }

@@ -14,11 +14,6 @@ CREATE TABLE `company` (
 
 DROP TABLE IF EXISTS `clientcompany`;
 		
-CREATE TABLE `clientcompany` (
-  `companyId` INTEGER NOT NULL,
-  `clientId` INTEGER NOT NULL
-);
-
 DROP TABLE IF EXISTS `location`;
 		
 CREATE TABLE `location` (
@@ -32,10 +27,10 @@ DROP TABLE IF EXISTS `client`;
 		
 CREATE TABLE `client` (
   `clientId` INTEGER NOT NULL AUTO_INCREMENT,
+  `companyId` INTEGER NOT NULL,
   `firstName` VARCHAR(30) NOT NULL,
   `lastName` VARCHAR(30) NOT NULL,
   `email` VARCHAR(50),
-  `dateCreated` DATE,
   PRIMARY KEY (`clientId`)
 );
 
@@ -193,8 +188,8 @@ CREATE TABLE `admin` (
   PRIMARY KEY (`assessmentId`)
 );
 
-ALTER TABLE `clientcompany` ADD FOREIGN KEY (companyId) REFERENCES `company` (`companyId`);
-ALTER TABLE `clientcompany` ADD FOREIGN KEY (clientId) REFERENCES `client` (`clientId`);
+ALTER TABLE `client` ADD FOREIGN KEY (companyId) REFERENCES `company` (`companyId`);
+--ALTER TABLE `clientcompany` ADD FOREIGN KEY (clientId) REFERENCES `client` (`clientId`);
 ALTER TABLE `location` ADD FOREIGN KEY (companyId) REFERENCES `company` (`companyId`);
 ALTER TABLE `clientemployee` ADD FOREIGN KEY (clientId) REFERENCES `client` (`clientId`);
 ALTER TABLE `clientemployee` ADD FOREIGN KEY (username) REFERENCES `employee` (`username`);
@@ -219,7 +214,10 @@ INSERT INTO `employeeprivilege` (`privilegeId`,`username`)VALUES
 (1, 'adam');
 INSERT INTO `employeeprivilege` (`privilegeId`,`username`)VALUES
 (0, 'betty');
+
 INSERT INTO `company` (`name`)VALUES
-('Bankers Hall');
-INSERT INTO `location` (`companyId`,`address`)VALUES
-(1, '4th Street SW');
+('Sait');
+
+INSERT INTO `location`(`companyId`,`address`)VALUES
+(1,'123 Street');
+

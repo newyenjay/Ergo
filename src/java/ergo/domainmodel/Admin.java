@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author 671402
+ * @author waynelin
  */
 @Entity
 @Table(name = "admin")
@@ -53,6 +53,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Admin.findByScore", query = "SELECT a FROM Admin a WHERE a.score = :score"),
     @NamedQuery(name = "Admin.findByFollowUpNeeded", query = "SELECT a FROM Admin a WHERE a.followUpNeeded = :followUpNeeded")})
 public class Admin implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

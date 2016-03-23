@@ -6,7 +6,6 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -17,12 +16,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -30,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 680420
+ * @author waynelin
  */
 @Entity
 @Table(name = "client")
@@ -40,9 +38,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Client.findByClientId", query = "SELECT c FROM Client c WHERE c.clientId = :clientId"),
     @NamedQuery(name = "Client.findByFirstName", query = "SELECT c FROM Client c WHERE c.firstName = :firstName"),
     @NamedQuery(name = "Client.findByLastName", query = "SELECT c FROM Client c WHERE c.lastName = :lastName"),
-    @NamedQuery(name = "Client.findByEmail", query = "SELECT c FROM Client c WHERE c.email = :email"),
-    @NamedQuery(name = "Client.findByDateCreated", query = "SELECT c FROM Client c WHERE c.dateCreated = :dateCreated")})
+    @NamedQuery(name = "Client.findByEmail", query = "SELECT c FROM Client c WHERE c.email = :email")})
 public class Client implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,11 +61,6 @@ public class Client implements Serializable {
     @Size(max = 50)
     @Column(name = "email")
     private String email;
-    @Column(name = "dateCreated")
-    @Temporal(TemporalType.DATE)
-    private Date dateCreated;
-    @ManyToMany(mappedBy = "clientList")
-    private List<Company> companyList;
     @JoinTable(name = "clientemployee", joinColumns = {
         @JoinColumn(name = "clientId", referencedColumnName = "clientId")}, inverseJoinColumns = {
         @JoinColumn(name = "username", referencedColumnName = "username")})
@@ -75,6 +68,9 @@ public class Client implements Serializable {
     private List<Employee> employeeList;
     @OneToMany(mappedBy = "clientId")
     private List<Assessment> assessmentList;
+    @JoinColumn(name = "companyId", referencedColumnName = "companyId")
+    @ManyToOne(optional = false)
+    private Company companyId;
 
     public Client() {
     }
@@ -83,8 +79,8 @@ public class Client implements Serializable {
         this.clientId = clientId;
     }
 
-    public Client( String firstName, String lastName) {
-     
+    public Client(Integer clientId, String firstName, String lastName) {
+        this.clientId = clientId;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -121,23 +117,6 @@ public class Client implements Serializable {
         this.email = email;
     }
 
-    public Date getDateCreated() {
-        return dateCreated;
-    }
-
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
-    }
-
-    @XmlTransient
-    public List<Company> getCompanyList() {
-        return companyList;
-    }
-
-    public void setCompanyList(List<Company> companyList) {
-        this.companyList = companyList;
-    }
-
     @XmlTransient
     public List<Employee> getEmployeeList() {
         return employeeList;
@@ -154,6 +133,14 @@ public class Client implements Serializable {
 
     public void setAssessmentList(List<Assessment> assessmentList) {
         this.assessmentList = assessmentList;
+    }
+
+    public Company getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Company companyId) {
+        this.companyId = companyId;
     }
 
     @Override

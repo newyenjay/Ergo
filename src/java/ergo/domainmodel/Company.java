@@ -14,9 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -28,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 671402
+ * @author waynelin
  */
 @Entity
 @Table(name = "company")
@@ -38,6 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Company.findByCompanyId", query = "SELECT c FROM Company c WHERE c.companyId = :companyId"),
     @NamedQuery(name = "Company.findByName", query = "SELECT c FROM Company c WHERE c.name = :name")})
 public class Company implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,10 +47,7 @@ public class Company implements Serializable {
     @Size(min = 1, max = 30)
     @Column(name = "name")
     private String name;
-    @JoinTable(name = "clientcompany", joinColumns = {
-        @JoinColumn(name = "companyId", referencedColumnName = "companyId")}, inverseJoinColumns = {
-        @JoinColumn(name = "clientId", referencedColumnName = "clientId")})
-    @ManyToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
     private List<Client> clientList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "companyId")
     private List<Location> locationList;
@@ -64,8 +59,7 @@ public class Company implements Serializable {
         this.companyId = companyId;
     }
 
-    public Company(Integer companyId, String name) {
-        this.companyId = companyId;
+    public Company( String name) {
         this.name = name;
     }
 

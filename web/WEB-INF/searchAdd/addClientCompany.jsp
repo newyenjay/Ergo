@@ -3,24 +3,26 @@
 
 <div class="section">
     <div class="container">
-    <c:if test = "${message != null}">
-        <div class="alert alert-success fade in">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            ${message}
-        </div>
-    </c:if>
-
-</div>     
+        <c:if test = "${message != null}">
+           
+            <c:if test = "${sucess == 0}">
+                <div class="alert alert-warning fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Warning! </strong>${message}
+                </div>
+            </c:if>
+             <c:if test = "${sucess == 1}">
+                <div class="alert alert-success fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Success! </strong>${message}
+                </div>
+            </c:if>
+            
+        </c:if>
+    </div>     
 
     <div class="container">
-        <div class="row">
-            <c:forEach var="item" items="${company}">
-                ${item.companyId}${item.name}<br>
 
-                               
-                                </c:forEach>
-        </div>
-        
         <div class="row">
             <div class="col-md-12">
                 <h1>Add</h1>
@@ -61,16 +63,16 @@
                             <input class="form-control" id="lname" name="lname" placeholder="Last Name" type="text">
                         </div>
                         <div class="form-group" id="locationLeft">
-                            <label class="control-label">Company Address
+                            <label class="control-label">Company - Location
                                 <br>
                             </label>
-                            <select class="form-control">
-                                <option name = "comloc">Company - Location</option>
+                            <select class="form-control" name="comloc">
+                                <option value="0">Company - Location</option>
                                 <c:forEach var="item" items="${location}">
-                                    <option value = "${item.companyId.companyId}">${item.companyId.name} - ${item.address}</option>
-                               
+                                    <option value="${item.companyId.companyId}">${item.companyId.name} - ${item.address}</option>
+
                                 </c:forEach>
-                                
+
                             </select>
                         </div>
 

@@ -8,11 +8,9 @@ package ergo.servlet;
 import ergo.businesslogic.ClientService;
 import ergo.businesslogic.CompanyService;
 import ergo.businesslogic.LocationService;
-import ergo.domainmodel.Client;
 import ergo.domainmodel.Company;
 import ergo.domainmodel.Location;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,18 +38,12 @@ public class AddServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            CompanyService cs = new CompanyService();
-            List<Company> comList = null;
-            comList = cs.getAll();
-            request.setAttribute("company", comList);
-
             LocationService ls = new LocationService();
-            List<Location> locList = null;
-            locList = ls.getAll();
+            List<Location> locList = ls.getAll();
             request.setAttribute("location", locList);
-
         } catch (Exception ex) {
-            request.setAttribute("message", ex);
+            request.setAttribute("sucess", "0");
+            request.setAttribute("message", "Problem loading the Company List");
             Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
@@ -71,58 +63,57 @@ public class AddServlet extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
         String compName = request.getParameter("compName");
-        String locName = request.getParameter("locName");
         String locAdd = request.getParameter("locAdd");
+        String fname = request.getParameter("fname");
+        String lname = request.getParameter("lname");
+        String comId = request.getParameter("comloc");
+        
         CompanyService cs = new CompanyService();
         LocationService ls = new LocationService();
+        ClientService cls = new ClientService();
 
-        //if(compName == null||locName == null||locAdd==null){
-        //    request.setAttribute("message", "Please enter all the information");
-        //}
         if (action.equals("addCompany")) {
-            try {
-                int compId = cs.insert(compName);
-                ls.insert(cs.getCompany(compId), locAdd);
-                request.setAttribute("message", "Successfully Added");
-
-            } catch (Exception ex) {
-                request.setAttribute("message", ex);
-                Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, ex);
+            if (compName == null || locAdd == null||compName.isEmpty()||locAdd.isEmpty()) {
+                request.setAttribute("sucess", 0);
+                request.setAttribute("message", "Please enter all the information For Company");
+            } else {
+                try {
+                    int compId = cs.insert(compName);
+                    ls.insert(cs.getCompany(compId), locAdd);
+                    request.setAttribute("sucess", 1);
+                    request.setAttribute("message", "Added Company - Location");
+                } catch (Exception ex) {
+                    request.setAttribute("sucess", 0);
+                    request.setAttribute("message", "Error Adding Company - Location");
+                    Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-
         } else if (action.equals("addClient")) {
-            String firstName = request.getParameter("fname");
-            String lastName = request.getParameter("lname");
-            String comId = request.getParameter("comloc");
-            ClientService cls = new ClientService();
-
-            try {
-                cls.insert(firstName, lastName);
-                request.setAttribute("message", "Successfully Added");
-
-            } catch (Exception e) {
-                request.setAttribute("message", e);
-                Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, e);
+            int comloc = Integer.parseInt(comId);
+            if (fname == null || lname == null ||comloc == 0||fname.isEmpty()||lname.isEmpty()) {
+                request.setAttribute("sucess", 0);
+                request.setAttribute("message", "Please enter all the information For Client");
+            } else {
+                try {
+                    cls.insert(fname, lname, comloc);
+                    request.setAttribute("sucess", 1);
+                    request.setAttribute("message", "Client Added");
+                } catch (Exception ex) {
+                    request.setAttribute("sucess", 0);
+                    request.setAttribute("message", "Error Adding Client");
+                    Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-
         }
 
         try {
-            cs = new CompanyService();
-            List<Company> comList = null;
-            comList = cs.getAll();
-            request.setAttribute("company", comList);
-
             ls = new LocationService();
-            List<Location> locList = null;
-            locList = ls.getAll();
+            List<Location> locList = ls.getAll();
             request.setAttribute("location", locList);
-
         } catch (Exception ex) {
             request.setAttribute("message", ex);
             Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
     }
 
