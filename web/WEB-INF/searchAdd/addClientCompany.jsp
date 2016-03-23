@@ -61,11 +61,11 @@
                             <input class="form-control" id="lname" name="lname" placeholder="Last Name" type="text">
                         </div>
                         <div class="form-group" id="locationLeft">
-                            <label class="control-label">Company - Location
+                            <label class="control-label">Company Address
                                 <br>
                             </label>
                             <select class="form-control">
-                                <option>Company - Location</option>
+                                <option>Company Address</option>
                                 <c:forEach var="item" items="${comp}">
                                     <option>${item.companyName}</option>
                                

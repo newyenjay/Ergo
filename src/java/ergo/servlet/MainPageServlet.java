@@ -89,8 +89,8 @@ public class MainPageServlet extends HttpServlet {
                     DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
                     Date newDate = new Date();
                     newDate = format.parse(date);
-                    int nice = cs.insert(firstName, lastName, newDate,email);  
-                    request.setAttribute("firstname", nice);
+                    //int nice = cs.insert(firstName, lastName, newDate,email);  
+                    //request.setAttribute("firstname", nice);
                     getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/searchAdd.jsp").forward(request, response);                    //cs.insert(firstName, lastName, date,email);                default:
                     break;
             }

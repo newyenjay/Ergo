@@ -34,8 +34,8 @@ CREATE TABLE `client` (
   `clientId` INTEGER NOT NULL AUTO_INCREMENT,
   `firstName` VARCHAR(30) NOT NULL,
   `lastName` VARCHAR(30) NOT NULL,
-  `email` VARCHAR(50) NULL DEFAULT NULL,
-  `dateCreated` DATE NOT NULL,
+  `email` VARCHAR(50),
+  `dateCreated` DATE,
   PRIMARY KEY (`clientId`)
 );
 

@@ -5,6 +5,7 @@
  */
 package ergo.servlet;
 
+import ergo.businesslogic.ClientService;
 import ergo.businesslogic.CompanyService;
 import ergo.businesslogic.LocationService;
 import ergo.domainmodel.Company;
@@ -41,9 +42,9 @@ public class AddServlet extends HttpServlet {
             List<Company> comList = null;
             comList = cs.getAll();
             request.setAttribute("company", comList);
-            
+
         } catch (Exception ex) {
-             request.setAttribute("message", ex);
+            request.setAttribute("message", ex);
             Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
@@ -67,7 +68,6 @@ public class AddServlet extends HttpServlet {
         String locAdd = request.getParameter("locAdd");
         CompanyService cs = new CompanyService();
         LocationService ls = new LocationService();
-        
 
         //if(compName == null||locName == null||locAdd==null){
         //    request.setAttribute("message", "Please enter all the information");
@@ -75,27 +75,38 @@ public class AddServlet extends HttpServlet {
         if (action.equals("addCompany")) {
             try {
                 int compId = cs.insert(compName);
-                
+
                 ls.insert(cs.getCompany(compId), locAdd);
-                 request.setAttribute("message", "Successfully Added");
-                
+                request.setAttribute("message", "Successfully Added");
+
             } catch (Exception ex) {
                 request.setAttribute("message", ex);
                 Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
+
+        } else if (action.equals("addClient")) {
+            String firstName = request.getParameter("fname");
+            String lastName = request.getParameter("lname");
+            ClientService cls = new ClientService();
+
+            try {
+                cls.insert(firstName, lastName);
+                request.setAttribute("message", "Successfully Added");
+
+            } catch (Exception e) {
+                request.setAttribute("message", e);
+            }
+
         }
-        
-        
+
         try {
             cs = new CompanyService();
             List<Company> comList = null;
             comList = cs.getAll();
             request.setAttribute("company", comList);
-            
+
         } catch (Exception ex) {
-             request.setAttribute("message", ex);
+            request.setAttribute("message", ex);
             Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);

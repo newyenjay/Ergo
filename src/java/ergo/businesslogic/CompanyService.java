@@ -9,11 +9,7 @@ import ergo.dataacess.CompanyRepository;
 import ergo.domainmodel.Company;
 import java.util.List;
 
-/**
- *
- * @author Kimberly Oshiro
- * @version  1.0 - Got the basic methods down, will be doing the documentation in the next sitting. 01/03/2016 
- */
+
 public class CompanyService {
     CompanyRepository cr;
     
@@ -28,7 +24,8 @@ public class CompanyService {
         cr = new CompanyRepository();
         Company company = new Company();
         company.setName(name);
-        return cr.insert(company);
+        cr.insert(company);
+        return company.getCompanyId();
     }
     
     /**

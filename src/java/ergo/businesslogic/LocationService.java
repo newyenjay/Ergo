@@ -12,12 +12,7 @@ import ergo.domainmodel.Location;
 import java.util.List;
 import javax.persistence.EntityManager;
 
-/**
- *
- * @author Kimberly Oshiro
- * @version 1.0 added everything pretty much, will be adding documentation
- * shortly. 01/03/2016
- */
+
 public class LocationService {
 
     LocationRepository lr;
