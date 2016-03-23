@@ -65,9 +65,9 @@
                                 <br>
                             </label>
                             <select class="form-control">
-                                <option>Company Address</option>
-                                <c:forEach var="item" items="${comp}">
-                                    <option>${item.companyName}</option>
+                                <option name = "comloc">Company - Location</option>
+                                <c:forEach var="item" items="${location}">
+                                    <option value = "${item.companyId.companyId}">${item.companyId.name} - ${item.address}</option>
                                
                                 </c:forEach>
                                 

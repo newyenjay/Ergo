@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 671402
+ * @author 680420
  */
 @Entity
 @Table(name = "client")
@@ -63,8 +63,6 @@ public class Client implements Serializable {
     @Size(max = 50)
     @Column(name = "email")
     private String email;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "dateCreated")
     @Temporal(TemporalType.DATE)
     private Date dateCreated;
@@ -85,11 +83,10 @@ public class Client implements Serializable {
         this.clientId = clientId;
     }
 
-    public Client(Integer clientId, String firstName, String lastName, Date dateCreated) {
-        this.clientId = clientId;
+    public Client( String firstName, String lastName) {
+     
         this.firstName = firstName;
         this.lastName = lastName;
-        this.dateCreated = dateCreated;
     }
 
     public Integer getClientId() {

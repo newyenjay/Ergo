@@ -219,3 +219,7 @@ INSERT INTO `employeeprivilege` (`privilegeId`,`username`)VALUES
 (1, 'adam');
 INSERT INTO `employeeprivilege` (`privilegeId`,`username`)VALUES
 (0, 'betty');
+INSERT INTO `company` (`name`)VALUES
+('Bankers Hall');
+INSERT INTO `location` (`companyId`,`address`)VALUES
+(1, '4th Street SW');

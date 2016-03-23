@@ -8,7 +8,9 @@ package ergo.servlet;
 import ergo.businesslogic.ClientService;
 import ergo.businesslogic.CompanyService;
 import ergo.businesslogic.LocationService;
+import ergo.domainmodel.Client;
 import ergo.domainmodel.Company;
+import ergo.domainmodel.Location;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -43,6 +45,11 @@ public class AddServlet extends HttpServlet {
             comList = cs.getAll();
             request.setAttribute("company", comList);
 
+            LocationService ls = new LocationService();
+            List<Location> locList = null;
+            locList = ls.getAll();
+            request.setAttribute("location", locList);
+
         } catch (Exception ex) {
             request.setAttribute("message", ex);
             Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -75,7 +82,6 @@ public class AddServlet extends HttpServlet {
         if (action.equals("addCompany")) {
             try {
                 int compId = cs.insert(compName);
-
                 ls.insert(cs.getCompany(compId), locAdd);
                 request.setAttribute("message", "Successfully Added");
 
@@ -87,6 +93,7 @@ public class AddServlet extends HttpServlet {
         } else if (action.equals("addClient")) {
             String firstName = request.getParameter("fname");
             String lastName = request.getParameter("lname");
+            String comId = request.getParameter("comloc");
             ClientService cls = new ClientService();
 
             try {
@@ -95,6 +102,7 @@ public class AddServlet extends HttpServlet {
 
             } catch (Exception e) {
                 request.setAttribute("message", e);
+                Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, e);
             }
 
         }
@@ -105,10 +113,16 @@ public class AddServlet extends HttpServlet {
             comList = cs.getAll();
             request.setAttribute("company", comList);
 
+            ls = new LocationService();
+            List<Location> locList = null;
+            locList = ls.getAll();
+            request.setAttribute("location", locList);
+
         } catch (Exception ex) {
             request.setAttribute("message", ex);
             Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
     }
 
