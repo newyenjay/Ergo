@@ -72,6 +72,21 @@ public class ClientRepository {
         }
     }
     
+     /**
+     * Returns an ArrayList of all the clients in the database. 
+     * @return - the ArrayList of the Client objects in the database. 
+     */
+    public List<Client> getAllByCompanyList()  {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            List<Client> clients = em.createNamedQuery("Client.findAll", Client.class).
+                    getResultList();
+            return clients;
+        } finally {
+            em.close();    
+        }
+    }
+    
     /**
      * Deletes a Client object from the database by referencing a client object. 
      * @param client - the object itself that should be deleted. 

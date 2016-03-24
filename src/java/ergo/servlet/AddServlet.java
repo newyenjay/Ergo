@@ -100,7 +100,7 @@ public class AddServlet extends HttpServlet {
                     request.setAttribute("message", "Client Added");
                 } catch (Exception ex) {
                     request.setAttribute("sucess", 0);
-                    request.setAttribute("message", "Error Adding Client");
+                    request.setAttribute("message", ex);
                     Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

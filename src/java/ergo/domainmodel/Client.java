@@ -38,7 +38,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Client.findByClientId", query = "SELECT c FROM Client c WHERE c.clientId = :clientId"),
     @NamedQuery(name = "Client.findByFirstName", query = "SELECT c FROM Client c WHERE c.firstName = :firstName"),
     @NamedQuery(name = "Client.findByLastName", query = "SELECT c FROM Client c WHERE c.lastName = :lastName"),
-    @NamedQuery(name = "Client.findByEmail", query = "SELECT c FROM Client c WHERE c.email = :email")})
+    @NamedQuery(name = "Client.findByEmail", query = "SELECT c FROM Client c WHERE c.email = :email"),
+    //@NamedQuery(name = "Client.findByCompany)
+
+}) 
+
 public class Client implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -167,5 +171,5 @@ public class Client implements Serializable {
     public String toString() {
         return "ergo.domainmodel.Client[ clientId=" + clientId + " ]";
     }
-    
+
 }
