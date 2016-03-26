@@ -1,7 +1,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@include file="/WEB-INF/jspf/header.jspf" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
 <div class="section">
+    <script type="text/javascript">$("#company").change(function () {
+            if ($(this).data('options') == undefined) {
+                /*Taking an array of all options-2 and kind of embedding it on the select1*/
+                $(this).data('options', $('#client option').clone());
+            }
+            var id = $(this).val();
+            var options = $(this).data('options').filter('[id=' + id + ']');
+            $('#client').html(options);
+        });</script>
     <div class="container">
         <c:if test = "${message != null}">
 
@@ -60,7 +70,7 @@
                                 <label class="control-label">Company - Location
                                     <br>
                                 </label>
-                                <select class="form-control" onselect="javascript:reloadPage(this)">
+                                <select class="form-control" name ="company" id ="company">
                                     <option>Company - Location</option>
                                     <c:forEach var="item" items="${location}">
                                         <option value="${item.companyId.companyId}">${item.companyId.name} - ${item.address}</option>
@@ -72,10 +82,10 @@
                                 <label class="control-label">Name
                                     <br>
                                 </label>
-                                <select class="form-control" >
+                                <select class="form-control" name = "client" id = "client">
                                     <option>Client Name</option>
                                     <c:forEach var="item" items="${client}">
-                                        <option value="${item.firstName}">${item.firstName}</option>
+                                        <option id="${item.companyId.companyId}" value="${item.companyId.companyId}">${item.firstName}</option>
                                     </c:forEach>                                
                                 </select>
                             </div>
@@ -89,3 +99,14 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">$("#company").change(function () {
+            if ($(this).data('options') == undefined) {
+                /*Taking an array of all options-2 and kind of embedding it on the select1*/
+                $(this).data('options', $('#client option').clone());
+            }
+            var id = $(this).val();
+            var options = $(this).data('options').filter('[id=' + id + ']');
+            $('#client').html(options);
+        });</script>
+</div>
+</body>
