@@ -121,7 +121,7 @@
         <session-timeout>30</session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>add</welcome-file>
+        <welcome-file>search</welcome-file>
     </welcome-file-list>
     <error-page>
         <error-code>404</error-code>
