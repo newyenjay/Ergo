@@ -125,6 +125,6 @@
     </welcome-file-list>
     <error-page>
         <error-code>404</error-code>
-        <location>/homer.html</location>
+        <location>/WEB-INF/404/404Page.html</location>
     </error-page>
 </web-app>

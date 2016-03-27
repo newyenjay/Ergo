@@ -24,7 +24,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author 680420
  */
 public class AddServlet extends HttpServlet {
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -96,6 +95,7 @@ public class AddServlet extends HttpServlet {
             } else {
                 try {
                     cls.insert(fname, lname, comloc);
+                    
                     request.setAttribute("sucess", 1);
                     request.setAttribute("message", "Client Added");
                 } catch (Exception ex) {

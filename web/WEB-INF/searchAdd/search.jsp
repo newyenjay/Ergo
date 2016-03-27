@@ -1,6 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@include file="/WEB-INF/jspf/header.jspf" %>
 <script src="js/jquery.tablesorter.js" type="text/javascript"></script>
+<script src="js/jquery.tablesorter.pager.js" type="text/javascript"></script>
 <link href="css/table_sorting_theme/style.css" rel="stylesheet" type="text/css"/>
 <div class="section">
 
@@ -23,8 +23,6 @@
         </c:if>
     </div>     
 
-
-    <div class="section">
         <div class="container">
 
             <div class="row">
@@ -123,13 +121,15 @@
 
                                 </tbody>
                             </table>
+
+
                         </div>
                     </div>
                 </div> 
 
             </c:if>
         </div>
-    </div>
+
 </div>
 <script type="text/javascript">
     $(document).ready(function ()
@@ -147,11 +147,7 @@
         var options = $(this).data('options').filter('[id=' + id + ']');
         $('#client').html(options);
     });
-
-
-
-
-
 </script>
 </div>
 </body>
+</html>
