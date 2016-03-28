@@ -1,34 +1,47 @@
 -- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
 -- Schema ergodb
 -- -----------------------------------------------------
-DROP DATABASE IF EXISTS ErgoDB;
-CREATE DATABASE ErgoDB;
-USE ErgoDB;
+DROP SCHEMA IF EXISTS `ergodb` ;
 
+-- -----------------------------------------------------
+-- Schema ergodb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `ergodb` ;
+USE `ergodb` ;
 
 -- -----------------------------------------------------
 -- Table `ergodb`.`accessory`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `ergodb`.`accessory` ;
+
 CREATE TABLE IF NOT EXISTS `ergodb`.`accessory` (
   `accessoryId` INT(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`accessoryId`));
-
+ 
 
 -- -----------------------------------------------------
 -- Table `ergodb`.`company`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `ergodb`.`company` ;
+
 CREATE TABLE IF NOT EXISTS `ergodb`.`company` (
   `companyId` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(30) NOT NULL,
   PRIMARY KEY (`companyId`));
 
+
 -- -----------------------------------------------------
 -- Table `ergodb`.`client`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `ergodb`.`client` ;
+
 CREATE TABLE IF NOT EXISTS `ergodb`.`client` (
   `clientId` INT(11) NOT NULL AUTO_INCREMENT,
   `companyId` INT(11) NOT NULL,
-  `assessmentId` VARCHAR(45) NULL,
+  `assessmentId` VARCHAR(45) NULL DEFAULT NULL,
   `firstName` VARCHAR(30) NOT NULL,
   `lastName` VARCHAR(30) NOT NULL,
   `email` VARCHAR(50) NULL DEFAULT NULL,
@@ -37,32 +50,35 @@ CREATE TABLE IF NOT EXISTS `ergodb`.`client` (
   CONSTRAINT `client_ibfk_1`
     FOREIGN KEY (`companyId`)
     REFERENCES `ergodb`.`company` (`companyId`));
+ 
 
 -- -----------------------------------------------------
 -- Table `ergodb`.`assessment`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ergodb`.`assessment` (
-  `assessmentId` INT NOT NULL,
-  `adminId` INT NULL,
-  `pmbId` INT NULL,
-  `spmId` INT NULL,
-  `pwaId` INT NULL,
-  `discomfortId` INT NULL,
-  `followupId` INT NULL,
-  `client_clientId` INT(11) NOT NULL,
-  PRIMARY KEY (`assessmentId`),
-  INDEX `fk_assessment_client1_idx` (`client_clientId` ASC),
-  CONSTRAINT `fk_assessment_client1`
-    FOREIGN KEY (`client_clientId`)
-    REFERENCES `ergodb`.`client` (`clientId`));
+DROP TABLE IF EXISTS `ergodb`.`assessment` ;
 
+CREATE TABLE IF NOT EXISTS `ergodb`.`assessment` (
+  `assessmentId` INT(11) NOT NULL,
+  `clientId` INT(11) NOT NULL,
+  `pmbId` INT(11) NULL DEFAULT NULL,
+  `spmId` INT(11) NULL DEFAULT NULL,
+  `pwaId` INT(11) NULL DEFAULT NULL,
+  `discomfortId` INT(11) NULL DEFAULT NULL,
+  `followupId` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`assessmentId`),
+  INDEX `fk_assessment_client1_idx` (`clientId` ASC),
+  CONSTRAINT `fk_assessment_client1`
+    FOREIGN KEY (`clientId`)
+    REFERENCES `ergodb`.`client` (`clientId`));
+ 
 
 -- -----------------------------------------------------
 -- Table `ergodb`.`admin`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `admin` (
-  `assessmentId` INT(11) NOT NULL AUTO_INCREMENT,
-  `adminId` INT(45) NULL DEFAULT NULL,
+DROP TABLE IF EXISTS `ergodb`.`admin` ;
+
+CREATE TABLE IF NOT EXISTS `ergodb`.`admin` (
+  `adminId` INT(45) NOT NULL,
   `proactive` VARCHAR(20) NULL DEFAULT NULL,
   `reactive` VARCHAR(20) NULL DEFAULT NULL,
   `assessor` VARCHAR(20) NULL DEFAULT NULL,
@@ -87,12 +103,17 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `generalNotes` VARCHAR(300) NULL DEFAULT NULL,
   `score` INT(11) NULL DEFAULT NULL,
   `followUpNeeded` VARCHAR(50) NULL DEFAULT NULL,
-  PRIMARY KEY (`assessmentId`));
-
+  PRIMARY KEY (`adminId`),
+  CONSTRAINT `assessment`
+    FOREIGN KEY (`adminId`)
+    REFERENCES `ergodb`.`assessment` (`assessmentId`));
+ 
 
 -- -----------------------------------------------------
 -- Table `ergodb`.`assessmentaccessory`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `ergodb`.`assessmentaccessory` ;
+
 CREATE TABLE IF NOT EXISTS `ergodb`.`assessmentaccessory` (
   `assessmentId` INT(11) NOT NULL,
   `accessoryId` INT(11) NOT NULL,
@@ -100,22 +121,26 @@ CREATE TABLE IF NOT EXISTS `ergodb`.`assessmentaccessory` (
   CONSTRAINT `assessmentaccessory_ibfk_2`
     FOREIGN KEY (`accessoryId`)
     REFERENCES `ergodb`.`accessory` (`accessoryId`));
-
+ 
 
 -- -----------------------------------------------------
 -- Table `ergodb`.`followup`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `ergodb`.`followup` ;
+
 CREATE TABLE IF NOT EXISTS `ergodb`.`followup` (
   `followUpId` INT(11) NOT NULL AUTO_INCREMENT,
   `note` VARCHAR(300) NULL DEFAULT NULL,
   `comments` VARCHAR(300) NULL DEFAULT NULL,
   `recommendations` VARCHAR(300) NULL DEFAULT NULL,
   PRIMARY KEY (`followUpId`));
-
+ 
 
 -- -----------------------------------------------------
 -- Table `ergodb`.`assessmentfollowup`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `ergodb`.`assessmentfollowup` ;
+
 CREATE TABLE IF NOT EXISTS `ergodb`.`assessmentfollowup` (
   `assessmentId` INT(11) NOT NULL,
   `followUpId` INT(11) NOT NULL,
@@ -123,11 +148,13 @@ CREATE TABLE IF NOT EXISTS `ergodb`.`assessmentfollowup` (
   CONSTRAINT `assessmentfollowup_ibfk_2`
     FOREIGN KEY (`followUpId`)
     REFERENCES `ergodb`.`followup` (`followUpId`));
-
+ 
 
 -- -----------------------------------------------------
 -- Table `ergodb`.`employee`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `ergodb`.`employee` ;
+
 CREATE TABLE IF NOT EXISTS `ergodb`.`employee` (
   `username` VARCHAR(30) NOT NULL,
   `firstName` VARCHAR(30) NOT NULL,
@@ -136,11 +163,13 @@ CREATE TABLE IF NOT EXISTS `ergodb`.`employee` (
   `email` VARCHAR(50) NOT NULL,
   `phoneNumber` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`username`));
-
+ 
 
 -- -----------------------------------------------------
 -- Table `ergodb`.`clientemployee`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `ergodb`.`clientemployee` ;
+
 CREATE TABLE IF NOT EXISTS `ergodb`.`clientemployee` (
   `clientId` INT(11) NOT NULL,
   `username` VARCHAR(30) NOT NULL,
@@ -152,19 +181,24 @@ CREATE TABLE IF NOT EXISTS `ergodb`.`clientemployee` (
   CONSTRAINT `clientemployee_ibfk_2`
     FOREIGN KEY (`username`)
     REFERENCES `ergodb`.`employee` (`username`));
+ 
 
 -- -----------------------------------------------------
 -- Table `ergodb`.`privilege`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `ergodb`.`privilege` ;
+
 CREATE TABLE IF NOT EXISTS `ergodb`.`privilege` (
   `privilegeId` INT(11) NOT NULL,
   `description` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`privilegeId`));
-
+ 
 
 -- -----------------------------------------------------
 -- Table `ergodb`.`employeeprivilege`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `ergodb`.`employeeprivilege` ;
+
 CREATE TABLE IF NOT EXISTS `ergodb`.`employeeprivilege` (
   `privilegeId` INT(11) NOT NULL,
   `username` VARCHAR(30) NOT NULL,
@@ -176,11 +210,13 @@ CREATE TABLE IF NOT EXISTS `ergodb`.`employeeprivilege` (
   CONSTRAINT `employeeprivilege_ibfk_2`
     FOREIGN KEY (`username`)
     REFERENCES `ergodb`.`employee` (`username`));
-
+ 
 
 -- -----------------------------------------------------
 -- Table `ergodb`.`location`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `ergodb`.`location` ;
+
 CREATE TABLE IF NOT EXISTS `ergodb`.`location` (
   `locationId` INT(11) NOT NULL AUTO_INCREMENT,
   `companyId` INT(11) NOT NULL,
@@ -195,15 +231,20 @@ CREATE TABLE IF NOT EXISTS `ergodb`.`location` (
 -- -----------------------------------------------------
 -- Table `ergodb`.`log`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `ergodb`.`log` ;
+
 CREATE TABLE IF NOT EXISTS `ergodb`.`log` (
   `clientId` INT(11) NOT NULL,
   `employeeId` INT(11) NOT NULL,
   `action` VARCHAR(300) NOT NULL,
   PRIMARY KEY (`clientId`));
+ 
 
 -- -----------------------------------------------------
 -- Table `ergodb`.`monitor`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `ergodb`.`monitor` ;
+
 CREATE TABLE IF NOT EXISTS `ergodb`.`monitor` (
   `monitorId` INT(11) NOT NULL AUTO_INCREMENT,
   `assessmentId` INT(11) NOT NULL,
@@ -216,22 +257,22 @@ CREATE TABLE IF NOT EXISTS `ergodb`.`monitor` (
   PRIMARY KEY (`monitorId`));
 
 
-  INSERT INTO `PRIVILEGE` (`privilegeId`,`description`) VALUES
-  (1,'Admin Privilege');
-  INSERT INTO `privilege` (`privilegeId`,`description`) VALUES
-  (0,'Employee Privilege');
-  INSERT INTO `employee` (`firstName`,`lastName`,`username`,`password`,`email`) VALUES
-  ('adam','adam','adam','password','adam@gmail.com');
-  INSERT INTO `employee` (`firstName`,`lastName`,`username`,`password`,`email`) VALUES
-  ('betty','betty','betty','password','betty@gmail.com');
-  INSERT INTO `employeeprivilege` (`privilegeId`,`username`)VALUES
-  (1, 'adam');
-  INSERT INTO `employeeprivilege` (`privilegeId`,`username`)VALUES
-  (0, 'betty');
+INSERT INTO `PRIVILEGE` (`privilegeId`,`description`) VALUES
+(1,'Admin Privilege');
+INSERT INTO `privilege` (`privilegeId`,`description`) VALUES
+(0,'Employee Privilege');
+INSERT INTO `employee` (`firstName`,`lastName`,`username`,`password`,`email`) VALUES
+('adam','adam','adam','password','adam@gmail.com');
+INSERT INTO `employee` (`firstName`,`lastName`,`username`,`password`,`email`) VALUES
+('betty','betty','betty','password','betty@gmail.com');
+INSERT INTO `employeeprivilege` (`privilegeId`,`username`)VALUES
+(1, 'adam');
+INSERT INTO `employeeprivilege` (`privilegeId`,`username`)VALUES
+(0, 'betty');
 
-  INSERT INTO `company` (`name`)VALUES
-  ('Sait');
+INSERT INTO `company` (`name`)VALUES
+('Sait');
 
-  INSERT INTO `location`(`companyId`,`address`)VALUES
-  (1,'123 Street');
+INSERT INTO `location`(`companyId`,`address`)VALUES
+(1,'123 Street');
 
