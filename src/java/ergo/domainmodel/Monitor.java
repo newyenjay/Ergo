@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -23,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author waynelin
+ * @author 680420
  */
 @Entity
 @Table(name = "monitor")
@@ -31,6 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Monitor.findAll", query = "SELECT m FROM Monitor m"),
     @NamedQuery(name = "Monitor.findByMonitorId", query = "SELECT m FROM Monitor m WHERE m.monitorId = :monitorId"),
+    @NamedQuery(name = "Monitor.findByAssessmentId", query = "SELECT m FROM Monitor m WHERE m.assessmentId = :assessmentId"),
     @NamedQuery(name = "Monitor.findBySize", query = "SELECT m FROM Monitor m WHERE m.size = :size"),
     @NamedQuery(name = "Monitor.findByPre", query = "SELECT m FROM Monitor m WHERE m.pre = :pre"),
     @NamedQuery(name = "Monitor.findByPost", query = "SELECT m FROM Monitor m WHERE m.post = :post"),
@@ -38,13 +37,16 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Monitor.findByNotes", query = "SELECT m FROM Monitor m WHERE m.notes = :notes"),
     @NamedQuery(name = "Monitor.findByType", query = "SELECT m FROM Monitor m WHERE m.type = :type")})
 public class Monitor implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "monitorId")
     private Integer monitorId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "assessmentId")
+    private int assessmentId;
     @Basic(optional = false)
     @NotNull
     @Column(name = "size")
@@ -62,9 +64,6 @@ public class Monitor implements Serializable {
     @Size(max = 50)
     @Column(name = "type")
     private String type;
-    @JoinColumn(name = "assessmentId", referencedColumnName = "assessmentId")
-    @ManyToOne(optional = false)
-    private Assessment assessmentId;
 
     public Monitor() {
     }
@@ -73,8 +72,9 @@ public class Monitor implements Serializable {
         this.monitorId = monitorId;
     }
 
-    public Monitor(Integer monitorId, int size) {
+    public Monitor(Integer monitorId, int assessmentId, int size) {
         this.monitorId = monitorId;
+        this.assessmentId = assessmentId;
         this.size = size;
     }
 
@@ -84,6 +84,14 @@ public class Monitor implements Serializable {
 
     public void setMonitorId(Integer monitorId) {
         this.monitorId = monitorId;
+    }
+
+    public int getAssessmentId() {
+        return assessmentId;
+    }
+
+    public void setAssessmentId(int assessmentId) {
+        this.assessmentId = assessmentId;
     }
 
     public int getSize() {
@@ -132,14 +140,6 @@ public class Monitor implements Serializable {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public Assessment getAssessmentId() {
-        return assessmentId;
-    }
-
-    public void setAssessmentId(Assessment assessmentId) {
-        this.assessmentId = assessmentId;
     }
 
     @Override

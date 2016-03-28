@@ -6,24 +6,21 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author waynelin
+ * @author 680420
  */
 @Entity
 @Table(name = "followup")
@@ -35,7 +32,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Followup.findByComments", query = "SELECT f FROM Followup f WHERE f.comments = :comments"),
     @NamedQuery(name = "Followup.findByRecommendations", query = "SELECT f FROM Followup f WHERE f.recommendations = :recommendations")})
 public class Followup implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,8 +47,6 @@ public class Followup implements Serializable {
     @Size(max = 300)
     @Column(name = "recommendations")
     private String recommendations;
-    @ManyToMany(mappedBy = "followupList")
-    private List<Assessment> assessmentList;
 
     public Followup() {
     }
@@ -91,15 +85,6 @@ public class Followup implements Serializable {
 
     public void setRecommendations(String recommendations) {
         this.recommendations = recommendations;
-    }
-
-    @XmlTransient
-    public List<Assessment> getAssessmentList() {
-        return assessmentList;
-    }
-
-    public void setAssessmentList(List<Assessment> assessmentList) {
-        this.assessmentList = assessmentList;
     }
 
     @Override

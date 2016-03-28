@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author waynelin
+ * @author 680420
  */
 @Entity
 @Table(name = "company")
@@ -35,7 +35,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Company.findByCompanyId", query = "SELECT c FROM Company c WHERE c.companyId = :companyId"),
     @NamedQuery(name = "Company.findByName", query = "SELECT c FROM Company c WHERE c.name = :name")})
 public class Company implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,7 +58,8 @@ public class Company implements Serializable {
         this.companyId = companyId;
     }
 
-    public Company( String name) {
+    public Company(Integer companyId, String name) {
+        this.companyId = companyId;
         this.name = name;
     }
 

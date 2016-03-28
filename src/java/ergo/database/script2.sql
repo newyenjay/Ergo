@@ -60,10 +60,10 @@ CREATE TABLE IF NOT EXISTS `ergodb`.`assessment` (
 -- -----------------------------------------------------
 -- Table `ergodb`.`admin`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ergodb`.`admin` (
+CREATE TABLE IF NOT EXISTS `admin` (
   `assessmentId` INT(11) NOT NULL AUTO_INCREMENT,
-  `adminId` VARCHAR(45) GENERATED ALWAYS AS () VIRTUAL,
-  `proactive` VARCHAR(20) NULL,
+  `adminId` INT(45) NULL DEFAULT NULL,
+  `proactive` VARCHAR(20) NULL DEFAULT NULL,
   `reactive` VARCHAR(20) NULL DEFAULT NULL,
   `assessor` VARCHAR(20) NULL DEFAULT NULL,
   `manager` VARCHAR(20) NULL DEFAULT NULL,
@@ -86,13 +86,8 @@ CREATE TABLE IF NOT EXISTS `ergodb`.`admin` (
   `equipmentRecommendations` VARCHAR(200) NULL DEFAULT NULL,
   `generalNotes` VARCHAR(300) NULL DEFAULT NULL,
   `score` INT(11) NULL DEFAULT NULL,
-  `followUpNeeded` INT(11) NULL DEFAULT NULL,
-  `assessment_assessmentId` INT NOT NULL,
-  PRIMARY KEY (`assessmentId`),
-  INDEX `fk_admin_assessment1_idx` (`assessment_assessmentId` ASC),
-  CONSTRAINT `fk_admin_assessment1`
-    FOREIGN KEY (`assessment_assessmentId`)
-    REFERENCES `ergodb`.`assessment` (`assessmentId`));
+  `followUpNeeded` VARCHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`assessmentId`));
 
 
 -- -----------------------------------------------------
@@ -239,3 +234,4 @@ CREATE TABLE IF NOT EXISTS `ergodb`.`monitor` (
 
   INSERT INTO `location`(`companyId`,`address`)VALUES
   (1,'123 Street');
+

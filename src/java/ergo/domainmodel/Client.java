@@ -8,6 +8,7 @@ package ergo.domainmodel;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author waynelin
+ * @author 680420
  */
 @Entity
 @Table(name = "client")
@@ -36,21 +37,20 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Client.findAll", query = "SELECT c FROM Client c"),
     @NamedQuery(name = "Client.findByClientId", query = "SELECT c FROM Client c WHERE c.clientId = :clientId"),
+    @NamedQuery(name = "Client.findByAssessmentId", query = "SELECT c FROM Client c WHERE c.assessmentId = :assessmentId"),
     @NamedQuery(name = "Client.findByFirstName", query = "SELECT c FROM Client c WHERE c.firstName = :firstName"),
     @NamedQuery(name = "Client.findByLastName", query = "SELECT c FROM Client c WHERE c.lastName = :lastName"),
-    @NamedQuery(name = "Client.findByEmail", query = "SELECT c FROM Client c WHERE c.email = :email"),
-    //@NamedQuery(name = "Client.findByCompany)
-
-}) 
-
+    @NamedQuery(name = "Client.findByEmail", query = "SELECT c FROM Client c WHERE c.email = :email")})
 public class Client implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "clientId")
     private Integer clientId;
+    @Size(max = 45)
+    @Column(name = "assessmentId")
+    private String assessmentId;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 30)
@@ -70,7 +70,7 @@ public class Client implements Serializable {
         @JoinColumn(name = "username", referencedColumnName = "username")})
     @ManyToMany
     private List<Employee> employeeList;
-    @OneToMany(mappedBy = "clientId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clientclientId")
     private List<Assessment> assessmentList;
     @JoinColumn(name = "companyId", referencedColumnName = "companyId")
     @ManyToOne(optional = false)
@@ -95,6 +95,14 @@ public class Client implements Serializable {
 
     public void setClientId(Integer clientId) {
         this.clientId = clientId;
+    }
+
+    public String getAssessmentId() {
+        return assessmentId;
+    }
+
+    public void setAssessmentId(String assessmentId) {
+        this.assessmentId = assessmentId;
     }
 
     public String getFirstName() {
@@ -171,5 +179,5 @@ public class Client implements Serializable {
     public String toString() {
         return "ergo.domainmodel.Client[ clientId=" + clientId + " ]";
     }
-
+    
 }

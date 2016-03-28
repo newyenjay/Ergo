@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author waynelin
+ * @author 680420
  */
 @Entity
 @Table(name = "admin")
@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Admin.findAll", query = "SELECT a FROM Admin a"),
     @NamedQuery(name = "Admin.findByAssessmentId", query = "SELECT a FROM Admin a WHERE a.assessmentId = :assessmentId"),
+    @NamedQuery(name = "Admin.findByAdminId", query = "SELECT a FROM Admin a WHERE a.adminId = :adminId"),
     @NamedQuery(name = "Admin.findByProactive", query = "SELECT a FROM Admin a WHERE a.proactive = :proactive"),
     @NamedQuery(name = "Admin.findByReactive", query = "SELECT a FROM Admin a WHERE a.reactive = :reactive"),
     @NamedQuery(name = "Admin.findByAssessor", query = "SELECT a FROM Admin a WHERE a.assessor = :assessor"),
@@ -53,13 +54,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Admin.findByScore", query = "SELECT a FROM Admin a WHERE a.score = :score"),
     @NamedQuery(name = "Admin.findByFollowUpNeeded", query = "SELECT a FROM Admin a WHERE a.followUpNeeded = :followUpNeeded")})
 public class Admin implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "assessmentId")
     private Integer assessmentId;
+    @Column(name = "adminId")
+    private Integer adminId;
     @Size(max = 20)
     @Column(name = "proactive")
     private String proactive;
@@ -122,8 +124,9 @@ public class Admin implements Serializable {
     private String generalNotes;
     @Column(name = "score")
     private Integer score;
+    @Size(max = 50)
     @Column(name = "followUpNeeded")
-    private Integer followUpNeeded;
+    private String followUpNeeded;
 
     public Admin() {
     }
@@ -138,6 +141,14 @@ public class Admin implements Serializable {
 
     public void setAssessmentId(Integer assessmentId) {
         this.assessmentId = assessmentId;
+    }
+
+    public Integer getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(Integer adminId) {
+        this.adminId = adminId;
     }
 
     public String getProactive() {
@@ -324,11 +335,11 @@ public class Admin implements Serializable {
         this.score = score;
     }
 
-    public Integer getFollowUpNeeded() {
+    public String getFollowUpNeeded() {
         return followUpNeeded;
     }
 
-    public void setFollowUpNeeded(Integer followUpNeeded) {
+    public void setFollowUpNeeded(String followUpNeeded) {
         this.followUpNeeded = followUpNeeded;
     }
 
