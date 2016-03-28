@@ -19,8 +19,6 @@ import javax.servlet.http.HttpServletResponse;
  * One of the main Servlets for the Assessments Servlet. Takes the information from the "Prepare/Maintain Body" page, and inputs it into the database.
  */
 public class MaintainServlet extends HttpServlet {
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

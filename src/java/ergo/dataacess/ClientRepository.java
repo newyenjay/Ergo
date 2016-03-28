@@ -5,9 +5,11 @@
  */
 package ergo.dataacess;
 
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import ergo.domainmodel.Client;
+import ergo.domainmodel.Company;
 /**
  *
  * @author Kimberly Oshiro
@@ -110,11 +112,15 @@ public class ClientRepository {
      * @param client - the object that will be referenced when inserting into the row. 
      * @return - a 1 if successful, if unsuccessful, nothing because the database will exit the try and will go into the finally clause and will return nothing. 
      */
-    public int insert(Client client)  {
+    public int insert(Client client) throws Exception  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
+            Company com = client.getCompanyId();
+            com.getClientList().add(client);
+            
             em.getTransaction().begin();
-            em.persist(client);
+            em.merge(com);
+            em.persist(em.merge(client));
             em.getTransaction().commit();
             return 1;
         } finally {
