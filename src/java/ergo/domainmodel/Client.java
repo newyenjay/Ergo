@@ -70,7 +70,7 @@ public class Client implements Serializable {
         @JoinColumn(name = "username", referencedColumnName = "username")})
     @ManyToMany
     private List<Employee> employeeList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clientclientId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clientId")
     private List<Assessment> assessmentList;
     @JoinColumn(name = "companyId", referencedColumnName = "companyId")
     @ManyToOne(optional = false)

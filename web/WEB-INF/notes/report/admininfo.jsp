@@ -1,5 +1,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 
+ <div class="container">
+        <c:if test = "${message != null}">
+
+            <c:if test = "${sucess == 0}">
+                <div class="alert alert-warning fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Warning! </strong>${message}
+                </div>
+            </c:if>
+            <c:if test = "${sucess == 1}">
+                <div class="alert alert-success fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Success! </strong>${message}
+                </div>
+            </c:if>
+
+        </c:if>
+    </div>     
+
 <div class="section">
     <div class="container">
         <div class="row">
@@ -43,7 +62,7 @@
                         <form role="form">
                             <div class="form-group">
                                 <label class="control-label">Accessor</label>
-                                <select class="form-control" name="assessment">
+                                <select class="form-control" name="accessor">
                                     <option></option>
                                     <option>Tennille Walker</option>
                                     <option>Mandy Gallant</option>
@@ -140,8 +159,8 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="col-xs-3">
+                            <div class="col-md-6">
+                                <div class="col-xs-2">
                                     <div class="form-group">
                                         <label>Discomfort present?</label>
                                         <select class="form-control" name="dPresent">
@@ -151,7 +170,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-xs-3">
+                                <div class="col-xs-2">
                                     <div class="form-group">
                                         <label>Discomfort reported?</label>
                                         <select class="form-control" name="dReported">
@@ -161,7 +180,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-xs-3">
+                                <div class="col-xs-2">
                                     <div class="form-group">
                                         <label>Treatment sought?</label>
                                         <select class="form-control" name="tSought">
@@ -171,7 +190,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-xs-3">
+                                <div class="col-xs-2">
                                     <div class="form-group">
                                         <label>Maximum discomfort</label>
                                         <select class="form-control" name="maxDiscomfort">
@@ -183,8 +202,19 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-xs-2">
+                                    <div class="form-group">
+                                        <label>Workstation fit</label>
+                                        <select class="form-control" name="workFit">
+                                            <option></option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <form role="form">
                                     <div class="form-group">
                                         <label class="control-label">Identified Risks
@@ -198,10 +228,14 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-md-4">
+                          
+                        </div>
+                        <div class="row">
+                             <div class="col-md-12">
                                 <label class="control-label">General Notes</label>
                                 <textarea class="form-control" rows="10" cols="45" placeholder="Enter notes" name="generalNotes"></textarea>
                             </div>
+                            
                         </div>
                         <div class="col-md-6">
                             <p></p>
@@ -223,7 +257,7 @@
                                         <label for="inputEmail3" class="control-label">Score</label>
                                     </div>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputEmail3" placeholder="Score" name="email">
+                                        <input type="text" class="form-control"  placeholder="Score" name="scoreVDT" disabled>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -254,12 +288,10 @@
 
         </div>    
         <!-- end panel 2 -->
-        <div class="jumbotron">
-            <form method="post" action="assessments">
+            <form method="post" action="adminTab">
                 <button type="submit" position="offset" class="btn btn-default">Submit</button>
-                <input type="hidden" value="adminInfo" name="action">
+                <input type="hidden" value="adminTab" name="action">
             <form/>
-        </div>
     </div>
 
 </div>

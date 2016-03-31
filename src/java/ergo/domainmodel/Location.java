@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author waynelin
+ * @author 680420
  */
 @Entity
 @Table(name = "location")
@@ -33,7 +33,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Location.findByLocationId", query = "SELECT l FROM Location l WHERE l.locationId = :locationId"),
     @NamedQuery(name = "Location.findByAddress", query = "SELECT l FROM Location l WHERE l.address = :address")})
 public class Location implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,8 +55,13 @@ public class Location implements Serializable {
         this.locationId = locationId;
     }
 
-    public Location( String address) {
+    public Location(Integer locationId, String address) {
+        this.locationId = locationId;
         this.address = address;
+    }
+    
+    public Location(String address) {
+        this.address = address; 
     }
 
     public Integer getLocationId() {

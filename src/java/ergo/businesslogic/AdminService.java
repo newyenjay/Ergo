@@ -16,14 +16,13 @@ public class AdminService {
     
     private AdminRepository ar; 
     
-    public int insert (int adminId, String proactive, String reactive, String assessor, String manager, String businessUnit,
+    public int insert ( String proactive, String reactive, String assessor, String manager, String businessUnit,
             String workspace, String jobTitle, String gender, int heightInFeet, int heightInInches, String handedness, int daysPerWeek,
             int hoursPerDay, int hoursVDT, int hoursOnPhone, String discomfortPresent, String discomfortReported, String treatmentSought,
-            String maxDiscomfort, String risks, String equip, String generalNotes, int score, String followup) {
+            int maxDiscomfort, int workstationFit, String risks, String generalNotes, String followup, int score) {
         ar = new AdminRepository();
         Admin admin = new Admin(); 
         
-        admin.setAdminId(adminId);
         admin.setProactive(proactive);
         admin.setReactive(reactive);
         admin.setAssessor(assessor);
@@ -42,7 +41,6 @@ public class AdminService {
         admin.setDiscomfortReported(discomfortReported);
         admin.setMaxDiscomfort(maxDiscomfort);
         admin.setRisks(risks);
-        admin.setEquipmentRecommendations(equip);
         admin.setGeneralNotes(generalNotes);
         admin.setScore(score);
         
