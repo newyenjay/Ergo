@@ -1,5 +1,6 @@
 
 <%@include file="/WEB-INF/jspf/header.jspf" %>
+${message}
 
 <div class="content">
     <div class="container"> 
