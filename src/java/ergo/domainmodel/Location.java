@@ -54,14 +54,14 @@ public class Location implements Serializable {
     public Location(Integer locationId) {
         this.locationId = locationId;
     }
+    
+    public Location(String address) {
+        this.address = address;
+    }
 
     public Location(Integer locationId, String address) {
         this.locationId = locationId;
         this.address = address;
-    }
-    
-    public Location(String address) {
-        this.address = address; 
     }
 
     public Integer getLocationId() {
