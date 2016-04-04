@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author 680420
+ * @author Kimberly Oshiro
  */
 @Entity
 @Table(name = "location")
@@ -58,10 +58,6 @@ public class Location implements Serializable {
     public Location(Integer locationId, String address) {
         this.locationId = locationId;
         this.address = address;
-    }
-    
-    public Location(String address) {
-        this.address = address; 
     }
 
     public Integer getLocationId() {
