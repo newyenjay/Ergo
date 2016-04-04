@@ -6,19 +6,18 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -49,7 +48,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Admin.findByDiscomfortReported", query = "SELECT a FROM Admin a WHERE a.discomfortReported = :discomfortReported"),
     @NamedQuery(name = "Admin.findByTreatmentSought", query = "SELECT a FROM Admin a WHERE a.treatmentSought = :treatmentSought"),
     @NamedQuery(name = "Admin.findByMaxDiscomfort", query = "SELECT a FROM Admin a WHERE a.maxDiscomfort = :maxDiscomfort"),
-    @NamedQuery(name = "Admin.findByWorkFit", query = "SELECT a FROM Admin a WHERE a.workFit = :workFit"),
     @NamedQuery(name = "Admin.findByRisks", query = "SELECT a FROM Admin a WHERE a.risks = :risks"),
     @NamedQuery(name = "Admin.findByEquipmentRecommendations", query = "SELECT a FROM Admin a WHERE a.equipmentRecommendations = :equipmentRecommendations"),
     @NamedQuery(name = "Admin.findByGeneralNotes", query = "SELECT a FROM Admin a WHERE a.generalNotes = :generalNotes"),
@@ -110,10 +108,9 @@ public class Admin implements Serializable {
     @Size(max = 20)
     @Column(name = "treatmentSought")
     private String treatmentSought;
+    @Size(max = 20)
     @Column(name = "maxDiscomfort")
-    private Integer maxDiscomfort;
-    @Column(name = "workFit")
-    private Integer workFit;
+    private String maxDiscomfort;
     @Size(max = 200)
     @Column(name = "risks")
     private String risks;
@@ -128,8 +125,9 @@ public class Admin implements Serializable {
     @Size(max = 50)
     @Column(name = "followUpNeeded")
     private String followUpNeeded;
-    @OneToMany(mappedBy = "adminId")
-    private List<Assessment> assessmentList;
+    @JoinColumn(name = "adminId", referencedColumnName = "assessmentId", insertable = false, updatable = false)
+    @OneToOne(optional = false)
+    private Assessment assessment;
 
     public Admin() {
     }
@@ -290,20 +288,12 @@ public class Admin implements Serializable {
         this.treatmentSought = treatmentSought;
     }
 
-    public Integer getMaxDiscomfort() {
+    public String getMaxDiscomfort() {
         return maxDiscomfort;
     }
 
-    public void setMaxDiscomfort(Integer maxDiscomfort) {
+    public void setMaxDiscomfort(String maxDiscomfort) {
         this.maxDiscomfort = maxDiscomfort;
-    }
-
-    public Integer getWorkFit() {
-        return workFit;
-    }
-
-    public void setWorkFit(Integer workFit) {
-        this.workFit = workFit;
     }
 
     public String getRisks() {
@@ -346,13 +336,12 @@ public class Admin implements Serializable {
         this.followUpNeeded = followUpNeeded;
     }
 
-    @XmlTransient
-    public List<Assessment> getAssessmentList() {
-        return assessmentList;
+    public Assessment getAssessment() {
+        return assessment;
     }
 
-    public void setAssessmentList(List<Assessment> assessmentList) {
-        this.assessmentList = assessmentList;
+    public void setAssessment(Assessment assessment) {
+        this.assessment = assessment;
     }
 
     @Override

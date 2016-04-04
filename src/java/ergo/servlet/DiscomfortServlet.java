@@ -5,6 +5,7 @@
  */
 package ergo.servlet;
 
+import ergo.businesslogic.DiscomfortService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Kimberly Oshiro
  * 
  * The Servlet Assessment page is in charge of the "Discomfort" tab in the assessment tab. 
+ * I don't know what this name is hooked up to. 
  */
 public class DiscomfortServlet extends HttpServlet {
     /**
@@ -30,7 +32,7 @@ public class DiscomfortServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
+      //does there need to be any checking on the JSP?
     }
 
     /**
@@ -44,7 +46,25 @@ public class DiscomfortServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    
+        
+        String notes = request.getParameter("notes").trim();
+        
+        if(notes.isEmpty() || notes == null){
+            request.setAttribute("message", "Please fill in some notes before attempting to save to the database");
+            getServletContext().getRequestDispatcher("/WEB-INF/notes/discomfort.jsp").forward(request, response); //will have to figure out the URL for this. 
+        }
+        
+        //insert into the database then
+        DiscomfortService ds = new DiscomfortService();
+        if((ds.insert(notes)) == 1){
+//            //return a message of success. 
+             //redirect to the jsp page
+        }
+        else{
+            //redirect with an error 
+        }
+        
+
     }
 
     /**

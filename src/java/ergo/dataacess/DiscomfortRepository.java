@@ -5,6 +5,9 @@
  */
 package ergo.dataacess;
 
+import ergo.domainmodel.Discomfort;
+import javax.persistence.EntityManager;
+
 /**
  *
  * @author Kimberly Oshiro
@@ -12,5 +15,26 @@ package ergo.dataacess;
 public class DiscomfortRepository {
     
     //insertion
+    public int insert(Discomfort discomfort){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(discomfort);
+            em.getTransaction().commit();
+            return 1; //I don't think this is needed. 
+        } finally {
+            em.close();
+        }
+    }
+    
+    public Discomfort getDiscomfort(Integer discomfortId){
+         EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            Discomfort discomfort = em.find(Discomfort.class,discomfortId);
+            return discomfort;
+        } finally {
+            em.close();
+        }
+    }
     
 }

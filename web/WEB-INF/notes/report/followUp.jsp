@@ -29,9 +29,9 @@
               </div>
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <form method="post" action="assessment">
+                    <form method="post" action="followup">
                   <button type="submit" class="btn btn-default">Save</button>
-                  <input type="hidden" name="action" value="followUp"/>
+                  <input type="hidden" name="action" value="followup"/>
                     </form>
                 </div>
               </div>
