@@ -22,7 +22,7 @@ public class FollowupRepository {
      * @return - A Followup Object that is not within the Java API. Otherwise, it is an exception that the database throws and the exception that Oracle returns is something 
      * unique to the situation. It really depends on how Oracle reacts to the user. 
      */
-    public Followup getFollowup(int followUpId)  {
+    public Followup getFollowup(int followUpId){
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             Followup followup = em.find(Followup.class, followUpId); 
@@ -53,7 +53,7 @@ public class FollowupRepository {
      * @param followup
      * @return 
      */
-    public int insert(Followup followup)  {
+    public int insert(Followup followup)throws Exception{
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             em.getTransaction().begin();

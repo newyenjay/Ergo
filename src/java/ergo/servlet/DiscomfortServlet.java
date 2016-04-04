@@ -8,6 +8,8 @@ package ergo.servlet;
 import ergo.businesslogic.DiscomfortService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -47,21 +49,29 @@ public class DiscomfortServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        DiscomfortService ds = new DiscomfortService();
         String notes = request.getParameter("notes").trim();
         
         if(notes.isEmpty() || notes == null){
-            request.setAttribute("message", "Please fill in some notes before attempting to save to the database");
-            getServletContext().getRequestDispatcher("/WEB-INF/notes/discomfort.jsp").forward(request, response); //will have to figure out the URL for this. 
+            notes = null; 
+            request.setAttribute("message", "Please fill in at least one field before submitting the form");
+            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response); //will have to figure out the URL for this. 
         }
         
-        //insert into the database then
-        DiscomfortService ds = new DiscomfortService();
-        if((ds.insert(notes)) == 1){
-//            //return a message of success. 
-             //redirect to the jsp page
-        }
-        else{
-            //redirect with an error 
+        try {
+            //insert into the database then
+            if((ds.insert(notes)) == 1){
+//            //return a message of success.
+                request.setAttribute("message", "successfully inserted");
+                getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
+            }
+            else{
+                request.setAttribute("message", "something went wrong");
+                getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(DiscomfortServlet.class.getName()).log(Level.SEVERE, null, ex);
+            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
         }
         
 

@@ -8,6 +8,8 @@ package ergo.servlet;
 import ergo.businesslogic.FollowupService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -44,25 +46,33 @@ public class FollowUpServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        FollowupService fs = new FollowupService();
+        
         String note = request.getParameter("note").trim();
         String comments = request.getParameter("comments").trim();
         String recommendations = request.getParameter("recommendations").trim();
         
         if(note.isEmpty() || note == null || comments.isEmpty() || comments == null || recommendations.isEmpty() ||  recommendations == null){
             request.setAttribute("message", "Please fill in at least one field before submitting the form");
+            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
             //Have a place to send the response to, still don't know where to send this to. Where do we go I don't know   
         }
        
-        //check them individually? Unless this isn't that big of a deal. 
-     
-        FollowupService fs = new FollowupService();
-        if((fs.insert(note, comments, recommendations)) == 1){
-            //success message here
+        try {
+            //check them individually? Unless this isn't that big of a deal.
+            if((fs.insert(note, comments, recommendations)) == 1){
+                request.setAttribute("message", "Added successfully");
+                getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
+            }
+            else{
+                request.setAttribute("message", "shit went down sorry");
+                getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(FollowUpServlet.class.getName()).log(Level.SEVERE, null, ex);
+            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
         }
-        else{
-            //error message here, I guess. 
-        }
-        response.sendRedirect("page");//somepage/ where do we send everything I can't find pages help me 
+        //response.sendRedirect("page");//somepage/ where do we send everything I can't find pages help me 
     }
 
     /**

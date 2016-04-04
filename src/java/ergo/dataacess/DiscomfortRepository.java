@@ -15,7 +15,7 @@ import javax.persistence.EntityManager;
 public class DiscomfortRepository {
     
     //insertion
-    public int insert(Discomfort discomfort){
+    public int insert(Discomfort discomfort)throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             em.getTransaction().begin();
@@ -27,7 +27,7 @@ public class DiscomfortRepository {
         }
     }
     
-    public Discomfort getDiscomfort(Integer discomfortId){
+    public Discomfort getDiscomfort(Integer discomfortId)throws Exception{
          EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             Discomfort discomfort = em.find(Discomfort.class,discomfortId);

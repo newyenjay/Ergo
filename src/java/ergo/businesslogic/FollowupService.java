@@ -25,7 +25,7 @@ public class FollowupService {
      * @param recommendations
      * @return 
      */
-    public int insert(String notes, String comments, String recommendations){
+    public int insert(String notes, String comments, String recommendations) throws Exception{
         fr =  new FollowupRepository();
         Followup followup = new Followup(); //Should we create the object here or in the object simply because most of the fields don't have to be filled?
         followup.setNote(notes);
@@ -40,7 +40,7 @@ public class FollowupService {
      * @param followUpId
      * @return 
      */
-    public Followup getFollowup(int followUpId){
+    public Followup getFollowup(int followUpId) throws Exception{
         fr = new FollowupRepository();
         return fr.getFollowup(followUpId);
         //Created the get method purely for necessity. 

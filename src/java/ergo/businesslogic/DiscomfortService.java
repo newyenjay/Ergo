@@ -16,14 +16,14 @@ public class DiscomfortService {
 DiscomfortRepository dr;
 
     //insert
-    public int insert(String notes){
+    public int insert(String notes)throws Exception{
          dr = new DiscomfortRepository();
          Discomfort discomfort = new Discomfort();
          discomfort.setNotes(notes);
          return dr.insert(discomfort); //I don't think you need to create a discomfort ID here. However, if you want a discomfort ID you need to get one. 
     }
     
-    public Discomfort get(Integer discomfortId){
+    public Discomfort get(Integer discomfortId)throws Exception{
         dr = new DiscomfortRepository();
         return dr.getDiscomfort(discomfortId);
     }

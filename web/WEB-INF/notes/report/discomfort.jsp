@@ -12,10 +12,8 @@
                         <textarea class="form-control" placeholder="Notes and comments" id="notes"></textarea>
                         
                         <form method="post" action="discomfort">
-                            <br><button type="button" class="btn btn-primary">Save</button>
-                            <input type="hidden" name="action" value="discomfort"/>
+                            <br><input type="submit" class="btn btn-primary" value="Save"></input>
                         </form>
-
                     </div>
                 </div>
             </form>
