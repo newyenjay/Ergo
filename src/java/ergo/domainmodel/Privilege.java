@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 680420
+ * @author Kimberly Oshiro
  */
 @Entity
 @Table(name = "privilege")

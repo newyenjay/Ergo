@@ -9,9 +9,9 @@
             <form class="form-horizontal" role="form">
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <textarea class="form-control" placeholder="Notes and comments"></textarea>
+                        <textarea class="form-control" placeholder="Notes and comments" id="notes"></textarea>
                         
-                        <form method="post" action="assessment">
+                        <form method="post" action="discomfort">
                             <br><button type="button" class="btn btn-primary">Save</button>
                             <input type="hidden" name="action" value="discomfort"/>
                         </form>
