@@ -41,9 +41,16 @@ public class LocationService {
      * @return
      * @throws Exception
      */
+//    public int insert(Company companyId, String address) throws Exception {
+//        lr = new LocationRepository();
+//        Location location = new Location(address);
+//        location.setCompanyId(companyId);
+//        return lr.insert(location);
+//    }
     public int insert(Company companyId, String address) throws Exception {
         lr = new LocationRepository();
-        Location location = new Location(address);
+        Location location = new Location();
+        location.setAddress(address);
         location.setCompanyId(companyId);
         return lr.insert(location);
     }

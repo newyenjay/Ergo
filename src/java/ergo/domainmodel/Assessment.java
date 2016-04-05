@@ -7,7 +7,6 @@ package ergo.domainmodel;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,14 +14,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Kimberly Oshiro
+ * @author 671402
  */
 @Entity
 @Table(name = "assessment")
@@ -55,8 +53,6 @@ public class Assessment implements Serializable {
     @JoinColumn(name = "clientId", referencedColumnName = "clientId")
     @ManyToOne(optional = false)
     private Client clientId;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "assessment")
-    private Admin admin;
 
     public Assessment() {
     }
@@ -119,14 +115,6 @@ public class Assessment implements Serializable {
 
     public void setClientId(Client clientId) {
         this.clientId = clientId;
-    }
-
-    public Admin getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
     }
 
     @Override

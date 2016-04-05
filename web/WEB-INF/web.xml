@@ -65,6 +65,14 @@
         <servlet-name>AdminTabServlet</servlet-name>
         <servlet-class>ergo.servlet.AdminTabServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PmbServlet</servlet-name>
+        <servlet-class>ergo.servlet.PmbServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SpmServlet</servlet-name>
+        <servlet-class>ergo.servlet.SpmServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -124,6 +132,14 @@
     <servlet-mapping>
         <servlet-name>AdminTabServlet</servlet-name>
         <url-pattern>/adminTab</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PmbServlet</servlet-name>
+        <url-pattern>/pmb</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SpmServlet</servlet-name>
+        <url-pattern>/spm</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

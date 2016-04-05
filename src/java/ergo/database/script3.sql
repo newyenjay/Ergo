@@ -51,6 +51,81 @@ CREATE TABLE IF NOT EXISTS `ergodb`.`client` (
     FOREIGN KEY (`companyId`)
     REFERENCES `ergodb`.`company` (`companyId`));
  
+-- -----------------------------------------------------
+-- Table `ergodb`.`admin`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `ergodb`.`admin` ;
+
+CREATE TABLE IF NOT EXISTS `ergodb`.`admin` (
+  `adminId` INT(45) NOT NULL AUTO_INCREMENT,
+  `proactive` VARCHAR(20) NULL,
+  `reactive` VARCHAR(20) NULL ,
+  `assessor` VARCHAR(20) NULL,
+  `manager` VARCHAR(20) NULL,
+  `businessUnit` VARCHAR(20) NULL,
+  `workspace` VARCHAR(20) NULL,
+  `jobTitle` VARCHAR(20) NULL,
+  `gender` VARCHAR(6) NULL,
+  `heightInFeet` INT(11) NULL,
+  `heightInInches` INT(11) NULL,
+  `handedness` VARCHAR(5) NULL,
+  `daysPerWeek` INT(11) NULL,
+  `hoursPerDay` INT(11) NULL,
+  `hoursVDT` INT(11) NULL,
+  `hoursOnPhone` INT(11) NULL,
+  `discomfortPresent` VARCHAR(20) NULL,
+  `discomfortReported` VARCHAR(20) NULL,
+  `treatmentSought` VARCHAR(20) NULL,
+  `maxDiscomfort` INT(1) NULL,
+  `workFit` INT(1) NULL, 
+  `risks` VARCHAR(200) NULL,
+  `equipmentRecommendations` VARCHAR(200),
+  `generalNotes` VARCHAR(300) NULL,
+  `score` INT(11) NULL,
+  `followUpNeeded` VARCHAR(50),
+  PRIMARY KEY (`adminId`));
+
+
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Table `ergodb`.`pmb`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `ergodb`.`pmb` ;
+
+CREATE TABLE IF NOT EXISTS `ergodb`.`pmb` (
+  `pmbId` INT(11) NOT NULL AUTO_INCREMENT,
+  `goalMetBool` TINYINT(1) NULL,
+  `goalMetNotes` VARCHAR(250) NULL,
+  `educBool` TINYINT(1) NULL,
+  `educNotes` VARCHAR(250) NULL,
+  `microBeBool` TINYINT(1) NULL,
+  `microBeNotes` VARCHAR(250) NULL,
+  `microAfBool` TINYINT(1) NULL,
+  `microAfNotes` VARCHAR(250) NULL,
+  PRIMARY KEY (`pmbId`));
+
+-- -----------------------------------------------------
+-- Table `ergodb`.`spm`
+-- -----------------------------------------------------
+
+DROP TABLE IF EXISTS `ergodb`.`spm` ;
+
+CREATE TABLE IF NOT EXISTS `ergodb`.`spm` (
+  `spmId` INT(11) NOT NULL AUTO_INCREMENT COMMENT '',
+  `baseBeBool` TINYINT(1) NULL COMMENT '',
+  `baseAfBool` TINYINT(1) NULL COMMENT '',
+  `shoulderBeBool` TINYINT(1) NULL COMMENT '',
+  `shoulderAfBool` TINYINT(1) NULL COMMENT '',
+  `armBeBool` TINYINT(1) NULL COMMENT '',
+  `armAfBool` TINYINT(1) NULL COMMENT '',
+  `baseBeNotes` VARCHAR(250) NULL COMMENT '',
+  `baseAfNotes` VARCHAR(250) NULL COMMENT '',
+  `shoulderBeNotes` VARCHAR(250) NULL COMMENT '',
+  `shoulderAfNotes` VARCHAR(250) NULL COMMENT '',
+  `armBeNotes` VARCHAR(250) NULL COMMENT '',
+  `armAfNotes` VARCHAR(250) NULL COMMENT '',
+  PRIMARY KEY (`spmId`)  COMMENT '')
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `ergodb`.`assessment`
@@ -70,44 +145,6 @@ CREATE TABLE IF NOT EXISTS `ergodb`.`assessment` (
   CONSTRAINT `fk_assessment_client1`
     FOREIGN KEY (`clientId`)
     REFERENCES `ergodb`.`client` (`clientId`));
- 
-
--- -----------------------------------------------------
--- Table `ergodb`.`admin`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `ergodb`.`admin` ;
-
-CREATE TABLE IF NOT EXISTS `ergodb`.`admin` (
-  `adminId` INT(45) NOT NULL,
-  `proactive` VARCHAR(20) NULL DEFAULT NULL,
-  `reactive` VARCHAR(20) NULL DEFAULT NULL,
-  `assessor` VARCHAR(20) NULL DEFAULT NULL,
-  `manager` VARCHAR(20) NULL DEFAULT NULL,
-  `businessUnit` VARCHAR(20) NULL DEFAULT NULL,
-  `workspace` VARCHAR(20) NULL DEFAULT NULL,
-  `jobTitle` VARCHAR(20) NULL DEFAULT NULL,
-  `gender` VARCHAR(6) NULL DEFAULT NULL,
-  `heightInFeet` INT(11) NULL DEFAULT NULL,
-  `heightInInches` INT(11) NULL DEFAULT NULL,
-  `handedness` VARCHAR(5) NULL DEFAULT NULL,
-  `daysPerWeek` INT(11) NULL DEFAULT NULL,
-  `hoursPerDay` INT(11) NULL DEFAULT NULL,
-  `hoursVDT` INT(11) NULL DEFAULT NULL,
-  `hoursOnPhone` INT(11) NULL DEFAULT NULL,
-  `discomfortPresent` VARCHAR(20) NULL DEFAULT NULL,
-  `discomfortReported` VARCHAR(20) NULL DEFAULT NULL,
-  `treatmentSought` VARCHAR(20) NULL DEFAULT NULL,
-  `maxDiscomfort` VARCHAR(20) NULL DEFAULT NULL,
-  `risks` VARCHAR(200) NULL DEFAULT NULL,
-  `equipmentRecommendations` VARCHAR(200) NULL DEFAULT NULL,
-  `generalNotes` VARCHAR(300) NULL DEFAULT NULL,
-  `score` INT(11) NULL DEFAULT NULL,
-  `followUpNeeded` VARCHAR(50) NULL DEFAULT NULL,
-  PRIMARY KEY (`adminId`),
-  CONSTRAINT `assessment`
-    FOREIGN KEY (`adminId`)
-    REFERENCES `ergodb`.`assessment` (`assessmentId`));
- 
 
 -- -----------------------------------------------------
 -- Table `ergodb`.`assessmentaccessory`
