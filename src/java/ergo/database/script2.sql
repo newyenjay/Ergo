@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `ergodb`.`accessory` (
 DROP TABLE IF EXISTS `ergodb`.`admin` ;
 
 CREATE TABLE IF NOT EXISTS `ergodb`.`admin` (
-  `adminId` INT(45) NOT NULL,
+  `adminId` INT(45) NOT NULL AUTO_INCREMENT,
   `proactive` VARCHAR(20) NULL,
   `reactive` VARCHAR(20) NULL ,
   `assessor` VARCHAR(20) NULL,

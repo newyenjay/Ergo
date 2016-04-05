@@ -58,12 +58,12 @@
         <servlet-class>ergo.servlet.AdminTabServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DiscomfortServlet</servlet-name>
-        <servlet-class>ergo.servlet.DiscomfortServlet</servlet-class>
+        <servlet-name>PmbServlet</servlet-name>
+        <servlet-class>ergo.servlet.PmbServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>FollowupServlet</servlet-name>
-        <servlet-class>ergo.servlet.FollowUpServlet</servlet-class>
+        <servlet-name>SpmServlet</servlet-name>
+        <servlet-class>ergo.servlet.SpmServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -118,12 +118,12 @@
         <url-pattern>/adminTab</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DiscomfortServlet</servlet-name>
-        <url-pattern>/discomfort</url-pattern>
+        <servlet-name>PmbServlet</servlet-name>
+        <url-pattern>/pmb</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>FollowupServlet</servlet-name>
-        <url-pattern>/followup</url-pattern>
+        <servlet-name>SpmServlet</servlet-name>
+        <url-pattern>/spm</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

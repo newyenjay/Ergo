@@ -40,6 +40,7 @@ public class AdminService {
         admin.setDiscomfortPresent(discomfortPresent);
         admin.setDiscomfortReported(discomfortReported);
         admin.setMaxDiscomfort(maxDiscomfort);
+        admin.setWorkFit(workstationFit);
         admin.setRisks(risks);
         admin.setGeneralNotes(generalNotes);
         admin.setScore(score);

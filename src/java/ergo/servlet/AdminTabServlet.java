@@ -107,17 +107,52 @@ public class AdminTabServlet extends HttpServlet {
         int discomfort = 0;
         int workFit = 0;
 
+        // sorry for ugly try catch
         try {
             hInches = Integer.parseInt(heightInches);
-            hFeet = Integer.parseInt(heightFeet);
-            daysInOffice = Integer.parseInt(daysWeeksInOffice);
-            hoursInOffice = Integer.parseInt(hoursDayInOffice);
-            vdt = Integer.parseInt(hoursInVDT);
-            phone = Integer.parseInt(hoursOnPhone);
-            discomfort = Integer.parseInt(maxDiscomfort);
-            workFit = Integer.parseInt(workstationFit);
         } catch (NumberFormatException nfe) {
+        }
 
+        try {
+            hFeet = Integer.parseInt(heightFeet);
+
+        } catch (NumberFormatException nfe) {
+        }
+
+        try {
+            daysInOffice = Integer.parseInt(daysWeeksInOffice);
+
+        } catch (NumberFormatException nfe) {
+        }
+
+        try {
+            hoursInOffice = Integer.parseInt(hoursDayInOffice);
+
+        } catch (NumberFormatException nfe) {
+        }
+
+        try {
+            vdt = Integer.parseInt(hoursInVDT);
+
+        } catch (NumberFormatException nfe) {
+        }
+
+        try {
+            phone = Integer.parseInt(hoursOnPhone);
+
+        } catch (NumberFormatException nfe) {
+        }
+
+        try {
+            discomfort = Integer.parseInt(maxDiscomfort);
+
+        } catch (NumberFormatException nfe) {
+        }
+
+        try {
+            workFit = Integer.parseInt(workstationFit);
+
+        } catch (NumberFormatException nfe) {
         }
 
         int vdtScore = (vdt / 3) + (2 * workFit) + (2 * discomfort);
@@ -125,44 +160,45 @@ public class AdminTabServlet extends HttpServlet {
         if (action.equals("adminTab")) {
 
             //try {
-                as.insert(proactive,
-                        reactive,
-                        assessor,
-                        manager,
-                        business,
-                        workspace,
-                        jobTitle,
-                        gender,
-                        hFeet,
-                        hInches,
-                        handedness,
-                        daysInOffice,
-                        hoursInOffice,
-                        vdt,
-                        phone,
-                        dPresent,
-                        dReported,
-                        tSought,
-                        discomfort,
-                        workFit,
-                        equiptRec,
-                        generalNotes,
-                        followUpNeeded,
-                        vdtScore);
+            as.insert(proactive,
+                    reactive,
+                    assessor,
+                    manager,
+                    business,
+                    workspace,
+                    jobTitle,
+                    gender,
+                    hFeet,
+                    hInches,
+                    handedness,
+                    daysInOffice,
+                    hoursInOffice,
+                    vdt,
+                    phone,
+                    dPresent,
+                    dReported,
+                    tSought,
+                    discomfort,
+                    workFit,
+                    equiptRec,
+                    generalNotes,
+                    followUpNeeded,
+                    vdtScore);
 
-                request.setAttribute("message", "Success!");
-                getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/search.jsp").forward(request, response);
+            request.setAttribute("message", "Success!");
+            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/search.jsp").forward(request, response);
 
             //} catch (Exception ex) {
             //    request.setAttribute("message", ex);
-           //     Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, ex);
-
-          //  }
+            //     Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, ex);
+            //  }
+        } else {
+            request.setAttribute("message", "no work");
+            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/search.jsp").forward(request, response);
 
         }
 
-        response.sendRedirect("assessments");
-
+        //response.sendRedirect("assessments");
     }
 
 }
