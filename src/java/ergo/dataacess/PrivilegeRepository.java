@@ -9,13 +9,24 @@ import ergo.domainmodel.Privilege;
 import javax.persistence.EntityManager;
 
 /**
- *
  * 
+ * The repository unit that handles the privilege table in the database. This simply uses the joint table in the database and checks whether or not a user in the
+ * database is an administrator.
+ * 
+ * @version 1.0 - inserted a getId method as it's the only one that's really needed by the project, will be adding more as it's needed. 
+ * @version 1.1 - Added documentation 2016/04/05
  * 
  * @author Kimberly Oshiro
  */
 public class PrivilegeRepository {
     
+    /**
+     * Takes in a Employee id from the database, and returns the privilege level of that employee. Either being a administrator or a user of the program. Will return an
+     * exception if there is any problems while executing the script. 
+     * 
+     * @param id - must be a valid int variable, and must be a valid id of an employee in the database. 
+     * @return - a Privilege object that depicts the level of privilege that that user has, either being an administrator, or a user.
+     */
     public Privilege getId(int id){
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {

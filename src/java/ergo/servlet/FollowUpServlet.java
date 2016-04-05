@@ -32,7 +32,7 @@ public class FollowUpServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //do a check on the user being logged in?
-    }
+        getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -48,31 +48,28 @@ public class FollowUpServlet extends HttpServlet {
         
         FollowupService fs = new FollowupService();
         
-        String note = request.getParameter("note").trim();
-        String comments = request.getParameter("comments").trim();
+        String note = request.getParameter("identifiedRisks").trim(); //remember the names
+        String comments = request.getParameter("workerComments").trim(); //remember the names 
         String recommendations = request.getParameter("recommendations").trim();
         
+        
+        //checks to see if all the fields are filled in before attempting to continue on with the process. 
         if(note.isEmpty() || note == null || comments.isEmpty() || comments == null || recommendations.isEmpty() ||  recommendations == null){
             request.setAttribute("message", "Please fill in at least one field before submitting the form");
             getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
-            //Have a place to send the response to, still don't know where to send this to. Where do we go I don't know   
+            //Have a place to send the response to, still don't know where to send this to. Where do we go I don't know
+            //this redirect is one of the thing's that's screwing me up dude. 
         }
        
         try {
-            //check them individually? Unless this isn't that big of a deal.
-            if((fs.insert(note, comments, recommendations)) == 1){
-                request.setAttribute("message", "Added successfully");
-                getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
-            }
-            else{
-                request.setAttribute("message", "shit went down sorry");
-                getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
-            }
+            fs.insert(note, comments, recommendations);
+            request.setAttribute("message", "Successfully Inserted");
+            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(FollowUpServlet.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("message", "An error has ocurred");
             getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
         }
-        //response.sendRedirect("page");//somepage/ where do we send everything I can't find pages help me 
     }
 
     /**

@@ -6,14 +6,15 @@
             <h3 class="panel-title">Notes and comments</h3>
         </div>
         <div class="panel-body">
-            <form class="form-horizontal" role="form">
+            <form class="form-horizontal" role="form" method = "post" action="discomfort">
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <textarea class="form-control" placeholder="Notes and comments" id="notes"></textarea>
+                        <textarea class="form-control" placeholder="Notes and comments" name="notes"></textarea>
                         
-                        <form method="post" action="discomfort">
+                        
                             <br><input type="submit" class="btn btn-primary" value="Save"></input>
-                        </form>
+                            <input type="hidden" value="discomfort"/>
+                        
                     </div>
                 </div>
             </form>

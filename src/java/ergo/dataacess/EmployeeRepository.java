@@ -54,6 +54,7 @@ public class EmployeeRepository {
     }
     
     /**
+     * Returns an Employee object from the database based on their username. 
      * 
      * @param username
      * @return 

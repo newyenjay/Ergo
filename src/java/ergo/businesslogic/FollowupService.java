@@ -27,7 +27,7 @@ public class FollowupService {
      */
     public int insert(String notes, String comments, String recommendations) throws Exception{
         fr =  new FollowupRepository();
-        Followup followup = new Followup(); //Should we create the object here or in the object simply because most of the fields don't have to be filled?
+        Followup followup = new Followup();
         followup.setNote(notes);
         followup.setComments(comments);
         followup.setRecommendations(recommendations);

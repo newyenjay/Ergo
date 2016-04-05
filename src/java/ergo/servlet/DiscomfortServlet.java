@@ -34,7 +34,8 @@ public class DiscomfortServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      //does there need to be any checking on the JSP?
+      getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);
+        
     }
 
     /**
@@ -53,25 +54,21 @@ public class DiscomfortServlet extends HttpServlet {
         String notes = request.getParameter("notes").trim();
         
         if(notes.isEmpty() || notes == null){
-            notes = null; 
             request.setAttribute("message", "Please fill in at least one field before submitting the form");
-            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response); //will have to figure out the URL for this. 
+            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response); 
         }
         
         try {
-            //insert into the database then
-            if((ds.insert(notes)) == 1){
-//            //return a message of success.
-                request.setAttribute("message", "successfully inserted");
-                getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
-            }
-            else{
-                request.setAttribute("message", "something went wrong");
-                getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(DiscomfortServlet.class.getName()).log(Level.SEVERE, null, ex);
+            //Attempt to insert into the database 
+            ds.insert(notes);
+            request.setAttribute("message", "successfully inserted");
             getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
+            
+        } catch (Exception ex) {
+            //Something goes wrong with the insertion
+            Logger.getLogger(DiscomfortServlet.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("message", "An error has ocurred");
+            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response); //redirect to the main page with an error
         }
         
 
