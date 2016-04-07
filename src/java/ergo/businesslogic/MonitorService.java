@@ -10,5 +10,5 @@ package ergo.businesslogic;
  * @author Kimberly Oshiro
  */
 public class MonitorService {
-    
+    //KO - I don't believe this class is necessary. 
 }

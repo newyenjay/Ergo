@@ -14,6 +14,7 @@ import ergo.domainmodel.Employee;
  * 
  * @version 1.0 - Changed the name from EmployeeDB to EmployeeRepository. Was decided that it was better for the operation for this to be named this way. 
  * @version 1.1 - Added Documentation 
+ * @version 1.2 - Continued Documentation 
  */
 public class EmployeeRepository {
     
@@ -54,10 +55,16 @@ public class EmployeeRepository {
     }
     
     /**
-     * Returns an Employee object from the database based on their username. 
+     * Returns an Employee object from the database based on the username Parameters. If the employee is in the database then it will be returned, otherwise
+     * an exception is thrown by the database and null is returned from the method. 
      * 
-     * @param username
-     * @return 
+     * Pre - The employee must exist in the database prior to the method call.
+     * 
+     * Post - An Employee object is created out of reference from the one in the database, actions can be performed upon this object. 
+     * 
+     * @param username - the username in reference that the database will use to search for the row in the database. 
+     * @return - The Employee object that will be created from the method. otherwise, a nullpointer exception, as the database was unable to retrieve the row that it was searching
+     * for. 
      */
     public Employee getEmployee(String username) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();

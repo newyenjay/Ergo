@@ -7,31 +7,26 @@ package ergo.businesslogic;
 
 import ergo.dataacess.ClientRepository;
 import ergo.domainmodel.Client;
-import ergo.domainmodel.Company;
-import java.util.Date;
 import java.util.List;
 /**
  *
- * @author Kimberly Oshiro WOWIE LOOKIT THIS SHIT
+ * @author Kimberly Oshiro 
  * this'll be the service that will handle the calls for the Employee repository. I'm looking forward for what can be done here, no editing calls will probably be
  * actually need to be implemented in the interface I don't think, but It's going to be here in the class. Just in case. You never know what could happen, you know? 
  * 
- * @version 1.0 Adding stuff, Wowie rick. I have rick and morty on in the background, and I don't know what's happening. 
+ * @version 1.0 Adding stuff, 
  * @version 1.5 Revamping method names - Things weren't making sense to call them users, really. Made it more streamlined to call them client, much like the java class 
  *          hints at. It just makes more sense. 
+ * @version 2.0 Uhm, removing some unnecessary comments. Also fixing up the documentation so that it's up to date with the current API. 
  */
 public class ClientService {
     private static ClientRepository cr; //I figured it'd be easier just to have a variable instantiated already instead of having to create a new one every time.
     
     /**
      * Takes the parameters that are required to create a Client object, creates a Client object using the parameters given, and inserts the object into the database. 
-     * @param clientId - the integer that represents the clientele id, what is the primary key in the database and is used to identify the object out of every other row in the
-     * database. Cannot be altered. 
      * @param firstName - The first name of the client, is used to identify based on first name. 
      * @param comloc 
-     * @param companyList 
-     * @param lastName - The last name of the client, is used to identify based on last name.
-     * @param email - The last name of the client, is used to identify based on email. 
+     * @param lastName - The last name of the client, is used to identify based on last name. 
      * @return - an integer if the insertion was successful into the database, or an exception that the database will throw because something went wrong during the insertion
      *  into the database. 
      * @throws Exception 
@@ -68,7 +63,7 @@ public class ClientService {
      * @param firstName - The first name of the client,  is used to identify based on first name. 
      * @param lastName - the Last name of the client, is used to identify based on last name. 
      * @param email - the email of the client, is used to identify based on email. 
-     * @return - a 1 if the sql query is a success. Otherwise, nothing. 
+     * @return - a 1 if the SQL query is a success. Otherwise, nothing. 
      * @throws Exception - If an exception is thrown from the database, then it will be shown in the web browser as a unique error message. 
      */
     public int update(Integer clientId, String firstName, String lastName, String email) throws Exception{

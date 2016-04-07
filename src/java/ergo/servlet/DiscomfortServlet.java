@@ -54,6 +54,7 @@ public class DiscomfortServlet extends HttpServlet {
         String notes = request.getParameter("notes").trim();
         
         if(notes.isEmpty() || notes == null){
+            request.setAttribute("sucess", 0);
             request.setAttribute("message", "Please fill in at least one field before submitting the form");
             getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response); 
         }
@@ -61,12 +62,14 @@ public class DiscomfortServlet extends HttpServlet {
         try {
             //Attempt to insert into the database 
             ds.insert(notes);
+            request.setAttribute("sucess", 1);
             request.setAttribute("message", "successfully inserted");
             getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
             
         } catch (Exception ex) {
             //Something goes wrong with the insertion
             Logger.getLogger(DiscomfortServlet.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("sucess", 0);
             request.setAttribute("message", "An error has ocurred");
             getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response); //redirect to the main page with an error
         }

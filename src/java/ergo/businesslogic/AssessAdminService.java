@@ -12,5 +12,5 @@ package ergo.businesslogic;
  * @author Kimberly Oshiro
  */
 public class AssessAdminService {
-    
+    //I believe this is not neccessary. 
 }

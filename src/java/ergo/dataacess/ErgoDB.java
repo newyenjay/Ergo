@@ -10,5 +10,5 @@ package ergo.dataacess;
  * @author Kimberly Oshiro
  */
 public class ErgoDB {
-    
+    //I don't believe this class is necessary. 
 }

@@ -34,10 +34,11 @@ public class AccessoryService {
     }
     
     /**
+     * Returns a java.util.list that contains all Accessory Objects in the database. 
+     * pre - there is at least one Accessory row in the database.
      * 
-     * 
-     * @return
-     * @throws Exception 
+     * @return - A java.util.List that contains all Accessory Objects in the database, or a null pointer if the database runs into an error while executing the method.
+     * @throws Exception - Thrown if anything goes wrong during the execution of the method. 
      */
     public List<Accessory> getAll()throws Exception{
         ar = new AccessoryRepository();

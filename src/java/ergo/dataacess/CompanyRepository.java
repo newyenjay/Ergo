@@ -50,6 +50,11 @@ public class CompanyRepository {
         }
     }
     
+    /**
+     * 
+     * @param company
+     * @return 
+     */
     public int delete(Company company)  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -77,6 +82,11 @@ public class CompanyRepository {
         }
     }
     
+    /**
+     * 
+     * @param compName
+     * @return 
+     */
     public Company getCompany(String compName) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -86,6 +96,7 @@ public class CompanyRepository {
             em.close();
         }
     }
+    
     /**
      * 
      * @return 

@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  *
  * @author Kimberly Oshiro
+ * @version 1.0 Implemented basic code. 
+ * @version 1.1 - Implemented error messages. 
  */
 public class FollowUpServlet extends HttpServlet {
     /**
@@ -55,6 +57,7 @@ public class FollowUpServlet extends HttpServlet {
         
         //checks to see if all the fields are filled in before attempting to continue on with the process. 
         if(note.isEmpty() || note == null || comments.isEmpty() || comments == null || recommendations.isEmpty() ||  recommendations == null){
+            request.setAttribute("sucess", 0);
             request.setAttribute("message", "Please fill in at least one field before submitting the form");
             getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
             //Have a place to send the response to, still don't know where to send this to. Where do we go I don't know
@@ -63,10 +66,12 @@ public class FollowUpServlet extends HttpServlet {
        
         try {
             fs.insert(note, comments, recommendations);
+            request.setAttribute("sucess", 1);
             request.setAttribute("message", "Successfully Inserted");
             getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(FollowUpServlet.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("sucess", 0);
             request.setAttribute("message", "An error has ocurred");
             getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
         }
