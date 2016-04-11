@@ -62,7 +62,11 @@ public class PmbService {
      * Takes the parameters for an object, and calls the object from the database. Using the new parameters, will set all the variables to change the old ones on the Client
      * object if there are any changes. 
      * 
+     * @param pmbId
+     * @param goalMetBool
+     * @param goalMetNotes
      * @param clientId - what is used to identify the client in the database, this row cannot be altered. 
+     * @param educNotes 
      * @param firstName - The first name of the client,  is used to identify based on first name. 
      * @param lastName - the Last name of the client, is used to identify based on last name. 
      * @param email - the email of the client, is used to identify based on email. 

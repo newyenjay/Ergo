@@ -21,7 +21,7 @@ public class AdminRepository {
             em.getTransaction().begin();
             em.persist(admin);
             em.getTransaction().commit();
-            return 1;
+            return admin.getAdminId();
         } finally {
             em.close();
         }

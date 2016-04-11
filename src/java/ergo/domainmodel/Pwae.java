@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author waynelin
+ * @author tetsu
  */
 @Entity
 @Table(name = "pwae")
@@ -109,7 +109,7 @@ public class Pwae implements Serializable {
     @Column(name = "keyboardSit")
     private String keyboardSit;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pwaeIdsite")
-    private List<SiteRec> siteRecList;
+    private List<Siterec> siterecList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pwaeId")
     private List<Monitor> monitorList;
     @OneToMany(mappedBy = "pwaId")
@@ -267,12 +267,12 @@ public class Pwae implements Serializable {
     }
 
     @XmlTransient
-    public List<SiteRec> getSiteRecList() {
-        return siteRecList;
+    public List<Siterec> getSiterecList() {
+        return siterecList;
     }
 
-    public void setSiteRecList(List<SiteRec> siteRecList) {
-        this.siteRecList = siteRecList;
+    public void setSiterecList(List<Siterec> siterecList) {
+        this.siterecList = siterecList;
     }
 
     @XmlTransient

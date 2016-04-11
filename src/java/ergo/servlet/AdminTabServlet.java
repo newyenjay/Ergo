@@ -6,6 +6,7 @@
 package ergo.servlet;
 
 import ergo.businesslogic.AdminService;
+import ergo.businesslogic.AssessmentService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -24,21 +25,6 @@ import javax.servlet.http.HttpSession;
  * @author 680420
  */
 public class AdminTabServlet extends HttpServlet {
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/notes/report/admininfo.jsp").forward(request, response);
-    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -90,6 +76,7 @@ public class AdminTabServlet extends HttpServlet {
 
         String followUpNeeded = request.getParameter("followUpNeeded");
 
+        int assessmentId = (int) session.getAttribute("assessmentId") ;
         /*
          SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
          try {
@@ -160,7 +147,7 @@ public class AdminTabServlet extends HttpServlet {
         if (action.equals("adminTab")) {
 
             //try {
-            as.insert(proactive,
+            int adminId = as.insert(proactive,
                     reactive,
                     assessor,
                     manager,
@@ -184,9 +171,14 @@ public class AdminTabServlet extends HttpServlet {
                     generalNotes,
                     followUpNeeded,
                     vdtScore);
-
+            AssessmentService assService = new AssessmentService();
+            try {
+                assService.updateAdmin(assessmentId, adminId);
+            } catch (Exception ex) {
+                Logger.getLogger(AdminTabServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             request.setAttribute("message", "Success!");
-            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/search.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);
 
             //} catch (Exception ex) {
             //    request.setAttribute("message", ex);
@@ -194,7 +186,7 @@ public class AdminTabServlet extends HttpServlet {
             //  }
         } else {
             request.setAttribute("message", "no work");
-            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/search.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);
 
         }
 

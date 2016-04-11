@@ -50,7 +50,25 @@
                         </table>
                     </div>
                 </div>
-                <a class="btn btn-primary">Add Assessment</a>
+                <form role="form" action="client" method="post">
+                <div class = "col-md-4">
+                    
+              <div class="form-group">
+                  <select class="form-control" name="type">
+                  <option id="spotcheck" value="spotcheck">Spot Check</option>
+                  <option id="fullevaluation" value="fullevaluation">Full Evaluation</option>
+                  <option id="followup" value="followup">Follow Up</option>
+
+                </select>
+              </div>
+              
+                </div>
+                <div class="col-md-4">
+                    <input type="hidden" name="action" value="addAssessment">
+                    <button type="submit" class="btn btn-default">Add Assessment</button>
+            
+                </div>
+                </form>
                 <hr>
             </div>
         </div>

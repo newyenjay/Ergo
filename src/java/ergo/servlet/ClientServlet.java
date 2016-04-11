@@ -5,6 +5,7 @@
  */
 package ergo.servlet;
 
+import ergo.businesslogic.AssessmentService;
 import ergo.businesslogic.ClientService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.constraints.AssertFalse;
 
 /**
  *
@@ -58,6 +60,26 @@ public class ClientServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        int clientId = Integer.parseInt((String) session.getAttribute("clientInfo"));
+        int assessmentId = 0;
+        
+        String action = request.getParameter("action");
+        if(action.equals("addAssessment")){
+            AssessmentService as = new AssessmentService();
+            String type = request.getParameter("type");
+            try {
+                assessmentId= as.insert(clientId, type);
+            } catch (Exception ex) {
+                Logger.getLogger(ClientServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             session.setAttribute("assessmentId", assessmentId);
+            
+        }
+                    response.sendRedirect("assessments");
+
+       
+        
     }
 
     

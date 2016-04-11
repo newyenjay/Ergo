@@ -49,4 +49,9 @@ public class AdminService {
         
     }
     
+    public Admin getAdmin(int adminId)throws Exception{
+        ar = new AdminRepository();
+        return ar.getAdminId(adminId);
+    }
+    
 }
