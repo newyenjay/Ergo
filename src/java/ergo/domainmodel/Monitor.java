@@ -12,16 +12,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author 671402
+ * @author waynelin
  */
 @Entity
 @Table(name = "monitor")
@@ -29,53 +30,39 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Monitor.findAll", query = "SELECT m FROM Monitor m"),
     @NamedQuery(name = "Monitor.findByMonitorId", query = "SELECT m FROM Monitor m WHERE m.monitorId = :monitorId"),
-    @NamedQuery(name = "Monitor.findByAssessmentId", query = "SELECT m FROM Monitor m WHERE m.assessmentId = :assessmentId"),
-    @NamedQuery(name = "Monitor.findBySize", query = "SELECT m FROM Monitor m WHERE m.size = :size"),
-    @NamedQuery(name = "Monitor.findByPre", query = "SELECT m FROM Monitor m WHERE m.pre = :pre"),
-    @NamedQuery(name = "Monitor.findByPost", query = "SELECT m FROM Monitor m WHERE m.post = :post"),
-    @NamedQuery(name = "Monitor.findByRecommendation", query = "SELECT m FROM Monitor m WHERE m.recommendation = :recommendation"),
-    @NamedQuery(name = "Monitor.findByNotes", query = "SELECT m FROM Monitor m WHERE m.notes = :notes"),
-    @NamedQuery(name = "Monitor.findByType", query = "SELECT m FROM Monitor m WHERE m.type = :type")})
+    @NamedQuery(name = "Monitor.findByType", query = "SELECT m FROM Monitor m WHERE m.type = :type"),
+    @NamedQuery(name = "Monitor.findByCurrent", query = "SELECT m FROM Monitor m WHERE m.current = :current"),
+    @NamedQuery(name = "Monitor.findByRecommand", query = "SELECT m FROM Monitor m WHERE m.recommand = :recommand"),
+    @NamedQuery(name = "Monitor.findBySitStand", query = "SELECT m FROM Monitor m WHERE m.sitStand = :sitStand")})
 public class Monitor implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "monitorId")
     private Integer monitorId;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "assessmentId")
-    private int assessmentId;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "size")
-    private int size;
-    @Column(name = "pre")
-    private Integer pre;
-    @Column(name = "post")
-    private Integer post;
-    @Size(max = 300)
-    @Column(name = "recommendation")
-    private String recommendation;
-    @Size(max = 300)
-    @Column(name = "notes")
-    private String notes;
-    @Size(max = 50)
+    @Size(max = 45)
     @Column(name = "type")
     private String type;
+    @Size(max = 45)
+    @Column(name = "current")
+    private String current;
+    @Size(max = 45)
+    @Column(name = "recommand")
+    private String recommand;
+    @Size(max = 45)
+    @Column(name = "sitStand")
+    private String sitStand;
+    @JoinColumn(name = "pwaeId", referencedColumnName = "pwaeId")
+    @ManyToOne(optional = false)
+    private Pwae pwaeId;
 
     public Monitor() {
     }
 
     public Monitor(Integer monitorId) {
         this.monitorId = monitorId;
-    }
-
-    public Monitor(Integer monitorId, int assessmentId, int size) {
-        this.monitorId = monitorId;
-        this.assessmentId = assessmentId;
-        this.size = size;
     }
 
     public Integer getMonitorId() {
@@ -86,60 +73,44 @@ public class Monitor implements Serializable {
         this.monitorId = monitorId;
     }
 
-    public int getAssessmentId() {
-        return assessmentId;
-    }
-
-    public void setAssessmentId(int assessmentId) {
-        this.assessmentId = assessmentId;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public Integer getPre() {
-        return pre;
-    }
-
-    public void setPre(Integer pre) {
-        this.pre = pre;
-    }
-
-    public Integer getPost() {
-        return post;
-    }
-
-    public void setPost(Integer post) {
-        this.post = post;
-    }
-
-    public String getRecommendation() {
-        return recommendation;
-    }
-
-    public void setRecommendation(String recommendation) {
-        this.recommendation = recommendation;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
     public String getType() {
         return type;
     }
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(String current) {
+        this.current = current;
+    }
+
+    public String getRecommand() {
+        return recommand;
+    }
+
+    public void setRecommand(String recommand) {
+        this.recommand = recommand;
+    }
+
+    public String getSitStand() {
+        return sitStand;
+    }
+
+    public void setSitStand(String sitStand) {
+        this.sitStand = sitStand;
+    }
+
+    public Pwae getPwaeId() {
+        return pwaeId;
+    }
+
+    public void setPwaeId(Pwae pwaeId) {
+        this.pwaeId = pwaeId;
     }
 
     @Override

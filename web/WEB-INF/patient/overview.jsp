@@ -8,8 +8,9 @@
                         <h3 class="panel-title">Client Informaiton&nbsp;</h3>
                     </div>
                     <div class="panel-body">
-                        <p>First Name:
-                            <br>Last Name:</p>
+                        <p>First Name:${client.firstName}
+                            <br>
+                            Last Name:${client.lastName}</p>
                     </div>
                 </div>
             </div>
@@ -19,8 +20,7 @@
             </div>
             <div class = "col-md-12">
                 <hr>
-                <a class="btn btn-primary">Add Assessment</a>
-                <hr>
+                
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title">Assessments
@@ -40,10 +40,18 @@
                                     <th>Generate</th>
                                 </tr>
                             </thead>
-                            <tbody></tbody>
+
+                            <tbody><c:forEach var="assessment" items="${client.assessmentList}">
+                                    <tr>
+                                        <td></td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
                         </table>
                     </div>
                 </div>
+                <a class="btn btn-primary">Add Assessment</a>
+                <hr>
             </div>
         </div>
     </div>

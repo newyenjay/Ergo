@@ -6,6 +6,7 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,13 +15,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 671402
+ * @author waynelin
  */
 @Entity
 @Table(name = "pmb")
@@ -37,6 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Pmb.findByMicroAfBool", query = "SELECT p FROM Pmb p WHERE p.microAfBool = :microAfBool"),
     @NamedQuery(name = "Pmb.findByMicroAfNotes", query = "SELECT p FROM Pmb p WHERE p.microAfNotes = :microAfNotes")})
 public class Pmb implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,6 +67,8 @@ public class Pmb implements Serializable {
     @Size(max = 250)
     @Column(name = "microAfNotes")
     private String microAfNotes;
+    @OneToMany(mappedBy = "pmbId")
+    private List<Assessment> assessmentList;
 
     public Pmb() {
     }
@@ -141,6 +147,15 @@ public class Pmb implements Serializable {
 
     public void setMicroAfNotes(String microAfNotes) {
         this.microAfNotes = microAfNotes;
+    }
+
+    @XmlTransient
+    public List<Assessment> getAssessmentList() {
+        return assessmentList;
+    }
+
+    public void setAssessmentList(List<Assessment> assessmentList) {
+        this.assessmentList = assessmentList;
     }
 
     @Override

@@ -75,6 +75,7 @@ public class LoginServlet extends HttpServlet {
                 request.setAttribute("message", "Please enter valid credentials in both fields."); //Changed the field to make it more fitting. 
                 getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response);
             }
+            try{
             if (es.login(request, username, password)){
                 int isAdmin = (int) session.getAttribute("isAdmin"); 
                 if(isAdmin == 1){ //Will redirect the user to the admin page. 
@@ -82,6 +83,10 @@ public class LoginServlet extends HttpServlet {
                 } else { //Will redirect the user to the user page. 
                     response.sendRedirect("main");
                 }
+            }}
+            catch(Exception ex){
+                            Logger.getLogger(ClientServlet.class.getName()).log(Level.SEVERE, null, ex);
+
             }
 
         

@@ -6,6 +6,7 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,13 +15,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 671402
+ * @author waynelin
  */
 @Entity
 @Table(name = "spm")
@@ -41,6 +44,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Spm.findByArmBeNotes", query = "SELECT s FROM Spm s WHERE s.armBeNotes = :armBeNotes"),
     @NamedQuery(name = "Spm.findByArmAfNotes", query = "SELECT s FROM Spm s WHERE s.armAfNotes = :armAfNotes")})
 public class Spm implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,6 +81,8 @@ public class Spm implements Serializable {
     @Size(max = 250)
     @Column(name = "armAfNotes")
     private String armAfNotes;
+    @OneToMany(mappedBy = "spmId")
+    private List<Assessment> assessmentList;
 
     public Spm() {
     }
@@ -187,6 +193,15 @@ public class Spm implements Serializable {
 
     public void setArmAfNotes(String armAfNotes) {
         this.armAfNotes = armAfNotes;
+    }
+
+    @XmlTransient
+    public List<Assessment> getAssessmentList() {
+        return assessmentList;
+    }
+
+    public void setAssessmentList(List<Assessment> assessmentList) {
+        this.assessmentList = assessmentList;
     }
 
     @Override
