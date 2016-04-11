@@ -14,10 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Kimberly Oshiro 
- * the base assessments Servlet that will handle the forwarding for now. 
+ * @author Kimberly Oshiro the base assessments Servlet that will handle the
+ * forwarding for now.
  */
 public class AssessmentsPageServlet extends HttpServlet {
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -45,10 +46,8 @@ public class AssessmentsPageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
-        
-        //Adding the functionality of post buttons to the servlet. 
-        
 
+        //Adding the functionality of post buttons to the servlet. 
     }
 
     /**

@@ -63,25 +63,21 @@ public class ClientServlet extends HttpServlet {
         HttpSession session = request.getSession();
         int clientId = Integer.parseInt((String) session.getAttribute("clientInfo"));
         int assessmentId = 0;
-        
+
         String action = request.getParameter("action");
-        if(action.equals("addAssessment")){
+        if (action.equals("addAssessment")) {
             AssessmentService as = new AssessmentService();
             String type = request.getParameter("type");
             try {
-                assessmentId= as.insert(clientId, type);
+                assessmentId = as.insert(clientId, type);
             } catch (Exception ex) {
                 Logger.getLogger(ClientServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-             session.setAttribute("assessmentId", assessmentId);
-            
+            session.setAttribute("assessmentId", assessmentId);
+
         }
-                    response.sendRedirect("assessments");
+        response.sendRedirect("assessments");
 
-       
-        
     }
-
-    
 
 }

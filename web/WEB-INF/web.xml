@@ -53,10 +53,26 @@
         <servlet-name>SpmServlet</servlet-name>
         <servlet-class>ergo.servlet.SpmServlet</servlet-class>
     </servlet>
-<servlet>
+    <servlet>
         <servlet-name>ClientServlet</servlet-name>
         <servlet-class>ergo.servlet.ClientServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DiscomfortServlet</servlet-name>
+        <servlet-class>ergo.servlet.DiscomfortServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FollowUpServlet</servlet-name>
+        <servlet-class>ergo.servlet.FollowUpServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FollowUpServlet</servlet-name>
+        <url-pattern>/followup</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DiscomfortServlet</servlet-name>
+        <url-pattern>/discomfort</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ClientServlet</servlet-name>
         <url-pattern>/client</url-pattern>

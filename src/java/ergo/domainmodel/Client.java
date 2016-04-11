@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author tetsu
+ * @author waynelin
  */
 @Entity
 @Table(name = "client")

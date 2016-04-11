@@ -5,34 +5,34 @@
  */
 package ergo.dataacess;
 
-import ergo.domainmodel.Monitor;
 import ergo.domainmodel.Pwae;
 import javax.persistence.EntityManager;
 
 /**
  *
- * @author Kimberly Oshiro
+ * @author waynelin
  */
-public class MonitorRepository {
-    
-    
-    public int insert(Monitor monitor) throws Exception  {
+public class PwaeRepository {
+    public int insert(Pwae pwae)  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            Pwae pwae =monitor.getPwaeId();
-            pwae.getMonitorList().add(monitor);
-            
             em.getTransaction().begin();
-            em.merge(pwae);
-            em.persist(em.merge(monitor));
+            em.persist(pwae);
             em.getTransaction().commit();
-            return 1;
-            
+            return pwae.getPwaeId();
         } finally {
             em.close();
         }
     }
     
-    
+     public Pwae getPwae(Integer pwaeId) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            Pwae pwae = em.find(Pwae.class,pwaeId);
+            return pwae;
+        } finally {
+            em.close();
+        }
+    }
     
 }

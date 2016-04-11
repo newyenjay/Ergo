@@ -21,7 +21,7 @@ public class DiscomfortRepository {
             em.getTransaction().begin();
             em.persist(discomfort);
             em.getTransaction().commit();
-            return 1; //I don't think this is needed. 
+            return discomfort.getDiscomfortId(); //I don't think this is needed. 
         } finally {
             em.close();
         }

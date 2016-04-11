@@ -104,7 +104,7 @@ public class SearchServlet extends HttpServlet {
                 response.sendRedirect("client");
             }
         } else if (action.equals("viewClient")) {
-            
+
             noRedirect = false;
             session.setAttribute("clientInfo", clientId);
             response.sendRedirect("client");

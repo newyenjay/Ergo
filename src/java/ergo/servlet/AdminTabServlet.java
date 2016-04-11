@@ -76,7 +76,7 @@ public class AdminTabServlet extends HttpServlet {
 
         String followUpNeeded = request.getParameter("followUpNeeded");
 
-        int assessmentId = (int) session.getAttribute("assessmentId") ;
+        int assessmentId = (int) session.getAttribute("assessmentId");
         /*
          SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
          try {

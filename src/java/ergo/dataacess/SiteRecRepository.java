@@ -5,26 +5,25 @@
  */
 package ergo.dataacess;
 
-import ergo.domainmodel.Monitor;
 import ergo.domainmodel.Pwae;
+import ergo.domainmodel.SiteRec;
 import javax.persistence.EntityManager;
 
 /**
  *
- * @author Kimberly Oshiro
+ * @author waynelin
  */
-public class MonitorRepository {
+public class SiteRecRepository {
     
-    
-    public int insert(Monitor monitor) throws Exception  {
+    public int insert(SiteRec siteRec) throws Exception  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        try {
-            Pwae pwae =monitor.getPwaeId();
-            pwae.getMonitorList().add(monitor);
-            
+        try {       
+            Pwae pwae =siteRec.getPwaeIdsite();
+            pwae.getSiteRecList().add(siteRec);
+
             em.getTransaction().begin();
             em.merge(pwae);
-            em.persist(em.merge(monitor));
+            em.persist(em.merge(siteRec));
             em.getTransaction().commit();
             return 1;
             
@@ -32,7 +31,4 @@ public class MonitorRepository {
             em.close();
         }
     }
-    
-    
-    
 }

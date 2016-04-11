@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author 680420
  */
 public class AddServlet extends HttpServlet {
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -66,13 +67,13 @@ public class AddServlet extends HttpServlet {
         String fname = request.getParameter("fname");
         String lname = request.getParameter("lname");
         String comId = request.getParameter("comloc");
-        
+
         CompanyService cs = new CompanyService();
         LocationService ls = new LocationService();
         ClientService cls = new ClientService();
 
         if (action.equals("addCompany")) {
-            if (compName == null || locAdd == null||compName.isEmpty()||locAdd.isEmpty()) {
+            if (compName == null || locAdd == null || compName.isEmpty() || locAdd.isEmpty()) {
                 request.setAttribute("sucess", 0);
                 request.setAttribute("message", "Please enter all the information For Company");
             } else {
@@ -89,13 +90,13 @@ public class AddServlet extends HttpServlet {
             }
         } else if (action.equals("addClient")) {
             int comloc = Integer.parseInt(comId);
-            if (fname == null || lname == null ||comloc == 0||fname.isEmpty()||lname.isEmpty()) {
+            if (fname == null || lname == null || comloc == 0 || fname.isEmpty() || lname.isEmpty()) {
                 request.setAttribute("sucess", 0);
                 request.setAttribute("message", "Please enter all the information For Client");
             } else {
                 try {
                     cls.insert(fname, lname, comloc);
-                    
+
                     request.setAttribute("sucess", 1);
                     request.setAttribute("message", "Client Added");
                 } catch (Exception ex) {

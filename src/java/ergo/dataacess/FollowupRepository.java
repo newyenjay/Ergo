@@ -59,7 +59,7 @@ public class FollowupRepository {
             em.getTransaction().begin();
             em.persist(followup);
             em.getTransaction().commit();
-            return 1;
+            return followup.getFollowUpId();
         } finally {
             em.close();
         }

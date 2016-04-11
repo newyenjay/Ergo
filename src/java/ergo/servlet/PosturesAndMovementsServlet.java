@@ -15,10 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 /**
  *
  * @author Kimberly Oshiro
- * 
- * One of the main Servlets in the program. Takes the information from "Safe Postures & Movements" and inputs it into the database. 
+ *
+ * One of the main Servlets in the program. Takes the information from "Safe
+ * Postures & Movements" and inputs it into the database.
  */
 public class PosturesAndMovementsServlet extends HttpServlet {
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -30,7 +32,7 @@ public class PosturesAndMovementsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
     }
 
     /**
@@ -44,7 +46,7 @@ public class PosturesAndMovementsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
+
     }
 
     /**

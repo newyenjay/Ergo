@@ -101,8 +101,10 @@ public class PmbRepository {
     
     /**
      * Inserts a new Client object to the database by taking the parameter Client object and using the instance variables and inserting them into the rows.
+     * @param pmb
      * @param client - the object that will be referenced when inserting into the row. 
      * @return - a 1 if successful, if unsuccessful, nothing because the database will exit the try and will go into the finally clause and will return nothing. 
+     * @throws java.lang.Exception 
      */
     public int insert(Pmb pmb) throws Exception  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -110,7 +112,7 @@ public class PmbRepository {
             em.getTransaction().begin();
             em.persist(pmb);
             em.getTransaction().commit();
-            return 1;
+            return pmb.getPmbId();
         } finally {
             em.close();
         }

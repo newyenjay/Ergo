@@ -5,6 +5,7 @@
  */
 package ergo.servlet;
 
+import ergo.businesslogic.AssessmentService;
 import ergo.businesslogic.FollowupService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,25 +15,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Kimberly Oshiro
  */
 public class FollowUpServlet extends HttpServlet {
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        //do a check on the user being logged in?
-        getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -45,41 +34,29 @@ public class FollowUpServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        HttpSession session = request.getSession();
+
         FollowupService fs = new FollowupService();
-        
+
         String note = request.getParameter("identifiedRisks").trim(); //remember the names
         String comments = request.getParameter("workerComments").trim(); //remember the names 
         String recommendations = request.getParameter("recommendations").trim();
-        
-        
-        //checks to see if all the fields are filled in before attempting to continue on with the process. 
-        if(note.isEmpty() || note == null || comments.isEmpty() || comments == null || recommendations.isEmpty() ||  recommendations == null){
-            request.setAttribute("message", "Please fill in at least one field before submitting the form");
-            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
-            //Have a place to send the response to, still don't know where to send this to. Where do we go I don't know
-            //this redirect is one of the thing's that's screwing me up dude. 
-        }
-       
+
+        boolean success = false;
+        AssessmentService assService = new AssessmentService();
+        int assessmentId = (int) session.getAttribute("assessmentId");
+
         try {
-            fs.insert(note, comments, recommendations);
+            int fsId = fs.insert(note, comments, recommendations);
+            assService.updateFollow(assessmentId, fsId);
+            success = true;
             request.setAttribute("message", "Successfully Inserted");
-            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(FollowUpServlet.class.getName()).log(Level.SEVERE, null, ex);
             request.setAttribute("message", "An error has ocurred");
-            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
         }
-    }
+        getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    }
 
 }

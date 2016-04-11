@@ -98,9 +98,9 @@ public class PmbService {
      * @return - a Client object that contains the Client with this clientId if the operation is a success. 
      * @throws Exception - if any of the operations that are attempted to be done results in an error. 
      */
-    public Pmb getClient(int clientId)throws Exception{
+    public Pmb getPmb(int pmbId)throws Exception{
         pr = new PmbRepository();
-        return pr.getPmb(clientId);
+        return pr.getPmb(pmbId);
     }
     
     /**

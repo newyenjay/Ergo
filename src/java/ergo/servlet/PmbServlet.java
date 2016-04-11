@@ -5,6 +5,7 @@
  */
 package ergo.servlet;
 
+import ergo.businesslogic.AssessmentService;
 import ergo.businesslogic.PmbService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,21 +22,6 @@ import javax.servlet.http.HttpSession;
  * @author 671402
  */
 public class PmbServlet extends HttpServlet {
-    
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);
-    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -50,29 +36,39 @@ public class PmbServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         PmbService ps = new PmbService();
-        
+
         //Booleans
         Boolean goalMetBool = Boolean.parseBoolean(request.getParameter("goalMetBool"));
         Boolean educBool = Boolean.parseBoolean(request.getParameter("educBool"));
         Boolean microBeBool = Boolean.parseBoolean(request.getParameter("microBeBool"));
-        Boolean microAfBoool= Boolean.parseBoolean(request.getParameter("microAfBool"));
-        
+        Boolean microAfBoool = Boolean.parseBoolean(request.getParameter("microAfBool"));
+
         //Notes
         String goalMetNotes = request.getParameter("goalMetNotes");
         String educNotes = request.getParameter("educNotes");
         String microBeNotes = request.getParameter("microBeNotes");
         String microAfNotes = request.getParameter("microAfNotes");
-        
+
+        boolean success = false;
+        AssessmentService assService = new AssessmentService();
+        int assessmentId = (int) session.getAttribute("assessmentId");
+
         try {
-            ps.insert(goalMetBool, goalMetNotes, educBool, educNotes, microBeBool, microBeNotes, microAfBoool, microAfNotes);
-            request.setAttribute("message", "Success!");
-            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/search.jsp").forward(request, response);
+            int pmbId = ps.insert(goalMetBool, goalMetNotes, educBool, educNotes, microBeBool, microBeNotes, microAfBoool, microAfNotes);
+            assService.updatePmb(assessmentId, pmbId);
+            success = true;
+
         } catch (Exception ex) {
             Logger.getLogger(PmbServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        request.setAttribute("message", "Nope");
-        getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/search.jsp").forward(request, response);
+        if (success) {
+            request.setAttribute("message", "Success!");
+
+        } else {
+            request.setAttribute("message", "Nope");
+        }
+
+        getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);
     }
 
     /**

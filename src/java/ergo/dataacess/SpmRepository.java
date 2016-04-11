@@ -110,7 +110,7 @@ public class SpmRepository {
             em.getTransaction().begin();
             em.persist(spm);
             em.getTransaction().commit();
-            return 1;
+            return spm.getSpmId();
         } finally {
             em.close();
         }

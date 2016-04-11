@@ -5,6 +5,7 @@
  */
 package ergo.servlet;
 
+import ergo.businesslogic.AssessmentService;
 import ergo.businesslogic.DiscomfortService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -23,20 +25,6 @@ import javax.servlet.http.HttpServletResponse;
  * I don't know what this name is hooked up to. 
  */
 public class DiscomfortServlet extends HttpServlet {
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-      getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);
-        
-    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -52,36 +40,29 @@ public class DiscomfortServlet extends HttpServlet {
         
         DiscomfortService ds = new DiscomfortService();
         String notes = request.getParameter("notes").trim();
-        
-        if(notes.isEmpty() || notes == null){
-            request.setAttribute("message", "Please fill in at least one field before submitting the form");
-            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response); 
-        }
+        HttpSession session = request.getSession();
+        boolean success = false;
+        AssessmentService assService = new AssessmentService();
+        int assessmentId = (int) session.getAttribute("assessmentId") ;
         
         try {
             //Attempt to insert into the database 
-            ds.insert(notes);
+            int discomforId = ds.insert(notes);
+            assService.updateDiscomfort(assessmentId, discomforId);
             request.setAttribute("message", "successfully inserted");
-            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
+            success =true;
             
         } catch (Exception ex) {
             //Something goes wrong with the insertion
             Logger.getLogger(DiscomfortServlet.class.getName()).log(Level.SEVERE, null, ex);
             request.setAttribute("message", "An error has ocurred");
-            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response); //redirect to the main page with an error
         }
         
+        
+        getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);
 
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    
 
 }
