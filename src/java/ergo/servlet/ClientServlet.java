@@ -38,6 +38,7 @@ public class ClientServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        session.removeAttribute("assessmentId");
         int clientId = Integer.parseInt((String) session.getAttribute("clientInfo"));
         ClientService cs = new ClientService();
         try {
@@ -73,6 +74,10 @@ public class ClientServlet extends HttpServlet {
             } catch (Exception ex) {
                 Logger.getLogger(ClientServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
+            session.setAttribute("assessmentId", assessmentId);
+
+        }else if(action.equals("edit")){
+            assessmentId = Integer.parseInt(request.getParameter("assessmentId"));
             session.setAttribute("assessmentId", assessmentId);
 
         }

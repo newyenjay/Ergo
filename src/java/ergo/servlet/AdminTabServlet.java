@@ -8,10 +8,6 @@ package ergo.servlet;
 import ergo.businesslogic.AdminService;
 import ergo.businesslogic.AssessmentService;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -148,29 +144,9 @@ public class AdminTabServlet extends HttpServlet {
 
             //try {
             int adminId = as.insert(proactive,
-                    reactive,
-                    assessor,
-                    manager,
-                    business,
-                    workspace,
-                    jobTitle,
-                    gender,
-                    hFeet,
-                    hInches,
-                    handedness,
-                    daysInOffice,
-                    hoursInOffice,
-                    vdt,
-                    phone,
-                    dPresent,
-                    dReported,
-                    tSought,
-                    discomfort,
-                    workFit,
-                    equiptRec,
-                    generalNotes,
-                    followUpNeeded,
-                    vdtScore);
+                    reactive,assessor,manager,business,workspace,jobTitle,gender,hFeet,hInches,
+                    handedness,daysInOffice,hoursInOffice,vdt,phone,dPresent,dReported,tSought,
+                    discomfort,workFit,equiptRec,generalNotes,followUpNeeded,vdtScore);
             AssessmentService assService = new AssessmentService();
             try {
                 assService.updateAdmin(assessmentId, adminId);

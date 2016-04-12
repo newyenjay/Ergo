@@ -6,18 +6,24 @@
 package ergo.dataacess;
 
 import ergo.domainmodel.Assessment;
+import ergo.domainmodel.Client;
 import javax.persistence.EntityManager;
 
 /**
  *
  * @author tetsu
  */
+
 public class AssessmentRepository {
      public int insert(Assessment assessment) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
+            Client client = assessment.getClientId();
+            client.getAssessmentList().add(assessment);
+            
             em.getTransaction().begin();
-            em.persist(assessment);
+            em.merge(client);
+            em.persist(em.merge(assessment));
             em.getTransaction().commit();
             return assessment.getAssessmentId();
         } finally {

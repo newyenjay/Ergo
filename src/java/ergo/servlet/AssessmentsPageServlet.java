@@ -5,12 +5,16 @@
  */
 package ergo.servlet;
 
+import ergo.businesslogic.AssessmentService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,6 +34,14 @@ public class AssessmentsPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        AssessmentService assService = new AssessmentService();
+        int assessmentId = (int) session.getAttribute("assessmentId") ;
+        try {
+            request.setAttribute("assessmentInfo", assService.getAssessment(assessmentId));
+        } catch (Exception ex) {
+            Logger.getLogger(AssessmentsPageServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);
 
     }
@@ -49,15 +61,4 @@ public class AssessmentsPageServlet extends HttpServlet {
 
         //Adding the functionality of post buttons to the servlet. 
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

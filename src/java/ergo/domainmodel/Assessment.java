@@ -6,6 +6,7 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -31,7 +34,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Assessment.findAll", query = "SELECT a FROM Assessment a"),
     @NamedQuery(name = "Assessment.findByAssessmentId", query = "SELECT a FROM Assessment a WHERE a.assessmentId = :assessmentId"),
-    @NamedQuery(name = "Assessment.findByType", query = "SELECT a FROM Assessment a WHERE a.type = :type")})
+    @NamedQuery(name = "Assessment.findByType", query = "SELECT a FROM Assessment a WHERE a.type = :type"),
+    @NamedQuery(name = "Assessment.findByCreateDate", query = "SELECT a FROM Assessment a WHERE a.createDate = :createDate"),
+    @NamedQuery(name = "Assessment.findByEditDate", query = "SELECT a FROM Assessment a WHERE a.editDate = :editDate")})
 public class Assessment implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,6 +50,14 @@ public class Assessment implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "type")
     private String type;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "createDate")
+    @Temporal(TemporalType.DATE)
+    private Date createDate;
+    @Column(name = "editDate")
+    @Temporal(TemporalType.DATE)
+    private Date editDate;
     @JoinColumn(name = "adminId", referencedColumnName = "adminId")
     @ManyToOne
     private Admin adminId;
@@ -74,9 +87,10 @@ public class Assessment implements Serializable {
         this.assessmentId = assessmentId;
     }
 
-    public Assessment(Integer assessmentId, String type) {
+    public Assessment(Integer assessmentId, String type, Date createDate) {
         this.assessmentId = assessmentId;
         this.type = type;
+        this.createDate = createDate;
     }
 
     public Integer getAssessmentId() {
@@ -93,6 +107,22 @@ public class Assessment implements Serializable {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getEditDate() {
+        return editDate;
+    }
+
+    public void setEditDate(Date editDate) {
+        this.editDate = editDate;
     }
 
     public Admin getAdminId() {

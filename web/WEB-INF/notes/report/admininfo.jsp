@@ -33,7 +33,7 @@
                                 <label class="control-label">Proactive</label>
                                 <select class="form-control" name="proactive">
                                     <option></option>
-                                    <option id="proNew">New hire/job</option>
+                                    <option<c:if test=""></c:if>>New hire/job</option>
                                     <option>New Workstation</option>
                                     <option>Workstation concern</option>
                                     <option>Spot check follow up</option>
@@ -68,10 +68,7 @@
                                     <option>Kerri Downer</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label">Date</label>
-                                <input class="form-control" type="date" name="accessorDate" />
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
