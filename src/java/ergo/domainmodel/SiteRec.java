@@ -35,7 +35,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "SiteRec.findBySiteRecId", query = "SELECT s FROM SiteRec s WHERE s.siteRecId = :siteRecId"),
     @NamedQuery(name = "SiteRec.findByRecommand", query = "SELECT s FROM SiteRec s WHERE s.recommand = :recommand"),
     @NamedQuery(name = "SiteRec.findByAccessoryType", query = "SELECT s FROM SiteRec s WHERE s.accessoryType = :accessoryType"),
-    @NamedQuery(name = "SiteRec.findByCompleteDate", query = "SELECT s FROM SiteRec s WHERE s.completeDate = :completeDate")})
+    @NamedQuery(name = "SiteRec.findByCompleteDate", query = "SELECT s FROM SiteRec s WHERE s.completeDate = :completeDate"),
+    @NamedQuery(name = "SiteRec.findByPwaeId", query = "SELECT s FROM SiteRec s WHERE s.siteRecId = :siteRecId")})
+
 public class SiteRec implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -128,5 +130,5 @@ public class SiteRec implements Serializable {
     public String toString() {
         return "ergo.domainmodel.SiteRec[ siteRecId=" + siteRecId + " ]";
     }
-    
+
 }

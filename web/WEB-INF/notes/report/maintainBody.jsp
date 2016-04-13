@@ -100,5 +100,5 @@
         </div>
     </div>
 
-    <input type="Submit" value="Save"/>
+<input type="submit" class="btn btn-primary" value="Save">
 </form>

@@ -7,6 +7,7 @@ package ergo.dataacess;
 
 import ergo.domainmodel.Monitor;
 import ergo.domainmodel.Pwae;
+import java.util.List;
 import javax.persistence.EntityManager;
 
 /**
@@ -45,4 +46,26 @@ public class MonitorRepository {
         }
     
     }
+    
+    public Monitor getMonitor(int monitorId){
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            Monitor monitor = em.find(Monitor.class,monitorId);
+            return monitor;
+        } finally {
+            em.close();
+        }
+    }
+    
+    public List<Monitor> getMonitorByPwae(int pwae)  throws Exception{
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            List<Monitor> monitors = em.createNamedQuery("Monitor.findByPwaeId", Monitor.class).setParameter("pwaeId", pwae).
+                    getResultList();
+            return monitors;
+        } finally {
+            em.close();    
+        }
+    }
+   
 }

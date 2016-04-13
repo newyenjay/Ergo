@@ -45,5 +45,24 @@ public class SiteRecRepository {
         }
     }
      
+     public SiteRec getSiteRec(int siteRecId)throws Exception{
+         EntityManager em =DBUtil.getEmFactory().createEntityManager();
+         try {
+            SiteRec siteRec = em.find(SiteRec.class,siteRecId);
+            return siteRec;
+        } finally {
+            em.close();
+        }
+     }
      
+     public List<SiteRec> getSiteRecByPwae(int pwae)  throws Exception{
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            List<SiteRec> siteRecs = em.createNamedQuery("SiteRec.findBySiteRecId", SiteRec.class).setParameter("siteRecId", pwae).
+                    getResultList();
+            return siteRecs;
+        } finally {
+            em.close();    
+        }
+    }
 }

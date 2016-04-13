@@ -33,7 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Monitor.findByType", query = "SELECT m FROM Monitor m WHERE m.type = :type"),
     @NamedQuery(name = "Monitor.findByCurrent", query = "SELECT m FROM Monitor m WHERE m.current = :current"),
     @NamedQuery(name = "Monitor.findByRecommand", query = "SELECT m FROM Monitor m WHERE m.recommand = :recommand"),
-    @NamedQuery(name = "Monitor.findBySitStand", query = "SELECT m FROM Monitor m WHERE m.sitStand = :sitStand")})
+    @NamedQuery(name = "Monitor.findBySitStand", query = "SELECT m FROM Monitor m WHERE m.sitStand = :sitStand"),
+    @NamedQuery(name = "Monitor.findByPwaeId", query = "SELECT m FROM Monitor m WHERE m.pwaeId = :pwaeId")})
 public class Monitor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -137,5 +138,5 @@ public class Monitor implements Serializable {
     public String toString() {
         return "ergo.domainmodel.Monitor[ monitorId=" + monitorId + " ]";
     }
-    
+
 }

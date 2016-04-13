@@ -35,4 +35,15 @@ public class PwaeRepository {
         }
     }
     
+     public int update(Pwae pwae){
+         EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.merge(pwae);
+            em.getTransaction().commit();
+            return pwae.getPwaeId();
+        } finally {
+            em.close();
+        }
+     }
 }

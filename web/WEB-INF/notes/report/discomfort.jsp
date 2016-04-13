@@ -21,7 +21,7 @@
                         <textarea class="form-control" placeholder="Notes and comments" name="notes">${assessmentInfo.discomfortId.notes}</textarea>
 
 
-                        <br><input type="submit" class="btn btn-primary" value="Save"></input>
+                        <br><input type="submit" class="btn btn-primary" value="Save">
                         <input type="hidden" value="discomfort"/>
 
                     </div>
