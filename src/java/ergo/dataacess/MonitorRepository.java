@@ -60,7 +60,8 @@ public class MonitorRepository {
     public List<Monitor> getMonitorByPwae(int pwae)  throws Exception{
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            List<Monitor> monitors = em.createNamedQuery("Monitor.findByPwaeId", Monitor.class).setParameter("pwaeId", pwae).
+            PwaeRepository pwaeR = new PwaeRepository();
+            List<Monitor> monitors = em.createNamedQuery("Monitor.findByPwaeId", Monitor.class).setParameter("pwaeId", pwaeR.getPwae(pwae)).
                     getResultList();
             return monitors;
         } finally {

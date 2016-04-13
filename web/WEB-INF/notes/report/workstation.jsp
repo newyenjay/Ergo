@@ -26,7 +26,7 @@
 
         $('#addsiteRecommand').click(function () {
             var count = $('#sbody').children('tr').length + 1;
-            $('#siteRecommand tbody').append('<tr><td>' + count +srId+ '</td><td>' + srRec + '</td><td>' + srAcc + '</td><td>' + srDate + '</td></tr>');
+            $('#siteRecommand tbody').append('<tr><td>' + count + srId + '</td><td>' + srRec + '</td><td>' + srAcc + '</td><td>' + srDate + '</td></tr>');
             $('input[name=siteRow]').val(count);
         });
 
@@ -259,42 +259,40 @@
                             </tr>
                         </thead>
                         <tbody id="sbody">
-                            
-                             <c:set var="rowCountSite" value="0"/>
-                             <c:forEach var="siteRec" varStatus="theCountSite" items="${assessmentInfo.pwaId.siteRecList}">
-                                 <tr>
-                                     <td>
-                                         ${theCountSite.count}
+
+                            <c:set var="rowCountSite" value="0"/>
+                            <c:forEach var="siteRec" varStatus="theCountSite" items="${assessmentInfo.pwaId.siteRecList}">
+                                <tr>
+                                    <td>
+                                        ${theCountSite.count}
                                         <input type="hidden" name="siteRecId${theCountSite.count}" value="${siteRec.siteRecId}">
                                         <c:set var="rowCountSite" value="${theCountSite.count}"/>
-                                     </td>
-                                     <td>
-                                         <input class="form-control" type="text" name="srRec${theCountSite.count}" id="srRec" value="${siteRec.recommand}">
-                                     </td>
-                                     <td>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="text" name="srRec${theCountSite.count}" id="srRec" value="${siteRec.recommand}">
+                                    </td>
+                                    <td>
                                         <input class="form-control" type="text" name="srAcc${theCountSite.count}" id="srAcc" value="${siteRec.accessoryType}">
 
-                                     </td>
-                                     <td>
-                                         
-                                        <fmt:formatDate var='srdate' type='date' value='${siteRec.completeDate}' />
+                                    </td>
+                                    <td>
 
-                                        <input class="form-control" type="date" name="srDate${theCountSite.count}" id="srDate" value="${srdate}">
+                                        <fmt:formatDate type="date" value="${siteRec.completeDate}" />
+                                        <input class="form-control" type="hidden" name="srDate${theCountSite.count}">
+                                    </td>
 
-                                     </td>
-                                     
-                                 </tr>
-                             </c:forEach>
+                                </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
-                             <c:if test="${rowCountSite != 0}">
+                    <c:if test="${rowCountSite != 0}">
                         <input name="siteRow" type="hidden" value="${rowCountSite}">
                     </c:if>
                     <c:if test="${rowCountSite == 0}">
                         <input name="siteRow" type="hidden" value="0">
                     </c:if>
                     <a class="btn btn-primary" id="addsiteRecommand">Add</a>
-                   
+
                 </div>
             </div>
         </div>
