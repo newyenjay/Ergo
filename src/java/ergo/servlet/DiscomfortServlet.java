@@ -44,8 +44,10 @@ public class DiscomfortServlet extends HttpServlet {
         boolean success = false;
         AssessmentService assService = new AssessmentService();
         int assessmentId = (int) session.getAttribute("assessmentId") ;
+        String action = request.getParameter("action");
         
-        try {
+        if(action.equals("add")){
+            try {
             //Attempt to insert into the database 
             int discomforId = ds.insert(notes);
             assService.updateDiscomfort(assessmentId, discomforId);
@@ -57,9 +59,20 @@ public class DiscomfortServlet extends HttpServlet {
             Logger.getLogger(DiscomfortServlet.class.getName()).log(Level.SEVERE, null, ex);
             request.setAttribute("message", "An error has ocurred");
         }
+        }else if(action.equals("update")){
+            int discomfortId = Integer.parseInt(request.getParameter("discomfortId"));
+            try {
+                ds.update(discomfortId, notes);
+
+            assService.updateDiscomfort(assessmentId, discomfortId);
+            } catch (Exception ex) {
+                Logger.getLogger(DiscomfortServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         
         
-        getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);
+        
+        response.sendRedirect("assessments");
 
     }
 

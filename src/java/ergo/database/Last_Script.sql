@@ -421,3 +421,17 @@ DEFAULT CHARACTER SET = latin1;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO `PRIVILEGE` (`privilegeId`,`description`) VALUES
+(1,'Admin Privilege');
+INSERT INTO `privilege` (`privilegeId`,`description`) VALUES
+(0,'Employee Privilege');
+INSERT INTO `employee` (`firstName`,`lastName`,`username`,`password`,`email`) VALUES
+('adam','adam','adam','password','adam@gmail.com');
+INSERT INTO `employee` (`firstName`,`lastName`,`username`,`password`,`email`) VALUES
+('betty','betty','betty','password','betty@gmail.com');
+INSERT INTO `employeeprivilege` (`privilegeId`,`username`)VALUES
+(1, 'adam');
+INSERT INTO `employeeprivilege` (`privilegeId`,`username`)VALUES
+(0, 'betty');
+

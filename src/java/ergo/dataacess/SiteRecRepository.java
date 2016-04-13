@@ -7,6 +7,7 @@ package ergo.dataacess;
 
 import ergo.domainmodel.Pwae;
 import ergo.domainmodel.SiteRec;
+import java.util.List;
 import javax.persistence.EntityManager;
 
 /**
@@ -31,4 +32,18 @@ public class SiteRecRepository {
             em.close();
         }
     }
+    
+     public int update(SiteRec siteRec)throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.merge(siteRec);
+            em.getTransaction().commit();
+            return 1;
+        } finally {
+            em.close();
+        }
+    }
+     
+     
 }

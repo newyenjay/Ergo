@@ -23,6 +23,13 @@ DiscomfortRepository dr;
          return dr.insert(discomfort); //I don't think you need to create a discomfort ID here. However, if you want a discomfort ID you need to get one. 
     }
     
+    public int update(int discomfortId, String note)throws Exception{
+        dr =new DiscomfortRepository();
+        Discomfort discomfort = this.getDiscomfort(discomfortId);
+        discomfort.setNotes(note);
+        return dr.update(discomfort);
+    }
+    
     public Discomfort getDiscomfort(Integer discomfortId)throws Exception{
         dr = new DiscomfortRepository();
         return dr.getDiscomfort(discomfortId);

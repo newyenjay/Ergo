@@ -71,6 +71,9 @@ public class ClientServlet extends HttpServlet {
             String type = request.getParameter("type");
             try {
                 assessmentId = as.insert(clientId, type);
+                ClientService cs = new ClientService();
+                cs.updateAssess(clientId, assessmentId);
+                
             } catch (Exception ex) {
                 Logger.getLogger(ClientServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

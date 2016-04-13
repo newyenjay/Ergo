@@ -71,6 +71,7 @@ public class AdminTabServlet extends HttpServlet {
         String generalNotes = request.getParameter("generalNotes");
 
         String followUpNeeded = request.getParameter("followUpNeeded");
+        String risks = request.getParameter("risks");
 
         int assessmentId = (int) session.getAttribute("assessmentId");
         /*
@@ -140,33 +141,41 @@ public class AdminTabServlet extends HttpServlet {
 
         int vdtScore = (vdt / 3) + (2 * workFit) + (2 * discomfort);
 
-        if (action.equals("adminTab")) {
-
-            //try {
-            int adminId = as.insert(proactive,
-                    reactive,assessor,manager,business,workspace,jobTitle,gender,hFeet,hInches,
-                    handedness,daysInOffice,hoursInOffice,vdt,phone,dPresent,dReported,tSought,
-                    discomfort,workFit,equiptRec,generalNotes,followUpNeeded,vdtScore);
-            AssessmentService assService = new AssessmentService();
+        if (action.equals("add")) {
             try {
+                int adminId = as.insert(proactive,
+                        reactive, assessor, manager, business, workspace, jobTitle, gender, hFeet, hInches,
+                        handedness, daysInOffice, hoursInOffice, vdt, phone, dPresent, dReported, tSought,
+                        discomfort, workFit, risks, equiptRec, generalNotes, followUpNeeded, vdtScore);
+                AssessmentService assService = new AssessmentService();
+
                 assService.updateAdmin(assessmentId, adminId);
+
+                request.setAttribute("message", "Success!");
+
+            } catch (Exception ex) {
+                request.setAttribute("message", "no work");
+                Logger.getLogger(AdminTabServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else if (action.equals("update")) {
+           int adminId = Integer.parseInt(request.getParameter("adminId"));
+            try {
+                as.update(proactive,
+                        reactive, assessor, manager, business, workspace, jobTitle, gender, hFeet, hInches,
+                        handedness, daysInOffice, hoursInOffice, vdt, phone, dPresent, dReported, tSought,
+                        discomfort, workFit, risks, equiptRec, generalNotes, followUpNeeded, vdtScore, adminId);
+                 AssessmentService assService = new AssessmentService();
+
+                assService.updateAdmin(assessmentId, adminId);
+                request.setAttribute("message", "Success!");
             } catch (Exception ex) {
                 Logger.getLogger(AdminTabServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            request.setAttribute("message", "Success!");
-            getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);
-
-            //} catch (Exception ex) {
-            //    request.setAttribute("message", ex);
-            //     Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, ex);
-            //  }
-        } else {
-            request.setAttribute("message", "no work");
-            getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);
-
         }
 
-        //response.sendRedirect("assessments");
+        response.sendRedirect("assessments");
+
     }
 
 }

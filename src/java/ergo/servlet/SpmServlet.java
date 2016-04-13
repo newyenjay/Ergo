@@ -56,33 +56,29 @@ public class SpmServlet extends HttpServlet {
         boolean success = false;
         AssessmentService assService = new AssessmentService();
         int assessmentId = (int) session.getAttribute("assessmentId");
+        String action = request.getParameter("action");
 
-        try {
-            int spmId = ss.insert(baseBeBool, baseBeNotes, baseAfBool, baseAfNotes, shoulderBeBool, shoulderBeNotes, shoulderAfBool, shoulderAfNotes, armBeBool, armBeNotes, armAfBool, armAfNotes);
-            assService.updateSpm(assessmentId, spmId);
-            success = true;
-        } catch (Exception ex) {
-            Logger.getLogger(PmbServlet.class.getName()).log(Level.SEVERE, null, ex);
+        if (action.equals("add")) {
+            try {
+                int spmId = ss.insert(baseBeBool, baseBeNotes, baseAfBool, baseAfNotes, shoulderBeBool, shoulderBeNotes, shoulderAfBool, shoulderAfNotes, armBeBool, armBeNotes, armAfBool, armAfNotes);
+                assService.updateSpm(assessmentId, spmId);
+                success = true;
+            } catch (Exception ex) {
+                Logger.getLogger(PmbServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (action.equals("update")) {
+            int spmId = Integer.parseInt(request.getParameter("spmId"));
+            try {
+                ss.update(spmId, baseBeBool, baseBeNotes, baseAfBool, baseAfNotes, shoulderBeBool, shoulderBeNotes, shoulderAfBool, shoulderAfNotes, armBeBool, armBeNotes, armAfBool, armAfNotes);
+
+                assService.updateSpm(assessmentId, spmId);
+            } catch (Exception ex) {
+                Logger.getLogger(DiscomfortServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
-        if (success) {
-            request.setAttribute("message", "Success!");
-
-        } else {
-            request.setAttribute("message", "Nope");
-        }
-
-        getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);
+        
+        response.sendRedirect("assessments");
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

@@ -26,6 +26,18 @@ public class AdminRepository {
             em.close();
         }
     }
+    
+    public int update(Admin admin) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.merge(admin);
+            em.getTransaction().commit();
+            return 1;
+        } finally {
+            em.close();
+        }
+    }
 
     public List<Admin> getAll() {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();

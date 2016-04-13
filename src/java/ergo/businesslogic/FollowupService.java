@@ -45,6 +45,17 @@ public class FollowupService {
         return fr.getFollowup(followUpId);
         //Created the get method purely for necessity. 
     }
+    
+    public int update(int followupId, String notes, String comments, String recommendations)throws Exception{
+        
+        fr = new FollowupRepository();
+        Followup followup =this.getFollowup(followupId);
+        followup.setNote(notes);
+        followup.setComments(comments);
+        followup.setRecommendations(recommendations);
+        return fr.update(followup);
+        
+    }
    
     
 }

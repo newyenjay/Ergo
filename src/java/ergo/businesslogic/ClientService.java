@@ -6,6 +6,7 @@
 package ergo.businesslogic;
 
 import ergo.dataacess.ClientRepository;
+import ergo.domainmodel.Assessment;
 import ergo.domainmodel.Client;
 import ergo.domainmodel.Company;
 import java.util.Date;
@@ -117,6 +118,15 @@ public class ClientService {
     public List<Client> getAll()throws Exception{
         cr = new ClientRepository();
         return cr.getAll();
+    }
+    
+    public int updateAssess(int clientId, int assessmentId) throws Exception{
+        cr = new ClientRepository();
+        AssessmentService assessS = new AssessmentService();
+        Assessment assessment= assessS.getAssessment(assessmentId);
+        Client client = cr.getClient(clientId);
+        client.getAssessmentList().add(assessment);
+        return cr.update(client);
     }
     
 }

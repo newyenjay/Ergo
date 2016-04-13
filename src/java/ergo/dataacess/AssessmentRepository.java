@@ -18,12 +18,8 @@ public class AssessmentRepository {
      public int insert(Assessment assessment) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
-            Client client = assessment.getClientId();
-            client.getAssessmentList().add(assessment);
-            
             em.getTransaction().begin();
-            em.merge(client);
-            em.persist(em.merge(assessment));
+            em.persist(assessment);
             em.getTransaction().commit();
             return assessment.getAssessmentId();
         } finally {

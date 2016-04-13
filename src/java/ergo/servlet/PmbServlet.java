@@ -53,32 +53,29 @@ public class PmbServlet extends HttpServlet {
         AssessmentService assService = new AssessmentService();
         int assessmentId = (int) session.getAttribute("assessmentId");
 
-        try {
-            int pmbId = ps.insert(goalMetBool, goalMetNotes, educBool, educNotes, microBeBool, microBeNotes, microAfBoool, microAfNotes);
-            assService.updatePmb(assessmentId, pmbId);
-            success = true;
+        String action = request.getParameter("action");
 
-        } catch (Exception ex) {
-            Logger.getLogger(PmbServlet.class.getName()).log(Level.SEVERE, null, ex);
+        if (action.equals("add")) {
+            try {
+                int pmbId = ps.insert(goalMetBool, goalMetNotes, educBool, educNotes, microBeBool, microBeNotes, microAfBoool, microAfNotes);
+                assService.updatePmb(assessmentId, pmbId);
+                success = true;
+
+            } catch (Exception ex) {
+                Logger.getLogger(PmbServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (action.equals("update")) {
+            int pmbId = Integer.parseInt(request.getParameter("pmbId"));
+            try {
+                ps.update(pmbId, goalMetBool, goalMetNotes, educBool, educNotes, microBeBool, microBeNotes, microAfBoool, microAfNotes);
+                assService.updatePmb(assessmentId, pmbId);
+            } catch (Exception ex) {
+                Logger.getLogger(DiscomfortServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        if (success) {
-            request.setAttribute("message", "Success!");
 
-        } else {
-            request.setAttribute("message", "Nope");
-        }
+        response.sendRedirect("assessments");
 
-        getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

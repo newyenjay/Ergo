@@ -45,17 +45,31 @@ public class FollowUpServlet extends HttpServlet {
         boolean success = false;
         AssessmentService assService = new AssessmentService();
         int assessmentId = (int) session.getAttribute("assessmentId");
+        String action = request.getParameter("action");
 
-        try {
-            int fsId = fs.insert(note, comments, recommendations);
-            assService.updateFollow(assessmentId, fsId);
-            success = true;
-            request.setAttribute("message", "Successfully Inserted");
-        } catch (Exception ex) {
-            Logger.getLogger(FollowUpServlet.class.getName()).log(Level.SEVERE, null, ex);
-            request.setAttribute("message", "An error has ocurred");
+        if (action.equals("add")) {
+            try {
+                int fsId = fs.insert(note, comments, recommendations);
+                assService.updateFollow(assessmentId, fsId);
+                success = true;
+                request.setAttribute("message", "Successfully Inserted");
+            } catch (Exception ex) {
+                Logger.getLogger(FollowUpServlet.class.getName()).log(Level.SEVERE, null, ex);
+                request.setAttribute("message", "An error has ocurred");
+            }
+
+        } else if (action.equals("update")) {
+            int followupId = Integer.parseInt(request.getParameter("followupId"));
+            try {
+                fs.update(followupId, note, comments, recommendations);
+
+                assService.updateFollow(assessmentId, followupId);
+            } catch (Exception ex) {
+                Logger.getLogger(DiscomfortServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);
+
+        response.sendRedirect("assessments");
 
     }
 

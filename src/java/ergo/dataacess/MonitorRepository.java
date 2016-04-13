@@ -33,6 +33,16 @@ public class MonitorRepository {
         }
     }
     
+    public int update(Monitor monitor)throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.merge(monitor);
+            em.getTransaction().commit();
+            return 1;
+        } finally {
+            em.close();
+        }
     
-    
+    }
 }

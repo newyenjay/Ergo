@@ -26,6 +26,17 @@ public class DiscomfortRepository {
             em.close();
         }
     }
+    public int update(Discomfort discomfort)throws Exception {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.merge(discomfort);
+            em.getTransaction().commit();
+            return discomfort.getDiscomfortId(); //I don't think this is needed. 
+        } finally {
+            em.close();
+        }
+    }
     
     public Discomfort getDiscomfort(Integer discomfortId)throws Exception{
          EntityManager em = DBUtil.getEmFactory().createEntityManager();
