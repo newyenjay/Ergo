@@ -59,57 +59,142 @@ public class Monitor implements Serializable {
     @ManyToOne(optional = false)
     private Pwae pwaeId;
 
+    /**
+     * The default Location constructor, sets up the object with all default nulls. 
+     */
     public Monitor() {
     }
 
+    /**
+     * Instantiates the Location Object with one Parameter, that being the monitorId. 
+     * @param monitorId 
+     */
     public Monitor(Integer monitorId) {
         this.monitorId = monitorId;
     }
 
+    /**
+     * Returns the monitorId value of the object. 
+     * pre - the Object must have a monitorId. 
+     * 
+     * @return - An Integer value that represents the Object's monitorId. 
+     */
     public Integer getMonitorId() {
         return monitorId;
     }
 
+    /**
+     * Takes in a parameter and sets the monitorId object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the monitorId value has been updated.
+     * 
+     * @param monitorId - An Integer value that represents the Object's monitorId that will replace the current value. 
+     */
     public void setMonitorId(Integer monitorId) {
         this.monitorId = monitorId;
     }
 
+    /**
+     * Returns the type value of the object. 
+     * pre - the Object must have a type. 
+     * 
+     * @return - An Integer value that represents the Object's type. 
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * Takes in a parameter and sets the type object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the type value has been updated.
+     * 
+     * @param type - An Integer value that represents the Object's type that will replace the current value. 
+     */
     public void setType(String type) {
         this.type = type;
     }
 
+    /**
+     * Returns the current value of the object. 
+     * pre - the Object must have a current. 
+     * 
+     * @return - An Integer value that represents the Object's current. 
+     */
     public String getCurrent() {
         return current;
     }
 
+    /**
+     * Takes in a parameter and sets the current object variable to that parameters. 
+     * Pre - the Parameter must be a String
+     * post - the current value has been updated.
+     * 
+     * @param current - A String value that represents the Object's current that will replace the current value. 
+     */
     public void setCurrent(String current) {
         this.current = current;
     }
 
+    /**
+     * Returns the recommendation value of the object. 
+     * pre - the Object must have a recommendation. 
+     * 
+     * @return - A String value that represents the Object's recommendation. 
+     */
     public String getRecommand() {
         return recommand;
     }
 
+    /**
+     * Takes in a parameter and sets the recommand object variable to that parameters. 
+     * Pre - the Parameter must be a String
+     * post - the recommand value has been updated.
+     * 
+     * @param recommand - A String value that represents the Object's recommand that will replace the current value. 
+     */
     public void setRecommand(String recommand) {
         this.recommand = recommand;
     }
 
+    /**
+     * Returns the sitStand value of the object. 
+     * pre - the Object must have a sitStand. 
+     * 
+     * @return - A String value that represents the Object's sitStand. 
+     */
     public String getSitStand() {
         return sitStand;
     }
 
+    /**
+     * Takes in a parameter and sets the sitStand object variable to that parameters. 
+     * Pre - the Parameter must be a String
+     * post - the recommendation value has been updated.
+     * 
+     * @param sitStand - A String value that represents the Object's sitStand that will replace the current value. 
+     */
     public void setSitStand(String sitStand) {
         this.sitStand = sitStand;
     }
 
+    /**
+     * Returns the pwaeId value of the object. 
+     * pre - the Object must have a pwaeId. 
+     * 
+     * @return - An Pwae value that represents the Object's pwaeId. 
+     */
     public Pwae getPwaeId() {
         return pwaeId;
     }
 
+    /**
+     * Takes in a parameter and sets the pwaeId object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the pwaeId value has been updated.
+     * 
+     * @param pwaeId - An Integer value that represents the Object's size that will replace the current value. 
+     */
     public void setPwaeId(Pwae pwaeId) {
         this.pwaeId = pwaeId;
     }

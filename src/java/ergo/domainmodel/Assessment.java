@@ -80,79 +80,202 @@ public class Assessment implements Serializable {
     @ManyToOne
     private Spm spmId;
 
+    /**
+     * The basic Assessment Object constructor, instantiates all the variables to null. 
+     */
     public Assessment() {
     }
 
+    /**
+     * Assessment Object constructor. takes in the assessmentId as a parameter during object construction and sets it as an object variable. 
+     * Pre - Parameter must be an integer. 
+     * Post - the assessmentId is set as the object variable. 
+     * 
+     * @param assessmentId - using this parameter, the Assessment will update the object variable. 
+     */
     public Assessment(Integer assessmentId) {
         this.assessmentId = assessmentId;
     }
 
+    /**
+     * Assessment Object constructor. takes in the assessmentId as a parameter during object construction and sets it as an object variable. 
+     * Pre - Parameter must be designated types. 
+     * Post - the assessmentId is set as the object variable. 
+     * 
+     * @param assessmentId - using this parameter, the Assessment will update the object variable. 
+     * @param type - using this parameter, the Assessment will update the object variable. 
+     * @param createDate - using this parameter, the Assessment will update the object variable. 
+     */
     public Assessment(Integer assessmentId, String type, Date createDate) {
         this.assessmentId = assessmentId;
         this.type = type;
         this.createDate = createDate;
     }
 
+    /**
+     * Returns the Object's assessmentId variable. 
+     * Pre - the Object must have an assessmentId Variable. 
+     * 
+     * @return - An Integer that represents the Assessments assesmentId value. 
+     */
     public Integer getAssessmentId() {
         return assessmentId;
     }
 
+    /**
+     * Takes in a parameter and sets the value of the assessmentId to the parameter. 
+     * Pre - the parameter must be an Integer. 
+     * Post - the Assessment assessmentId value has been updated. 
+     * 
+     * @param assessmentId - An Integer value, the Assessment will update the object variable. 
+     */
     public void setAssessmentId(Integer assessmentId) {
         this.assessmentId = assessmentId;
     }
 
+     /**
+     * Returns the Object's type variable. 
+     * Pre - the Object must have a type.
+     * 
+     * @return - An Integer that represents the Assessments type value. 
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * Takes in a parameter and sets the value of the adminId to that of the parameter. 
+     * pre - The parameter must be an type object type. 
+     * Post - the type has been updated. 
+     * 
+     * @param type - an Integer value, the Assessment will use the parameter to update the object variable. 
+     */
     public void setType(String type) {
         this.type = type;
     }
 
+    /**
+     * Returns the Object's createDate variable. 
+     * Pre - the Object must have a createDate variable. 
+     * 
+     * @return - An Integer that represents the Assessments createDate. 
+     */
     public Date getCreateDate() {
         return createDate;
     }
 
+    /**
+     * Takes in a parameter and sets the value of the createDate to that of the parameter. 
+     * pre - The parameter must be an Admin object type. 
+     * Post - the createDate has been updated. 
+     * 
+     * @param createDate - an Integer value, the Assessment will use the parameter to update the object variable. 
+     */
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
+    /**
+     * Returns the Object's editDate variable. 
+     * Pre - the Object must have a editDate variable. 
+     * 
+     * @return - An Integer that represents the Assessments editDate. 
+     */
     public Date getEditDate() {
         return editDate;
     }
 
+    /**
+     * Takes in a parameter and sets the value of the editDate to that of the parameter. 
+     * pre - The parameter must be an Admin object type. 
+     * Post - the editDate has been updated. 
+     * 
+     * @param editDate - an Integer value, the Assessment will use the parameter to update the object variable. 
+     */
     public void setEditDate(Date editDate) {
         this.editDate = editDate;
     }
 
+    /**
+     * Returns the Object's adminId variable. 
+     * Pre - the Object must have a adminId variable. 
+     * 
+     * @return - An Integer that represents the Assessments adminId. 
+     */
     public Admin getAdminId() {
         return adminId;
     }
 
+    /**
+     * Takes in a parameter and sets the value of the adminId to that of the parameter. 
+     * pre - The parameter must be an Admin object type. 
+     * Post - the adminId has been updated. 
+     * 
+     * @param adminId - an Integer value, the Assessment will use the parameter to update the object variable. 
+     */
     public void setAdminId(Admin adminId) {
         this.adminId = adminId;
     }
 
+    /**
+     * Returns the Object's discomfortId variable. 
+     * Pre - the Object must have a discomfortId variable. 
+     * 
+     * @return - An Integer that represents the Assessments discomfortId. 
+     */
     public Discomfort getDiscomfortId() {
         return discomfortId;
     }
 
+     /**
+     * Takes in a parameter and sets the value of the discomfortId to that of the parameter. 
+     * pre - The parameter must be an Integer. 
+     * Post - the discomfortId has been updated. 
+     * 
+     * @param discomfortId - an Integer value, the Assessment will use the parameter to update the object variable. 
+     */
     public void setDiscomfortId(Discomfort discomfortId) {
         this.discomfortId = discomfortId;
     }
 
+    /**
+     * Returns the Object's clientId variable. 
+     * Pre - the Object must have a clientId variable. 
+     * 
+     * @return - An Integer that represents the Assessments clientId. 
+     */
     public Client getClientId() {
         return clientId;
     }
 
+    /**
+     * Takes in a parameter and sets the value of the clientId to that of the parameter. 
+     * pre - The parameter must be an Integer. 
+     * Post - the clientId has been updated. 
+     * 
+     * @param clientId - an Integer value, the Assessment will use the parameter to update the object variable. 
+     */
     public void setClientId(Client clientId) {
         this.clientId = clientId;
     }
 
+    /**
+     * Returns the Object's followupId variable. 
+     * Pre - the Object must have a followupId variable. 
+     * 
+     * @return - An Integer that represents the Assessments followupId. 
+     */
     public Followup getFollowupId() {
         return followupId;
     }
 
+    /**
+     * Takes in a parameter and sets the value of the followupId to that of the parameter. 
+     * pre - The parameter must be an Integer. 
+     * Post - the followupId has been updated. 
+     * 
+     * @param followupId - an Integer value, the Assessment will use the parameter to update the object variable. 
+     */
     public void setFollowupId(Followup followupId) {
         this.followupId = followupId;
     }
@@ -161,22 +284,55 @@ public class Assessment implements Serializable {
         return pmbId;
     }
 
+    /**
+     * Takes in a parameter and sets the value of the pmbId to that of the parameter. 
+     * pre - The parameter must be an Integer. 
+     * Post - the pmbId has been updated. 
+     * 
+     * @param pmbId - an Integer value, the Assessment will use the parameter to update the object variable. 
+     */
     public void setPmbId(Pmb pmbId) {
         this.pmbId = pmbId;
     }
 
+    /**
+     * Returns the Object's pwaId variable. 
+     * Pre - the Object must have a pwaId variable. 
+     * 
+     * @return - An Integer that represents the Assessments pwaId. 
+     */
     public Pwae getPwaId() {
         return pwaId;
     }
 
+    /**
+     * Takes in a parameter and sets the value of the pwaId to that of the parameter. 
+     * pre - The parameter must be an Integer. 
+     * Post - the pwaId has been updated. 
+     * 
+     * @param pwaId - an Integer value, the Assessment will use the parameter to update the object variable. 
+     */
     public void setPwaId(Pwae pwaId) {
         this.pwaId = pwaId;
     }
 
+    /**
+     * Returns the Object's spmId variable. 
+     * Pre - the Object must have a spmId variable. 
+     * 
+     * @return - An Integer that represents the Assessments spmId. 
+     */
     public Spm getSpmId() {
         return spmId;
     }
 
+    /**
+     * Takes in a parameter and sets the value of the spmId to that of the parameter. 
+     * pre - The parameter must be an Integer. 
+     * Post - the spmId has been updated. 
+     * 
+     * @param spmId - an Integer value, the Assessment will use the parameter to update the object variable. 
+     */
     public void setSpmId(Spm spmId) {
         this.spmId = spmId;
     }
