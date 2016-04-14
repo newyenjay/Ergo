@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author 671402
+ * @version 1.0 - inserting javadoc. Will not be inserting javadoc over overriden code. 14/04/2016
  */
 @Entity
 @Table(name = "followup")
@@ -48,41 +48,101 @@ public class Followup implements Serializable {
     @Column(name = "recommendations")
     private String recommendations;
 
+    /**
+     * The default Company constructor, sets up the object with all default nulls. 
+     * Pre - none
+     */
     public Followup() {
     }
 
+    /**
+     * Instantiates the Company Object with one Parameter, that being the followUpId. 
+     * @param followUpId - the parameter that the constructor will take in and will set the followUpId to.
+     */
     public Followup(Integer followUpId) {
         this.followUpId = followUpId;
     }
 
+    /**
+     * Returns the followUpId value of the object. 
+     * pre - the Object must have a followUpId. 
+     * 
+     * @return - An Integer value that represents the Object's followUpId. 
+     */
     public Integer getFollowUpId() {
         return followUpId;
     }
 
+    /**
+     * Takes in a parameter and sets the followUpId object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the followUpId value has been updated.
+     * 
+     * @param followUpId - An Integer value that represents the Object's followUpId that will replace the current value. 
+     */
     public void setFollowUpId(Integer followUpId) {
         this.followUpId = followUpId;
     }
 
+    /**
+     * Returns the note value of the object. 
+     * pre - the Object must have a note. 
+     * 
+     * @return - A String value that represents the Object's note. 
+     */
     public String getNote() {
         return note;
     }
 
+    /**
+     * Takes in a parameter and sets the note object variable to that parameters. 
+     * Pre - the Parameter must be a String.
+     * post - the note value has been updated.
+     * 
+     * @param note - A String value that represents the Object's note that will replace the current value. 
+     */
     public void setNote(String note) {
         this.note = note;
     }
 
+    /**
+     * Returns the comments value of the object. 
+     * pre - the Object must have a comments. 
+     * 
+     * @return - A String value that represents the Object's comments. 
+     */
     public String getComments() {
         return comments;
     }
 
+    /**
+     * Takes in a parameter and sets the comments object variable to that parameters. 
+     * Pre - the Parameter must be a comments.
+     * post - the note value has been updated.
+     * 
+     * @param comments - A String value that represents the Object's comments that will replace the current value. 
+     */
     public void setComments(String comments) {
         this.comments = comments;
     }
 
+    /**
+     * Returns the recommendations value of the object. 
+     * pre - the Object must have a recommendations. 
+     * 
+     * @return - A String value that represents the Object's recommendations. 
+     */
     public String getRecommendations() {
         return recommendations;
     }
 
+    /**
+     * Takes in a parameter and sets the recommendations object variable to that parameters. 
+     * Pre - the Parameter must be a recommendation.
+     * post - the note value has been updated.
+     * 
+     * @param recommendations - A String value that represents the Object's recommendations that will replace the current value. 
+     */
     public void setRecommendations(String recommendations) {
         this.recommendations = recommendations;
     }

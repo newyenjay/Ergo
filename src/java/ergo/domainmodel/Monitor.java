@@ -65,79 +65,196 @@ public class Monitor implements Serializable {
     @Column(name = "type")
     private String type;
 
+    /**
+     * The default Location constructor, sets up the object with all default nulls. 
+     */
     public Monitor() {
     }
 
+    /**
+     * Instantiates the Location Object with one Parameter, that being the monitorId. 
+     * @param monitorId 
+     */
     public Monitor(Integer monitorId) {
         this.monitorId = monitorId;
     }
 
+    /**
+     * Instantiates the Location Object with three Parameters, that being the monitor, assessmentId, and size. 
+     * @param monitorId
+     * @param assessmentId
+     * @param size 
+     */
     public Monitor(Integer monitorId, int assessmentId, int size) {
         this.monitorId = monitorId;
         this.assessmentId = assessmentId;
         this.size = size;
     }
 
+    /**
+     * Returns the monitorId value of the object. 
+     * pre - the Object must have a monitorId. 
+     * 
+     * @return - An Integer value that represents the Object's monitorId. 
+     */
     public Integer getMonitorId() {
         return monitorId;
     }
 
+    /**
+     * Takes in a parameter and sets the monitorId object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the monitorId value has been updated.
+     * 
+     * @param monitorId - An Integer value that represents the Object's monitorId that will replace the current value. 
+     */
     public void setMonitorId(Integer monitorId) {
         this.monitorId = monitorId;
     }
 
+  /**
+     * Returns the monitorId value of the object. 
+     * pre - the Object must have a assessmentId. 
+     * 
+     * @return - An Integer value that represents the Object's assessmentId. 
+     */
     public int getAssessmentId() {
         return assessmentId;
     }
 
+    /**
+     * Takes in a parameter and sets the assessmentId object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the assessmentId value has been updated.
+     * 
+     * @param assessmentId - An Integer value that represents the Object's assessmentId that will replace the current value. 
+     */
     public void setAssessmentId(int assessmentId) {
         this.assessmentId = assessmentId;
     }
 
+    /**
+     * Returns the size value of the object. 
+     * pre - the Object must have a size. 
+     * 
+     * @return - An Integer value that represents the Object's size. 
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * Takes in a parameter and sets the size object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the size value has been updated.
+     * 
+     * @param size - An Integer value that represents the Object's size that will replace the current value. 
+     */
     public void setSize(int size) {
         this.size = size;
     }
 
+    /**
+     * Returns the pre value of the object. 
+     * pre - the Object must have a pre. 
+     * 
+     * @return - An Integer value that represents the Object's pre. 
+     */
     public Integer getPre() {
         return pre;
     }
 
+    /**
+     * Takes in a parameter and sets the pre object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the pre value has been updated.
+     * 
+     * @param pre - An Integer value that represents the Object's pre that will replace the current value. 
+     */
     public void setPre(Integer pre) {
         this.pre = pre;
     }
 
+    /**
+     * Returns the post value of the object. 
+     * pre - the Object must have a post. 
+     * 
+     * @return - An Integer value that represents the Object's post. 
+     */
     public Integer getPost() {
         return post;
     }
 
+    /**
+     * Takes in a parameter and sets the post object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the post value has been updated.
+     * 
+     * @param post - An Integer value that represents the Object's post that will replace the current value. 
+     */
     public void setPost(Integer post) {
         this.post = post;
     }
 
+     /**
+     * Returns the recommendation value of the object. 
+     * pre - the Object must have a recommendation. 
+     * 
+     * @return - A String value that represents the Object's recommendation. 
+     */
     public String getRecommendation() {
         return recommendation;
     }
 
+     /**
+     * Takes in a parameter and sets the recommendation object variable to that parameters. 
+     * Pre - the Parameter must be a String
+     * post - the recommendation value has been updated.
+     * 
+     * @param recommendation - A String value that represents the Object's recommendation that will replace the current value. 
+     */
     public void setRecommendation(String recommendation) {
         this.recommendation = recommendation;
     }
 
+    /**
+     * Returns the recommendation value of the object. 
+     * pre - the Object must have a recommendation. 
+     * 
+     * @return - An Integer value that represents the Object's recommendation. 
+     */
     public String getNotes() {
         return notes;
     }
 
+    /**
+     * Takes in a parameter and sets the notes object variable to that parameters. 
+     * Pre - the Parameter must be a String
+     * post - the notes value has been updated.
+     * 
+     * @param notes - A String value that represents the Object's notes that will replace the current value. 
+     */
     public void setNotes(String notes) {
         this.notes = notes;
     }
 
+    /**
+     * Returns the type value of the object. 
+     * pre - the Object must have a type. 
+     * 
+     * @return - An Integer value that represents the Object's type. 
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * Takes in a parameter and sets the type object variable to that parameters. 
+     * Pre - the Parameter must be a String
+     * post - the notes value has been updated.
+     * 
+     * @param type - A String value that represents the Object's type that will replace the current value. 
+     */
     public void setType(String type) {
         this.type = type;
     }

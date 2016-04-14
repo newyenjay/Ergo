@@ -19,7 +19,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author 671402
+ * The accessory class that represents one of the database tables. 
+ * @version 1.0 Implemented Javadoc. 
  */
 @Entity
 @Table(name = "accessory")
@@ -35,21 +36,43 @@ public class Accessory implements Serializable {
     @Column(name = "accessoryId")
     private Integer accessoryId;
 
+    /**
+     * The default constructor with no parameters. Will create a base object with no variables. 
+     */
     public Accessory() {
     }
 
+    /**
+     * One of the many constructors, will take in a AccessoryID, and from there create a Accessory Object with one of the instance variables being the AccessoryID.
+     * @param accessoryId - The representation of the AccessoryId, is used to identify the Accessory in the database. 
+     */
     public Accessory(Integer accessoryId) {
         this.accessoryId = accessoryId;
     }
 
+    /**
+     * Returns the Accessory ID from the Object as an integer.
+     * Pre - The Accessory ID must have an instantiated accessoryID. 
+     * Post - Returns the AccessoryId as an Integer value. 
+     * 
+     * @return Returns the AccessoryId as an Integer value. 
+     */
     public Integer getAccessoryId() {
         return accessoryId;
     }
 
+    /**
+     * Takes in a parameter and sets the AccessoryId to the new parameter. 
+     * Pre - the Accessory has an old Accessory Id. 
+     * Post - the Accessory now has the new AccessoryId set. 
+     * 
+     * @param accessoryId - An integer value that replaces the current AccessoryId of the Accessory Object. 
+     */
     public void setAccessoryId(Integer accessoryId) {
         this.accessoryId = accessoryId;
     }
 
+    
     @Override
     public int hashCode() {
         int hash = 0;

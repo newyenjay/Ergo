@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author 671402
+ * @version 1.0 - inserting javadoc 04/14/2016
  */
 @Entity
 @Table(name = "discomfort")
@@ -40,25 +40,58 @@ public class Discomfort implements Serializable {
     @Column(name = "notes")
     private String notes;
 
+    /**
+     * Basic object constructor. Sets all all variables to null by default. 
+     */
     public Discomfort() {
     }
 
+    /**
+     * Instantiates the Discomfort Object with one Parameter, that being the discomfortId. 
+     * @param discomfortId 
+     */
     public Discomfort(Integer discomfortId) {
         this.discomfortId = discomfortId;
     }
 
+    /**
+     * Returns the discomfortId value of the object. 
+     * pre - the Object must have a discomfortId. 
+     * 
+     * @return - An Integer value that represents the Object's discomfortId. 
+     */
     public Integer getDiscomfortId() {
         return discomfortId;
     }
 
+    /**
+     * Takes in a parameter and sets the discomfortId object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the discomfortId value has been updated.
+     * 
+     * @param discomfortId - An Integer value that represents the Object's discomfortId that will replace the current value. 
+     */
     public void setDiscomfortId(Integer discomfortId) {
         this.discomfortId = discomfortId;
     }
 
+    /**
+     * Returns the notes value of the object. 
+     * pre - the Object must have a notes value. 
+     * 
+     * @return - A String value that represents the Object's notes. 
+     */
     public String getNotes() {
         return notes;
     }
 
+    /**
+     * Takes in a parameter and sets the notes object variable to that parameters. 
+     * Pre - the Parameter must be a String.
+     * post - the notes value has been updated.
+     * 
+     * @param notes - A String value that represents the Object's notes that will replace the current value. 
+     */
     public void setNotes(String notes) {
         this.notes = notes;
     }

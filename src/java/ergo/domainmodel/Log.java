@@ -46,39 +46,91 @@ public class Log implements Serializable {
     @Column(name = "action")
     private String action;
 
+    /**
+     * The default Location constructor, sets up the object with all default nulls. 
+     */
     public Log() {
     }
 
+    /**
+     * Instantiates the Location Object with one Parameter, that being the locationId. 
+     * @param clientId - the parameter that the constructor will take in and will set the clientId to.
+     */
     public Log(Integer clientId) {
         this.clientId = clientId;
     }
 
+    /**
+     * Instantiates the Location Object with three Parameters, that being the locationId, employeeId, and action. 
+     * @param clientId
+     * @param employeeId
+     * @param action 
+     */
     public Log(Integer clientId, int employeeId, String action) {
         this.clientId = clientId;
         this.employeeId = employeeId;
         this.action = action;
     }
 
+    /**
+     * Returns the clientId value of the object. 
+     * pre - the Object must have a clientId. 
+     * 
+     * @return - An Integer value that represents the Object's clientId. 
+     */
     public Integer getClientId() {
         return clientId;
     }
 
+    /**
+     * Takes in a parameter and sets the clientId object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the clientId value has been updated.
+     * 
+     * @param clientId - An Integer value that represents the Object's clientId that will replace the current value. 
+     */
     public void setClientId(Integer clientId) {
         this.clientId = clientId;
     }
 
+    /**
+     * Returns the employeeId value of the object. 
+     * pre - the Object must have a employeeId. 
+     * 
+     * @return - An Integer value that represents the Object's employeeId. 
+     */
     public int getEmployeeId() {
         return employeeId;
     }
 
+    /**
+     * Takes in a parameter and sets the employeeId object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the employeeId value has been updated.
+     * 
+     * @param employeeId - An Integer value that represents the Object's employeeId that will replace the current value. 
+     */
     public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
     }
 
+    /**
+     * Returns the action value of the object. 
+     * pre - the Object must have a action. 
+     * 
+     * @return - An Integer value that represents the Object's action. 
+     */
     public String getAction() {
         return action;
     }
 
+     /**
+     * Takes in a parameter and sets the action object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the action value has been updated.
+     * 
+     * @param action - An Integer value that represents the Object's action that will replace the current value. 
+     */
     public void setAction(String action) {
         this.action = action;
     }
