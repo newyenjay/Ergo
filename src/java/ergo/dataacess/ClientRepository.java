@@ -12,7 +12,6 @@ import ergo.domainmodel.Client;
 import ergo.domainmodel.Company;
 /**
  *
- * @author Kimberly Oshiro
  * 
  * The actual interface that interacts with the database. adding, editing, or removing any of these methods is something that is I would not recommend, for 
  * tampering with any of these methods may result in  unwanted database corruption. 

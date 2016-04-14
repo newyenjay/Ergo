@@ -9,11 +9,8 @@ import ergo.dataacess.PrivilegeRepository;
 import ergo.domainmodel.Privilege;
 
 /**
- *Service class that handles the repository for Privilege interfacing. One method is only really required. 
- * 
- * @author Kimberly Oshiro
- * @version 1.0 - Inserted the code 
- * @version 1.1 - Inserted Javadoc
+ * This service helps identify the type of employee, whether regular or admin status
+ * @author 680420
  */
 public class PrivilegeService {
     PrivilegeRepository pr; //The local object that is instantiated so that it doesn't have to be re-instantiated every time

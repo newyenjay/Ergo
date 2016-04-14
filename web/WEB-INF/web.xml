@@ -4,13 +4,84 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
+    <filter>
+        <filter-name>LoginFilter</filter-name>
+        <filter-class>ergo.filter.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <servlet-name>FollowUpServlet</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <servlet-name>DiscomfortServlet</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <servlet-name>ClientServlet</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <servlet-name>SpmServlet</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <servlet-name>PmbServlet</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <servlet-name>AdminTabServlet</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <servlet-name>AddServlet</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <servlet-name>AssessmentsAdminServlet</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <servlet-name>SearchServlet</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <servlet-name>PosturesAndMovementsServlet</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <servlet-name>WorkAreaServlet</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <servlet-name>AssessmentsPageServlet</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <servlet-name>AdminPageServlet</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    
+    <filter-mapping>
+        <filter-name>LoginFilter</filter-name>
+        <url-pattern>/client</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>ergo.servlet.LoginServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>MainPageServlet</servlet-name>
-        <servlet-class>ergo.servlet.MainPageServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ForgotPasswordServlet</servlet-name>
@@ -29,17 +100,8 @@
         <servlet-class>ergo.servlet.WorkAreaServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>MaintainServlet</servlet-name>
-        <servlet-class>ergo.servlet.MaintainServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>PosturesAndMovementsServlet</servlet-name>
         <servlet-class>ergo.servlet.PosturesAndMovementsServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet>
         <servlet-name>SearchServlet</servlet-name>
@@ -65,13 +127,33 @@
         <servlet-name>SpmServlet</servlet-name>
         <servlet-class>ergo.servlet.SpmServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ClientServlet</servlet-name>
+        <servlet-class>ergo.servlet.ClientServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DiscomfortServlet</servlet-name>
+        <servlet-class>ergo.servlet.DiscomfortServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FollowUpServlet</servlet-name>
+        <servlet-class>ergo.servlet.FollowUpServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FollowUpServlet</servlet-name>
+        <url-pattern>/followup</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DiscomfortServlet</servlet-name>
+        <url-pattern>/discomfort</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClientServlet</servlet-name>
+        <url-pattern>/client</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>MainPageServlet</servlet-name>
-        <url-pattern>/main</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ForgotPasswordServlet</servlet-name>
@@ -90,16 +172,8 @@
         <url-pattern>/workarea</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>MaintainServlet</servlet-name>
-        <url-pattern>/maintain</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>PosturesAndMovementsServlet</servlet-name>
         <url-pattern>/posandmove</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SearchServlet</servlet-name>
@@ -129,7 +203,7 @@
         <session-timeout>30</session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>search</welcome-file>
+        <welcome-file>login</welcome-file>
     </welcome-file-list>
     <error-page>
         <error-code>404</error-code>

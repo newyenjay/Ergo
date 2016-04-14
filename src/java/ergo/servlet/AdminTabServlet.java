@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ergo.servlet;
 
 import ergo.businesslogic.AdminService;
+import ergo.businesslogic.AssessmentService;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -20,29 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author 680420
+ * AdminPageServlet is an HttpServlet that implements the Add Administration use case for the program by retrieving the
+ * information from the jsp and using the ergo.businesslogic package to manipulate the database with the help of JPA.
+ * If an Admin object does not exist in the assessment, a new Admin object is created and added in to the assessments table.
+ * If an Admin object exists in the assessment, the existing Admin object is modified and updated in to the database.
  */
 public class AdminTabServlet extends HttpServlet {
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/notes/report/admininfo.jsp").forward(request, response);
-    }
-
     /**
      * Handles the HTTP <code>POST</code> method.
-     *
+     * 
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -89,15 +68,10 @@ public class AdminTabServlet extends HttpServlet {
         String generalNotes = request.getParameter("generalNotes");
 
         String followUpNeeded = request.getParameter("followUpNeeded");
+        String risks = request.getParameter("risks");
 
-        /*
-         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-         try {
-         Date date = sdf.parse(accessorDate);
-         } catch (ParseException ex) {
-         Logger.getLogger(AdminTabServlet.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         */
+        int assessmentId = (int) session.getAttribute("assessmentId");
+        
         int hInches = 0;
         int hFeet = 0;
         int daysInOffice = 0;
@@ -157,48 +131,41 @@ public class AdminTabServlet extends HttpServlet {
 
         int vdtScore = (vdt / 3) + (2 * workFit) + (2 * discomfort);
 
-        if (action.equals("adminTab")) {
+        if (action.equals("add")) {
+            try {
+                int adminId = as.insert(proactive,
+                        reactive, assessor, manager, business, workspace, jobTitle, gender, hFeet, hInches,
+                        handedness, daysInOffice, hoursInOffice, vdt, phone, dPresent, dReported, tSought,
+                        discomfort, workFit, risks, equiptRec, generalNotes, followUpNeeded, vdtScore);
+                AssessmentService assService = new AssessmentService();
 
-            //try {
-            as.insert(proactive,
-                    reactive,
-                    assessor,
-                    manager,
-                    business,
-                    workspace,
-                    jobTitle,
-                    gender,
-                    hFeet,
-                    hInches,
-                    handedness,
-                    daysInOffice,
-                    hoursInOffice,
-                    vdt,
-                    phone,
-                    dPresent,
-                    dReported,
-                    tSought,
-                    discomfort,
-                    workFit,
-                    equiptRec,
-                    generalNotes,
-                    followUpNeeded,
-                    vdtScore);
+                assService.updateAdmin(assessmentId, adminId);
 
-            request.setAttribute("message", "Success!");
-            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/search.jsp").forward(request, response);
+                request.setAttribute("message", "Success!");
 
-            //} catch (Exception ex) {
-            //    request.setAttribute("message", ex);
-            //     Logger.getLogger(AddServlet.class.getName()).log(Level.SEVERE, null, ex);
-            //  }
-        } else {
-            request.setAttribute("message", "no work");
-            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/search.jsp").forward(request, response);
+            } catch (Exception ex) {
+                request.setAttribute("message", "no work");
+                Logger.getLogger(AdminTabServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
+        } else if (action.equals("update")) {
+           int adminId = Integer.parseInt(request.getParameter("adminId"));
+            try {
+                as.update(proactive,
+                        reactive, assessor, manager, business, workspace, jobTitle, gender, hFeet, hInches,
+                        handedness, daysInOffice, hoursInOffice, vdt, phone, dPresent, dReported, tSought,
+                        discomfort, workFit, risks, equiptRec, generalNotes, followUpNeeded, vdtScore, adminId);
+                 AssessmentService assService = new AssessmentService();
+
+                assService.updateAdmin(assessmentId, adminId);
+                request.setAttribute("message", "Success!");
+            } catch (Exception ex) {
+                Logger.getLogger(AdminTabServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
-        //response.sendRedirect("assessments");
+        response.sendRedirect("assessments");
+
     }
 
 }

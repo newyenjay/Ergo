@@ -22,30 +22,30 @@
         <div id="mainButton">
 
             <form method="post" action="login">
-
                 <div class="login-page">
                     <div class="form">
-                       <img src="images/ergorisk.PNG" alt="ergorisk" id="ergoImage"/>
-                       <p></p>
-                       
-                        <form class="login-form">
-                            <input type="text" name="username" placeholder="username"/>
-                            <input type="password" name="password" placeholder="password"/>
-                            <button input type="submit" value="Submit">login</button>
-                            <h3 class="message">Forgot your password? <a href="forgot">Reset it here</a></h3>
-                            ${message}
+                        <img src="images/ergorisk.PNG" alt="ergorisk" id="ergoImage"/>
+                        <p></p>
 
-                        </form>
+
+                        <input type="text" name="username" placeholder="username"/>
+                        <input type="password" name="password" placeholder="password"/>
+                        <button input type="submit" value="Submit">login</button>
+                        <%--<h3 class="message">Forgot your password? <a href="forgot">Reset it here</a></h3>--%>
+                        ${message}
+
+
                     </div>
                 </div>
+            </form>
+
 
 
         </div>
 
-    </form>
-</div>
 
-</body>
+
+    </body>
 
 
 </html>

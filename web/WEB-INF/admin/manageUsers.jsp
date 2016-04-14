@@ -66,7 +66,17 @@
 
 
                                 <c:if test="${currentUser.username == item.username}"> 
-                                    <th colspan="2" > Cannot delete yourself </th>
+                                    <td> Cannot delete yourself </td>
+                                    <td>
+
+                                        <form action="admin" method="post">
+                                            <input type="hidden" name="username" value="${item.username}">
+                                            <input type="hidden" name="action" value="view">
+                                            <input type="submit" value="Edit" class="btn btn-info"
+                                                   data-toggle="modal" data-target="#editUser">
+
+                                        </form>
+                                    </td>
                                     </c:if>
 
 

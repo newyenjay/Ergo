@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ergo.servlet;
 
+import ergo.businesslogic.AssessmentService;
 import ergo.businesslogic.DiscomfortService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,29 +10,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author Kimberly Oshiro
- * 
- * The Servlet Assessment page is in charge of the "Discomfort" tab in the assessment tab. 
- * I don't know what this name is hooked up to. 
+ * DiscomfortServlet is an HttpServlet that implements the Add Discomfort use case for the program by retrieving the
+ * information from the jsp and using the ergo.businesslogic package to manipulate the database with the help of JPA.
+ * If an Discomfort object does not exist in the assessment, a new Discomfort object is created and added in to the assessments table.
+ * If an Discomfort object exists in the assessment, the existing Discomfort object is modified and updated in to the database.
  */
 public class DiscomfortServlet extends HttpServlet {
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-      getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);
-        
-    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -52,39 +34,43 @@ public class DiscomfortServlet extends HttpServlet {
         
         DiscomfortService ds = new DiscomfortService();
         String notes = request.getParameter("notes").trim();
+        HttpSession session = request.getSession();
+        boolean success = false;
+        AssessmentService assService = new AssessmentService();
+        int assessmentId = (int) session.getAttribute("assessmentId") ;
+        String action = request.getParameter("action");
         
-        if(notes.isEmpty() || notes == null){
-            request.setAttribute("sucess", 0);
-            request.setAttribute("message", "Please fill in at least one field before submitting the form");
-            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response); 
-        }
-        
-        try {
+        if(action.equals("add")){
+            try {
             //Attempt to insert into the database 
-            ds.insert(notes);
-            request.setAttribute("sucess", 1);
+            int discomforId = ds.insert(notes);
+            assService.updateDiscomfort(assessmentId, discomforId);
             request.setAttribute("message", "successfully inserted");
-            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response);
+            success =true;
             
         } catch (Exception ex) {
             //Something goes wrong with the insertion
             Logger.getLogger(DiscomfortServlet.class.getName()).log(Level.SEVERE, null, ex);
             request.setAttribute("sucess", 0);
             request.setAttribute("message", "An error has ocurred");
-            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/addClientCompany.jsp").forward(request, response); //redirect to the main page with an error
+        }
+        }else if(action.equals("update")){
+            int discomfortId = Integer.parseInt(request.getParameter("discomfortId"));
+            try {
+                ds.update(discomfortId, notes);
+
+            assService.updateDiscomfort(assessmentId, discomfortId);
+            } catch (Exception ex) {
+                Logger.getLogger(DiscomfortServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
+        
+        
+        response.sendRedirect("assessments");
 
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    
 
 }

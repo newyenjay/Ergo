@@ -7,14 +7,23 @@
         </div>
         <div class="panel-body">
             <form class="form-horizontal" role="form" method = "post" action="discomfort">
+
+                <c:if test = "${assessmentInfo.discomfortId.discomfortId != null}">
+                    <input type="hidden" value="update" name="action">
+                    <input type="hidden" value="${assessmentInfo.discomfortId.discomfortId}" name="discomfortId">
+
+                </c:if>
+                <c:if test = "${assessmentInfo.discomfortId.discomfortId == null}">
+                    <input type="hidden" value="add" name="action">
+                </c:if>
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <textarea class="form-control" placeholder="Notes and comments" name="notes"></textarea>
-                        
-                        
-                            <br><input type="submit" class="btn btn-primary" value="Save"></input>
-                            <input type="hidden" value="discomfort"/>
-                        
+                        <textarea class="form-control" placeholder="Notes and comments" name="notes">${assessmentInfo.discomfortId.notes}</textarea>
+
+
+                        <br><input type="submit" class="btn btn-primary" value="Save">
+                        <input type="hidden" value="discomfort"/>
+
                     </div>
                 </div>
             </form>

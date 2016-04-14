@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ergo.servlet;
 
+import ergo.businesslogic.AssessmentService;
 import ergo.businesslogic.PmbService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,25 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author 671402
+ * PmbServlet is an HttpServlet that implements the Add Prepare and Maintain Body use case for the program by retrieving the
+ * information from the jsp and using the ergo.businesslogic package to manipulate the database with the help of JPA.
+ * If an Pmb object does not exist in the assessment, a new Pmb object is created and added in to the assessments table.
+ * If an Pmb object exists in the assessment, the existing Pmb object is modified and updated in to the database.
  */
 public class PmbServlet extends HttpServlet {
-    
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);
-    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -50,39 +33,46 @@ public class PmbServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         PmbService ps = new PmbService();
-        
+
         //Booleans
         Boolean goalMetBool = Boolean.parseBoolean(request.getParameter("goalMetBool"));
         Boolean educBool = Boolean.parseBoolean(request.getParameter("educBool"));
         Boolean microBeBool = Boolean.parseBoolean(request.getParameter("microBeBool"));
-        Boolean microAfBoool= Boolean.parseBoolean(request.getParameter("microAfBool"));
-        
+        Boolean microAfBoool = Boolean.parseBoolean(request.getParameter("microAfBool"));
+
         //Notes
         String goalMetNotes = request.getParameter("goalMetNotes");
         String educNotes = request.getParameter("educNotes");
         String microBeNotes = request.getParameter("microBeNotes");
         String microAfNotes = request.getParameter("microAfNotes");
-        
-        try {
-            ps.insert(goalMetBool, goalMetNotes, educBool, educNotes, microBeBool, microBeNotes, microAfBoool, microAfNotes);
-            request.setAttribute("message", "Success!");
-            getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/search.jsp").forward(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(PmbServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        request.setAttribute("message", "Nope");
-        getServletContext().getRequestDispatcher("/WEB-INF/searchAdd/search.jsp").forward(request, response);
-    }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+        boolean success = false;
+        AssessmentService assService = new AssessmentService();
+        int assessmentId = (int) session.getAttribute("assessmentId");
+
+        String action = request.getParameter("action");
+
+        if (action.equals("add")) {
+            try {
+                int pmbId = ps.insert(goalMetBool, goalMetNotes, educBool, educNotes, microBeBool, microBeNotes, microAfBoool, microAfNotes);
+                assService.updatePmb(assessmentId, pmbId);
+                success = true;
+
+            } catch (Exception ex) {
+                Logger.getLogger(PmbServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (action.equals("update")) {
+            int pmbId = Integer.parseInt(request.getParameter("pmbId"));
+            try {
+                ps.update(pmbId, goalMetBool, goalMetNotes, educBool, educNotes, microBeBool, microBeNotes, microAfBoool, microAfNotes);
+                assService.updatePmb(assessmentId, pmbId);
+            } catch (Exception ex) {
+                Logger.getLogger(DiscomfortServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        response.sendRedirect("assessments");
+
+    }
 
 }

@@ -5,7 +5,6 @@ package ergo.servlet;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import ergo.businesslogic.EmployeeService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,11 +19,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author 680420
+ * LoginServlet is an HttpServlet that implements the Login use case for the program by using the
+ * ergo.businesslogic package to validate the credentials passed from the jsp.
+ * If the credentials are invalid, the session is cleared and the website is redirected to login
+ * page with the appropriate message
+ * If the credentials are valid and the Employee is not an admin, the website is redirected to the Search Page.
+ * If the credentials are valid and the Employee is an admin, the website is redirected to the Manage Employees page.
  */
-
 public class LoginServlet extends HttpServlet {
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -36,19 +39,18 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String action = request.getParameter("action");
         EmployeeService es = new EmployeeService();
-        
-        if(action == null){
-        getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response); //Forwards the browser to the login jsp
-        }
-        else if (action.equals("logout")){
-                 es.logout(request);
+
+        if (action == null) {
+            getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response); //Forwards the browser to the login jsp
+        } else if (action.equals("logout")) {
+            es.logout(request);
             request.setAttribute("message", "Logged Out");
             getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response);
-                }
-        
+        }
+
     }
 
     /**
@@ -63,28 +65,37 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(); //Creates a HttpSession
-     
+
         String username = request.getParameter("username").trim();
         String password = request.getParameter("password").trim();
-        EmployeeService es = new EmployeeService(); 
-        
-    
-            if(username.isEmpty() || username == null || password.isEmpty() || password == null){
-                //Return to the login page with an error message~ Gonna have to figure this one out because I don't know what to do here. 
-                //How will you display the page? 
-                request.setAttribute("message", "Please enter valid credentials in both fields."); //Changed the field to make it more fitting. 
-                getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response);
-            }
-            if (es.login(request, username, password)){
-                int isAdmin = (int) session.getAttribute("isAdmin"); 
-                if(isAdmin == 1){ //Will redirect the user to the admin page. 
+        EmployeeService es = new EmployeeService();
+
+        if (username.isEmpty() || username == null || password.isEmpty() || password == null) {
+            //Return to the login page with an error message~ Gonna have to figure this one out because I don't know what to do here. 
+            //How will you display the page? 
+            request.setAttribute("message", "Please enter valid credentials in both fields."); //Changed the field to make it more fitting. 
+            getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response);
+        }
+        try {
+            if (es.login(request, username, password)) {
+                int isAdmin = (int) session.getAttribute("isAdmin");
+                if (isAdmin == 1) { //Will redirect the user to the admin page. 
                     response.sendRedirect("admin");
                 } else { //Will redirect the user to the user page. 
-                    response.sendRedirect("main");
+                    response.sendRedirect("search");
                 }
-            }
+            } else {
+                request.setAttribute("message", "Invalid username or password");
+                getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response);
 
-        
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ClientServlet.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("message", "Server internal error, contact support");
+            getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response);
+
+        }
+
         //Continue on by making the objects and such. 
     }
 

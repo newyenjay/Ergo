@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ergo.businesslogic;
 
 import ergo.dataacess.EmployeeRepository;
@@ -11,14 +6,9 @@ import ergo.domainmodel.Privilege;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 /**
- *
- * @author Kimberly Oshiro
- * 
- * @version 1.0 - Create the base workings of the class. Most likely will need to create some more methods later on to compensate for new methods and such that will come up
- * later on in the process. Will add more after the completion of the code. 
- * @version 2.0 - Changed the insertion method, it now takes 
- * @version 2.1 - Added in updated documentation 06/04/2016
+ * Service to help insert, update and delete the employee table in the database 
  */
 public class EmployeeService {
     private EmployeeRepository er;
@@ -76,9 +66,8 @@ public class EmployeeService {
     
     /**
      * Logs in a user based on the information such as the password and the username. 
+     * This method also checks to see if the user is an admin by checking the privileges
      * 
-     * 
-     * Was not done by KO 
      * 
      * @param request
      * @param username - The Java.Lang.String object that will contain the username that the Database will use to search for the row. 
@@ -150,11 +139,8 @@ public class EmployeeService {
         return er.getUserEmail(email);
     }
     
-    
-    
-    
     /**
-     * 
+     * Method to logout of the application. It invalidates all sessions
      * @param request 
      */
     public void logout(HttpServletRequest request) {
@@ -163,6 +149,7 @@ public class EmployeeService {
     }
     
     /**
+     * Method to update the employee information
      * 
      * @param employee
      * @return

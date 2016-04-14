@@ -110,9 +110,9 @@
                                             <td>${item.firstName}</td>
                                             <td>${item.lastName}</td>
                                             <td>
-                                                <form action="notes" method="post">
-                                                    <input type="hidden" name="noteId" value="${item.clientId}">
-                                                    <input type="hidden" name="action" value="view">
+                                                <form action="search" method="post">
+                                                    <input type="hidden" name="clientId" value="${item.clientId}">
+                                                    <input type="hidden" name="action" value="viewClient">
                                                     <button type="submit" class="btn btn-warning"> Edit</button>
                                                 </form>
                                             </td>

@@ -6,21 +6,15 @@
 package ergo.businesslogic;
 
 import ergo.dataacess.ClientRepository;
+import ergo.domainmodel.Assessment;
 import ergo.domainmodel.Client;
 import java.util.List;
 /**
  *
- * @author Kimberly Oshiro 
- * this'll be the service that will handle the calls for the Employee repository. I'm looking forward for what can be done here, no editing calls will probably be
- * actually need to be implemented in the interface I don't think, but It's going to be here in the class. Just in case. You never know what could happen, you know? 
- * 
- * @version 1.0 Adding stuff, 
- * @version 1.5 Revamping method names - Things weren't making sense to call them users, really. Made it more streamlined to call them client, much like the java class 
- *          hints at. It just makes more sense. 
- * @version 2.0 Uhm, removing some unnecessary comments. Also fixing up the documentation so that it's up to date with the current API. 
+ * Service that will handle the calls for the Employee repository. 
  */
 public class ClientService {
-    private static ClientRepository cr; //I figured it'd be easier just to have a variable instantiated already instead of having to create a new one every time.
+    private static ClientRepository cr; 
     
     /**
      * Takes the parameters that are required to create a Client object, creates a Client object using the parameters given, and inserts the object into the database. 
@@ -112,6 +106,22 @@ public class ClientService {
     public List<Client> getAll()throws Exception{
         cr = new ClientRepository();
         return cr.getAll();
+    }
+    
+    /**
+     * Method to update an assessment if it is modified
+     * @param clientId
+     * @param assessmentId
+     * @return
+     * @throws Exception 
+     */
+    public int updateAssess(int clientId, int assessmentId) throws Exception{
+        cr = new ClientRepository();
+        AssessmentService assessS = new AssessmentService();
+        Assessment assessment= assessS.getAssessment(assessmentId);
+        Client client = cr.getClient(clientId);
+        client.getAssessmentList().add(assessment);
+        return cr.update(client);
     }
     
 }

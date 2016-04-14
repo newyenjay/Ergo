@@ -9,11 +9,6 @@ import ergo.domainmodel.Followup;
 import java.util.List;
 import javax.persistence.EntityManager;
 
-/**
- *Handles the Followup table database interaction, a table out of many that makes the program run. 
- * 
- * @author Kimberly Oshiro
- */
 public class FollowupRepository {
  /**
      * Returns a Followup Object based on the FollowupId from the database. If the Object isn't there, the database will throw an error, and then close the database
@@ -65,7 +60,7 @@ public class FollowupRepository {
             em.getTransaction().begin();
             em.persist(followup);
             em.getTransaction().commit();
-            return 1;
+            return followup.getFollowUpId();
         } finally {
             em.close();
         }

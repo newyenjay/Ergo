@@ -20,10 +20,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author Kimberly Oshiro
+ * AdminPageServlet is an HttpServlet that implements the View Employee, Add Employee, and Edit Employee use cases for the program by using the 
+ * ergo.businesslogic package to modify the objects inside the database using the forms passed through the jsp files. Furthermore, this Servlet 
+ * also passes success or error messages when manipulating Employee objects from the database.
  */
 public class AdminPageServlet extends HttpServlet {
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -41,9 +43,10 @@ public class AdminPageServlet extends HttpServlet {
         List<Employee> empList = null;
         EmployeeService es = new EmployeeService();
         int role = (int) session.getAttribute("isAdmin");
+        session.removeAttribute("clientInfo");
 
         if (role != 1) {
-            response.sendRedirect("main");
+            response.sendRedirect("search");
         }
 
         if (action == null) {
@@ -68,7 +71,6 @@ public class AdminPageServlet extends HttpServlet {
             getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response);
 
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response);
 
     }
 
@@ -99,11 +101,11 @@ public class AdminPageServlet extends HttpServlet {
         switch (action) {
             case "view":
                 try {
-                 Employee selectedUser = es.getEmployee(username);
-                 request.setAttribute("selectedUser", selectedUser);
-                 } catch (Exception ex) {
-                 //why isnt there anything here i dont remember
-                 }
+                    Employee selectedUser = es.getEmployee(username);
+                    request.setAttribute("selectedUser", selectedUser);
+                } catch (Exception ex) {
+                    //why isnt there anything here i dont remember
+                }
                 break;
 
             case "add":
@@ -120,7 +122,7 @@ public class AdminPageServlet extends HttpServlet {
                     es.delete(username);
                     request.setAttribute("message", "User deleted.");
                 } catch (Exception ex) {
-                request.setAttribute("message", "Error: User could not be deleted!");
+                    request.setAttribute("message", "Error: User could not be deleted!");
                 }
                 break;
 
@@ -128,20 +130,20 @@ public class AdminPageServlet extends HttpServlet {
                 try {
                     es.update(username, firstname, lastname, password, email);
                     request.setAttribute("message", "User updated.");
-                 } catch (Exception ex) {
-                 request.setAttribute("message", "Error: User could not be updated!");
-                 }
+                } catch (Exception ex) {
+                    request.setAttribute("message", "Error: User could not be updated!");
+                }
                 break;
 
             default:
                 break;
         }
-        
+
         try {
             List<Employee> employees = es.getAll();
             request.setAttribute("users", employees);
         } catch (Exception ex) {
-            
+
         }
 
         getServletContext().getRequestDispatcher("/WEB-INF/admin/manageUsers.jsp").forward(request, response); //Forwards the browser to the login jsp

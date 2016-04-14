@@ -9,8 +9,7 @@ import ergo.domainmodel.Pmb;
 import java.util.List;
 
 /**
- *
- * @author 671402
+ * Service to help insert and update the table of prepare and maintain body in the database
  */
 public class PmbService {
     private static PmbRepository pr; //I figured it'd be easier just to have a variable instantiated already instead of having to create a new one every time.
@@ -62,7 +61,11 @@ public class PmbService {
      * Takes the parameters for an object, and calls the object from the database. Using the new parameters, will set all the variables to change the old ones on the Client
      * object if there are any changes. 
      * 
+     * @param pmbId
+     * @param goalMetBool
+     * @param goalMetNotes
      * @param clientId - what is used to identify the client in the database, this row cannot be altered. 
+     * @param educNotes 
      * @param firstName - The first name of the client,  is used to identify based on first name. 
      * @param lastName - the Last name of the client, is used to identify based on last name. 
      * @param email - the email of the client, is used to identify based on email. 
@@ -94,9 +97,9 @@ public class PmbService {
      * @return - a Client object that contains the Client with this clientId if the operation is a success. 
      * @throws Exception - if any of the operations that are attempted to be done results in an error. 
      */
-    public Pmb getClient(int clientId)throws Exception{
+    public Pmb getPmb(int pmbId)throws Exception{
         pr = new PmbRepository();
-        return pr.getPmb(clientId);
+        return pr.getPmb(pmbId);
     }
     
     /**

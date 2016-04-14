@@ -8,14 +8,8 @@ package ergo.dataacess;
 import java.util.List;
 import javax.persistence.EntityManager;
 import ergo.domainmodel.Employee;
-/**
- *
- * @author Kimberly Oshiro
- * 
- * @version 1.0 - Changed the name from EmployeeDB to EmployeeRepository. Was decided that it was better for the operation for this to be named this way. 
- * @version 1.1 - Added Documentation 
- * @version 1.2 - Continued Documentation 
- */
+
+
 public class EmployeeRepository {
     
     /**
