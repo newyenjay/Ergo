@@ -38,7 +38,9 @@
                         </li>
 
                         <li>
-                            <a href="assessments">Assessment</a> 
+                            <c:if test="${clientInfo!=null}"> 
+                                <a href="client">${client.firstName} ${client.lastName} - ${client.companyId.name}</a> 
+                            </c:if>                        
                         </li>
 
 

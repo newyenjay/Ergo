@@ -78,11 +78,17 @@ public class LoginServlet extends HttpServlet {
                 if (isAdmin == 1) { //Will redirect the user to the admin page. 
                     response.sendRedirect("admin");
                 } else { //Will redirect the user to the user page. 
-                    response.sendRedirect("main");
+                    response.sendRedirect("search");
                 }
+            } else {
+                request.setAttribute("message", "Invalid username or password");
+                getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response);
+
             }
         } catch (Exception ex) {
             Logger.getLogger(ClientServlet.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("message", "Server internal error, contact support");
+            getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response);
 
         }
 

@@ -6,6 +6,7 @@
 package ergo.servlet;
 
 import ergo.businesslogic.AssessmentService;
+import ergo.businesslogic.ClientService;
 import ergo.businesslogic.EmployeeService;
 import ergo.domainmodel.Assessment;
 import java.io.IOException;
@@ -39,15 +40,21 @@ public class AssessmentsPageServlet extends HttpServlet {
         HttpSession session = request.getSession();
         AssessmentService assService = new AssessmentService();
         EmployeeService es = new EmployeeService();
+        if(session.getAttribute("clientInfo")==null||session.getAttribute("assessmentId")==null){
+            response.sendRedirect("search");
+        }else{
+        int clientId = Integer.parseInt((String) session.getAttribute("clientInfo"));
+        ClientService cs = new ClientService();
         int assessmentId = (int) session.getAttribute("assessmentId") ;
         try {
             Assessment ass = assService.getAssessment(assessmentId);
             request.setAttribute("assessmentInfo", ass);
+            request.setAttribute("client", cs.getClient(clientId));
             request.setAttribute("employeeList", es.getAll());
         } catch (Exception ex) {
             Logger.getLogger(AssessmentsPageServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/notes/template.jsp").forward(request, response);}
 
     }
 }

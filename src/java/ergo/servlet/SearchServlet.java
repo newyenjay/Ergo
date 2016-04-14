@@ -106,7 +106,8 @@ public class SearchServlet extends HttpServlet {
         } else if (action.equals("viewClient")) {
 
             noRedirect = false;
-            session.setAttribute("clientInfo", clientId);
+            String viewClient = request.getParameter("clientId");
+            session.setAttribute("clientInfo", viewClient);
             response.sendRedirect("client");
         }
         if (noRedirect) {

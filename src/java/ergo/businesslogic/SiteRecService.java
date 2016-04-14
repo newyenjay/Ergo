@@ -7,9 +7,12 @@ package ergo.businesslogic;
 
 import ergo.dataacess.SiteRecRepository;
 import ergo.domainmodel.SiteRec;
+import ergo.servlet.WorkAreaServlet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,7 +40,7 @@ public class SiteRecService {
     }
 
     public int update(int siteRecId, String srRec, String srAcc, String srDate, Integer pwaeId) throws Exception {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/mm/dd");
         SiteRecRepository srr = new SiteRecRepository();
         SiteRec siteRec = this.getSiteRec(siteRecId);
         PwaeService ps = new PwaeService();
@@ -45,6 +48,8 @@ public class SiteRecService {
         try {
             date = formatter.parse(srDate);
         } catch (Exception e) {
+            Logger.getLogger(WorkAreaServlet.class.getName()).log(Level.SEVERE, null, e);
+
         }
         siteRec.setCompleteDate(date);
         siteRec.setRecommand(srRec);

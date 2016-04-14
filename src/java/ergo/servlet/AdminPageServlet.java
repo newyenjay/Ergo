@@ -42,9 +42,10 @@ public class AdminPageServlet extends HttpServlet {
         List<Employee> empList = null;
         EmployeeService es = new EmployeeService();
         int role = (int) session.getAttribute("isAdmin");
+        session.removeAttribute("clientInfo");
 
         if (role != 1) {
-            response.sendRedirect("main");
+            response.sendRedirect("search");
         }
 
         if (action == null) {
@@ -69,7 +70,6 @@ public class AdminPageServlet extends HttpServlet {
             getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response);
 
         }
-        getServletContext().getRequestDispatcher("/WEB-INF/login/login.jsp").forward(request, response);
 
     }
 

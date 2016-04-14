@@ -5,27 +5,28 @@
 <script type="text/javascript">
 
     $(function () {
-        var countM = $('#mbody').children('tr').length + 1;
-        var selector = '<select class="form-control" id="monType" name="monType' + countM + '">' + '<option value="LCD">LCD</option>' + '<option value="Laptop">Laptop</option>' + '</select>';
-        var monCurr = '<input class="form-control" type="number" name="monCurr' + countM + '" id="monCurr" placeholder="in">';
-        var monRec = '<input class="form-control" type="number" name="monRec' + countM + '" id="monRec" placeholder="in">';
-        var monSit = '<input class="form-control" type="number" name="monSit' + countM + '" id="monSit" placeholder="in">';
-        var monitorId = '<input class="form-control" type="hidden" name="monitorId' + countM + '"  value ="0" >';
+        
         $('#addMonitor').click(function () {
             var count = $('#mbody').children('tr').length + 1;
+            var selector = '<select class="form-control" id="monType" name="monType' + count + '">' + '<option value="LCD">LCD</option>' + '<option value="Laptop">Laptop</option>' + '</select>';
+        var monCurr = '<input class="form-control" type="number" name="monCurr' + count + '" id="monCurr" placeholder="in">';
+        var monRec = '<input class="form-control" type="number" name="monRec' + count + '" id="monRec" placeholder="in">';
+        var monSit = '<input class="form-control" type="number" name="monSit' + count + '" id="monSit" placeholder="in">';
+        var monitorId = '<input class="form-control" type="hidden" name="monitorId' + count + '"  value ="0" >';
             $('#monitor tbody').append('<tr><td>' + count + monitorId + '</td><td>' + selector + '</td><td>' + monCurr + '</td><td>' + monRec + '</td><td>' + monSit + '</td></tr>');
             $('input[name=monitorRow]').val(count);
         });
 
         var countR = $('#sbody').children('tr').length + 1;
 
-        var srRec = '<input class="form-control" type="text" name="srRec' + countR + '" id="srRec" >';
-        var srAcc = '<input class="form-control" type="text" name="srAcc' + countR + '" id="srAcc" >';
-        var srDate = '<input class="form-control" type="date" name="srDate' + countR + '" id="srDate" >';
-        var srId = '<input class="form-control" type="hidden" name="siteRecId' + countR + '"  value ="0" >';
+        
 
         $('#addsiteRecommand').click(function () {
             var count = $('#sbody').children('tr').length + 1;
+            var srRec = '<input class="form-control" type="text" name="srRec' + count + '" id="srRec" >';
+        var srAcc = '<input class="form-control" type="text" name="srAcc' + count + '" id="srAcc" >';
+        var srDate = '<input class="form-control" type="date" name="srDate' + count + '" id="srDate" >';
+        var srId = '<input class="form-control" type="hidden" name="siteRecId' + count + '"  value ="0" >';
             $('#siteRecommand tbody').append('<tr><td>' + count + srId + '</td><td>' + srRec + '</td><td>' + srAcc + '</td><td>' + srDate + '</td></tr>');
             $('input[name=siteRow]').val(count);
         });
@@ -277,8 +278,9 @@
                                     </td>
                                     <td>
 
-                                        <fmt:formatDate type="date" value="${siteRec.completeDate}" />
-                                        <input class="form-control" type="hidden" name="srDate${theCountSite.count}">
+                                        <fmt:formatDate var="compDate" type="date" value="${siteRec.completeDate}" />
+                                        ${compDate}
+                                        <input class="form-control" type="hidden" name="srDate${theCountSite.count}" value="${compDate}">
                                     </td>
 
                                 </tr>

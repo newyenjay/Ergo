@@ -15,9 +15,9 @@
                 </div>
             </div>
 
-            <div class="col-md-2">
+            <%--<div class="col-md-2">
                 <a class="btn btn-primary">Edit Client profile</a>
-            </div>
+            </div>--%>
             <div class = "col-md-12">
                 <hr>
 
@@ -56,7 +56,7 @@
 
                                             </form>
                                         </td>
-                                        <td></td>
+                                        <td>Not Avaliable</td>
 
                                     </tr>
                                 </c:forEach>
