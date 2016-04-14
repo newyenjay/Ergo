@@ -115,157 +115,407 @@ public class Pwae implements Serializable {
     @OneToMany(mappedBy = "pwaId")
     private List<Assessment> assessmentList;
 
+    /**
+     * The default constructor with no parameters. Will create a Pwae object with no variables. 
+     */
     public Pwae() {
     }
 
+    /**
+     * Assessment Object constructor. takes in the pwaeId as a parameter during object construction and sets it as an object variable. 
+     * Pre - Parameter must be an integer. 
+     * Post - the pwaeId is set as the object variable. 
+     * 
+     * @param pwaeId - using this parameter, the Assessment will update the object variable. 
+     */
     public Pwae(Integer pwaeId) {
         this.pwaeId = pwaeId;
     }
 
+    /**
+     * Returns the pwaeId value of the object. 
+     * pre - the Object must have a locationId. 
+     * 
+     * @return - An Integer value that represents the Object's pwaeId. 
+     */
     public Integer getPwaeId() {
         return pwaeId;
     }
 
+    /**
+     * Takes in a parameter and sets the pwaeId object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the pwaeId value has been updated.
+     * 
+     * @param pwaeId - An Integer value that represents the Object's pwaeId that will replace the current value. 
+     */
     public void setPwaeId(Integer pwaeId) {
         this.pwaeId = pwaeId;
     }
 
+    /**
+     * Returns the elbowCurr value of the object. 
+     * pre - the Object must have a elbowCurr. 
+     * 
+     * @return - A String value that represents the Object's elbowCurr. 
+     */
     public String getElbowCurr() {
         return elbowCurr;
     }
 
+    /**
+     * Takes in a parameter and sets the elbowCurr object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the elbowCurr value has been updated.
+     * 
+     * @param elbowCurr - An Integer value that represents the Object's pwaeId that will replace the current value. 
+     */
     public void setElbowCurr(String elbowCurr) {
         this.elbowCurr = elbowCurr;
     }
 
+    /**
+     * Returns the elbowRec value of the object. 
+     * pre - the Object must have a elbowRec. 
+     * 
+     * @return - A String value that represents the Object's elbowRec. 
+     */
     public String getElbowRec() {
         return elbowRec;
     }
 
+    /**
+     * Takes in a parameter and sets the elbowRec object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the elbowRec value has been updated.
+     * 
+     * @param elbowRec - An Integer value that represents the Object's elbowRec that will replace the current value. 
+     */
     public void setElbowRec(String elbowRec) {
         this.elbowRec = elbowRec;
     }
 
+    /**
+     * Returns the elbowSit value of the object. 
+     * pre - the Object must have a elbowSit. 
+     * 
+     * @return - A String value that represents the Object's elbowSit. 
+     */
     public String getElbowSit() {
         return elbowSit;
     }
 
+    /**
+     * Takes in a parameter and sets the elbowSit object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the elbowSit value has been updated.
+     * 
+     * @param elbowSit - An Integer value that represents the Object's elbowSit that will replace the current value. 
+     */
     public void setElbowSit(String elbowSit) {
         this.elbowSit = elbowSit;
     }
 
+    /**
+     * Returns the eyeCurr value of the object. 
+     * pre - the Object must have a eyeCurr. 
+     * 
+     * @return - A String value that represents the Object's eyeCurr. 
+     */
     public String getEyeCurr() {
         return eyeCurr;
     }
 
+    /**
+     * Takes in a parameter and sets the eyeCurr object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the eyeCurr value has been updated.
+     * 
+     * @param eyeCurr - An Integer value that represents the Object's eyeCurr that will replace the current value. 
+     */
     public void setEyeCurr(String eyeCurr) {
         this.eyeCurr = eyeCurr;
     }
 
+    /**
+     * Returns the eyeRec value of the object. 
+     * pre - the Object must have a eyeRec. 
+     * 
+     * @return - A String value that represents the Object's eyeRec. 
+     */
     public String getEyeRec() {
         return eyeRec;
     }
 
+    /**
+     * Takes in a parameter and sets the eyeRec object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the eyeCurr value has been updated.
+     * 
+     * @param eyeRec - An Integer value that represents the Object's eyeRec that will replace the current value. 
+     */
     public void setEyeRec(String eyeRec) {
         this.eyeRec = eyeRec;
     }
 
+    /**
+     * Returns the eyeSit value of the object. 
+     * pre - the Object must have a eyeSit. 
+     * 
+     * @return - An Integer value that represents the Object's eyeSit. 
+     */
     public String getEyeSit() {
         return eyeSit;
     }
 
+    /**
+     * Takes in a parameter and sets the eyeSit object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the eyeSit value has been updated.
+     * 
+     * @param eyeSit - An Integer value that represents the Object's eyeSit that will replace the current value. 
+     */
     public void setEyeSit(String eyeSit) {
         this.eyeSit = eyeSit;
     }
 
+    /**
+     * Returns the deskCurr value of the object. 
+     * pre - the Object must have a deskCurr. 
+     * 
+     * @return - An Integer value that represents the Object's deskCurr. 
+     */
     public String getDeskCurr() {
         return deskCurr;
     }
 
+    /**
+     * Takes in a parameter and sets the deskCurr object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the deskCurr value has been updated.
+     * 
+     * @param deskCurr - An Integer value that represents the Object's deskCurr that will replace the current value. 
+     */
     public void setDeskCurr(String deskCurr) {
         this.deskCurr = deskCurr;
     }
 
+    /**
+     * Returns the deskRec value of the object. 
+     * pre - the Object must have a deskRec. 
+     * 
+     * @return - An Integer value that represents the Object's deskRec. 
+     */
     public String getDeskRec() {
         return deskRec;
     }
 
+    /**
+     * Takes in a parameter and sets the deskRec object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the deskRec value has been updated.
+     * 
+     * @param deskRec - An Integer value that represents the Object's deskRec that will replace the current value. 
+     */
     public void setDeskRec(String deskRec) {
         this.deskRec = deskRec;
     }
 
+    /**
+     * Returns the deskSit value of the object. 
+     * pre - the Object must have a deskSit. 
+     * 
+     * @return - An Integer value that represents the Object's deskSit. 
+     */
     public String getDeskSit() {
         return deskSit;
     }
-
+    
+    /**
+     * Takes in a parameter and sets the deskSit object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the deskSit value has been updated.
+     * 
+     * @param deskSit - An Integer value that represents the Object's deskSit that will replace the current value. 
+     */
     public void setDeskSit(String deskSit) {
         this.deskSit = deskSit;
     }
 
+    /**
+     * Returns the chairNote value of the object. 
+     * pre - the Object must have a chairNote. 
+     * 
+     * @return - An Integer value that represents the Object's chairNote. 
+     */
     public String getChairNote() {
         return chairNote;
     }
 
+    /**
+     * Takes in a parameter and sets the chairNote object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the chairNote value has been updated.
+     * 
+     * @param chairNote - An Integer value that represents the Object's chairNote that will replace the current value. 
+     */
     public void setChairNote(String chairNote) {
         this.chairNote = chairNote;
     }
 
+    /**
+     * Returns the monitorNote value of the object. 
+     * pre - the Object must have a monitorNote. 
+     * 
+     * @return - An Integer value that represents the Object's monitorNote. 
+     */
     public String getMonitorNote() {
         return monitorNote;
     }
 
+    /**
+     * Takes in a parameter and sets the monitorNote object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the monitorNote value has been updated.
+     * 
+     * @param monitorNote - An Integer value that represents the Object's monitorNote that will replace the current value. 
+     */
     public void setMonitorNote(String monitorNote) {
         this.monitorNote = monitorNote;
     }
 
+    /**
+     * Returns the inputNote value of the object. 
+     * pre - the Object must have a inputNote. 
+     * 
+     * @return - An Integer value that represents the Object's inputNote. 
+     */
     public String getInputNote() {
         return inputNote;
     }
 
+    /**
+     * Takes in a parameter and sets the inputNote object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the inputNote value has been updated.
+     * 
+     * @param inputNote - An Integer value that represents the Object's inputNote that will replace the current value. 
+     */
     public void setInputNote(String inputNote) {
         this.inputNote = inputNote;
     }
 
+    /**
+     * Returns the deskNote value of the object. 
+     * pre - the Object must have a deskNote. 
+     * 
+     * @return - An Integer value that represents the Object's deskNote. 
+     */
     public String getDeskNote() {
         return deskNote;
     }
 
+    /**
+     * Takes in a parameter and sets the deskNote object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the deskNote value has been updated.
+     * 
+     * @param deskNote - An Integer value that represents the Object's deskNote that will replace the current value. 
+     */
     public void setDeskNote(String deskNote) {
         this.deskNote = deskNote;
     }
 
+    /**
+     * Returns the accessoriesNote value of the object. 
+     * pre - the Object must have a accessoriesNote. 
+     * 
+     * @return - An Integer value that represents the Object's accessoriesNote. 
+     */
     public String getAccessoriesNote() {
         return accessoriesNote;
     }
 
+    /**
+     * Takes in a parameter and sets the accessoriesNote object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the deskNote value has been updated.
+     * 
+     * @param accessoriesNote - An Integer value that represents the Object's deskNote that will replace the current value. 
+     */
     public void setAccessoriesNote(String accessoriesNote) {
         this.accessoriesNote = accessoriesNote;
     }
 
+    /**
+     * Returns the keyboardCurr value of the object. 
+     * pre - the Object must have a keyboardCurr. 
+     * 
+     * @return - An Integer value that represents the Object's keyboardCurr. 
+     */
     public String getKeyboardCurr() {
         return keyboardCurr;
     }
 
+    /**
+     * Takes in a parameter and sets the keyboardCurr object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the keyboardCurr value has been updated.
+     * 
+     * @param keyboardCurr - An Integer value that represents the Object's deskNote that will replace the current value. 
+     */
     public void setKeyboardCurr(String keyboardCurr) {
         this.keyboardCurr = keyboardCurr;
     }
 
+    /**
+     * Returns the keyboardRec value of the object. 
+     * pre - the Object must have a keyboardRec. 
+     * 
+     * @return - An Integer value that represents the Object's keyboardRec. 
+     */
     public String getKeyboardRec() {
         return keyboardRec;
     }
 
+    /**
+     * Takes in a parameter and sets the keyboardRec object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the keyboardRec value has been updated.
+     * 
+     * @param keyboardRec - An Integer value that represents the Object's keyboardRec that will replace the current value. 
+     */
     public void setKeyboardRec(String keyboardRec) {
         this.keyboardRec = keyboardRec;
     }
 
+    /**
+     * Returns the keyboardSit value of the object. 
+     * pre - the Object must have a keyboardSit. 
+     * 
+     * @return - An Integer value that represents the Object's keyboardSit. 
+     */
     public String getKeyboardSit() {
         return keyboardSit;
     }
 
+    /**
+     * Takes in a parameter and sets the keyboardSit object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the keyboardSit value has been updated.
+     * 
+     * @param keyboardSit - An Integer value that represents the Object's keyboardSit that will replace the current value. 
+     */
     public void setKeyboardSit(String keyboardSit) {
         this.keyboardSit = keyboardSit;
     }
 
+    /**
+     * Returns the siteRecList list of the object. 
+     * pre - the object must have a siteRecList list. 
+     * 
+     * @return - A Java.util.list value that represents the Object's siteRecList list. 
+     */
     @XmlTransient
     public List<SiteRec> getSiteRecList() {
         return siteRecList;
@@ -275,20 +525,46 @@ public class Pwae implements Serializable {
         this.siteRecList = siteRecList;
     }
 
+    /**
+     * Returns the monitorList list of the object. 
+     * pre - the object must have a monitorList list. 
+     * 
+     * @return - A Java.util.list value that represents the Object's monitorList list. 
+     */
     @XmlTransient
     public List<Monitor> getMonitorList() {
         return monitorList;
     }
 
+    /**
+     * Takes in a parameter and sets the monitorList local variable to that parameter.
+     * pre - the parameter must be a java.util.list.
+     * post - the monitorList has been updated.
+     * 
+     * @param monitorList - A java.util.list object that is going to replace the current list. 
+     */
     public void setMonitorList(List<Monitor> monitorList) {
         this.monitorList = monitorList;
     }
 
+    /**
+     * Returns the assessmentList list of the object. 
+     * pre - the object must have a assessmentList list. 
+     * 
+     * @return - A Java.util.list value that represents the Object's assessmentList list. 
+     */
     @XmlTransient
     public List<Assessment> getAssessmentList() {
         return assessmentList;
     }
 
+    /**
+     * Takes in a parameter and sets the assessmentList local variable to that parameter.
+     * pre - the parameter must be a java.util.list.
+     * post - the assessmentList has been updated.
+     * 
+     * @param assessmentList - A java.util.list object that is going to replace the current list. 
+     */
     public void setAssessmentList(List<Assessment> assessmentList) {
         this.assessmentList = assessmentList;
     }

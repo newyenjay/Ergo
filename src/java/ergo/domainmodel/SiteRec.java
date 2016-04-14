@@ -59,49 +59,121 @@ public class SiteRec implements Serializable {
     @ManyToOne(optional = false)
     private Pwae pwaeIdsite;
 
+    /**
+     * The default constructor with no parameters. Will create a SiteRec object with no variables. 
+     */
     public SiteRec() {
     }
 
+    /**
+     * SiteRec Object constructor. takes in the siteRecId as a parameter during object construction and sets it as an object variable. 
+     * @param siteRecId 
+     */
     public SiteRec(Integer siteRecId) {
         this.siteRecId = siteRecId;
     }
 
+    /**
+     * Returns the siteRecId value of the object. 
+     * pre - the Object must have a locationId. 
+     * 
+     * @return - An Integer value that represents the Object's siteRecId. 
+     */
     public Integer getSiteRecId() {
         return siteRecId;
     }
 
+    /**
+     * Takes in a parameter and sets the siteRecId object variable to that parameters. 
+     * Pre - the Parameter must be an Integer.
+     * post - the siteRecId value has been updated.
+     * 
+     * @param siteRecId - An Integer value that represents the Object's siteRecId that will replace the current value. 
+     */
     public void setSiteRecId(Integer siteRecId) {
         this.siteRecId = siteRecId;
     }
 
+    /**
+     * Returns the siteRecId value of the object. 
+     * pre - the Object must have a recommand. 
+     * 
+     * @return - An Integer value that represents the Object's recommand. 
+     */
     public String getRecommand() {
         return recommand;
     }
 
+    /**
+     * Takes in a parameter and sets the recommand object variable to that parameters. 
+     * Pre - the Parameter must be a String.
+     * post - the recommand value has been updated.
+     * 
+     * @param recommand - A String value that represents the Object's recommand that will replace the current value. 
+     */
     public void setRecommand(String recommand) {
         this.recommand = recommand;
     }
 
+    /**
+     * Returns the siteRecId value of the object. 
+     * pre - the Object must have a accessoryType. 
+     * 
+     * @return - A String value that represents the Object's accessoryType. 
+     */
     public String getAccessoryType() {
         return accessoryType;
     }
 
+    /**
+     * Takes in a parameter and sets the accessoryType object variable to that parameters. 
+     * Pre - the Parameter must be a String.
+     * post - the accessoryType value has been updated.
+     * 
+     * @param accessoryType - A String value that represents the Object's accessoryType that will replace the current value. 
+     */
     public void setAccessoryType(String accessoryType) {
         this.accessoryType = accessoryType;
     }
 
+    /**
+     * Returns the completeDate value of the object. 
+     * pre - the Object must have a completeDate. 
+     * 
+     * @return - A Date value that represents the Object's completeDate. 
+     */
     public Date getCompleteDate() {
         return completeDate;
     }
 
+    /**
+     * Takes in a parameter and sets the completeDate object variable to that parameters. 
+     * Pre - the Parameter must be a Date.
+     * post - the completeDate value has been updated.
+     * 
+     * @param completeDate - A Date value that represents the Object's completeDate that will replace the current value. 
+     */
     public void setCompleteDate(Date completeDate) {
         this.completeDate = completeDate;
     }
 
+    /**
+     * Returns the pwaeIdsite value of the object. 
+     * pre - the Object must have a pwaeIdsite. 
+     * 
+     * @return - A Pwae Object value that represents the Object's pwaeIdsite. 
+     */
     public Pwae getPwaeIdsite() {
         return pwaeIdsite;
     }
 
+    /**
+     * Takes in a parameter and sets the pwaeIdsite object variable to that parameters. 
+     * Pre - the Parameter must be a Pwae Object.
+     * post - the pwaeIdsite value has been updated.
+     * 
+     * @param pwaeIdsite - A Pwae Object value that represents the Object's pwaeIdsite that will replace the current value. 
+     */
     public void setPwaeIdsite(Pwae pwaeIdsite) {
         this.pwaeIdsite = pwaeIdsite;
     }
