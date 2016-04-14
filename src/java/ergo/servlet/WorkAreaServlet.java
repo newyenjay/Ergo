@@ -139,7 +139,7 @@ public class WorkAreaServlet extends HttpServlet {
                         try {
 
                             ms.update(monitorId, monType, monCurr, monRec, monSit, pwaId);
-                            pwaeS.updateMonitorList(pwaId);
+                            //pwaeS.updateMonitorList(pwaId);
                         } catch (Exception ex) {
                             Logger.getLogger(WorkAreaServlet.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -166,7 +166,7 @@ public class WorkAreaServlet extends HttpServlet {
                         String srDate = request.getParameter("srDate" + i);
                         try {
                             srs.update(siteRecId,srRec, srAcc, srDate, pwaId);
-                            pwaeS.updateSiteRecList(pwaId);
+                            //pwaeS.updateSiteRecList(pwaId);
                         } catch (Exception ex) {
                             Logger.getLogger(WorkAreaServlet.class.getName()).log(Level.SEVERE, null, ex);
                         }
