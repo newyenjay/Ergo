@@ -9,8 +9,8 @@ import ergo.dataacess.PrivilegeRepository;
 import ergo.domainmodel.Privilege;
 
 /**
- *
- * @author Kimberly Oshiro
+ * This service helps identify the type of employee, whether regular or admin status
+ * @author 680420
  */
 public class PrivilegeService {
     PrivilegeRepository pr;

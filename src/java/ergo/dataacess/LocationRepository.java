@@ -9,18 +9,11 @@ import ergo.domainmodel.Location;
 import java.util.List;
 import javax.persistence.EntityManager;
 
-/**
- *
- * @author Kimberly Oshiro
- * 
- * @version 1.0 - Setting up the LocationRepository before heading off. 
- * @version 1.1 - added the getall method as it was missing, probably will be needed in the future so I just added it in. 01/03/2016
- */
 public class LocationRepository {
     
     /**
      * 
-     * 
+     * Metod to insert into the database using the DButiltiy 
      * @param location
      * @return 
      */
@@ -36,25 +29,10 @@ public class LocationRepository {
         }
     }
     
-    /**
-     * 
-     * @param location
-     * @return 
-     */
-    public int delete(Location location)  {
-        EntityManager em = DBUtil.getEmFactory().createEntityManager();
-        try {
-            em.getTransaction().begin();
-            em.remove(em.merge(location));
-            em.getTransaction().commit();
-            return 1;
-        } finally {
-            em.close();
-        }
-   }
+
     
     /**
-     * 
+     * Method to update a location using the DBUtility 
      * @param location
      * @return 
      */
@@ -71,7 +49,7 @@ public class LocationRepository {
     }
     
     /**
-     * 
+     * Method to return the location of a company using the DBUtility
      * @param locationId
      * @return 
      */
@@ -86,7 +64,7 @@ public class LocationRepository {
     }
     
     /**
-     * 
+     * Method to return a list of all locations. Uses the DButility 
      * @return 
      */
     public List<Location> getAll(){

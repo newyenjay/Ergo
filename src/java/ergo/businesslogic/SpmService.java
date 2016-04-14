@@ -14,7 +14,7 @@ import java.util.List;
  * @author 671402
  */
 public class SpmService {
-    private static SpmRepository sr; //I figured it'd be easier just to have a variable instantiated already instead of having to create a new one every time.
+    private static SpmRepository sr; 
     
     /**
      * Takes the parameters that are required to create a Client object, creates a Client object using the parameters given, and inserts the object into the database. 

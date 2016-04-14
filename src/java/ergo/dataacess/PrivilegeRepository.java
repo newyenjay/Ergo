@@ -13,10 +13,6 @@ import javax.persistence.EntityManager;
  * The repository unit that handles the privilege table in the database. This simply uses the joint table in the database and checks whether or not a user in the
  * database is an administrator.
  * 
- * @version 1.0 - inserted a getId method as it's the only one that's really needed by the project, will be adding more as it's needed. 
- * @version 1.1 - Added documentation 2016/04/05
- * 
- * @author Kimberly Oshiro
  */
 public class PrivilegeRepository {
     

@@ -1,36 +1,51 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ergo.businesslogic;
 
 import ergo.dataacess.DiscomfortRepository;
 import ergo.domainmodel.Discomfort;
 
 /**
- *
- * @author Kimberly Oshiro
+ * Service to help the discomfort table be inserted into the database
  */
 public class DiscomfortService {
-DiscomfortRepository dr;
 
-    //insert
-    public int insert(String notes)throws Exception{
-         dr = new DiscomfortRepository();
-         Discomfort discomfort = new Discomfort();
-         discomfort.setNotes(notes);
-         return dr.insert(discomfort); //I don't think you need to create a discomfort ID here. However, if you want a discomfort ID you need to get one. 
+    DiscomfortRepository dr;
+
+    /**
+     * Method to help insert into the discomfort table
+     * 
+     * @param notes to be inserted into the database 
+     * @return
+     * @throws Exception 
+     */
+    public int insert(String notes) throws Exception {
+        dr = new DiscomfortRepository();
+        Discomfort discomfort = new Discomfort();
+        discomfort.setNotes(notes);
+        return dr.insert(discomfort);
     }
-    
-    public int update(int discomfortId, String note)throws Exception{
-        dr =new DiscomfortRepository();
+
+    /**
+     * Method to update the discomfort table in the database
+     * 
+     * @param discomfortId id to identify the discomfort with each assessment
+     * @param note notes that can be updated in the database 
+     * @return
+     * @throws Exception 
+     */
+    public int update(int discomfortId, String note) throws Exception {
+        dr = new DiscomfortRepository();
         Discomfort discomfort = this.getDiscomfort(discomfortId);
         discomfort.setNotes(note);
         return dr.update(discomfort);
     }
-    
-    public Discomfort getDiscomfort(Integer discomfortId)throws Exception{
+
+    /**
+     * Method to help get the discomfort id, to help with overall asssessment information 
+     * @param discomfortId
+     * @return
+     * @throws Exception 
+     */
+    public Discomfort getDiscomfort(Integer discomfortId) throws Exception {
         dr = new DiscomfortRepository();
         return dr.getDiscomfort(discomfortId);
     }

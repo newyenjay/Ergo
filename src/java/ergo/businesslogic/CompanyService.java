@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ergo.businesslogic;
 
 import ergo.dataacess.CompanyRepository;
@@ -10,17 +6,15 @@ import ergo.domainmodel.Company;
 import java.util.List;
 
 /**
- *
- * @author Kimberly Oshiro
- * @version  1.0 - Got the basic methods down, will be doing the documentation in the next sitting. 01/03/2016 
+ * Service to update the company table in the database.  
  */
 public class CompanyService {
     CompanyRepository cr;
     
     /**
+     * Inserting a new company into the database
      * 
-     * 
-     * @param name
+     * @param name name of company
      * @return
      * @throws Exception 
      */
@@ -32,9 +26,10 @@ public class CompanyService {
     }
     
     /**
+     * Method to update a company
      * 
-     * @param companyId
-     * @param name
+     * @param companyId each company has a unique id
+     * @param name of company
      * @return
      * @throws Exception 
      */
@@ -47,6 +42,7 @@ public class CompanyService {
     
     
     /**
+     * Method to delete a company if needed
      * 
      * @param companyId
      * @return
@@ -59,6 +55,8 @@ public class CompanyService {
     }
     
     /**
+     * Method to help get the name of a company
+     * This method uses it by having a parameter of a company id 
      * 
      * @param companyId
      * @return
@@ -69,12 +67,19 @@ public class CompanyService {
         return cr.getCompany(companyId);
     }
     
+    /**
+     * Method to return a company by giving it a parameter String of company name
+     * @param compName
+     * @return
+     * @throws Exception 
+     */
     public Company getCompany(String compName)throws Exception{
         cr = new CompanyRepository();
         return cr.getCompany(compName);
     }
     
     /**
+     * Method to return all companies in a list 
      * 
      * @return
      * @throws Exception 

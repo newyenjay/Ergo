@@ -9,8 +9,7 @@ import ergo.domainmodel.Pmb;
 import java.util.List;
 
 /**
- *
- * @author 671402
+ * Service to help insert and update the table of prepare and maintain body in the database
  */
 public class PmbService {
     private static PmbRepository pr; //I figured it'd be easier just to have a variable instantiated already instead of having to create a new one every time.

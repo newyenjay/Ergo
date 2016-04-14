@@ -1,29 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ergo.businesslogic;
 
 import ergo.dataacess.FollowupRepository;
 import ergo.domainmodel.Followup;
 
-
-
 /**
- *
- * @author Kimberly Oshiro
+ * Service to help insert into the table of followup in the database
  */
 public class FollowupService {
     FollowupRepository fr; 
     
     
     /**
-     * 
-     * @param notes
-     * @param comments
-     * @param recommendations
+     * Method to insert into the followup table
+     * @param notes takes in notes to insert into the table
+     * @param comments takes in comments to insert into the table
+     * @param recommendations takes in recommendations to insert into a table
      * @return 
+     * @throws java.lang.Exception 
      */
     public int insert(String notes, String comments, String recommendations) throws Exception{
         fr =  new FollowupRepository();
@@ -36,9 +29,11 @@ public class FollowupService {
     }
     
     /**
+     * Method to get all data from the followup 
      * 
      * @param followUpId
      * @return 
+     * @throws java.lang.Exception 
      */
     public Followup getFollowup(int followUpId) throws Exception{
         fr = new FollowupRepository();
@@ -46,6 +41,16 @@ public class FollowupService {
         //Created the get method purely for necessity. 
     }
     
+    /**
+     * Method to update the followup table
+     * 
+     * @param followupId
+     * @param notes
+     * @param comments
+     * @param recommendations
+     * @return
+     * @throws Exception 
+     */
     public int update(int followupId, String notes, String comments, String recommendations)throws Exception{
         
         fr = new FollowupRepository();
