@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ergo.servlet;
 
 import ergo.businesslogic.AssessmentService;
@@ -20,15 +15,15 @@ import javax.servlet.http.HttpSession;
 import javax.validation.constraints.AssertFalse;
 
 /**
- *
- * @author waynelin
+ * ClientServlet is an HttpServlet that implements the Manage Client Use Cases for the program by using the ergo.businesslogic package to
+ * retrieve the objects inside the database using the forms passed through the jsp files. 
  */
 @WebServlet(name = "ClientServlet", urlPatterns = {"/client"})
 public class ClientServlet extends HttpServlet {
 
     /**
      * Handles the HTTP <code>GET</code> method.
-     *
+     * This method retrieves the client information which is then sent to the jsp for the user to view.
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -52,7 +47,8 @@ public class ClientServlet extends HttpServlet {
 
     /**
      * Handles the HTTP <code>POST</code> method.
-     *
+     * This method handles actions to manage client information such as adding and editing assessments. This Servlet redirects
+     * the website to the assessments page for the user to modify the corresponding assessment in the database.
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs

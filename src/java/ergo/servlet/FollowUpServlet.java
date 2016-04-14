@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ergo.servlet;
 
 import ergo.businesslogic.AssessmentService;
@@ -18,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author Kimberly Oshiro
+ * FollowUpServlet is an HttpServlet that implements the Add FollowUp use case for the program by retrieving the
+ * information from the jsp and using the ergo.businesslogic package to manipulate the database with the help of JPA.
+ * If an FollowUp object does not exist in the assessment, a new FollowUp object is created and added in to the assessments table.
+ * If an FollowUp object exists in the assessment, the existing FollowUp object is modified and updated in to the database.
  */
 public class FollowUpServlet extends HttpServlet {
 

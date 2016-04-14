@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ergo.servlet;
 
 import ergo.businesslogic.AssessmentService;
@@ -18,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author 671402
+ * SpmServlet is an HttpServlet that implements the Add Safe Posture use case for the program by retrieving the
+ * information from the jsp and using the ergo.businesslogic package to manipulate the database with the help of JPA.
+ * If an Spm object does not exist in the assessment, a new Spm object is created and added in to the assessments table.
+ * If an Spm object exists in the assessment, the existing Spm object is modified and updated in to the database.
  */
 public class SpmServlet extends HttpServlet {
 

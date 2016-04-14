@@ -19,8 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author 680420
+ * LoginServlet is an HttpServlet that implements the Login use case for the program by using the
+ * ergo.businesslogic package to validate the credentials passed from the jsp.
+ * If the credentials are invalid, the session is cleared and the website is redirected to login
+ * page with the appropriate message
+ * If the credentials are valid and the Employee is not an admin, the website is redirected to the Search Page.
+ * If the credentials are valid and the Employee is an admin, the website is redirected to the Manage Employees page.
  */
 public class LoginServlet extends HttpServlet {
 

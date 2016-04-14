@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ergo.servlet;
 
 import ergo.businesslogic.AssessmentService;
@@ -19,9 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author Kimberly Oshiro
- *
  * One of the main Servlets on the page. Will take in the information from the
  * "Prepare Work Area & Equiptment" and will input it into the database. From
  * there, the database will be able to recall the information whenever and can

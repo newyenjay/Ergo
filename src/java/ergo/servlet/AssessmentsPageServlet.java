@@ -20,9 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author Kimberly Oshiro the base assessments Servlet that will handle the
- * forwarding for now.
+ * AssessmentsPageServlet is an HttpServlet that implements the Manage Assessment use case by retrieving the assessmentId using the ergo.businesslogic
+ * package to retrieve the appropriate assessment from the database. Afterwards, the information about the Assessment is passed onto the jsp for the
+ * user to view.
  */
 public class AssessmentsPageServlet extends HttpServlet {
 

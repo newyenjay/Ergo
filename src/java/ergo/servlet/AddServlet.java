@@ -21,8 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author 680420
+ * AddServlet is an HttpServlet that implements the Add Client and Add Company Use Cases for the program by using the ergo.businesslogic package to
+ * modify the objects inside the database using the forms passed through the jsp files. Furthermore, this Servlet also passes success or error 
+ * messages when manipulating Company and Client objects from the database.
  */
 public class AddServlet extends HttpServlet {
 

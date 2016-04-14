@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ergo.servlet;
 
 import ergo.businesslogic.AdminService;
@@ -17,14 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author 680420
+ * AdminPageServlet is an HttpServlet that implements the Add Administration use case for the program by retrieving the
+ * information from the jsp and using the ergo.businesslogic package to manipulate the database with the help of JPA.
+ * If an Admin object does not exist in the assessment, a new Admin object is created and added in to the assessments table.
+ * If an Admin object exists in the assessment, the existing Admin object is modified and updated in to the database.
  */
 public class AdminTabServlet extends HttpServlet {
 
     /**
      * Handles the HTTP <code>POST</code> method.
-     *
+     * 
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -74,14 +71,7 @@ public class AdminTabServlet extends HttpServlet {
         String risks = request.getParameter("risks");
 
         int assessmentId = (int) session.getAttribute("assessmentId");
-        /*
-         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-         try {
-         Date date = sdf.parse(accessorDate);
-         } catch (ParseException ex) {
-         Logger.getLogger(AdminTabServlet.class.getName()).log(Level.SEVERE, null, ex);
-         }
-         */
+        
         int hInches = 0;
         int hFeet = 0;
         int daysInOffice = 0;

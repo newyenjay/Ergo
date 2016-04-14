@@ -22,7 +22,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+/**
+ * SearchServlet is an HttpServlet that implements the Search Client and Search Company Use Cases for the program by using the ergo.businesslogic package to
+ * retrieve the objects inside the database using the forms passed through the jsp files.
+*/
 public class SearchServlet extends HttpServlet {
 
     /**

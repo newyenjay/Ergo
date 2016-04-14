@@ -20,8 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author Kimberly Oshiro
+ * AdminPageServlet is an HttpServlet that implements the View Employee, Add Employee, and Edit Employee use cases for the program by using the 
+ * ergo.businesslogic package to modify the objects inside the database using the forms passed through the jsp files. Furthermore, this Servlet 
+ * also passes success or error messages when manipulating Employee objects from the database.
  */
 public class AdminPageServlet extends HttpServlet {
 
