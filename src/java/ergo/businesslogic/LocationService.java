@@ -60,11 +60,8 @@ public class LocationService {
     }
 
     /**
-     *Returns a java.util.List that contains all the Locations within the database. 
-     * Pre - there must be at least one Location within the database at the time. 
-     * 
-     * @return a java.util.List that has all the Locations in the database, or a null pointer if there is an error during execution. 
-     * @throws Exception - If there is an error during execution, the database will throw the exception. 
+     *
+     * @return @throws Exception
      */
     public List<Location> getAll() throws Exception {
         lr = new LocationRepository();

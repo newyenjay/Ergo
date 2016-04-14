@@ -6,6 +6,7 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,13 +15,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @version 1.0 - inserting javadoc 04/14/2016
+ * @author waynelin
  */
 @Entity
 @Table(name = "discomfort")
@@ -30,6 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Discomfort.findByDiscomfortId", query = "SELECT d FROM Discomfort d WHERE d.discomfortId = :discomfortId"),
     @NamedQuery(name = "Discomfort.findByNotes", query = "SELECT d FROM Discomfort d WHERE d.notes = :notes")})
 public class Discomfort implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,61 +43,39 @@ public class Discomfort implements Serializable {
     @Size(max = 300)
     @Column(name = "notes")
     private String notes;
+    @OneToMany(mappedBy = "discomfortId")
+    private List<Assessment> assessmentList;
 
-    /**
-     * Basic object constructor. Sets all all variables to null by default. 
-     */
     public Discomfort() {
     }
 
-    /**
-     * Instantiates the Discomfort Object with one Parameter, that being the discomfortId. 
-     * @param discomfortId 
-     */
     public Discomfort(Integer discomfortId) {
         this.discomfortId = discomfortId;
     }
 
-    /**
-     * Returns the discomfortId value of the object. 
-     * pre - the Object must have a discomfortId. 
-     * 
-     * @return - An Integer value that represents the Object's discomfortId. 
-     */
     public Integer getDiscomfortId() {
         return discomfortId;
     }
 
-    /**
-     * Takes in a parameter and sets the discomfortId object variable to that parameters. 
-     * Pre - the Parameter must be an Integer.
-     * post - the discomfortId value has been updated.
-     * 
-     * @param discomfortId - An Integer value that represents the Object's discomfortId that will replace the current value. 
-     */
     public void setDiscomfortId(Integer discomfortId) {
         this.discomfortId = discomfortId;
     }
 
-    /**
-     * Returns the notes value of the object. 
-     * pre - the Object must have a notes value. 
-     * 
-     * @return - A String value that represents the Object's notes. 
-     */
     public String getNotes() {
         return notes;
     }
 
-    /**
-     * Takes in a parameter and sets the notes object variable to that parameters. 
-     * Pre - the Parameter must be a String.
-     * post - the notes value has been updated.
-     * 
-     * @param notes - A String value that represents the Object's notes that will replace the current value. 
-     */
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    @XmlTransient
+    public List<Assessment> getAssessmentList() {
+        return assessmentList;
+    }
+
+    public void setAssessmentList(List<Assessment> assessmentList) {
+        this.assessmentList = assessmentList;
     }
 
     @Override

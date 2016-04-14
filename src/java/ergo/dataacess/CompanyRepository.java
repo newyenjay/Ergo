@@ -94,7 +94,6 @@ public class CompanyRepository {
             em.close();
         }
     }
-    
     /**
      * Method to return a list of companies 
      * 

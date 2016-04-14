@@ -51,7 +51,6 @@ public class DiscomfortServlet extends HttpServlet {
         } catch (Exception ex) {
             //Something goes wrong with the insertion
             Logger.getLogger(DiscomfortServlet.class.getName()).log(Level.SEVERE, null, ex);
-            request.setAttribute("sucess", 0);
             request.setAttribute("message", "An error has ocurred");
         }
         }else if(action.equals("update")){

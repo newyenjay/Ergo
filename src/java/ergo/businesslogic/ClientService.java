@@ -8,6 +8,8 @@ package ergo.businesslogic;
 import ergo.dataacess.ClientRepository;
 import ergo.domainmodel.Assessment;
 import ergo.domainmodel.Client;
+import ergo.domainmodel.Company;
+import java.util.Date;
 import java.util.List;
 /**
  *
@@ -18,9 +20,13 @@ public class ClientService {
     
     /**
      * Takes the parameters that are required to create a Client object, creates a Client object using the parameters given, and inserts the object into the database. 
+     * @param clientId - the integer that represents the clientele id, what is the primary key in the database and is used to identify the object out of every other row in the
+     * database. Cannot be altered. 
      * @param firstName - The first name of the client, is used to identify based on first name. 
      * @param comloc 
-     * @param lastName - The last name of the client, is used to identify based on last name. 
+     * @param companyList 
+     * @param lastName - The last name of the client, is used to identify based on last name.
+     * @param email - The last name of the client, is used to identify based on email. 
      * @return - an integer if the insertion was successful into the database, or an exception that the database will throw because something went wrong during the insertion
      *  into the database. 
      * @throws Exception 
@@ -57,7 +63,7 @@ public class ClientService {
      * @param firstName - The first name of the client,  is used to identify based on first name. 
      * @param lastName - the Last name of the client, is used to identify based on last name. 
      * @param email - the email of the client, is used to identify based on email. 
-     * @return - a 1 if the SQL query is a success. Otherwise, nothing. 
+     * @return - a 1 if the sql query is a success. Otherwise, nothing. 
      * @throws Exception - If an exception is thrown from the database, then it will be shown in the web browser as a unique error message. 
      */
     public int update(Integer clientId, String firstName, String lastName, String email) throws Exception{

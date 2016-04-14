@@ -3,7 +3,9 @@ package ergo.businesslogic;
 import ergo.dataacess.EmployeeRepository;
 import ergo.domainmodel.Employee;
 import ergo.domainmodel.Privilege;
+import java.util.Date;
 import java.util.List;
+import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,16 +18,10 @@ public class EmployeeService {
     /**
      * Handles the Insertion of a newly created Employee object into the database, is the interface between the Database and the Backend of the database. Will throw an exception if the 
      * database throws an error when attempting to insert into the database, otherwise a 1 is returned from the EmployeeRepository class. 
-     * Pre - The exact Employee will not exist in the database. 
-     * Post - The Employee row will now exist in the database. 
      * 
-     * @param username - a variable that is used during insertion, will be saved to the database. 
-     * @param firstName - a variable that is used during insertion, will be saved to the database. 
-     * @param lastName - a variable that is used during insertion, will be saved to the database. 
-     * @param password - a variable that is used during insertion, will be saved to the database. 
-     * @param email - a variable that is used during insertion, will be saved to the database. 
-     * @return - a 1 if the insertion to the database is a success, otherwise will return a null pointer. 
-     * @throws java.lang.Exception - Will be thrown if an error is thrown during insertion. 
+     * @param employee - Must be of type Employee in the ergo.domainmodel package, and must have all local variables filled in, otherwise the rows in the database will be empty. A check
+     * must be made beforehand to check this out in order to do this. 
+     * @return - a 1 if the insertion to the database is a success. 
      */
     public int insert(String username, String firstName, String lastName, String password, String email)throws Exception{
         er = new EmployeeRepository();
@@ -39,12 +35,9 @@ public class EmployeeService {
     /**
      * Deletes the given parameter Employee object from the database. If the employee is successfully deleted from the database then the method called will return a 1, otherwise an error 
      * will be thrown from the database and eventually the method calling the database. 
-     * Pre - The Employee exists in the database.
-     * Post - The Employee no longer exists in the database. 
      * 
-     * @param username - the username variable that references the row that will be deleted from the database. 
+     * @param employee - the Employee variable type that references the row that will be deleted from the database. 
      * @return - a 1 if the deletion from the database is a success, an exception if there is an error. 
-     * @throws java.lang.Exception - Is only thrown if there is an error during deletion. 
      */
     public int delete(String username)throws Exception{
         er = new EmployeeRepository();
@@ -54,10 +47,7 @@ public class EmployeeService {
     
     /**
      * Returns a list filled with all the Employees that are available in the database. 
-     * Pre - At least one Employee row must exist in the database. 
-     * 
-     * @return - The list containing all the employees if the method call is successful. Otherwise, the method won't go through and there will be an exception thrown from the database.
-     * @throws java.lang.Exception - Will be thrown if there is an error during the method run. 
+     * @return - The list containing all the employees if the method call is successful. Otherwise, the method won't go through and there will be an exception thrown from the database. 
      */
     public List<Employee> getAll()throws Exception{
         er = new EmployeeRepository();
@@ -69,7 +59,6 @@ public class EmployeeService {
      * This method also checks to see if the user is an admin by checking the privileges
      * 
      * 
-     * @param request
      * @param username - The Java.Lang.String object that will contain the username that the Database will use to search for the row. 
      * @param password - The password variable that will be used to check whether or not the user is valid. 
      * @return the Employee object if the Database finds the employee containing that Username, otherwise the method will return null if the database finds nothing. 
@@ -115,12 +104,10 @@ public class EmployeeService {
     
     /**
      *This will return an employee object from the database using the username as a reference to search the database. 
-     * Pre - The Employee Row must exist in the database prior to running this method. 
-     * Post - The Employee Object will be called into the System as an Employee Object. 
      * 
-     * @param username - the parameter that the database would use to search for the required row. 
-     * @return - An Employee Object if the Method and Database call runs without error, otherwise a Null Pointer will be returned. 
-     * @throws Exception - Throws a null pointer when an error is thrown during the method call. 
+     * @param username
+     * @return
+     * @throws Exception 
      */
     public Employee getEmployee(String username)throws Exception{
         er = new EmployeeRepository();
@@ -129,8 +116,6 @@ public class EmployeeService {
     
     /**
      * Returns an Employee object from the database based on the Employee's email, if the email is in the database then the Row containing that Employee will be returned. 
-     * Pre - The Employee row must exist in the database prior to calling this method. 
-     * Pos - the Employee method will be returned into the program as an Employee Object. 
      * @param email - The Java.Lang.String object that will contain the email that the Database will use to search for the row. 
      * @return - The Employee object if the Database finds the employee containing that Email, otherwise the method will return null. 
      */

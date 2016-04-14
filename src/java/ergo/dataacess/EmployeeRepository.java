@@ -49,16 +49,10 @@ public class EmployeeRepository {
     }
     
     /**
-     * Returns an Employee object from the database based on the username Parameters. If the employee is in the database then it will be returned, otherwise
-     * an exception is thrown by the database and null is returned from the method. 
+     * Returns an Employee object from the database based on their username. 
      * 
-     * Pre - The employee must exist in the database prior to the method call.
-     * 
-     * Post - An Employee object is created out of reference from the one in the database, actions can be performed upon this object. 
-     * 
-     * @param username - the username in reference that the database will use to search for the row in the database. 
-     * @return - The Employee object that will be created from the method. otherwise, a nullpointer exception, as the database was unable to retrieve the row that it was searching
-     * for. 
+     * @param username
+     * @return 
      */
     public Employee getEmployee(String username) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();

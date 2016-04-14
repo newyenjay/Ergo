@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @version 1.0 - Inserting Javadoc - 04/14/2016
+ * @author waynelin
  */
 @Entity
 @Table(name = "employee")
@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Employee.findByEmail", query = "SELECT e FROM Employee e WHERE e.email = :email"),
     @NamedQuery(name = "Employee.findByPhoneNumber", query = "SELECT e FROM Employee e WHERE e.phoneNumber = :phoneNumber")})
 public class Employee implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -71,30 +72,13 @@ public class Employee implements Serializable {
     @ManyToMany(mappedBy = "employeeList")
     private List<Client> clientList;
 
-    /**
-     * The default Employee constructor, sets up the object with all default nulls. 
-     * Pre - none
-     */
     public Employee() {
     }
 
-    /**
-     * Instantiates the Company Object with one Parameter, that being the username. 
-     * @param username - the parameter that the constructor will take in and will set the username to.
-     */
     public Employee(String username) {
         this.username = username;
     }
 
-    /**
-     * Instantiates the Company Object with five parameters. Those being username, firstName, lastName, password, and email.
-     * 
-     * @param username
-     * @param firstName
-     * @param lastName
-     * @param password
-     * @param email 
-     */
     public Employee(String username, String firstName, String lastName, String password, String email) {
         this.username = username;
         this.firstName = firstName;
@@ -103,172 +87,68 @@ public class Employee implements Serializable {
         this.email = email;
     }
 
-    /**
-     * Returns the username value of the object. 
-     * pre - the Object must have a username. 
-     * 
-     * @return - A String value that represents the Object's username. 
-     */
     public String getUsername() {
         return username;
     }
 
-    /**
-     * Takes in a parameter and sets the username object variable to that parameters. 
-     * Pre - the Parameter must be a String.
-     * post - the username value has been updated.
-     * 
-     * @param username - A String value that represents the Object's username that will replace the current value. 
-     */
     public void setUsername(String username) {
         this.username = username;
     }
 
-    /**
-     * Returns the firstName value of the object. 
-     * pre - the Object must have a firstName. 
-     * 
-     * @return - A String value that represents the Object's firstName. 
-     */
     public String getFirstName() {
         return firstName;
     }
 
-    /**
-     * Takes in a parameter and sets the firstName object variable to that parameters. 
-     * Pre - the Parameter must be a String.
-     * post - the firstName value has been updated.
-     * 
-     * @param firstName - A String value that represents the Object's firstName that will replace the current value. 
-     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    /**
-     * Returns the lastName value of the object. 
-     * pre - the Object must have a lastName. 
-     * 
-     * @return - A String value that represents the Object's lastName. 
-     */
     public String getLastName() {
         return lastName;
     }
 
-    /**
-     * Takes in a parameter and sets the lastName object variable to that parameters. 
-     * Pre - the Parameter must be a String.
-     * post - the lastName value has been updated.
-     * 
-     * @param lastName - A String value that represents the Object's lastName that will replace the current value. 
-     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    /**
-     * Returns the password value of the object. 
-     * pre - the Object must have a password. 
-     * 
-     * @return - A String value that represents the Object's password. 
-     */
     public String getPassword() {
         return password;
     }
 
-    /**
-     * Takes in a parameter and sets the password object variable to that parameters. 
-     * Pre - the Parameter must be a String.
-     * post - the password value has been updated.
-     * 
-     * @param password - A String value that represents the Object's password that will replace the current value. 
-     */
     public void setPassword(String password) {
         this.password = password;
     }
 
-    /**
-     * Returns the email value of the object. 
-     * pre - the Object must have a email. 
-     * 
-     * @return - A String value that represents the Object's email. 
-     */
     public String getEmail() {
         return email;
     }
 
-    /**
-     * Takes in a parameter and sets the email object variable to that parameters. 
-     * Pre - the Parameter must be a String.
-     * post - the email value has been updated.
-     * 
-     * @param email - A String value that represents the Object's email that will replace the current value. 
-     */
     public void setEmail(String email) {
         this.email = email;
     }
 
-    /**
-     * Returns the phoneNumber value of the object. 
-     * pre - the Object must have a phoneNumber. 
-     * 
-     * @return - An Integer value that represents the Object's phoneNumber. 
-     */
     public Integer getPhoneNumber() {
         return phoneNumber;
     }
 
-    /**
-     * Takes in a parameter and sets the phoneNumber object variable to that parameters. 
-     * Pre - the Parameter must be an Integer.
-     * post - the phoneNumber value has been updated.
-     * 
-     * @param phoneNumber - An Integer value that represents the Object's phoneNumber that will replace the current value. 
-     */
     public void setPhoneNumber(Integer phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    /**
-     * Returns the privilegeList list of the object. 
-     * pre - the object must have a privilegeList list. 
-     * 
-     * @return - A Java.util.list value that represents the Object's privilegeList list. 
-     */
     @XmlTransient
     public List<Privilege> getPrivilegeList() {
         return privilegeList;
     }
 
-    /**
-     * Takes in a parameter and sets the privilegeList local variable to that parameter.
-     * pre - the parameter must be a java.util.list.
-     * post - the privilegeList has been updated.
-     * 
-     * @param privilegeList - A java.util.list object that is going to replace the current list. 
-     */
     public void setPrivilegeList(List<Privilege> privilegeList) {
         this.privilegeList = privilegeList;
     }
 
-    /**
-     * Returns the privilegeList list of the object. 
-     * pre - the object must have a privilegeList list. 
-     * 
-     * @return - A Java.util.list value that represents the Object's privilegeList list. 
-     */
     @XmlTransient
     public List<Client> getClientList() {
         return clientList;
     }
 
-    /**
-     * Takes in a parameter and sets the clientList local variable to that parameter.
-     * pre - the parameter must be a java.util.list.
-     * post - the clientList has been updated.
-     * 
-     * @param clientList - A java.util.list object that is going to replace the current list. 
-     */
     public void setClientList(List<Client> clientList) {
         this.clientList = clientList;
     }

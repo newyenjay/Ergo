@@ -6,6 +6,7 @@
 package ergo.domainmodel;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,13 +15,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 671402
+ * @author waynelin
  */
 @Entity
 @Table(name = "pmb")
@@ -37,6 +40,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Pmb.findByMicroAfBool", query = "SELECT p FROM Pmb p WHERE p.microAfBool = :microAfBool"),
     @NamedQuery(name = "Pmb.findByMicroAfNotes", query = "SELECT p FROM Pmb p WHERE p.microAfNotes = :microAfNotes")})
 public class Pmb implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,208 +67,95 @@ public class Pmb implements Serializable {
     @Size(max = 250)
     @Column(name = "microAfNotes")
     private String microAfNotes;
+    @OneToMany(mappedBy = "pmbId")
+    private List<Assessment> assessmentList;
 
-    /**
-     * The default Pmb constructor, sets up the object with all default nulls. 
-     */
     public Pmb() {
     }
 
-    /**
-     * Instantiates the Location Object with one Parameter, that being the pmbId. 
-     * @param pmbId 
-     */
     public Pmb(Integer pmbId) {
         this.pmbId = pmbId;
     }
 
-    /**
-     * Returns the pmbId value of the object. 
-     * pre - the Object must have a pmbId. 
-     * 
-     * @return - An Integer value that represents the Object's pmbId. 
-     */
     public Integer getPmbId() {
         return pmbId;
     }
 
-    /**
-     * Takes in a parameter and sets the pmbId object variable to that parameters. 
-     * Pre - the Parameter must be an Integer.
-     * post - the pmbId value has been updated.
-     * 
-     * @param pmbId - An Integer value that represents the Object's pmbId that will replace the current value. 
-     */
     public void setPmbId(Integer pmbId) {
         this.pmbId = pmbId;
     }
 
-    /**
-     * Returns the goalMetBool value of the object. 
-     * pre - the Object must have a goalMetBool. 
-     * 
-     * @return - A boolean value that represents the Object's goalMetBool. 
-     */
     public Boolean getGoalMetBool() {
         return goalMetBool;
     }
 
-    /**
-     * Takes in a parameter and sets the goalMetBool object variable to that parameters. 
-     * Pre - the Parameter must be a boolean.
-     * post - the goalMetBool value has been updated.
-     * 
-     * @param goalMetBool - A boolean value that represents the Object's goalMetBool that will replace the current value. 
-     */
     public void setGoalMetBool(Boolean goalMetBool) {
         this.goalMetBool = goalMetBool;
     }
 
-    /**
-     * Returns the goalMetNotes value of the object. 
-     * pre - the Object must have a goalMetNotes. 
-     * 
-     * @return - An Integer value that represents the Object's goalMetNotes. 
-     */
     public String getGoalMetNotes() {
         return goalMetNotes;
     }
 
-    /**
-     * Takes in a parameter and sets the goalMetNotes object variable to that parameters. 
-     * Pre - the Parameter must be a String .
-     * post - the goalMetNotes value has been updated.
-     * 
-     * @param goalMetNotes - A String value that represents the Object's goalMetNotes that will replace the current value. 
-     */
     public void setGoalMetNotes(String goalMetNotes) {
         this.goalMetNotes = goalMetNotes;
     }
 
-    /**
-     * Returns the educBool value of the object. 
-     * pre - the Object must have a educBool. 
-     * 
-     * @return - An Integer value that represents the Object's educBool. 
-     */
     public Boolean getEducBool() {
         return educBool;
     }
 
-    /**
-     * Takes in a parameter and sets the educBool object variable to that parameters. 
-     * Pre - the Parameter must be a boolean.
-     * post - the educBool value has been updated.
-     * 
-     * @param educBool - A boolean value that represents the Object's educBool that will replace the current value. 
-     */
     public void setEducBool(Boolean educBool) {
         this.educBool = educBool;
     }
 
-    /**
-     * Returns the educNotes value of the object. 
-     * pre - the Object must have a educNotes. 
-     * 
-     * @return - A String value that represents the Object's educNotes. 
-     */
     public String getEducNotes() {
         return educNotes;
     }
 
-    /**
-     * Takes in a parameter and sets the educNotes object variable to that parameters. 
-     * Pre - the Parameter must be a String.
-     * post - the educNotes value has been updated.
-     * 
-     * @param educNotes - A String value that represents the Object's educNotes that will replace the current value. 
-     */
     public void setEducNotes(String educNotes) {
         this.educNotes = educNotes;
     }
 
-    /**
-     * Returns the microBeBool value of the object. 
-     * pre - the Object must have a microBeBool. 
-     * 
-     * @return - A boolean value that represents the Object's microBeBool. 
-     */
     public Boolean getMicroBeBool() {
         return microBeBool;
     }
 
-    /**
-     * Takes in a parameter and sets the microBeBool object variable to that parameters. 
-     * Pre - the Parameter must be a boolean .
-     * post - the microBeBool value has been updated.
-     * 
-     * @param microBeBool - A boolean value that represents the Object's microBeBool that will replace the current value. 
-     */
     public void setMicroBeBool(Boolean microBeBool) {
         this.microBeBool = microBeBool;
     }
 
-    /**
-     * Returns the microBeNotes value of the object. 
-     * pre - the Object must have a microBeNotes. 
-     * 
-     * @return - A String value that represents the Object's microBeNotes. 
-     */
     public String getMicroBeNotes() {
         return microBeNotes;
     }
 
-    /**
-     * Takes in a parameter and sets the microBeNotes object variable to that parameters. 
-     * Pre - the Parameter must be a String.
-     * post - the microBeNotes value has been updated.
-     * 
-     * @param microBeNotes - A String value that represents the Object's microBeNotes that will replace the current value. 
-     */
     public void setMicroBeNotes(String microBeNotes) {
         this.microBeNotes = microBeNotes;
     }
 
-    /**
-     * Returns the microAfBool value of the object. 
-     * pre - the Object must have a microAfBool. 
-     * 
-     * @return - A boolean value that represents the Object's microAfBool. 
-     */
     public Boolean getMicroAfBool() {
         return microAfBool;
     }
 
-    /**
-     * Takes in a parameter and sets the microAfBool object variable to that parameters. 
-     * Pre - the Parameter must be a boolean.
-     * post - the microAfBool value has been updated.
-     * 
-     * @param microAfBool - A boolean value that represents the Object's microAfBool that will replace the current value. 
-     */
     public void setMicroAfBool(Boolean microAfBool) {
         this.microAfBool = microAfBool;
     }
 
-     /**
-     * Returns the microAfNotes value of the object. 
-     * pre - the Object must have a microAfNotes. 
-     * 
-     * @return - A String value that represents the Object's microAfNotes. 
-     */
     public String getMicroAfNotes() {
         return microAfNotes;
     }
 
-    /**
-     * Takes in a parameter and sets the microAfNotes object variable to that parameters. 
-     * Pre - the Parameter must be a String.
-     * post - the microAfNotes value has been updated.
-     * 
-     * @param microAfNotes - A String value that represents the Object's microAfNotes that will replace the current value. 
-     */
     public void setMicroAfNotes(String microAfNotes) {
         this.microAfNotes = microAfNotes;
+    }
+
+    @XmlTransient
+    public List<Assessment> getAssessmentList() {
+        return assessmentList;
+    }
+
+    public void setAssessmentList(List<Assessment> assessmentList) {
+        this.assessmentList = assessmentList;
     }
 
     @Override
