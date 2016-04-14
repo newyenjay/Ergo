@@ -9,10 +9,7 @@ import ergo.domainmodel.Pmb;
 import java.util.List;
 import javax.persistence.EntityManager;
 
-/**
- *
- * @author 671402
- */
+
 public class PmbRepository {
     /**
      * Searches through the client table in the database for a client based on their clientId, and will return a Client object from the database that is created from

@@ -10,11 +10,16 @@ import ergo.domainmodel.Client;
 import javax.persistence.EntityManager;
 
 /**
- *
- * @author tetsu
+ * Repository methods to help insert into the database using the DBUtility 
  */
 
 public class AssessmentRepository {
+    
+    /**
+     * Method to insert into the database using the DBUtility
+     * @param assessment
+     * @return 
+     */
      public int insert(Assessment assessment) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -26,6 +31,11 @@ public class AssessmentRepository {
             em.close();
         }
     }
+     /**
+      * Method to update the assessment using the DBUtility
+      * @param assessment
+      * @return 
+      */
      public int update(Assessment assessment) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -37,6 +47,12 @@ public class AssessmentRepository {
             em.close();
         }
     }
+     
+     /**
+      * Method to retrieve an assessment using the DBUtility
+      * @param AssessmentId
+      * @return 
+      */
      public Assessment getAssessment(int AssessmentId)  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {

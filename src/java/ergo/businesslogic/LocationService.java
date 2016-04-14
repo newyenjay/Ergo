@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ergo.businesslogic;
 
 import ergo.dataacess.DBUtil;
@@ -13,17 +8,16 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 /**
- *
- * @author Kimberly Oshiro
- * @version 1.0 added everything pretty much, will be adding documentation
- * shortly. 01/03/2016
+ * Service to update the entire location table
+ * 
  */
 public class LocationService {
 
     LocationRepository lr;
 
     /**
-     *
+     * Method to return the location of a company
+     * 
      * @param locationId
      * @return
      * @throws Exception
@@ -34,19 +28,14 @@ public class LocationService {
     }
 
     /**
-     *
-     * @param companyId
-     * @param locationId
+     * Method to insert into the location table, a company id, and the address of
+     * the company
+     * 
+     * @param companyId 
      * @param address
      * @return
-     * @throws Exception
+     * @throws Exception 
      */
-//    public int insert(Company companyId, String address) throws Exception {
-//        lr = new LocationRepository();
-//        Location location = new Location(address);
-//        location.setCompanyId(companyId);
-//        return lr.insert(location);
-//    }
     public int insert(Company companyId, String address) throws Exception {
         lr = new LocationRepository();
         Location location = new Location();
@@ -56,7 +45,8 @@ public class LocationService {
     }
 
     /**
-     *
+     * Method to help update the company name or address in the location table
+     * 
      * @param locationId
      * @param address
      * @return
@@ -67,18 +57,6 @@ public class LocationService {
         Location location = lr.getLocation(locationId);
         location.setAddress(address);
         return lr.update(location);
-    }
-
-    /**
-     *
-     * @param locationId
-     * @return
-     * @throws Exception
-     */
-    public int delete(int locationId) throws Exception {
-        lr = new LocationRepository();
-        Location location = lr.getLocation(locationId);
-        return lr.delete(location);
     }
 
     /**

@@ -8,11 +8,14 @@ package ergo.dataacess;
 import ergo.domainmodel.Pwae;
 import javax.persistence.EntityManager;
 
-/**
- *
- * @author waynelin
- */
+
 public class PwaeRepository {
+    
+    /**
+     * Method to insert into the table using the DBUtility
+     * @param pwae
+     * @return 
+     */
     public int insert(Pwae pwae)  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -25,6 +28,11 @@ public class PwaeRepository {
         }
     }
     
+    /**
+     * Method to retrieve from the database using DBUtility
+     * @param pwaeId
+     * @return 
+     */
      public Pwae getPwae(Integer pwaeId) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -35,6 +43,11 @@ public class PwaeRepository {
         }
     }
     
+     /**
+      * Method to update using the DBUtility 
+      * @param pwae
+      * @return 
+      */
      public int update(Pwae pwae){
          EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {

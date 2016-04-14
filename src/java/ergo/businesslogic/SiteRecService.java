@@ -15,11 +15,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author waynelin
+ * Service to insert and update the site recommendated table in the database 
  */
 public class SiteRecService {
 
+    /**
+     * Method to insert into the followup table. Takes an object and inserts into the table
+     * @param srRec
+     * @param srAcc
+     * @param srDate
+     * @param pwaeId
+     * @return
+     * @throws Exception 
+     */
     public int insert(String srRec, String srAcc, String srDate, Integer pwaeId) throws Exception {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
         SiteRecRepository srr = new SiteRecRepository();
@@ -39,6 +47,16 @@ public class SiteRecService {
 
     }
 
+    /**
+     * Method to update the site recommended table in the database.
+     * @param siteRecId
+     * @param srRec
+     * @param srAcc
+     * @param srDate
+     * @param pwaeId
+     * @return
+     * @throws Exception 
+     */
     public int update(int siteRecId, String srRec, String srAcc, String srDate, Integer pwaeId) throws Exception {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy/mm/dd");
         SiteRecRepository srr = new SiteRecRepository();

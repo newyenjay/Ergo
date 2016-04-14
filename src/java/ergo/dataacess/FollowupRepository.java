@@ -9,10 +9,6 @@ import ergo.domainmodel.Followup;
 import java.util.List;
 import javax.persistence.EntityManager;
 
-/**
- *
- * @author Kimberly Oshiro
- */
 public class FollowupRepository {
  /**
      * Returns a Followup Object based on the FollowupId from the database. If the Object isn't there, the database will throw an error, and then close the database

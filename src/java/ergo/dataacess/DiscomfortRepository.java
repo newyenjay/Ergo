@@ -9,35 +9,52 @@ import ergo.domainmodel.Discomfort;
 import javax.persistence.EntityManager;
 
 /**
- *
- * @author Kimberly Oshiro
+ * Repository to help insert and update using the DBUtility
  */
 public class DiscomfortRepository {
     
-    //insertion
+    /**
+     * Method to insert into the database using the DBUtility 
+     * @param discomfort
+     * @return
+     * @throws Exception 
+     */
     public int insert(Discomfort discomfort)throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(discomfort);
             em.getTransaction().commit();
-            return discomfort.getDiscomfortId(); //I don't think this is needed. 
+            return discomfort.getDiscomfortId(); 
         } finally {
             em.close();
         }
     }
+    
+    /**
+     * Method to update the discomfort table using the DBUtility
+     * @param discomfort
+     * @return
+     * @throws Exception 
+     */
     public int update(Discomfort discomfort)throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
             em.getTransaction().begin();
             em.merge(discomfort);
             em.getTransaction().commit();
-            return discomfort.getDiscomfortId(); //I don't think this is needed. 
+            return discomfort.getDiscomfortId(); 
         } finally {
             em.close();
         }
     }
     
+    /**
+     * Method to retrieve from the database using the DBUtility
+     * @param discomfortId
+     * @return
+     * @throws Exception 
+     */
     public Discomfort getDiscomfort(Integer discomfortId)throws Exception{
          EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {

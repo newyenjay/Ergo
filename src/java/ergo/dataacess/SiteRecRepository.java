@@ -10,12 +10,15 @@ import ergo.domainmodel.SiteRec;
 import java.util.List;
 import javax.persistence.EntityManager;
 
-/**
- *
- * @author waynelin
- */
+
 public class SiteRecRepository {
     
+    /**
+     * Method to insert into the table using the DBUtility
+     * @param siteRec
+     * @return
+     * @throws Exception 
+     */
     public int insert(SiteRec siteRec) throws Exception  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {       
@@ -33,6 +36,12 @@ public class SiteRecRepository {
         }
     }
     
+    /**
+     * Method to update using the DBUtility 
+     * @param siteRec
+     * @return
+     * @throws Exception 
+     */
      public int update(SiteRec siteRec)throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -45,6 +54,12 @@ public class SiteRecRepository {
         }
     }
      
+     /**
+     * Method to retrieve from the database using DBUtility
+      * @param siteRecId
+      * @return
+      * @throws Exception 
+      */
      public SiteRec getSiteRec(int siteRecId)throws Exception{
          EntityManager em =DBUtil.getEmFactory().createEntityManager();
          try {
@@ -55,6 +70,13 @@ public class SiteRecRepository {
         }
      }
      
+     /**
+      * Method to return a list of the site recommendations by each row
+      * using the DBUtitliy 
+      * @param pwae
+      * @return
+      * @throws Exception 
+      */
      public List<SiteRec> getSiteRecByPwae(int pwae)  throws Exception{
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {

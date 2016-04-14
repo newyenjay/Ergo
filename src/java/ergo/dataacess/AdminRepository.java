@@ -9,12 +9,14 @@ import ergo.domainmodel.Admin;
 import java.util.List;
 import javax.persistence.EntityManager;
 
-/**
- *
- * @author 680420
- */
 public class AdminRepository {
 
+    /**
+     * Method to insert into the admin table 
+     * 
+     * @param admin
+     * @return 
+     */
     public int insert(Admin admin) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -27,6 +29,12 @@ public class AdminRepository {
         }
     }
     
+    /**
+     * Method to update the admin table
+     * 
+     * @param admin
+     * @return 
+     */
     public int update(Admin admin) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -39,6 +47,11 @@ public class AdminRepository {
         }
     }
 
+    /**
+     * Method to return all admins information by retrieving each row by
+     * the unique id assigned to each admin insert. 
+     * @return 
+     */
     public List<Admin> getAll() {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -61,6 +74,11 @@ public class AdminRepository {
         }
     }
     
+    /**
+     * Method to get a single assessment 
+     * @param aId
+     * @return 
+     */
     public Admin getAssessmentId(int aId){
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {

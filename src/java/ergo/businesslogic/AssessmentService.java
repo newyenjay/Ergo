@@ -1,27 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ergo.businesslogic;
 
 import ergo.dataacess.AssessmentRepository;
-import ergo.domainmodel.Admin;
 import ergo.domainmodel.Assessment;
-import ergo.domainmodel.Client;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- *
- * @author tetsu
+ * Service to update each tab for the assessment. 
+ * Each method will update a specific table in the database.
  */
 public class AssessmentService {
 
     private static AssessmentRepository ar = new AssessmentRepository();
     private final Date date = new Date();
 
+    /**
+     * Method to insert a new initial assessment.
+     * @param clientId unique client ID
+     * @param type Type of the assessment 
+     * @return Return the assessment ID 
+     * @throws Exception 
+     */
     public int insert(int clientId, String type) throws Exception {
         Assessment assessment = new Assessment();
         ClientService cs = new ClientService();
@@ -32,6 +30,15 @@ public class AssessmentService {
         return ar.insert(assessment);
     }
 
+    /**
+     * Method to update the admin table in the database. Uses the 
+     * adminID as a primary key and will return a unique assessment admin ID
+     * 
+     * @param assessmentId
+     * @param adminId
+     * @return
+     * @throws Exception 
+     */
     public int updateAdmin(int assessmentId, int adminId) throws Exception {
         Assessment assessment = ar.getAssessment(assessmentId);
         AdminService admins = new AdminService();
@@ -40,6 +47,16 @@ public class AssessmentService {
         return ar.update(assessment);
     }
 
+    /**
+     * Method to update the prepare and maintain body table in the database. 
+     * Uses the assessmentID as a primary key and will return a unique 
+     * assessment assessmentId
+     * 
+     * @param assessmentId
+     * @param pmbId
+     * @return
+     * @throws Exception 
+     */
     public int updatePmb(int assessmentId, int pmbId) throws Exception {
         Assessment assessment = ar.getAssessment(assessmentId);
         PmbService pmbs = new PmbService();
@@ -48,6 +65,15 @@ public class AssessmentService {
         return ar.update(assessment);
     }
 
+    /**
+     * Method to update the  table in the database. 
+     * Uses the assessmentID as a primary key and will return a unique 
+     * assessment assessmentId
+     * @param assessmentId
+     * @param spmId
+     * @return
+     * @throws Exception 
+     */
     public int updateSpm(int assessmentId, int spmId) throws Exception {
         Assessment assessment = ar.getAssessment(assessmentId);
         SpmService spms = new SpmService();

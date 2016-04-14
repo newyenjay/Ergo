@@ -10,13 +10,16 @@ import ergo.domainmodel.Pwae;
 import java.util.List;
 import javax.persistence.EntityManager;
 
-/**
- *
- * @author Kimberly Oshiro
- */
+
 public class MonitorRepository {
     
-    
+    /**
+     * MEthod to insert a monitor into the monitor table.
+     * Uses the DBUtility 
+     * @param monitor
+     * @return
+     * @throws Exception 
+     */
     public int insert(Monitor monitor) throws Exception  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -34,6 +37,12 @@ public class MonitorRepository {
         }
     }
     
+    /**
+     * Method to update the table, uses the DBUtility
+     * @param monitor
+     * @return
+     * @throws Exception 
+     */
     public int update(Monitor monitor)throws Exception {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -47,6 +56,11 @@ public class MonitorRepository {
     
     }
     
+    /**
+     * Method to retrieve from the database using the DButility 
+     * @param monitorId
+     * @return 
+     */
     public Monitor getMonitor(int monitorId){
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -57,6 +71,12 @@ public class MonitorRepository {
         }
     }
     
+    /**
+     * Method to return a list of all the monitors by using the DButility 
+     * @param pwae
+     * @return
+     * @throws Exception 
+     */
     public List<Monitor> getMonitorByPwae(int pwae)  throws Exception{
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {

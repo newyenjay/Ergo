@@ -9,15 +9,12 @@ import ergo.domainmodel.Company;
 import java.util.List;
 import javax.persistence.EntityManager;
 
-/**
- *
- * @author Kimberly Oshiro
- */
+
 public class CompanyRepository {
     
     
     /**
-     * 
+     * Method to update the company table using a DBUtility
      * @param company
      * @return 
      */
@@ -34,6 +31,7 @@ public class CompanyRepository {
     }
     
     /**
+     * Method to insert a company into the database using hte DBUtility
      * 
      * @param company
      * @return 
@@ -50,6 +48,11 @@ public class CompanyRepository {
         }
     }
     
+    /**
+     * Method to delete a company using the DBUtility
+     * @param company
+     * @return 
+     */
     public int delete(Company company)  {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -63,7 +66,7 @@ public class CompanyRepository {
    }
     
     /**
-     * 
+     * Method to get a company by giving it a unique company. Uses DBUtility
      * @param companyId
      * @return 
      */
@@ -77,6 +80,11 @@ public class CompanyRepository {
         }
     }
     
+    /**
+     * Method to return a company. Uses the DBUtility to get a company
+     * @param compName
+     * @return 
+     */
     public Company getCompany(String compName) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         try {
@@ -87,6 +95,7 @@ public class CompanyRepository {
         }
     }
     /**
+     * Method to return a list of companies 
      * 
      * @return 
      */
