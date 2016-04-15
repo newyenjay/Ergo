@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 671402
+ * @version 1.0 - Instantiated Javadoc 14/04/2016
  */
 @Entity
 @Table(name = "company")
@@ -141,7 +141,6 @@ public class Company implements Serializable {
         this.clientList = clientList;
     }
 
-    
     /**
      * Returns the locationList list of the object. 
      * pre - the object must have a locationList list. 

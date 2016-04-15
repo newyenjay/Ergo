@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author waynelin
+ * @version 1.0 14/04/2016
  */
 @Entity
 @Table(name = "assessment")
@@ -38,7 +38,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Assessment.findByCreateDate", query = "SELECT a FROM Assessment a WHERE a.createDate = :createDate"),
     @NamedQuery(name = "Assessment.findByEditDate", query = "SELECT a FROM Assessment a WHERE a.editDate = :editDate")})
 public class Assessment implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -133,7 +132,7 @@ public class Assessment implements Serializable {
         this.assessmentId = assessmentId;
     }
 
-     /**
+    /**
      * Returns the Object's type variable. 
      * Pre - the Object must have a type.
      * 
@@ -221,18 +220,18 @@ public class Assessment implements Serializable {
      * Returns the Object's discomfortId variable. 
      * Pre - the Object must have a discomfortId variable. 
      * 
-     * @return - An Integer that represents the Assessments discomfortId. 
+     * @return - A Discomfort Object that represents the Assessments discomfortId. 
      */
     public Discomfort getDiscomfortId() {
         return discomfortId;
     }
 
-     /**
+    /**
      * Takes in a parameter and sets the value of the discomfortId to that of the parameter. 
-     * pre - The parameter must be an Integer. 
+     * pre - The parameter must be a Discomfort Object. 
      * Post - the discomfortId has been updated. 
      * 
-     * @param discomfortId - an Integer value, the Assessment will use the parameter to update the object variable. 
+     * @param discomfortId - a Discomfort Object, the Assessment will use the parameter to update the object variable. 
      */
     public void setDiscomfortId(Discomfort discomfortId) {
         this.discomfortId = discomfortId;
@@ -242,7 +241,7 @@ public class Assessment implements Serializable {
      * Returns the Object's clientId variable. 
      * Pre - the Object must have a clientId variable. 
      * 
-     * @return - An Integer that represents the Assessments clientId. 
+     * @return - A Client Object that represents the Assessments clientId. 
      */
     public Client getClientId() {
         return clientId;
@@ -280,6 +279,12 @@ public class Assessment implements Serializable {
         this.followupId = followupId;
     }
 
+    /**
+     * Returns the Object's pmbId variable. 
+     * Pre - the Object must have a Pmb Object. 
+     * 
+     * @return - A Pmb Object that represents the Assessments pmbId. 
+     */
     public Pmb getPmbId() {
         return pmbId;
     }
@@ -297,9 +302,9 @@ public class Assessment implements Serializable {
 
     /**
      * Returns the Object's pwaId variable. 
-     * Pre - the Object must have a pwaId variable. 
+     * Pre - the Object must have a Pwae Object. 
      * 
-     * @return - An Integer that represents the Assessments pwaId. 
+     * @return - A Pwae Object that represents the Assessments pwaId. 
      */
     public Pwae getPwaId() {
         return pwaId;
@@ -307,10 +312,10 @@ public class Assessment implements Serializable {
 
     /**
      * Takes in a parameter and sets the value of the pwaId to that of the parameter. 
-     * pre - The parameter must be an Integer. 
+     * pre - The parameter must be a Pwae Object. 
      * Post - the pwaId has been updated. 
      * 
-     * @param pwaId - an Integer value, the Assessment will use the parameter to update the object variable. 
+     * @param pwaId - a Pwae Object value, the Assessment will use the parameter to update the object variable. 
      */
     public void setPwaId(Pwae pwaId) {
         this.pwaId = pwaId;
@@ -318,9 +323,9 @@ public class Assessment implements Serializable {
 
     /**
      * Returns the Object's spmId variable. 
-     * Pre - the Object must have a spmId variable. 
+     * Pre - the Object must have a Spm Object. 
      * 
-     * @return - An Integer that represents the Assessments spmId. 
+     * @return - A Spm Object that represents the Assessments spmId. 
      */
     public Spm getSpmId() {
         return spmId;
@@ -328,10 +333,10 @@ public class Assessment implements Serializable {
 
     /**
      * Takes in a parameter and sets the value of the spmId to that of the parameter. 
-     * pre - The parameter must be an Integer. 
+     * pre - The parameter must be a Spm Object. 
      * Post - the spmId has been updated. 
      * 
-     * @param spmId - an Integer value, the Assessment will use the parameter to update the object variable. 
+     * @param spmId - a Spm Object, the Assessment will use the parameter to update the object variable. 
      */
     public void setSpmId(Spm spmId) {
         this.spmId = spmId;

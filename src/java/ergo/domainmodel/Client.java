@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author 671402
+ * @version 1.0 - Inserting javadoc 14/04/2016
  */
 @Entity
 @Table(name = "client")
@@ -94,7 +94,7 @@ public class Client implements Serializable {
         this.clientId = clientId;
     }
 
-    /**
+     /**
      * Full Client constructor, takes parameters and instantiates a client object. 
      * Pre - The parameters given must all be to the Object type that is specified. 
      * 
@@ -129,7 +129,7 @@ public class Client implements Serializable {
         this.clientId = clientId;
     }
 
-    /**
+     /**
      * Returns the assessmentId object variable. 
      * Pre - the Object must have a assessmentId. 
      * 
@@ -224,7 +224,7 @@ public class Client implements Serializable {
         return employeeList;
     }
 
-     /**
+    /**
      * Takes in a parameter and sets the employeeList local variable to that parameter.
      * pre - the parameter must be a java.util.list.
      * post - the employeeList has been updated.

@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author waynelin
+ * @version 1.0 - Inserting javadoc 14/04/2016
  */
 @Entity
 @Table(name = "admin")
@@ -57,7 +57,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Admin.findByScore", query = "SELECT a FROM Admin a WHERE a.score = :score"),
     @NamedQuery(name = "Admin.findByFollowUpNeeded", query = "SELECT a FROM Admin a WHERE a.followUpNeeded = :followUpNeeded")})
 public class Admin implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -156,7 +155,7 @@ public class Admin implements Serializable {
      * Returns the adminId of the object.
      * Pre - the object must have an adminId.
      * 
-     * @return - the Object's adminid.
+     * @return - the Object's adminId.
      */
     public Integer getAdminId() {
         return adminId;
